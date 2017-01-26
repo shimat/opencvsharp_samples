@@ -11,8 +11,7 @@
       "type": "platform",
       "version": "1.1.0"
     },
-    "OpenCvSharp3-AnyCPU": "3.2.0.20170110"
-  },
+    "OpenCvSharp3-AnyCPU": "3.2.0.20170126"  },
   "frameworks": {
     "netcoreapp1.0": {
       "imports": "dnxcore50",
