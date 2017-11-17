@@ -15,8 +15,9 @@ namespace SamplesCS
                 //new BgSubtractorMOG();
                 //new BinarizerSample();
                 //new BRISKSample();
+                new CaffeSample();
                 //new ClaheSample();
-                new ConnectedComponentsSample();
+                //new ConnectedComponentsSample();
                 //new DFT();
                 //new FaceDetection();
                 //new FASTSample();
