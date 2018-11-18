@@ -22,7 +22,7 @@ namespace SamplesCore
             Mat img = Mat.Zeros(Size, Size, MatType.CV_8UC3);
             foreach (var p in points)
             {
-                img.Circle(p, 4, Scalar.Red, -1);
+                img.Circle((Point)p, 4, Scalar.Red, -1);
             }
 
             // Initializes Subdiv2D
@@ -41,7 +41,7 @@ namespace SamplesCore
                 var before = list.Last();
                 foreach (var p in list)
                 {
-                    vonoroi.Line(before, p, new Scalar(64, 255, 128), 1);
+                    vonoroi.Line((Point)before, (Point)p, new Scalar(64, 255, 128), 1);
                     before = p;
                 }
             }

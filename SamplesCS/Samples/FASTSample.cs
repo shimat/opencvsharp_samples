@@ -20,7 +20,7 @@ namespace SamplesCS
 
                 foreach (KeyPoint kp in keypoints)
                 {
-                    imgDst.Circle(kp.Pt, 3, Scalar.Red, -1, LineTypes.AntiAlias, 0);
+                    imgDst.Circle((Point)kp.Pt, 3, Scalar.Red, -1, LineTypes.AntiAlias, 0);
                 }
 
                 Cv2.ImShow("FAST", imgDst);

@@ -22,14 +22,14 @@ namespace SamplesCS
                 foreach (KeyPoint kpt in keypoints)
                 {
                     float r = kpt.Size / 2;
-                    Cv2.Circle(dst, kpt.Pt, (int)r, color);
-                    Cv2.Line(dst, 
-                        new Point2f(kpt.Pt.X + r, kpt.Pt.Y + r), 
-                        new Point2f(kpt.Pt.X - r, kpt.Pt.Y - r), 
+                    Cv2.Circle(dst, (Point)kpt.Pt, (int)r, color);
+                    Cv2.Line(dst,
+                        (Point)new Point2f(kpt.Pt.X + r, kpt.Pt.Y + r),
+                        (Point)new Point2f(kpt.Pt.X - r, kpt.Pt.Y - r), 
                         color);
-                    Cv2.Line(dst, 
-                        new Point2f(kpt.Pt.X - r, kpt.Pt.Y + r), 
-                        new Point2f(kpt.Pt.X + r, kpt.Pt.Y - r), 
+                    Cv2.Line(dst,
+                        (Point)new Point2f(kpt.Pt.X - r, kpt.Pt.Y + r),
+                        (Point)new Point2f(kpt.Pt.X + r, kpt.Pt.Y - r), 
                         color);
                 }
             }
