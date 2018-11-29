@@ -11,7 +11,7 @@ namespace SamplesCS
     {
         public void Run()
         {
-            var gray = new Mat(FilePath.Image.Lenna, ImreadModes.GrayScale);
+            var gray = new Mat(FilePath.Image.Lenna, ImreadModes.Grayscale);
             var dst = new Mat(FilePath.Image.Lenna, ImreadModes.Color);
 
             // ORB

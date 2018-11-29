@@ -41,7 +41,7 @@ namespace SamplesCS
         {
             Mat[] images = SelectStitchingImages(200, 200, 10);
 
-           var stitcher = Stitcher.Create(false);
+            var stitcher = Stitcher.Create(Stitcher.Mode.Scans);
 
             Mat pano = new Mat();
 

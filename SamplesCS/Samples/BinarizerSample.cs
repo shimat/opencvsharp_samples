@@ -10,7 +10,7 @@ namespace SamplesCS
     {
         public void Run()
         {
-            using (var src = Cv2.ImRead(FilePath.Image.Binarization, ImreadModes.GrayScale))
+            using (var src = Cv2.ImRead(FilePath.Image.Binarization, ImreadModes.Grayscale))
             using (var niblack = new Mat())
             using (var sauvola = new Mat())
             using (var bernsen = new Mat())

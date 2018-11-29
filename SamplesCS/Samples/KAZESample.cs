@@ -12,7 +12,7 @@ namespace SamplesCS
     {
         public void Run()
         {
-            var gray = new Mat(FilePath.Image.Lenna, ImreadModes.GrayScale);
+            var gray = new Mat(FilePath.Image.Lenna, ImreadModes.Grayscale);
             var kaze = KAZE.Create();
             var akaze = AKAZE.Create();
 

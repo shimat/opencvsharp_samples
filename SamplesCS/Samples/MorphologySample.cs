@@ -10,7 +10,7 @@ namespace SamplesCS
     {
         public void Run()
         {
-            Mat gray = new Mat(FilePath.Image.Lenna, ImreadModes.GrayScale);
+            Mat gray = new Mat(FilePath.Image.Lenna, ImreadModes.Grayscale);
             Mat binary = new Mat();
             Mat dilate1 = new Mat();
             Mat dilate2 = new Mat();

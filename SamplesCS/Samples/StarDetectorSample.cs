@@ -12,7 +12,7 @@ namespace SamplesCS
         public void Run()
         {
             var dst = new Mat(FilePath.Image.Lenna, ImreadModes.Color);
-            var gray = new Mat(FilePath.Image.Lenna, ImreadModes.GrayScale);
+            var gray = new Mat(FilePath.Image.Lenna, ImreadModes.Grayscale);
 
             StarDetector detector = StarDetector.Create(45);
             KeyPoint[] keypoints = detector.Detect(gray);

@@ -21,7 +21,7 @@ namespace SamplesCS
         private void SampleCpp()
         {
             // (1) Load the image
-            using (Mat imgGray = new Mat(FilePath.Image.Goryokaku, ImreadModes.GrayScale))
+            using (Mat imgGray = new Mat(FilePath.Image.Goryokaku, ImreadModes.Grayscale))
             using (Mat imgStd = new Mat(FilePath.Image.Goryokaku, ImreadModes.Color))
             using (Mat imgProb = imgStd.Clone())
             {

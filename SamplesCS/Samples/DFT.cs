@@ -13,7 +13,7 @@ namespace SamplesCS
     {
         public void Run()
         {
-            Mat img = Cv2.ImRead(FilePath.Image.Lenna, ImreadModes.GrayScale);
+            Mat img = Cv2.ImRead(FilePath.Image.Lenna, ImreadModes.Grayscale);
 
             // expand input image to optimal size
             Mat padded = new Mat(); 

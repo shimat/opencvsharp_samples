@@ -12,7 +12,7 @@ namespace SamplesCS
     {
         public void Run()
         {
-            Mat src = new Mat(FilePath.Image.TsukubaLeft, ImreadModes.GrayScale);
+            Mat src = new Mat(FilePath.Image.TsukubaLeft, ImreadModes.Grayscale);
             Mat dst1 = new Mat();
             Mat dst2 = new Mat();
             Mat dst3 = new Mat();
