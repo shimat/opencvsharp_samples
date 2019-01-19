@@ -42,8 +42,8 @@ namespace SamplesCS
             {
                 int binW = (int)((double)Width / hdims[0]);
                 render.Rectangle(
-                    new Point(j * binW, render.Rows),
-                    new Point((j + 1) * binW, render.Rows - (int)(hist.Get<float>(j))),
+                    new Point(j * binW, render.Rows - (int)hist.Get<float>(j)),
+                    new Point((j + 1) * binW, render.Rows),
                     color, 
                     -1);
             }

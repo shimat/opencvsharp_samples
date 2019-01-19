@@ -15,7 +15,7 @@ namespace SamplesCS
                 //new BgSubtractorMOG();
                 //new BinarizerSample();
                 //new BRISKSample();
-                new CaffeSample();
+                //new CaffeSample();
                 //new ClaheSample();
                 //new ConnectedComponentsSample();
                 //new DFT();
@@ -23,7 +23,7 @@ namespace SamplesCS
                 //new FASTSample();
                 //new FlannSample(); 
                 //new FREAKSample();
-                //new HistSample();
+                new HistSample();
                 //new HOGSample();
                 //new HoughLinesSample();
                 //new KAZESample2();
