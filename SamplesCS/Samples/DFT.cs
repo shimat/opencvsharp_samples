@@ -69,7 +69,8 @@ namespace SamplesCS
             tmp.CopyTo(q2);
 
             // Transform the matrix with float values into a
-            Cv2.Normalize(spectrum, spectrum, 0, 1, NormTypes.MinMax); 
+            Cv2.Normalize(spectrum, spectrum, 0, 255, NormTypes.MinMax); 
+            spectrum.ConvertTo(spectrum, MatType.CV_8U);
                                      
             // Show the result
             Cv2.ImShow("Input Image"       , img);
@@ -78,7 +79,9 @@ namespace SamplesCS
             // calculating the idft
             Mat inverseTransform = new Mat();
             Cv2.Dft(dft, inverseTransform, DftFlags.Inverse | DftFlags.RealOutput);
-            Cv2.Normalize(inverseTransform, inverseTransform, 0, 1, NormTypes.MinMax);
+            Cv2.Normalize(inverseTransform, inverseTransform, 0, 255, NormTypes.MinMax);
+            inverseTransform.ConvertTo(inverseTransform, MatType.CV_8U);
+
             Cv2.ImShow("Reconstructed by Inverse DFT", inverseTransform);
             Cv2.WaitKey();
         }
