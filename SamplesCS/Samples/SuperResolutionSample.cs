@@ -19,7 +19,7 @@ namespace SamplesCS
             if (!capture.IsOpened())
                 throw new Exception("capture initialization failed");
 
-            var fs = FrameSource.CreateCameraSource(-1);
+            var fs = FrameSource.CreateFrameSource_Camera(-1);
             var sr = SuperResolution.CreateBTVL1();
             sr.SetInput(fs);
 
