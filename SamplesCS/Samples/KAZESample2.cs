@@ -124,8 +124,8 @@ namespace SamplesCS
         // fixed FromArray behavior
         static Point2d[] MyPerspectiveTransform2(Point2f[] yourData, Mat transformationMatrix)
         {
-            using (MatOfPoint2f s = MatOfPoint2f.FromArray(yourData))
-            using (MatOfPoint2f d = new MatOfPoint2f())
+            using (var s = Mat<Point2f>.FromArray(yourData))
+            using (var d = new Mat<Point2f>())
             {
                 Cv2.PerspectiveTransform(s, d, transformationMatrix);
                 Point2f[] f = d.ToArray();
@@ -177,9 +177,9 @@ namespace SamplesCS
                     scaleBinSize = 2;
                 float[] scaleRanges = { (float)minS, (float)(minS + scaleBinSize + Math.Log10(scaleIncrement)) };
 
-                using (MatOfFloat scalesMat = new MatOfFloat(rows: logScale.Count, cols: 1, data: logScale.ToArray()))
-                using (MatOfFloat rotationsMat = new MatOfFloat(rows: rotations.Count, cols: 1, data: rotations.ToArray()))
-                using (MatOfFloat flagsMat = new MatOfFloat(logScale.Count, 1))
+                using (var scalesMat = new Mat<float>(rows: logScale.Count, cols: 1, data: logScale.ToArray()))
+                using (var rotationsMat = new Mat<float>(rows: rotations.Count, cols: 1, data: rotations.ToArray()))
+                using (var flagsMat = new Mat<float>(logScale.Count, 1))
                 using (Mat hist = new Mat())
                 {
                     flagsMat.SetTo(new Scalar(0.0f));

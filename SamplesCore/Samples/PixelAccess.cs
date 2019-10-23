@@ -69,7 +69,7 @@ namespace SamplesCore
         {
             using (Mat mat = new Mat(FilePath.Image.Lenna, ImreadModes.Color))
             {
-                MatOfByte3 mat3 = new MatOfByte3(mat);
+                var mat3 = new Mat<Vec3b>(mat);
                 var indexer = mat3.GetIndexer();
                 for (int y = 0; y < mat.Height; y++)
                 {
