@@ -21,8 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="OpenCvSharp4" Version="4.1.1.20191021" />
-    <PackageReference Include="OpenCvSharp4.runtime.win" Version="4.1.1.20191021" />
+    <PackageReference Include="OpenCvSharp4" Version="4.1.1.20191025" />
+    <PackageReference Include="OpenCvSharp4.runtime.win" Version="4.1.1.20191025" />
   </ItemGroup>
 
   <ItemGroup>
