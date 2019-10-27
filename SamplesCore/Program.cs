@@ -10,8 +10,8 @@ namespace SamplesCore
         public static void Main(string[] args)
         {
             ISample sample =
-                new CaffeSample();
-                //new ClaheSample();
+                //new CaffeSample();
+                new ClaheSample();
                 //new ConnectedComponentsSample();
                 //new HOGSample();
                 //new HoughLinesSample();
