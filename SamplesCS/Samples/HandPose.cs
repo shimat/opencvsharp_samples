@@ -79,7 +79,7 @@ namespace SamplesCS
                     continue;
 
                 Cv2.Line(frame, partA, partB, new Scalar(0, 255, 255), 8);
-                Cv2.Circle(frame, (int)partA.X, (int)partA.Y, 8, new Scalar(0, 0, 255), -1);
+                Cv2.Circle(frame, partA.X, partA.Y, 8, new Scalar(0, 0, 255), -1);
                 Cv2.Circle(frame, (int)partB.X, (int)partB.Y, 8, new Scalar(0, 0, 255), -1);
             }
 
