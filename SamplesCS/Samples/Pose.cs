@@ -12,12 +12,12 @@ namespace SamplesCS
     {
         public void Run()
         {
-	    const string Model = "pose_iter_160000.caffemodel";
-	    const string ModelTxt = "pose_deploy_linevec_faster_4_stages.prototxt";
-	    const string sampleImage = "single.jpeg";
-	    const string outputLoc = "Output-Skeleton.jpg";
-	    const int nPoints = 15;
-	    const double thresh = 0.1;
+            const string Model = "pose_iter_160000.caffemodel";
+            const string ModelTxt = "pose_deploy_linevec_faster_4_stages.prototxt";
+            const string sampleImage = "single.jpeg";
+            const string outputLoc = "Output-Skeleton.jpg";
+            const int nPoints = 15;
+            const double thresh = 0.1;
 
 	    int[][] POSE_PAIRS =
 	    {
