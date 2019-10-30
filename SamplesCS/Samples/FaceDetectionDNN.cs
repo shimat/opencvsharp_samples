@@ -16,7 +16,7 @@ namespace SamplesCS
         {
             string finalOutput = "DetectedFaces.jpg";
             string faceModel = "res10_300x300_ssd_iter_140000_fp16.caffemodel";
-			string configFile = "deploy.prototxt";
+            string configFile = "deploy.prototxt";
             var image = "faces.jpg";
             // Read sample image
             var frame = Cv2.ImRead(image);
