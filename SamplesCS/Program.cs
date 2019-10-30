@@ -39,6 +39,7 @@ namespace SamplesCS
                 //new MergeSplitSample();
                 //new MorphologySample();
                 //new PixelAccess();
+                new Pose();
                 //new SeamlessClone();
                 //new SiftSurfSample();
                 //new SolveEquation();

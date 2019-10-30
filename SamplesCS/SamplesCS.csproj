@@ -126,6 +126,7 @@
     <Compile Include="Samples\FaceDetectionDNN.cs" />
     <Compile Include="Samples\HandPose.cs" />
     <Compile Include="Samples\PhotoMethods.cs" />
+    <Compile Include="Samples\Pose.cs" />
     <Compile Include="Samples\SeamlessClone.cs" />
     <Compile Include="Samples\ConnectedComponentsSample.cs" />
     <Compile Include="Samples\KAZESample2.cs" />
