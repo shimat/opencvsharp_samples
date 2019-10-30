@@ -13,10 +13,10 @@ namespace SamplesCS
     class FaceDetectionDNN : ISample
     {
         public void Run()
-        {
-            string finalOutput = "DetectedFaces.jpg";
+        {            
 	    string configFile = "deploy.prototxt";
             string faceModel = "res10_300x300_ssd_iter_140000_fp16.caffemodel";
+	    string finalOutput = "DetectedFaces.jpg";
 	    var image = "faces.jpg";
 	    
             // Read sample image
