@@ -20,10 +20,11 @@ namespace SamplesCS
                 //new ConnectedComponentsSample();
                 //new DFT();
                 //new FaceDetection();
+				new FaceDetectionDNN();
                 //new FASTSample();
                 //new FlannSample(); 
                 //new FREAKSample();
-                new HistSample();
+                //new HistSample();
                 //new HOGSample();
                 //new HoughLinesSample();
                 //new KAZESample2();
