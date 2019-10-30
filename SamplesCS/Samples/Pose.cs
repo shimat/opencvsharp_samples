@@ -83,7 +83,7 @@ namespace SamplesCS
             {
                 // lookup 2 connected body/hand parts
                 Point2f partA = points[POSE_PAIRS[n][0]];
-                Point2f partB = points[POSE_PAIRS[n][1]];
+                Point partB = points[POSE_PAIRS[n][1]];
 
                 if (partA.X <= 0 || partA.Y <= 0 || partB.X <= 0 || partB.Y <= 0)
                     continue;
