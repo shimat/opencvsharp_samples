@@ -20,7 +20,7 @@ namespace SamplesCS
                 //new ConnectedComponentsSample();
                 //new DFT();
                 //new FaceDetection();
-				new FaceDetectionDNN();
+                //new FaceDetectionDNN();
                 //new FASTSample();
                 //new FlannSample(); 
                 //new FREAKSample();
@@ -38,6 +38,7 @@ namespace SamplesCS
                 //new MergeSplitSample();
                 //new MorphologySample();
                 //new PixelAccess();
+                new Pose();
                 //new SeamlessClone();
                 //new SiftSurfSample();
                 //new SolveEquation();
