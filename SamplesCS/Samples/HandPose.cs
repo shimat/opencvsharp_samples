@@ -13,21 +13,21 @@ namespace SamplesCS
     {
         public void Run()
         {
-			string model = "pose_iter_102000.caffemodel";
-			string modelTxt = "pose_deploy.prototxt";
-			const string sampleImage = "hand.jpg";
-			const string outputLoc = "Output_Hand.jpg";
-			const int nPoints = 22;
-			const double thresh = 0.01;
-			
-			int[][] POSE_PAIRS =
-			{
-				new int[] { 0, 1}, new int[] {1, 2}, new int[] {2,3}, new int[] {3,4}, //thumb
-				new int[] { 0, 5}, new int[] {5, 6}, new int[] {6,7}, new int[] {7,8}, //index
-				new int[] { 0, 9}, new int[] {9, 10}, new int[] {10,11}, new int[] {11,12}, //middle
-				new int[] { 0, 13}, new int[] {13, 14}, new int[] {14,15}, new int[] {15,16}, //ring
-				new int[] { 0, 17}, new int[] {17, 18}, new int[] {18,19}, new int[] {19,20}, //small
-			};
+	    string model = "pose_iter_102000.caffemodel";
+	    string modelTxt = "pose_deploy.prototxt";
+	    const string sampleImage = "hand.jpg";
+	    const string outputLoc = "Output_Hand.jpg";
+	    const int nPoints = 22;
+	    const double thresh = 0.01;
+
+	    int[][] POSE_PAIRS =
+	    {
+		new int[] { 0, 1}, new int[] {1, 2}, new int[] {2,3}, new int[] {3,4}, //thumb
+		new int[] { 0, 5}, new int[] {5, 6}, new int[] {6,7}, new int[] {7,8}, //index
+		new int[] { 0, 9}, new int[] {9, 10}, new int[] {10,11}, new int[] {11,12}, //middle
+		new int[] { 0, 13}, new int[] {13, 14}, new int[] {14,15}, new int[] {15,16}, //ring
+		new int[] { 0, 17}, new int[] {17, 18}, new int[] {18,19}, new int[] {19,20}, //small
+	    };
             
             var frame = Cv2.ImRead(sampleImage);
             Mat frameCopy = frame.Clone();
