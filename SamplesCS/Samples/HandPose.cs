@@ -5,7 +5,8 @@ using OpenCvSharp.Dnn;
 namespace SamplesCS
 {
     /// <summary>
-    /// To run this example first download the face model available here: http://posefs1.perception.cs.cmu.edu/OpenPose/models/hand/pose_iter_102000.caffemodel
+    /// To run this example first download the hand model available here: http://posefs1.perception.cs.cmu.edu/OpenPose/models/hand/pose_iter_102000.caffemodel
+    /// Or also available here https://github.com/CMU-Perceptual-Computing-Lab/openpose/tree/master/models
     /// Add the files to the bin folder
     /// </summary>
     class HandPose : ISample
