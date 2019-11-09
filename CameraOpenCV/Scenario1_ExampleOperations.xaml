@@ -1,0 +1,126 @@
+<!--
+//*********************************************************
+//
+// Copyright (c) Microsoft. All rights reserved.
+// This code is licensed under the MIT License (MIT).
+// THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF
+// ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY
+// IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR
+// PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
+//
+//*********************************************************
+-->
+<Page
+    x:Class="SDKTemplate.Scenario1_ExampleOperations"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SDKTemplate"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" >
+
+    <StackPanel>
+        <ScrollViewer Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="12,20,12,12">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup>
+                    <!-- If the screen is wide enough, then put the three previews side by side -->
+                    <VisualState>
+                        <VisualState.StateTriggers>
+                            <AdaptiveTrigger MinWindowWidth="600"/>
+                        </VisualState.StateTriggers>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+
+            <StackPanel>
+                <TextBlock Text="Description:" Style="{StaticResource SampleHeaderTextStyle}"/>
+                <TextBlock Style="{StaticResource ScenarioDescriptionTextStyle}" TextWrapping="Wrap">
+                    Shows the output of various OpenCV operations
+                </TextBlock>
+                <TextBlock Name="CurrentOperationTextBlock">Current: Blur</TextBlock>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="20*"/>
+                    </Grid.ColumnDefinitions>
+                    <ComboBox Name="OperationComboBox" Grid.Column="0"  Margin="10,0,10,0" Width="130" SelectionChanged="OperationComboBox_SelectionChanged"/>
+                    <ToggleButton HorizontalAlignment="Left" Grid.Column="1" VerticalAlignment="Center" Click="ToggleButton_Click">
+                        <FontIcon x:Name="Setting" FontFamily="Segoe MDL2 Assets" Glyph="&#xE713;" Margin="0,0,0,0"/>
+                    </ToggleButton>
+                </Grid>
+
+                <Grid HorizontalAlignment="Stretch" Margin="0,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.Resources>
+                        <Style TargetType="Grid">
+                            <Setter Property="BorderThickness" Value="1"/>
+                            <Setter Property="BorderBrush" Value="LightGray"/>
+                        </Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="TextWrapping" Value="Wrap"/>
+                        </Style>
+                    </Grid.Resources>
+
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Text="Preview"/>
+                        <Image Name="PreviewImage" />
+                    </StackPanel>
+                    <StackPanel Grid.Column="1">
+                        <TextBlock Text="Output of Operation"/>
+                        <Image Name="OutputImage"/>
+                    </StackPanel>
+                </Grid>
+
+                <TextBlock Name="FPSMonitor"/>
+            </StackPanel>
+
+        </ScrollViewer>
+        <Grid Background="Transparent">
+            <SplitView IsPaneOpen="True" DisplayMode="CompactInline"  HorizontalAlignment="Right" MaxHeight="800">
+                <SplitView.Pane>
+                    <ListView x:Name="collection"  Margin="0,10,0,10"
+                      IsItemClickEnabled="True" ItemClick="Collection_ItemClick" Visibility="Collapsed" SelectionChanged="Collection_SelectionChanged">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:Name="AlgorithmParameterTemplate" x:DataType="local:AlgorithmProperty">
+                                <StackPanel Margin="0,0,0,50">
+                                    <TextBlock Text="{x:Bind ParameterName}" FontWeight="Bold" FontSize="20"/>
+                                    <TextBlock Text="Description: " Visibility="{x:Bind DetailsVisibility}"/>
+                                    <TextBlock Text="{x:Bind Description}" TextWrapping="Wrap" FontStyle="Italic" Visibility="{x:Bind DetailsVisibility}"/>
+                                    <Grid Visibility="{x:Bind DetailsVisibility}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="125"/>
+                                            <ColumnDefinition Width="25"/>
+                                            <ColumnDefinition Width="125"/>
+                                            <ColumnDefinition Width="25"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="Maximum Value = "/>
+                                        <TextBlock Grid.Column="1" Text="{x:Bind MaxValue}"/>
+                                        <TextBlock Grid.Column="2" Text=". Minimum Value = "/>
+                                        <TextBlock Grid.Column="3" Text="{x:Bind MinValue}"/>
+                                    </Grid>
+                                    <TextBlock Text="{x:Bind CurrentStringValue}" FontWeight="Bold" FontSize="15" HorizontalAlignment="Center"/>
+                                    <Slider Visibility="{x:Bind SliderVisibility}" Minimum="{x:Bind MinValue}" Maximum="{x:Bind MaxValue}" IsEnabled="{x:Bind IsSliderEnable}" Tag="{x:Bind Tag}"
+                                                    Value="{x:Bind CurrentDoubleValue}" ValueChanged="Slider1_ValueChanged" HorizontalAlignment="Stretch"/>
+                                    <ComboBox Header="List:" ItemsSource="{x:Bind ParamList}" SelectionChanged="ComboBox_SelectionChanged"  Visibility="{x:Bind ComboBoxVisibility}"
+                                              IsEnabled="{x:Bind IsComboBoxEnable}" SelectedIndex="{x:Bind CurrentIntValue}" Tag="{x:Bind Tag}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </SplitView.Pane>
+            </SplitView>
+        </Grid>
+    </StackPanel>
+</Page>
