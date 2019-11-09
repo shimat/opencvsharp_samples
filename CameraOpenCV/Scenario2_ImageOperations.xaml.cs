@@ -196,8 +196,6 @@ namespace SDKTemplate
             });
         }
 
-
-
         private async void Slider1_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
             if (storeditem != null && StoredProperty != null)
@@ -236,7 +234,6 @@ namespace SDKTemplate
         {
 
         }
-
 
         private async void Collection_ItemClick(object sender, ItemClickEventArgs e)
         {
