@@ -6,15 +6,11 @@ namespace SDKTemplate
 {
     public sealed class OcvOp : IDisposable
     {
-        private BackgroundSubtractorMOG2 mog2 = BackgroundSubtractorMOG2.Create();
+        private BackgroundSubtractorMOG2 mog2;
 
         public OcvOp()
         {
-        }
-
-        ~OcvOp()
-        {
-            mog2.Dispose();
+            mog2 = BackgroundSubtractorMOG2.Create();
         }
 
         public void Dispose()
@@ -26,8 +22,8 @@ namespace SDKTemplate
         {
             if (algorithm.AlgorithmName == "Blur")
             {
-                Mat mInput = SoftwareBitmap2Mat(input);
-                Mat mOutput = new Mat(mInput.Rows, mInput.Cols, MatType.CV_8UC4);
+                using Mat mInput = SoftwareBitmap2Mat(input);
+                using Mat mOutput = new Mat(mInput.Rows, mInput.Cols, MatType.CV_8UC4);
 
                 //App.CvHelper.T
 
@@ -44,11 +40,11 @@ namespace SDKTemplate
         {
             if (algorithm.AlgorithmName == "HoughLines")
             {
-                Mat mInput = SoftwareBitmap2Mat(input);
-                Mat mOutput = new Mat(mInput.Rows, mInput.Cols, MatType.CV_8UC4);
+                using Mat mInput = SoftwareBitmap2Mat(input);
+                using Mat mOutput = new Mat(mInput.Rows, mInput.Cols, MatType.CV_8UC4);
                 mInput.CopyTo(mOutput);
-                Mat gray = mInput.CvtColor(ColorConversionCodes.BGRA2GRAY);
-                Mat edges = gray.Canny(50, 200);
+                using Mat gray = mInput.CvtColor(ColorConversionCodes.BGRA2GRAY);
+                using Mat edges = gray.Canny(50, 200);
                 //var res = Cv2.HoughLinesP(mInput,
                 //    (double)algorithm.findParambyName("rho"),
                 //    (double)algorithm.findParambyName("theta"),
@@ -90,11 +86,11 @@ namespace SDKTemplate
         {
             if (algorithm.AlgorithmName == "Contours")
             {
-                Mat mInput = SoftwareBitmap2Mat(input);
-                Mat mOutput = new Mat(mInput.Rows, mInput.Cols, MatType.CV_8UC4);
+                using Mat mInput = SoftwareBitmap2Mat(input);
+                using Mat mOutput = new Mat(mInput.Rows, mInput.Cols, MatType.CV_8UC4);
                 mInput.CopyTo(mOutput);
-                Mat gray = mInput.CvtColor(ColorConversionCodes.BGRA2GRAY);
-                Mat edges = gray.Canny((double)algorithm.AlgorithmProperties[6].CurrentValue, (double)algorithm.AlgorithmProperties[7].CurrentValue);
+                using Mat gray = mInput.CvtColor(ColorConversionCodes.BGRA2GRAY);
+                using Mat edges = gray.Canny((double)algorithm.AlgorithmProperties[6].CurrentValue, (double)algorithm.AlgorithmProperties[7].CurrentValue);
 
                 Cv2.FindContours(
                     edges,
@@ -159,9 +155,9 @@ namespace SDKTemplate
         {
             if (algorithm.AlgorithmName == "Canny")
             {
-                Mat mInput = SoftwareBitmap2Mat(input);
-                Mat mOutput = new Mat(mInput.Rows, mInput.Cols, MatType.CV_8UC4);
-                Mat intermediate = new Mat(mInput.Rows, mInput.Cols, MatType.CV_8UC4);
+                using Mat mInput = SoftwareBitmap2Mat(input);
+                using Mat mOutput = new Mat(mInput.Rows, mInput.Cols, MatType.CV_8UC4);
+                using Mat intermediate = new Mat(mInput.Rows, mInput.Cols, MatType.CV_8UC4);
 
                 // MP! Todo: add param support
                 Cv2.Canny(mInput, intermediate, 80, 90);
@@ -175,47 +171,44 @@ namespace SDKTemplate
         {
             if (algorithm.AlgorithmName == "MotionDetector")
             {
-                Mat mInput = SoftwareBitmap2Mat(input);
-                Mat mOutput = new Mat(mInput.Rows, mInput.Cols, MatType.CV_8UC4);
-                Mat fgMaskMOG2 = new Mat(mInput.Rows, mInput.Cols, MatType.CV_8UC4);
-                Mat temp = new Mat(mInput.Rows, mInput.Cols, MatType.CV_8UC4);
+                using Mat mInput = SoftwareBitmap2Mat(input);
+                using Mat mOutput = new Mat(mInput.Rows, mInput.Cols, MatType.CV_8UC4);
+                using Mat fgMaskMOG2 = new Mat(mInput.Rows, mInput.Cols, MatType.CV_8UC4);
+                using Mat temp = new Mat(mInput.Rows, mInput.Cols, MatType.CV_8UC4);
 
                 // MP! Todo: add param support
                 mog2.Apply(mInput, fgMaskMOG2);
                 Cv2.CvtColor(fgMaskMOG2, temp, ColorConversionCodes.GRAY2BGRA);
 
-                Mat element = Cv2.GetStructuringElement(MorphShapes.Rect, new Size(3, 3));
+                using Mat element = Cv2.GetStructuringElement(MorphShapes.Rect, new Size(3, 3));
                 Cv2.Erode(temp, temp, element);
                 temp.CopyTo(mOutput);
                 Mat2SoftwareBitmap(mOutput, output);
             }
         }
 
-        public unsafe static Mat SoftwareBitmap2Mat(SoftwareBitmap softwareBitmap)
+        public static unsafe Mat SoftwareBitmap2Mat(SoftwareBitmap softwareBitmap)
         {
             using (BitmapBuffer buffer = softwareBitmap.LockBuffer(BitmapBufferAccessMode.Write))
             {
                 using (var reference = buffer.CreateReference())
                 {
-                    byte* dataInBytes;
-                    uint capacity;
-                    ((IMemoryBufferByteAccess)reference).GetBuffer(out dataInBytes, out capacity);
+                    ((IMemoryBufferByteAccess)reference).GetBuffer(out var dataInBytes, out var capacity);
 
-                    Mat outputmat = new Mat(softwareBitmap.PixelHeight, softwareBitmap.PixelWidth, MatType.CV_8UC4, (IntPtr)dataInBytes);
-                    return outputmat;
+                    Mat outputMat = new Mat(softwareBitmap.PixelHeight, softwareBitmap.PixelWidth, MatType.CV_8UC4, (IntPtr)dataInBytes);
+                    return outputMat;
                 }
             }
         }
-        public unsafe static void Mat2SoftwareBitmap(Mat input, SoftwareBitmap output)
+
+        public static unsafe void Mat2SoftwareBitmap(Mat input, SoftwareBitmap output)
         {
             //SoftwareBitmap softwareBitmap = new SoftwareBitmap(BitmapPixelFormat.Bgra8, input.Width, input.Height, BitmapAlphaMode.Premultiplied);
             using (BitmapBuffer buffer = output.LockBuffer(BitmapBufferAccessMode.ReadWrite))
             {
                 using (var reference = buffer.CreateReference())
                 {
-                    byte* dataInBytes;
-                    uint capacity;
-                    ((IMemoryBufferByteAccess)reference).GetBuffer(out dataInBytes, out capacity);
+                    ((IMemoryBufferByteAccess)reference).GetBuffer(out var dataInBytes, out var capacity);
                     BitmapPlaneDescription bufferLayout = buffer.GetPlaneDescription(0);
                     for (int i = 0; i < bufferLayout.Height; i++)
                     {
