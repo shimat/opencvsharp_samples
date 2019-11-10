@@ -5,7 +5,6 @@ namespace SDKTemplate
 {
     public class Algorithm
     {
-        //public List<AlgorithmProperty> algorithmProperties { get; set; }
         public List<AlgorithmProperty> AlgorithmProperties { get; set; }
         public string AlgorithmName { get; set; }
 
@@ -65,11 +64,11 @@ namespace SDKTemplate
             }
         }
 
-        public void RevertEnable(string ParamName)
+        public void RevertEnable(string paramName)
         {
             foreach (var p in AlgorithmProperties)
             {
-                if (p.ParameterName == ParamName)
+                if (p.ParameterName == paramName)
                 {
                     if (p.IsComboBoxEnable)
                     {
@@ -128,11 +127,11 @@ namespace SDKTemplate
             }
         }
 
-        public object FindParamByName(string ParamName)
+        public object FindParamByName(string paramName)
         {
             foreach (var ap in AlgorithmProperties)
             {
-                if (ap.ParameterName == ParamName)
+                if (ap.ParameterName == paramName)
                 {
                     return ap.CurrentValue;
                 }

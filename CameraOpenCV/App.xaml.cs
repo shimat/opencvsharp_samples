@@ -26,8 +26,8 @@ namespace SDKTemplate
     /// </summary>
     sealed partial class App : Application
     {
-        static public Windows.UI.Core.CoreDispatcher dispatcher = null;
-        static public Panel container = null;
+        public static Windows.UI.Core.CoreDispatcher dispatcher = null;
+        public static Panel container = null;
         //static public OpenCvHelper CvHelper = new OpenCvHelper();
 
         /// <summary>
@@ -126,7 +126,7 @@ namespace SDKTemplate
             throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
         }
 
-        // Add any application contructor code in here.
+        // Add any application constructor code in here.
         partial void Construct();
 
         // Add any OnLaunched customization here.
