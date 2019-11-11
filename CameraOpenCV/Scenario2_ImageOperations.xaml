@@ -7,8 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    
     <StackPanel>
-
         <ScrollViewer Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="12,20,12,12">
             <VisualStateManager.VisualStateGroups>
                 <VisualStateGroup>
@@ -29,13 +29,13 @@
                 <TextBlock Name="CurrentOperationTextBlock">Current: Blur</TextBlock>
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="150"/>
                         <ColumnDefinition Width="50"/>
                         <ColumnDefinition Width="50"/>
                         <ColumnDefinition Width="50"/>
                         <ColumnDefinition Width="7*"/>
                     </Grid.ColumnDefinitions>
-                    <ComboBox Name="OperationComboBox" Grid.Column="0"  Margin="10,0,10,0" SelectionChanged="OperationComboBox_SelectionChanged"/>
+                    <ComboBox Name="OperationComboBox" Grid.Column="0" SelectedIndex="-1" Margin="10,0,10,0" Width="130" SelectionChanged="OnOpComboBoxSelectionChanged"/>
                     <ToggleButton HorizontalAlignment="Left" Grid.Column="1" VerticalAlignment="Center" Click="ToggleButton_Click">
                         <FontIcon x:Name="Setting" FontFamily="Segoe MDL2 Assets" Glyph="&#xE713;" Margin="0,0,0,0"/>
                     </ToggleButton>
@@ -46,30 +46,6 @@
                         <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE838;" Margin="0,0,0,0"/>
                     </Button>
                 </Grid>
-
-                <!--<Grid HorizontalAlignment="Stretch" Margin="0,10,0,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <Grid.Resources>
-                        <Style TargetType="Grid">
-                            <Setter Property="BorderThickness" Value="1"/>
-                            <Setter Property="BorderBrush" Value="LightGray"/>
-                        </Style>
-                        <Style TargetType="TextBlock">
-                            <Setter Property="HorizontalAlignment" Value="Center"/>
-                            <Setter Property="TextWrapping" Value="Wrap"/>
-                        </Style>
-                    </Grid.Resources>
-
-                    
-                </Grid>-->
 
                 <TextBlock Name="FPSMonitor"/>
             </StackPanel>
@@ -98,34 +74,11 @@
                 <TextBlock Text="Output of Operation"/>
                 <Image Name="OutputImage" Stretch="UniformToFill"/>
             </StackPanel>
-            <!--<Image x:Name="PreviewFrame" 
-                   Canvas.ZIndex="-1" 
-                   Grid.Column="0"
-                   MaxHeight="640"
-                   MaxWidth="480"
-                   Stretch="Uniform"/>-->
-            <!--<Canvas x:Name="PreviewFrameCanvas" 
-                    Canvas.ZIndex="0" 
-                    Grid.Column="0"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"/>-->
-            <!--<Image x:Name="OutputFrame"
-                   Canvas.ZIndex="-1" 
-                   Grid.Column="1"
-                   MaxHeight="640"
-                   MaxWidth="480"
-                   Stretch="Uniform"/>-->
-            <!--<Canvas x:Name="OutputFrameCanvas" 
-                    Grid.Column="1"
-                    Canvas.ZIndex="0" 
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center">
 
-            </Canvas>-->
             <SplitView x:Name="SettingPanel" IsPaneOpen="True" DisplayMode="CompactInline"  HorizontalAlignment="Left" MaxHeight="800" Grid.Column="0" Visibility="Collapsed">
                 <SplitView.Pane>
                     <ListView x:Name="collection"  Margin="0,10,0,10"
-                      IsItemClickEnabled="True" ItemClick="Collection_ItemClick" SelectionChanged="Collection_SelectionChanged" ScrollViewer.VerticalScrollMode="Auto">
+                      IsItemClickEnabled="True" ItemClick="OnCollectionItemClick" ScrollViewer.VerticalScrollMode="Auto">
                         <ListView.ItemTemplate>
                             <DataTemplate x:Name="AlgorithmParameterTemplate" x:DataType="local:AlgorithmProperty">
                                 <StackPanel Margin="0,0,0,50">
@@ -146,8 +99,8 @@
                                     </Grid>
                                     <TextBlock Text="{x:Bind CurrentStringValue}" FontWeight="Bold" FontSize="15" HorizontalAlignment="Center"/>
                                     <Slider Visibility="{x:Bind SliderVisibility}" Minimum="{x:Bind MinValue}" Maximum="{x:Bind MaxValue}" IsEnabled="{x:Bind IsSliderEnable}" Tag="{x:Bind Tag}"
-                                                    Value="{x:Bind CurrentDoubleValue}" ValueChanged="Slider1_ValueChanged" HorizontalAlignment="Stretch"/>
-                                    <ComboBox Header="List:" ItemsSource="{x:Bind ParamList}" SelectionChanged="ComboBox_SelectionChanged" Visibility="{x:Bind ComboBoxVisibility}"
+                                                    Value="{x:Bind CurrentDoubleValue}" ValueChanged="OnSliderValueChanged" HorizontalAlignment="Stretch"/>
+                                    <ComboBox Header="List:" ItemsSource="{x:Bind ParamList}" SelectionChanged="OnComboBoxSelectionChanged" Visibility="{x:Bind ComboBoxVisibility}"
                                               IsEnabled="{x:Bind IsComboBoxEnable}" HorizontalAlignment="Center" SelectedIndex="{x:Bind CurrentIntValue}" Tag="{x:Bind Tag}"/>
                                 </StackPanel>
                             </DataTemplate>
@@ -157,5 +110,4 @@
             </SplitView>
         </Grid>
     </StackPanel>
-
 </Page>

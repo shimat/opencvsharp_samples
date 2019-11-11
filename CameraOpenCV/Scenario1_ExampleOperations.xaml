@@ -46,7 +46,7 @@
                         <ColumnDefinition Width="50"/>
                         <ColumnDefinition Width="20*"/>
                     </Grid.ColumnDefinitions>
-                    <ComboBox Name="OperationComboBox" Grid.Column="0"  Margin="10,0,10,0" Width="130" SelectionChanged="OperationComboBox_SelectionChanged"/>
+                    <ComboBox Name="OperationComboBox" Grid.Column="0"  Margin="10,0,10,0" Width="130" SelectionChanged="OnOpComboBoxSelectionChanged"/>
                     <ToggleButton HorizontalAlignment="Left" Grid.Column="1" VerticalAlignment="Center" Click="ToggleButton_Click">
                         <FontIcon x:Name="Setting" FontFamily="Segoe MDL2 Assets" Glyph="&#xE713;" Margin="0,0,0,0"/>
                     </ToggleButton>
@@ -91,7 +91,7 @@
             <SplitView IsPaneOpen="True" DisplayMode="CompactInline"  HorizontalAlignment="Right" MaxHeight="800">
                 <SplitView.Pane>
                     <ListView x:Name="collection"  Margin="0,10,0,10"
-                      IsItemClickEnabled="True" ItemClick="Collection_ItemClick" Visibility="Collapsed" SelectionChanged="Collection_SelectionChanged">
+                      IsItemClickEnabled="True" ItemClick="Collection_ItemClick" Visibility="Collapsed" >
                         <ListView.ItemTemplate>
                             <DataTemplate x:Name="AlgorithmParameterTemplate" x:DataType="local:AlgorithmProperty">
                                 <StackPanel Margin="0,0,0,50">
@@ -112,8 +112,8 @@
                                     </Grid>
                                     <TextBlock Text="{x:Bind CurrentStringValue}" FontWeight="Bold" FontSize="15" HorizontalAlignment="Center"/>
                                     <Slider Visibility="{x:Bind SliderVisibility}" Minimum="{x:Bind MinValue}" Maximum="{x:Bind MaxValue}" IsEnabled="{x:Bind IsSliderEnable}" Tag="{x:Bind Tag}"
-                                                    Value="{x:Bind CurrentDoubleValue}" ValueChanged="Slider1_ValueChanged" HorizontalAlignment="Stretch"/>
-                                    <ComboBox Header="List:" ItemsSource="{x:Bind ParamList}" SelectionChanged="ComboBox_SelectionChanged"  Visibility="{x:Bind ComboBoxVisibility}"
+                                                    Value="{x:Bind CurrentDoubleValue}" ValueChanged="OnSliderValueChanged" HorizontalAlignment="Stretch"/>
+                                    <ComboBox Header="List:" ItemsSource="{x:Bind ParamList}" SelectionChanged="OnComboBoxSelectionChanged"  Visibility="{x:Bind ComboBoxVisibility}"
                                               IsEnabled="{x:Bind IsComboBoxEnable}" SelectedIndex="{x:Bind CurrentIntValue}" Tag="{x:Bind Tag}"/>
                                 </StackPanel>
                             </DataTemplate>
