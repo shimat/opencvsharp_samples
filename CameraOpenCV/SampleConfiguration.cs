@@ -42,7 +42,6 @@ namespace SDKTemplate
             },
             new Algorithm()
             {
-
                 AlgorithmName ="HoughLines",
                 AlgorithmProperties = new List<AlgorithmProperty>()
                 {
@@ -78,6 +77,7 @@ namespace SDKTemplate
             },
             new Algorithm()
             {
+                // MP! Todo: Sort out better range handling.
                 AlgorithmName ="Canny",
                 AlgorithmProperties = new List<AlgorithmProperty>()
                 {
@@ -88,7 +88,7 @@ namespace SDKTemplate
             },
             new Algorithm()
             {
-                // MP! Todo: resolve usage of params
+                // MP! Todo: Resolve usage of params.
                 AlgorithmName ="Histogram",
                 AlgorithmProperties = new List<AlgorithmProperty>()
                 {
