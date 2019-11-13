@@ -132,6 +132,7 @@
     <Compile Include="Samples\KAZESample2.cs" />
     <Compile Include="Samples\ClaheSample.cs" />
     <Compile Include="Samples\KAZESample.cs" />
+    <Compile Include="Samples\SimpleBlobDetectorSample.cs" />
     <Compile Include="Samples\Stitching.cs" />
     <Compile Include="Samples\SuperResolutionSample.cs" />
     <Compile Include="Samples\FaceDetection.cs" />

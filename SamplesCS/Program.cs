@@ -13,7 +13,7 @@ namespace SamplesCS
         {
             ISample sample =
                 //new BgSubtractorMOG();
-                new BinarizerSample();
+                //new BinarizerSample();
                 //new BRISKSample();
                 //new CaffeSample();
                 //new ClaheSample();
@@ -39,9 +39,10 @@ namespace SamplesCS
                 //new MergeSplitSample();
                 //new MorphologySample();
                 //new PixelAccess();
-                new Pose();
+                //new Pose();
                 //new SeamlessClone();
                 //new SiftSurfSample();
+                new SimpleBlobDetectorSample();
                 //new SolveEquation();
                 //new StarDetectorSample();
                 //new Stitching();
