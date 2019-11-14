@@ -120,6 +120,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ISample.cs" />
+    <Compile Include="Samples\ArucoSample.cs" />
     <Compile Include="Samples\BgSubtractorMOG.cs" />
     <Compile Include="Samples\BinarizerSample.cs" />
     <Compile Include="Samples\CaffeSample.cs" />

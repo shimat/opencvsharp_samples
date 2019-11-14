@@ -12,6 +12,7 @@ namespace SamplesCS
         static void Main(string[] args)
         {
             ISample sample =
+                new ArucoSample();
                 //new BgSubtractorMOG();
                 //new BinarizerSample();
                 //new BRISKSample();
@@ -42,7 +43,7 @@ namespace SamplesCS
                 //new Pose();
                 //new SeamlessClone();
                 //new SiftSurfSample();
-                new SimpleBlobDetectorSample();
+                //new SimpleBlobDetectorSample();
                 //new SolveEquation();
                 //new StarDetectorSample();
                 //new Stitching();
