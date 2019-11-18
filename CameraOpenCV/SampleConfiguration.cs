@@ -11,12 +11,9 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
+
 using OpenCvSharp;
-using System.Collections.ObjectModel;
 
 namespace SDKTemplate
 {
@@ -45,7 +42,6 @@ namespace SDKTemplate
             },
             new Algorithm()
             {
-
                 AlgorithmName ="HoughLines",
                 AlgorithmProperties = new List<AlgorithmProperty>()
                 {
@@ -81,6 +77,7 @@ namespace SDKTemplate
             },
             new Algorithm()
             {
+                // MP! Todo: Sort out better range handling.
                 AlgorithmName ="Canny",
                 AlgorithmProperties = new List<AlgorithmProperty>()
                 {
@@ -91,6 +88,7 @@ namespace SDKTemplate
             },
             new Algorithm()
             {
+                // MP! Todo: Resolve usage of params.
                 AlgorithmName ="Histogram",
                 AlgorithmProperties = new List<AlgorithmProperty>()
                 {
@@ -102,9 +100,7 @@ namespace SDKTemplate
                 AlgorithmName ="MotionDetector",
                 AlgorithmProperties = new List<AlgorithmProperty>()
                 {
-                    new AlgorithmProperty(0,typeof(double),"threshold1"),
-                    new AlgorithmProperty(1,typeof(double),"threshold2"),
-                    new AlgorithmProperty(2,typeof(double),"threshold3"),
+                    new AlgorithmProperty(0,typeof(double),"Threshold1", "Learning rate.", 1, 0, 0.5)
                 }
             },
         };
@@ -119,6 +115,7 @@ namespace SDKTemplate
         maxValue,
         minValue
     }
+
     public class Scenario
     {
         public string Title { get; set; }

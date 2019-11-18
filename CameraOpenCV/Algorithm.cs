@@ -101,17 +101,6 @@ namespace SDKTemplate
                     {
                         p.DetailsVisibility = Visibility.Visible;
                     }
-                    //if (algorithmProperties[i].IsEnable == false)
-                    //{
-                    //    algorithmProperties[i].IsEnable = true;
-                    //    algorithmProperties[i].isInitialize = false;
-                    //    algorithmProperties[i].SettingVisibility = Visibility.Visible; 
-                    //}
-                    //else
-                    //{
-                    //    algorithmProperties[i].IsEnable = false;
-                    //    algorithmProperties[i].SettingVisibility = Visibility.Collapsed;
-                    //}
                 }
             }
         }

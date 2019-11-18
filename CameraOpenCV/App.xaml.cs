@@ -15,10 +15,6 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
-//using OpenCvBridge;
-
-// The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=402347&clcid=0x409
-
 namespace SDKTemplate
 {
     /// <summary>
@@ -28,7 +24,6 @@ namespace SDKTemplate
     {
         public static Windows.UI.Core.CoreDispatcher dispatcher = null;
         public static Panel container = null;
-        //static public OpenCvHelper CvHelper = new OpenCvHelper();
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
