@@ -27,9 +27,9 @@ namespace SDKTemplate
                 using Mat mOutput = new Mat(mInput.Rows, mInput.Cols, MatType.CV_8UC4);
 
                 Cv2.Blur(mInput, mOutput,
-                    (Size)algorithm.AlgorithmProperties[0].CurrentValue,            // ksize
-                    (Point)algorithm.AlgorithmProperties[1].CurrentValue,           // anchor
-                    (BorderTypes)algorithm.AlgorithmProperties[2].CurrentValue);    // bordertype
+                    ksize: (Size)algorithm.AlgorithmProperties[0].CurrentValue,
+                    anchor: (Point)algorithm.AlgorithmProperties[1].CurrentValue,
+                    borderType: (BorderTypes)algorithm.AlgorithmProperties[2].CurrentValue); 
                 Mat2SoftwareBitmap(mOutput, output);
             }
         }
@@ -45,18 +45,18 @@ namespace SDKTemplate
                 using Mat edges = gray.Canny(50, 200);
 
                 var res = Cv2.HoughLinesP(edges,
-                    (double)algorithm.AlgorithmProperties[0].CurrentValue,          // rho
-                    (double)algorithm.AlgorithmProperties[1].CurrentValue / 100.0,  // theta
-                    (int)algorithm.AlgorithmProperties[2].CurrentValue,             // threshold
-                    (double)algorithm.AlgorithmProperties[3].CurrentValue,          // minLineLength
-                    (double)algorithm.AlgorithmProperties[4].CurrentValue);         // maxLineGap
+                    rho: (double)algorithm.AlgorithmProperties[0].CurrentValue, 
+                    theta: (double)algorithm.AlgorithmProperties[1].CurrentValue / 100.0, 
+                    threshold: (int)algorithm.AlgorithmProperties[2].CurrentValue,
+                    minLineLength: (double)algorithm.AlgorithmProperties[3].CurrentValue, 
+                    maxLineGap: (double)algorithm.AlgorithmProperties[4].CurrentValue);
 
                 for (int i = 0; i < res.Length; i++)
                 {
                     Cv2.Line(mOutput, res[i].P1, res[i].P2,
-                        (Scalar)algorithm.AlgorithmProperties[5].CurrentValue,      // color
-                        (int)algorithm.AlgorithmProperties[6].CurrentValue,         // thickness
-                        (LineTypes)algorithm.AlgorithmProperties[7].CurrentValue);  // linetype
+                        color: (Scalar)algorithm.AlgorithmProperties[5].CurrentValue,
+                        thickness: (int)algorithm.AlgorithmProperties[6].CurrentValue,
+                        lineType: (LineTypes)algorithm.AlgorithmProperties[7].CurrentValue); 
                 }
 
                 Mat2SoftwareBitmap(mOutput, output);
@@ -74,12 +74,12 @@ namespace SDKTemplate
                 using Mat edges = gray.Canny((double)algorithm.AlgorithmProperties[6].CurrentValue, (double)algorithm.AlgorithmProperties[7].CurrentValue);
 
                 Cv2.FindContours(
-                    edges,
-                    out OpenCvSharp.Point[][] contours,
-                    out HierarchyIndex[] outputArray,
-                    (RetrievalModes)algorithm.AlgorithmProperties[0].CurrentValue,
-                    (ContourApproximationModes)algorithm.AlgorithmProperties[1].CurrentValue,
-                    (Point)algorithm.AlgorithmProperties[2].CurrentValue);
+                    image: edges,
+                    contours: out OpenCvSharp.Point[][] contours,
+                    hierarchy: out HierarchyIndex[] outputArray,
+                    mode: (RetrievalModes)algorithm.AlgorithmProperties[0].CurrentValue,
+                    method: (ContourApproximationModes)algorithm.AlgorithmProperties[1].CurrentValue,
+                    offset: (Point)algorithm.AlgorithmProperties[2].CurrentValue);
 
                 int maxLen = 0;
                 int maxIdx = -1;
@@ -97,12 +97,12 @@ namespace SDKTemplate
                         Cv2.DrawContours(
                             mOutput,
                             contours,
-                            i,
-                            (Scalar)algorithm.AlgorithmProperties[3].CurrentValue,
-                            (int)algorithm.AlgorithmProperties[4].CurrentValue,
-                            (LineTypes)algorithm.AlgorithmProperties[5].CurrentValue,
-                            outputArray,
-                            0);
+                            contourIdx: i,
+                            color: (Scalar)algorithm.AlgorithmProperties[3].CurrentValue,
+                            thickness: (int)algorithm.AlgorithmProperties[4].CurrentValue,
+                            lineType: (LineTypes)algorithm.AlgorithmProperties[5].CurrentValue,
+                            hierarchy: outputArray,
+                            maxLevel: 0);
 
                     }
                 }
@@ -143,9 +143,9 @@ namespace SDKTemplate
                 using Mat intermediate = new Mat(mInput.Rows, mInput.Cols, MatType.CV_8UC4);
 
                 Cv2.Canny(mInput, intermediate,
-                    (double)algorithm.AlgorithmProperties[0].CurrentValue,  // threshold1
-                    (double)algorithm.AlgorithmProperties[1].CurrentValue,  // threshold2
-                    (int)algorithm.AlgorithmProperties[2].CurrentValue);    // aperturesize
+                    threshold1: (double)algorithm.AlgorithmProperties[0].CurrentValue, 
+                    threshold2: (double)algorithm.AlgorithmProperties[1].CurrentValue,
+                    apertureSize: (int)algorithm.AlgorithmProperties[2].CurrentValue);
 
                 Cv2.CvtColor(intermediate, mOutput, ColorConversionCodes.GRAY2BGRA);
 
