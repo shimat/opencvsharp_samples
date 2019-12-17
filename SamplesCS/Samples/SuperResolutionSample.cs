@@ -13,8 +13,8 @@ namespace SamplesCS
         public void Run()
         {
             var capture = new VideoCapture();
-            capture.Set(CaptureProperty.FrameWidth, 640);
-            capture.Set(CaptureProperty.FrameHeight, 480);
+            capture.Set(VideoCaptureProperties.FrameWidth, 640);
+            capture.Set(VideoCaptureProperties.FrameHeight, 480);
             capture.Open(-1);
             if (!capture.IsOpened())
                 throw new Exception("capture initialization failed");

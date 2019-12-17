@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using OpenCvSharp;
 using SampleBase;
 
@@ -23,10 +21,10 @@ namespace SamplesCS
         /// </summary>
         private void SubMat()
         {
-            Mat src = Cv2.ImRead(FilePath.Image.Lenna);
+            var src = Cv2.ImRead(FilePath.Image.Lenna);
 
             // Assign small image to mat
-            Mat small = new Mat();
+            using var small = new Mat();
             Cv2.Resize(src, small, new Size(100, 100));
             src[10, 110, 10, 110] = small;
             src[370, 470, 400, 500] = small.T();
@@ -46,6 +44,8 @@ namespace SamplesCS
             {
                 Cv2.WaitKey();
             }
+
+            part.Dispose();
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace SamplesCS
         /// </summary>
         private void RowColRangeOperation()
         {
-            Mat src = Cv2.ImRead(FilePath.Image.Lenna);
+            using var src = Cv2.ImRead(FilePath.Image.Lenna);
 
             Cv2.GaussianBlur(
                 src.RowRange(100, 200),
@@ -76,30 +76,26 @@ namespace SamplesCS
         /// </summary>
         private void RowColOperation()
         {
-            Mat src = Cv2.ImRead(FilePath.Image.Lenna);
+            using var src = Cv2.ImRead(FilePath.Image.Lenna);
 
-            Random rand = new Random();
+            var rand = new Random();
             for (int i = 0; i < 200; i++)
             {
                 int c1 = rand.Next(100, 400);
                 int c2 = rand.Next(100, 400);
-                Mat temp = src.Row[c1];
-                src.Row[c1] = src.Row[c2];
-                src.Row[c2] = temp;
+                using Mat temp = src.Row(c1).Clone();
+                src.Row(c2).CopyTo(src.Row(c1));
+                temp.CopyTo(src.Row(c2));
             }
 
-            src.Col[0, 50] = ~src.Col[450, 500];
-            
-            // set constant value (not recommended)
-            src.Row[450,460] = src.Row[450,460] * 0 + new Scalar(0,0,255);
-            // recommended way
-            //src.RowRange(450, 460).SetTo(new Scalar(0, 0, 255));
+            ((Mat)~src.ColRange(450, 500)).CopyTo(src.ColRange(0, 50));
+
+            src.RowRange(450, 460).SetTo(new Scalar(0, 0, 255));
 
             using (new Window("RowColOperation", src))
             {
                 Cv2.WaitKey();
             }
         }
-
     }
 }

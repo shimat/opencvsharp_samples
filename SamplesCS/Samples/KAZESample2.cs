@@ -79,8 +79,7 @@ namespace SamplesCS
                                 img1.CopyTo(left);
                                 img2.CopyTo(right);
 
-                                byte[] maskBytes = new byte[mask.Rows * mask.Cols];
-                                mask.GetArray(0, 0, maskBytes);
+                                mask.GetArray(out byte[] maskBytes);
                                 Cv2.DrawMatches(img1, keypoints1, img2, keypoints2, goodMatchesList, img3, Scalar.All(-1), Scalar.All(-1), maskBytes, DrawMatchesFlags.NotDrawSinglePoints);
 
                                 List<List<Point>> listOfListOfPoint2D = new List<List<Point>>();
@@ -114,8 +113,7 @@ namespace SamplesCS
             using (Mat dst = new Mat())
             {
                 Cv2.PerspectiveTransform(src, dst, transformationMatrix);
-                Point2f[] dstArray = new Point2f[dst.Rows * dst.Cols];
-                dst.GetArray(0, 0, dstArray);
+                dst.GetArray(out Point2f[] dstArray);
                 Point2d[] result = Array.ConvertAll(dstArray, Point2fToPoint2d);
                 return result;
             }

@@ -12,7 +12,7 @@ namespace SamplesCS
         static void Main(string[] args)
         {
             ISample sample =
-                new ArucoSample();
+                //new ArucoSample();
                 //new BgSubtractorMOG();
                 //new BinarizerSample();
                 //new BRISKSample();
@@ -31,7 +31,7 @@ namespace SamplesCS
                 //new HoughLinesSample();
                 //new KAZESample2();
                 //new KAZESample();
-                //new MatOperations();
+                new MatOperations();
                 //new MatToBitmap();
                 //new MDS();
                 //new MSERSample();
