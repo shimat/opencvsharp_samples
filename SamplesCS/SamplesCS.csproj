@@ -125,6 +125,7 @@
     <Compile Include="Samples\BinarizerSample.cs" />
     <Compile Include="Samples\CaffeSample.cs" />
     <Compile Include="Samples\FaceDetectionDNN.cs" />
+    <Compile Include="Samples\DrawBestMatch.cs" />
     <Compile Include="Samples\HandPose.cs" />
     <Compile Include="Samples\PhotoMethods.cs" />
     <Compile Include="Samples\Pose.cs" />

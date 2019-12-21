@@ -20,6 +20,7 @@ namespace SamplesCS
                 //new ClaheSample();
                 //new ConnectedComponentsSample();
                 //new DFT();
+                new DrawBestMatchRectangle();
                 //new FaceDetection();
                 //new FaceDetectionDNN();
                 //new FASTSample();
@@ -31,7 +32,7 @@ namespace SamplesCS
                 //new HoughLinesSample();
                 //new KAZESample2();
                 //new KAZESample();
-                new MatOperations();
+                //new MatOperations();
                 //new MatToBitmap();
                 //new MDS();
                 //new MSERSample();
