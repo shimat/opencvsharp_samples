@@ -14,7 +14,7 @@ namespace SamplesCS
             using var img1 = new Mat(FilePath.Image.Match1, ImreadModes.Color);
             using var img2 = new Mat(FilePath.Image.Match2, ImreadModes.Color);
 
-            var orb = ORB.Create(1000);
+            using var orb = ORB.Create(1000);
             using var descriptors1 = new Mat();
             using var descriptors2 = new Mat();
             orb.DetectAndCompute(img1, null, out var keyPoints1, descriptors1);
@@ -31,11 +31,16 @@ namespace SamplesCS
             var srcPts = goodMatches.Select(m => keyPoints1[m.QueryIdx].Pt).Select(p => new Point2d(p.X, p.Y));
             var dstPts = goodMatches.Select(m => keyPoints2[m.TrainIdx].Pt).Select(p => new Point2d(p.X, p.Y));
 
-            using var mask = new Mat<byte>();
-            using var homography = Cv2.FindHomography(srcPts, dstPts, HomographyMethods.Ransac, 5, mask);
+            using var homography = Cv2.FindHomography(srcPts, dstPts, HomographyMethods.Ransac, 5, null);
 
             int h = img1.Height, w = img1.Width;
-            var img2Bounds = new[] {new Point2d(0, 0), new Point2d(0, h-1), new Point2d(w-1, h-1), new Point2d(w-1, 0),};
+            var img2Bounds = new[]
+            {
+                new Point2d(0, 0), 
+                new Point2d(0, h-1),
+                new Point2d(w-1, h-1), 
+                new Point2d(w-1, 0),
+            };
             var img2BoundsTransformed = Cv2.PerspectiveTransform(img2Bounds, homography);
 
             using var view = img2.Clone();
