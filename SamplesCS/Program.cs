@@ -53,7 +53,7 @@ namespace SamplesCS
                 //new SVMSample();
                 //new VideoWriterSample();
                 //new VideoCaptureSample();
-                               
+                //new WindowGUISample();
             sample.Run();
         }
     }
