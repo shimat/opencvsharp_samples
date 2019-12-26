@@ -127,6 +127,7 @@
     <Compile Include="Samples\FaceDetectionDNN.cs" />
     <Compile Include="Samples\DrawBestMatch.cs" />
     <Compile Include="Samples\HandPose.cs" />
+    <Compile Include="Samples\PerspectiveTransformSample.cs" />
     <Compile Include="Samples\PhotoMethods.cs" />
     <Compile Include="Samples\Pose.cs" />
     <Compile Include="Samples\SeamlessClone.cs" />
