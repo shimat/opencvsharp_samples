@@ -41,13 +41,7 @@ namespace SamplesCS.Samples
                 point2Fs.Add(new Point2f(x, y));
                 if (point2Fs.Count == 4)
                 {
-                    srcPoints = new Point2f[]
-                    {
-                        point2Fs[0],
-                        point2Fs[1],
-                        point2Fs[2],
-                        point2Fs[3]
-                    };
+                    srcPoints = point2Fs.ToArray();
                     using var matrix = Cv2.GetPerspectiveTransform(srcPoints, dstPoints);
                     using var dst = new Mat(new Size(640, 480), MatType.CV_8UC3);
                     Cv2.WarpPerspective(OriginalImage, dst, matrix, dst.Size());

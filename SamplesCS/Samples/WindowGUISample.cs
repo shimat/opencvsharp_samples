@@ -92,7 +92,7 @@ namespace SamplesCS.Samples
                 {
                     var n = pos - maxIterations;
                     var an = n > 0 ? n : -n;
-                    var element = Cv2.GetStructuringElement(
+                    using var element = Cv2.GetStructuringElement(
                             elementShape,
                             new Size(an * 2 + 1, an * 2 + 1),
                             new Point(an, an));
@@ -123,7 +123,7 @@ namespace SamplesCS.Samples
                 {
                     var n = pos - maxIterations;
                     var an = n > 0 ? n : -n;
-                    var element = Cv2.GetStructuringElement(
+                    using var element = Cv2.GetStructuringElement(
                             elementShape,
                             new Size(an * 2 + 1, an * 2 + 1),
                             new Point(an, an));
