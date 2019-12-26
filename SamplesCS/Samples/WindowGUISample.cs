@@ -6,12 +6,6 @@ namespace SamplesCS.Samples
 {
     internal class WindowGUISample : ISample
     {
-        public enum Category
-        {
-            Windows,
-            TrackBar,
-            MouseCallBack
-        }
 
         Mat WindowImage = new Mat("./Resource.png", ImreadModes.AnyColor); // Set your Resource
 
@@ -21,7 +15,14 @@ namespace SamplesCS.Samples
             TrackBar_Example();
             MouseCallBack_Example();
         }
-
+        /*
+        public enum Category
+        {
+            Windows,
+            TrackBar,
+            MouseCallBack
+        }
+        */
         /*
         public void Run(Category category)
         {
