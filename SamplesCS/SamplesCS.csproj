@@ -127,6 +127,7 @@
     <Compile Include="Samples\FaceDetectionDNN.cs" />
     <Compile Include="Samples\DrawBestMatch.cs" />
     <Compile Include="Samples\HandPose.cs" />
+    <Compile Include="Samples\PerspectiveTransformSample.cs" />
     <Compile Include="Samples\PhotoMethods.cs" />
     <Compile Include="Samples\Pose.cs" />
     <Compile Include="Samples\SeamlessClone.cs" />
@@ -163,6 +164,7 @@
     <Compile Include="Samples\SolveEquation.cs" />
     <Compile Include="Samples\BRISKSample.cs" />
     <Compile Include="Samples\FREAKSample.cs" />
+    <Compile Include="Samples\WindowGUISample.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SampleBase\SampleBase.csproj">
@@ -173,6 +175,9 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resource\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
