@@ -53,21 +53,21 @@ namespace SamplesCS.Samples
             Cv2.WaitKey();
         }
 
-        private void CallbackOpenCVAnnotate(MouseEvent e, int x, int y, MouseEvent flags, IntPtr userdata)
+        private void CallbackOpenCVAnnotate(MouseEventTypes e, int x, int y, MouseEventFlags flags, IntPtr userdata)
         {
-            if (e == MouseEvent.LButtonDown)
+            if (e == MouseEventTypes.LButtonDown)
             {
                 Debug.WriteLine(x + "," + y + " Down");
             }
-            else if (flags == MouseEvent.FlagLButton)
+            else if (flags.HasFlag(MouseEventFlags.LButton))
             {
                 Debug.WriteLine(x + "," + y + " flags");
             }
-            else if (e == MouseEvent.LButtonUp)
+            else if (e == MouseEventTypes.LButtonUp)
             {
                 Debug.WriteLine(x + "," + y + " Up");
             }
-            else if (e == MouseEvent.MouseWheel)
+            else if (e == MouseEventTypes.MouseWheel)
             {
                 Debug.WriteLine(x + "," + y + " Wheel");
             }

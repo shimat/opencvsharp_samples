@@ -34,9 +34,9 @@ namespace SamplesCS.Samples
             Window.WaitKey();
         }
 
-        private void CallbackOpenCVAnnotate(MouseEvent e, int x, int y, MouseEvent flags, IntPtr userdata)
+        private void CallbackOpenCVAnnotate(MouseEventTypes e, int x, int y, MouseEventFlags flags, IntPtr userdata)
         {
-            if (e == MouseEvent.LButtonDown)
+            if (e == MouseEventTypes.LButtonDown)
             {
                 point2Fs.Add(new Point2f(x, y));
                 if (point2Fs.Count == 4)
