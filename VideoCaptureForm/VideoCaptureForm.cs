@@ -32,6 +32,7 @@ namespace VideoCaptureForm
             if (!capture.IsOpened())
             {
                 Close();
+                return;
             }
 
             ClientSize = new System.Drawing.Size(capture.FrameWidth, capture.FrameHeight);
@@ -43,6 +44,7 @@ namespace VideoCaptureForm
         {
             capture.Dispose();
             cascadeClassifier.Dispose();
+            backgroundWorker1.CancelAsync();
         }
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
@@ -62,7 +64,7 @@ namespace VideoCaptureForm
                     var frameBitmap = BitmapConverter.ToBitmap(frameMat);
                     bgWorker.ReportProgress(0, frameBitmap);
                 }
-                Thread.Sleep(200);
+                Thread.Sleep(100);
             }
         }
 
