@@ -86,9 +86,9 @@ namespace SamplesCS.Samples
             var openCloseWindow = new Window("Open/Close", image: dst);
             var openCloseTrackbar = openCloseWindow.CreateTrackbar(
                 trackbarName: "Iterations", 
-                value: 10, 
+                initialPos: 10, 
                 max: maxIterations * 2 + 1,
-                callback: (pos, obj) =>
+                callback: pos =>
                 {
                     var n = pos - maxIterations;
                     var an = n > 0 ? n : -n;
@@ -117,9 +117,9 @@ namespace SamplesCS.Samples
             var erodeDilateWindow = new Window("Erode/Dilate", image: dst);
             var erodeDilateTrackbar = erodeDilateWindow.CreateTrackbar(
                 trackbarName: "Iterations", 
-                value: 10, 
+                initialPos: 10, 
                 max: maxIterations * 2 + 1,
-                callback: (pos, obj) =>
+                callback: pos =>
                 {
                     var n = pos - maxIterations;
                     var an = n > 0 ? n : -n;
