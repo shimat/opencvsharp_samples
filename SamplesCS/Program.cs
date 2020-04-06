@@ -23,13 +23,14 @@ namespace SamplesCS
             //new DrawBestMatchRectangle();
             //new FaceDetection();
             //new FaceDetectionDNN();
-            new FASTSample();
+            //new FASTSample();
             //new FlannSample(); 
             //new FREAKSample();
             //new HandPose();
             //new HistSample();
             //new HOGSample();
             //new HoughLinesSample();
+            new InpaintSample();
             //new KAZESample2();
             //new KAZESample();
             //new MatOperations();
