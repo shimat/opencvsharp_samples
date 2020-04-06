@@ -14,7 +14,7 @@ namespace SamplesCS
             ISample sample =
             //new ArucoSample();
             //new BgSubtractorMOG();
-            //new BinarizerSample();
+            new BinarizerSample();
             //new BRISKSample();
             //new CaffeSample();
             //new ClaheSample();
@@ -30,7 +30,7 @@ namespace SamplesCS
             //new HistSample();
             //new HOGSample();
             //new HoughLinesSample();
-            new InpaintSample();
+            //new InpaintSample();
             //new KAZESample2();
             //new KAZESample();
             //new MatOperations();
