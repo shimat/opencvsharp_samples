@@ -14,7 +14,7 @@ namespace SamplesCS
             ISample sample =
             //new ArucoSample();
             //new BgSubtractorMOG();
-            new BinarizerSample();
+            //new BinarizerSample();
             //new BRISKSample();
             //new CaffeSample();
             //new ClaheSample();
@@ -55,6 +55,7 @@ namespace SamplesCS
             //new SVMSample();
             //new VideoWriterSample();
             //new VideoCaptureSample();
+            new WatershedSample();
             //new WindowGUISample();
             sample.Run();
         }
