@@ -16,17 +16,13 @@ namespace SamplesCS
     {
         public void Run()
         {
+            using var srcImg = Cv2.ImRead(FilePath.Image.Lenna, ImreadModes.AnyDepth | ImreadModes.AnyColor);            
+            using var markers = new Mat(srcImg.Size(), MatType.CV_32SC1, Scalar.All(0));
 
-            using var srcImg = Cv2.ImRead(FilePath.Image.Lenna, ImreadModes.AnyDepth | ImreadModes.AnyColor);
-            using var dstImg = srcImg.Clone();
-            using var dspImg = srcImg.Clone();
-            using var markers = new Mat(srcImg.Size(), MatType.CV_32S, 1);
-
-            markers.SetTo(Scalar.Black);
-
-            using (var window = new Window("image", WindowMode.AutoSize))
+            using (var window = new Window("image", WindowMode.AutoSize, srcImg))
             {
-                window.Image = srcImg;
+                using var dspImg = srcImg.Clone();
+
                 // Mouse event  
                 int seedNum = 0;
                 window.SetMouseCallback((MouseEventTypes ev, int x, int y, MouseEventFlags flags, IntPtr userdata) =>
@@ -34,9 +30,9 @@ namespace SamplesCS
                     if (ev == MouseEventTypes.LButtonDown)
                     {
                         seedNum++;
-                        Point pt = new Point(x, y);
-                        markers.Circle(pt, 10, Scalar.All(seedNum), Cv2.FILLED, LineTypes.Link8, 0);
-                        dspImg.Circle(pt, 10, Scalar.White, 3, LineTypes.Link8, 0);
+                        var pt = new Point(x, y);
+                        markers.Circle(pt, 10, Scalar.All(seedNum), Cv2.FILLED, LineTypes.Link8);
+                        dspImg.Circle(pt, 10, Scalar.White, 3, LineTypes.Link8);
                         window.Image = dspImg;
                     }
                 });
@@ -46,22 +42,21 @@ namespace SamplesCS
             Cv2.Watershed(srcImg, markers);
 
             // draws watershed
-            for (int i = 0; i < markers.Height; i++)
+            using var dstImg = srcImg.Clone();
+            for (int y = 0; y < markers.Height; y++)
             {
-                for (int j = 0; j < markers.Width; j++)
+                for (int x = 0; x < markers.Width; x++)
                 {
-                    //int idx = (int)(markers.Get2D(i, j).Val0);
-                    int idx = (int)(markers.Get<Point2f>(i, j).X);
+                    int idx = markers.Get<int>(y, x);
                     if (idx == -1)
                     {
-                        // dstImg.Set2D(i, j, CvColor.Red);
-                        dstImg.Set<Scalar>(i, j, Scalar.Red);
+                        dstImg.Rectangle(new Rect(x, y, 2, 2), Scalar.Red, -1);
                     }
                 }
             }
-            using (Window wDst = new Window("watershed transform", WindowMode.AutoSize))
+
+            using (new Window("watershed transform", WindowMode.AutoSize, dstImg))
             {
-                wDst.Image = dstImg;
                 Window.WaitKey();
             }
         }
