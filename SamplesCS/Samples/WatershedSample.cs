@@ -51,7 +51,7 @@ namespace SamplesCS
                 for (int j = 0; j < markers.Width; j++)
                 {
                     //int idx = (int)(markers.Get2D(i, j).Val0);
-                    int idx = (int)(markers.Get<Point>(i, j).X);
+                    int idx = (int)(markers.Get<Point2f>(i, j).X);
                     if (idx == -1)
                     {
                         // dstImg.Set2D(i, j, CvColor.Red);
