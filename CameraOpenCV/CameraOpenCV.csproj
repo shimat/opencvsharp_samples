@@ -190,10 +190,10 @@
       <Version>6.2.10</Version>
     </PackageReference>
     <PackageReference Include="OpenCvSharp4">
-      <Version>4.3.0.20200405</Version>
+      <Version>4.3.0.20200421</Version>
     </PackageReference>
     <PackageReference Include="OpenCvSharp4.runtime.uwp">
-      <Version>4.3.0.20200405</Version>
+      <Version>4.3.0.20200421</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup />
