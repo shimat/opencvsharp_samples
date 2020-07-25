@@ -35,6 +35,7 @@ namespace SamplesCS
             //new KAZESample();
             //new MatOperations();
             //new MatToBitmap();
+            //new MatToWriteableBitmap();
             //new MDS();
             //new MSERSample();
             //new NormalArrayOperations();
@@ -45,7 +46,7 @@ namespace SamplesCS
             //new PixelAccess();
             //new Pose();
             //new SeamlessClone();
-            //new SiftSurfSample();
+            new SiftSurfSample();
             //new SimpleBlobDetectorSample();
             //new SolveEquation();
             //new StarDetectorSample();
@@ -55,7 +56,7 @@ namespace SamplesCS
             //new SVMSample();
             //new VideoWriterSample();
             //new VideoCaptureSample();
-            new WatershedSample();
+            //new WatershedSample();
             //new WindowGUISample();
             sample.Run();
         }

@@ -1,4 +1,5 @@
 ﻿using OpenCvSharp;
+using OpenCvSharp.Features2D;
 using OpenCvSharp.XFeatures2D;
 using SampleBase;
 

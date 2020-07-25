@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using SamplesCS;
 
 namespace SamplesCore
 {
     public class Program
     {
+        [STAThread]
         public static void Main(string[] args)
         {
             ISample sample =
@@ -16,6 +15,7 @@ namespace SamplesCore
                 //new HOGSample();
                 //new HoughLinesSample();
                 //new MatOperations();
+                //new MatToWriteableBitmap();
                 //new NormalArrayOperations();
                 //new PhotoMethods();
                 //new MorphologySample();
