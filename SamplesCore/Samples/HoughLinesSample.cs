@@ -20,9 +20,9 @@ namespace SamplesCore
         private void SampleCpp()
         {
             // (1) Load the image
-            using (Mat imgGray = new Mat(FilePath.Image.Goryokaku, ImreadModes.Grayscale))
-            using (Mat imgStd = new Mat(FilePath.Image.Goryokaku, ImreadModes.Color))
-            using (Mat imgProb = imgStd.Clone())
+            using (var imgGray = new Mat(FilePath.Image.Goryokaku, ImreadModes.Grayscale))
+            using (var imgStd = new Mat(FilePath.Image.Goryokaku, ImreadModes.Color))
+            using (var imgProb = imgStd.Clone())
             {
                 // Preprocess
                 Cv2.Canny(imgGray, imgGray, 50, 200, 3, false);

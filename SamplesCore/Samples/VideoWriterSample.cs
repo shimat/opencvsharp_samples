@@ -13,14 +13,14 @@ namespace SamplesCore
             const string OutVideoFile = "out.avi";
 
             // Opens MP4 file (ffmpeg is probably needed)
-            VideoCapture capture = new VideoCapture(FilePath.Movie.Bach);
+            using var capture = new VideoCapture(FilePath.Movie.Bach);
 
             // Read movie frames and write them to VideoWriter 
-            Size dsize = new Size(640, 480);
-            using (VideoWriter writer = new VideoWriter(OutVideoFile, -1, capture.Fps, dsize))
+            var dsize = new Size(640, 480);
+            using (var writer = new VideoWriter(OutVideoFile, -1, capture.Fps, dsize))
             {
                 Console.WriteLine("Converting each movie frames...");
-                Mat frame = new Mat();
+                using var frame = new Mat();
                 while(true)
                 {
                     // Read image
@@ -32,9 +32,9 @@ namespace SamplesCore
                     Console.Write("{0} / {1}", capture.PosFrames, capture.FrameCount);
 
                     // grayscale -> canny -> resize
-                    Mat gray = new Mat();
-                    Mat canny = new Mat();
-                    Mat dst = new Mat();
+                    using var gray = new Mat();
+                    using var canny = new Mat();
+                    using var dst = new Mat();
                     Cv2.CvtColor(frame, gray, ColorConversionCodes.BGR2GRAY);
                     Cv2.Canny(gray, canny, 100, 180);
                     Cv2.Resize(canny, dst, dsize, 0, 0, InterpolationFlags.Linear);
@@ -45,12 +45,12 @@ namespace SamplesCore
             }
 
             // Watch result movie
-            using (VideoCapture capture2 = new VideoCapture(OutVideoFile))
-            using (Window window = new Window("result"))
+            using (var capture2 = new VideoCapture(OutVideoFile))
+            using (var window = new Window("result"))
             {
                 int sleepTime = (int)(1000 / capture.Fps);
 
-                Mat frame = new Mat();
+                using var frame = new Mat();
                 while (true)
                 {
                     capture2.Read(frame);

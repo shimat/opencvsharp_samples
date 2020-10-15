@@ -10,13 +10,13 @@ namespace SamplesCore
     {
         public void Run()
         {
-            Mat src = new Mat(FilePath.Image.Shapes, ImreadModes.Color);
-            Mat gray = src.CvtColor(ColorConversionCodes.BGR2GRAY);
-            Mat binary = gray.Threshold(0, 255, ThresholdTypes.Otsu | ThresholdTypes.Binary);
-            Mat labelView = src.EmptyClone();
-            Mat rectView = binary.CvtColor(ColorConversionCodes.GRAY2BGR);
+            using var src = new Mat(FilePath.Image.Shapes, ImreadModes.Color);
+            using var gray = src.CvtColor(ColorConversionCodes.BGR2GRAY);
+            using var binary = gray.Threshold(0, 255, ThresholdTypes.Otsu | ThresholdTypes.Binary);
+            using var labelView = src.EmptyClone();
+            using var rectView = binary.CvtColor(ColorConversionCodes.GRAY2BGR);
 
-            ConnectedComponents cc = Cv2.ConnectedComponentsEx(binary);
+            var cc = Cv2.ConnectedComponentsEx(binary);
             if (cc.LabelCount <= 1)
                 return;
 

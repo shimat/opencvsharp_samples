@@ -22,7 +22,7 @@ namespace SamplesCore
         /// </summary>
         private void GetSet()
         {
-            using (Mat mat = new Mat(FilePath.Image.Lenna, ImreadModes.Color))
+            using (var mat = new Mat(FilePath.Image.Lenna, ImreadModes.Color))
             {
                 for (int y = 0; y < mat.Height; y++)
                 {
@@ -44,7 +44,7 @@ namespace SamplesCore
         /// </summary>
         private void GenericIndexer()
         {
-            using (Mat mat = new Mat(FilePath.Image.Lenna, ImreadModes.Color))
+            using (var mat = new Mat(FilePath.Image.Lenna, ImreadModes.Color))
             {
                 var indexer = mat.GetGenericIndexer<Vec3b>();
                 for (int y = 0; y < mat.Height; y++)
@@ -67,7 +67,7 @@ namespace SamplesCore
         /// </summary>
         private void TypeSpecificMat()
         {
-            using (Mat mat = new Mat(FilePath.Image.Lenna, ImreadModes.Color))
+            using (var mat = new Mat(FilePath.Image.Lenna, ImreadModes.Color))
             {
                 var mat3 = new Mat<Vec3b>(mat);
                 var indexer = mat3.GetIndexer();
@@ -95,7 +95,7 @@ namespace SamplesCore
 
         private static long MeasureTime(Action action)
         {
-            Stopwatch watch = Stopwatch.StartNew();
+            var watch = Stopwatch.StartNew();
             action();
             watch.Stop();
             return watch.ElapsedMilliseconds;

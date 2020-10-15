@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using OpenCvSharp;
+﻿using OpenCvSharp;
 
 namespace SamplesCore
 {
@@ -11,12 +6,12 @@ namespace SamplesCore
     {
         public void Run()
         {
-            Mat src = new Mat(FilePath.Image.TsukubaLeft, ImreadModes.Grayscale);
-            Mat dst1 = new Mat();
-            Mat dst2 = new Mat();
-            Mat dst3 = new Mat();
+            using var src = new Mat(FilePath.Image.TsukubaLeft, ImreadModes.Grayscale);
+            using var dst1 = new Mat();
+            using var dst2 = new Mat();
+            using var dst3 = new Mat();
 
-            using (CLAHE clahe = Cv2.CreateCLAHE())
+            using (var clahe = Cv2.CreateCLAHE())
             {
                 clahe.ClipLimit = 20;
                 clahe.Apply(src, dst1);

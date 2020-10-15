@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using OpenCvSharp;
 
@@ -19,23 +18,22 @@ namespace SamplesCore
             var points = Enumerable.Range(0, 100).Select(_ =>
                 new Point2f(rand.Next(0, Size), rand.Next(0, Size))).ToArray();
 
-            Mat img = Mat.Zeros(Size, Size, MatType.CV_8UC3);
+            using var imgExpr = Mat.Zeros(Size, Size, MatType.CV_8UC3);
+            using var img = imgExpr.ToMat();
             foreach (var p in points)
             {
                 img.Circle((Point)p, 4, Scalar.Red, -1);
             }
 
             // Initializes Subdiv2D
-            var subdiv = new Subdiv2D();
+            using var subdiv = new Subdiv2D();
             subdiv.InitDelaunay(new Rect(0, 0, Size, Size));
             subdiv.Insert(points);
 
             // Draws voronoi diagram
-            Point2f[][] facetList;
-            Point2f[] facetCenters;
-            subdiv.GetVoronoiFacetList(null, out facetList, out facetCenters);
+            subdiv.GetVoronoiFacetList(null, out var facetList, out var facetCenters);
 
-            var vonoroi = img.Clone();
+            using var vonoroi = img.Clone();
             foreach (var list in facetList)
             {
                 var before = list.Last();
@@ -48,7 +46,7 @@ namespace SamplesCore
 
             // Draws delaunay diagram
             Vec4f[] edgeList = subdiv.GetEdgeList();
-            var delaunay = img.Clone();
+            using var delaunay = img.Clone();
             foreach (var edge in edgeList)
             {
                 var p1 = new Point(edge.Item0, edge.Item1);

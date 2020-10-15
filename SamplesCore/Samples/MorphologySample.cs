@@ -9,12 +9,12 @@ namespace SamplesCore
     {
         public void Run()
         {
-            Mat gray = new Mat(FilePath.Image.Lenna, ImreadModes.Grayscale);
-            Mat binary = new Mat();
-            Mat dilate1 = new Mat();
-            Mat dilate2 = new Mat();
+            using var gray = new Mat(FilePath.Image.Lenna, ImreadModes.Grayscale);
+            using var binary = new Mat();
+            using var dilate1 = new Mat();
+            using var dilate2 = new Mat();
             byte[] kernelValues = {0, 1, 0, 1, 1, 1, 0, 1, 0}; // cross (+)
-            Mat kernel = new Mat(3, 3, MatType.CV_8UC1, kernelValues);
+            using var kernel = new Mat(3, 3, MatType.CV_8UC1, kernelValues);
 
             // Binarize
             Cv2.Threshold(gray, binary, 0, 255, ThresholdTypes.Otsu);

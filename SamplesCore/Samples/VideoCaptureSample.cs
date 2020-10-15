@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.InteropServices;
 using OpenCvSharp;
 
 namespace SamplesCore
@@ -12,14 +11,14 @@ namespace SamplesCore
         public void Run()
         {
             // Opens MP4 file (ffmpeg is probably needed)
-            var capture = new VideoCapture(FilePath.Movie.Bach);
+            using var capture = new VideoCapture(FilePath.Movie.Bach);
 
             int sleepTime = (int)Math.Round(1000 / capture.Fps);
 
             using (var window = new Window("capture"))
             {
                 // Frame image buffer
-                Mat image = new Mat();
+                var image = new Mat();
 
                 // When the movie playback reaches end, Mat.data becomes NULL.
                 while (true)
@@ -33,6 +32,5 @@ namespace SamplesCore
                 } 
             }
         }
-
     }
 }

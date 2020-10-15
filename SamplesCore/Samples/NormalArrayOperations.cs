@@ -28,14 +28,14 @@ namespace SamplesCore
             const int Max = 5;
 
             byte[] input = {1, 2, 3, 4, 5, };
-            List<byte> output = new List<byte>();
+            var output = new List<byte>();
 
             Cv2.Threshold(InputArray.Create(input), OutputArray.Create(output),
                 T, Max, ThresholdTypes.Binary);
 
             Console.WriteLine("Threshold: {0}", T);
-            Console.WriteLine("input:  {0}", String.Join(",", input));
-            Console.WriteLine("output: {0}", String.Join(",", output));
+            Console.WriteLine("input:  {0}", string.Join(",", input));
+            Console.WriteLine("output: {0}", string.Join(",", output));
         }
 
         /// <summary>
@@ -47,14 +47,14 @@ namespace SamplesCore
             const int Max = 250;
 
             short[] input = { 50, 100, 150, 200, 250, };
-            List<short> output = new List<short>();
+            var output = new List<short>();
 
             Cv2.Threshold(InputArray.Create(input), OutputArray.Create(output),
                 T, Max, ThresholdTypes.Binary);
 
             Console.WriteLine("Threshold: {0}", T);
-            Console.WriteLine("input:  {0}", String.Join(",", input));
-            Console.WriteLine("output: {0}", String.Join(",", output));
+            Console.WriteLine("input:  {0}", string.Join(",", input));
+            Console.WriteLine("output: {0}", string.Join(",", output));
         }
 
         /// <summary>
@@ -71,14 +71,14 @@ namespace SamplesCore
                                   new Point2f(2000, 2001),
                                   new Point2f(500, 5000), 
                               };
-            List<Point2f> output = new List<Point2f>();
+            var output = new List<Point2f>();
 
             Cv2.Threshold(InputArray.Create(input), OutputArray.Create(output),
                 T, Max, ThresholdTypes.Binary);
 
             Console.WriteLine("Threshold: {0}", T);
-            Console.WriteLine("input:  {0}", String.Join(",", input));
-            Console.WriteLine("output: {0}", String.Join(",", output));
+            Console.WriteLine("input:  {0}", string.Join(",", input));
+            Console.WriteLine("output: {0}", string.Join(",", output));
         }
     }
 }

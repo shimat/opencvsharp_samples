@@ -1,9 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using System.Drawing;
-using System.Net.Mime;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows;
 using OpenCvSharp;
 using OpenCvSharp.WpfExtensions;
 using SamplesCore;

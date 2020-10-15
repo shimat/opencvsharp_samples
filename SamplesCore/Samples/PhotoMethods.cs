@@ -9,24 +9,26 @@ namespace SamplesCore
     {
         public void Run()
         {
-            Mat src = new Mat(FilePath.Image.Fruits, ImreadModes.Color);
+            using var src = new Mat(FilePath.Image.Fruits, ImreadModes.Color);
 
-            Mat normconv = new Mat(), recursFildered = new Mat();
+            using var normconv = new Mat(); 
+            using var recursFiltered = new Mat();
             Cv2.EdgePreservingFilter(src, normconv, EdgePreservingMethods.NormconvFilter);
-            Cv2.EdgePreservingFilter(src, recursFildered, EdgePreservingMethods.RecursFilter);
+            Cv2.EdgePreservingFilter(src, recursFiltered, EdgePreservingMethods.RecursFilter);
 
-            Mat detailEnhance = new Mat();
+            using var detailEnhance = new Mat();
             Cv2.DetailEnhance(src, detailEnhance);
 
-            Mat pencil1 = new Mat(), pencil2 = new Mat();
+            using var pencil1 = new Mat(); 
+            using var pencil2 = new Mat();
             Cv2.PencilSketch(src, pencil1, pencil2);
 
-            Mat stylized = new Mat();
+            using var stylized = new Mat();
             Cv2.Stylization(src, stylized);
 
             using (new Window("src", src))
             using (new Window("edgePreservingFilter - NormconvFilter", normconv))
-            using (new Window("edgePreservingFilter - RecursFilter", recursFildered))
+            using (new Window("edgePreservingFilter - RecursFilter", recursFiltered))
             using (new Window("detailEnhance", detailEnhance))
             using (new Window("pencilSketch grayscale", pencil1))
             using (new Window("pencilSketch color", pencil2))

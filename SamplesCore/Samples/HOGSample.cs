@@ -15,9 +15,9 @@ namespace SamplesCore
 
         public void Run()
         {
-            var img = Cv2.ImRead(FilePath.Image.Asahiyama, ImreadModes.Color);
+            using var img = Cv2.ImRead(FilePath.Image.Asahiyama, ImreadModes.Color);
 
-            var hog = new HOGDescriptor();
+            using var hog = new HOGDescriptor();
             hog.SetSVMDetector(HOGDescriptor.GetDefaultPeopleDetector());
 
             bool b = hog.CheckDetectorSize();

@@ -31,9 +31,9 @@ namespace SamplesCore
                           {2, 3}};
             double[] yv = {10, 26};
 
-            Mat a = new Mat(2, 2, MatType.CV_64FC1, av);
-            Mat y = new Mat(2, 1, MatType.CV_64FC1, yv);
-            Mat x = new Mat();
+            using var a = new Mat(2, 2, MatType.CV_64FC1, av);
+            using var y = new Mat(2, 1, MatType.CV_64FC1, yv);
+            using var x = new Mat();
 
             Cv2.Solve(a, y, x, DecompTypes.LU);
 
@@ -55,7 +55,7 @@ namespace SamplesCore
 
             double[] y = { 10, 26 };
 
-            List<double> x = new List<double>();
+            var x = new List<double>();
 
             Cv2.Solve(
                 InputArray.Create(a), InputArray.Create(y),
