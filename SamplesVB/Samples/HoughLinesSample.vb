@@ -1,9 +1,4 @@
-﻿Imports System
-Imports System.Collections.Generic
-Imports System.Linq
-Imports System.Runtime.InteropServices
-Imports System.Text
-Imports OpenCvSharp
+﻿Imports OpenCvSharp
 
 ' Namespace OpenCvSharpSamplesVB
 Imports SampleBase

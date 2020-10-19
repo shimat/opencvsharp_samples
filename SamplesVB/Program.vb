@@ -10,10 +10,10 @@ Imports OpenCvSharp
 Friend NotInheritable Class Program
 
     Shared Sub Main()
-        FASTSample.Start()
-        FlannSample.Start()
-        HOGSample.Start()
-        HoughLinesSample.Start()
+        REM FASTSample.Start()
+        REM FlannSample.Start()
+        REM HOGSample.Start()
+        REM HoughLinesSample.Start()
         StarDetectorSample.Start()
     End Sub
 
