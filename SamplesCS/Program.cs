@@ -46,7 +46,8 @@ namespace SamplesCS
             //new PixelAccess();
             //new Pose();
             //new SeamlessClone();
-            new SiftSurfSample();
+            //new SiftSurfSample();
+            new OpenVinoFaceDetection();
             //new SimpleBlobDetectorSample();
             //new SolveEquation();
             //new StarDetectorSample();
