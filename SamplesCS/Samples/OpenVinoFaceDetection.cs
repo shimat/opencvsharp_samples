@@ -81,7 +81,5 @@ namespace SamplesCS
             }
             return faceRect;
         }
-
-
     }
 }
