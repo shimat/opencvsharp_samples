@@ -21,13 +21,13 @@ namespace SamplesCS
             using var frame = Cv2.ImRead(sampleImage);
             int frameHeight = frame.Rows;
             int frameWidth = frame.Cols;
-	     using var netFace = CvDnn.ReadNet(modelFace, modelFaceTxt);
+	    using var netFace = CvDnn.ReadNet(modelFace, modelFaceTxt);
 			
 	    netFace.SetPreferableBackend(Net.Backend.INFERENCE_ENGINE);
             netFace.SetPreferableTarget(Net.Target.CPU);
 			
 	    using var blob = CvDnn.BlobFromImage(frame, 1.0, new OpenCvSharp.Size(672, 384), new OpenCvSharp.Scalar(0, 0, 0), false, false);
-		netFace.SetInput(blob);
+	    netFace.SetInput(blob);
 			
 	    using (var detection = netFace.Forward())
             {
