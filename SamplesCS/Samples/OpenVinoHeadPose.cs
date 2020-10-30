@@ -6,15 +6,15 @@ namespace SamplesCS
 {
     /// <summary>
     /// To run this example first you nedd to compile OPENCV with Intel OpenVino
-	/// Download the face detection model available here: https://github.com/openvinotoolkit/open_model_zoo/tree/master/models/intel/face-detection-adas-0001
-	/// Download the head pose model available here: https://github.com/openvinotoolkit/open_model_zoo/tree/master/models/intel/head-pose-estimation-adas-0001
+    /// Download the face detection model available here: https://github.com/openvinotoolkit/open_model_zoo/tree/master/models/intel/face-detection-adas-0001
+    /// Download the head pose model available here: https://github.com/openvinotoolkit/open_model_zoo/tree/master/models/intel/head-pose-estimation-adas-0001
     /// Add the files to the bin folder
     /// </summary>
     internal class OpenVinoFaceDetection : ISample
     {
         public void Run()
         {
-			const string modelFace = "face-detection-adas-0001.bin";
+	    const string modelFace = "face-detection-adas-0001.bin";
             const string modelFaceTxt = "face-detection-adas-0001.xml";
             const string modelHead = "head-pose-estimation-adas-0001.bin";
             const string modelHeadTxt = "head-pose-estimation-adas-0001.xml";
@@ -100,7 +100,7 @@ namespace SamplesCS
             return faceRect;
         }
 		
-		private Point3f HeadAngles(IEnumerable<Mat> outAngles)
+        private Point3f HeadAngles(IEnumerable<Mat> outAngles)
         {
             Point3f headAngles = new Point3f();
             headAngles.X = outAngles.ElementAt(0).At<float>(0, 0);
@@ -110,7 +110,5 @@ namespace SamplesCS
 
             return headAngles;
         }
-
-
     }
 }
