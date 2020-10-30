@@ -13,25 +13,25 @@ namespace SamplesCS
     {
         public void Run()
         {
-	    const string modelFace = "face-detection-adas-0001.bin"; 
-	    const string modelFaceTxt = "face-detection-adas-0001.xml";
+	        const string modelFace = "face-detection-adas-0001.bin"; 
+	        const string modelFaceTxt = "face-detection-adas-0001.xml";
             const string sampleImage = "sample.jpg";
             const string outputLoc = "sample_output.jpg";
 
             using var frame = Cv2.ImRead(sampleImage);
             int frameHeight = frame.Rows;
             int frameWidth = frame.Cols;
-	    using var netFace = CvDnn.ReadNet(modelFace, modelFaceTxt);
+	        using var netFace = CvDnn.ReadNet(modelFace, modelFaceTxt);
 			
-	    netFace.SetPreferableBackend(Net.Backend.INFERENCE_ENGINE);
+	        netFace.SetPreferableBackend(Net.Backend.INFERENCE_ENGINE);
             netFace.SetPreferableTarget(Net.Target.CPU);
 			
-	    using var blob = CvDnn.BlobFromImage(frame, 1.0, new OpenCvSharp.Size(672, 384), new OpenCvSharp.Scalar(0, 0, 0), false, false);
-	    netFace.SetInput(blob);
+	        using var blob = CvDnn.BlobFromImage(frame, 1.0, new OpenCvSharp.Size(672, 384), new OpenCvSharp.Scalar(0, 0, 0), false, false);
+	        netFace.SetInput(blob);
 			
-	    using (var detection = netFace.Forward())
+	        using (var detection = netFace.Forward())
             {
-		Mat detectionMat = new Mat(detection.Size(2), detection.Size(3), MatType.CV_32F, detection.Ptr(0));
+		        Mat detectionMat = new Mat(detection.Size(2), detection.Size(3), MatType.CV_32F, detection.Ptr(0));
                 for (int i = 0; i < detectionMat.Rows; i++)
                 {
                     float confidence = detectionMat.At<float>(i, 2);
@@ -45,12 +45,12 @@ namespace SamplesCS
 
                         OpenCvSharp.Rect roi = new OpenCvSharp.Rect(x1, y1, (x2 - x1), (y2 - y1));
 							
-			roi = AdjustBoundingBox(roi);
+			            roi = AdjustBoundingBox(roi);
 							
-			Cv2.Rectangle(frame, roi, new Scalar(0, 255, 0), 2, LineTypes.Link4);
-		    }
-		}
-	    }
+			            Cv2.Rectangle(frame, roi, new Scalar(0, 255, 0), 2, LineTypes.Link4);
+                    }
+                }
+            }
 								
             var finalOutput = outputLoc;
             Cv2.ImWrite(finalOutput, frame);
