@@ -14,7 +14,7 @@ namespace SamplesCS
     {
         public void Run()
         {
-	    const string modelFace = "face-detection-adas-0001.bin";
+	        const string modelFace = "face-detection-adas-0001.bin";
             const string modelFaceTxt = "face-detection-adas-0001.xml";
             const string modelHead = "head-pose-estimation-adas-0001.bin";
             const string modelHeadTxt = "head-pose-estimation-adas-0001.xml";
