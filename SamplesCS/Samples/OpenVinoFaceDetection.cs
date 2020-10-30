@@ -21,7 +21,7 @@ namespace SamplesCS
             using var frame = Cv2.ImRead(sampleImage);
             int frameHeight = frame.Rows;
             int frameWidth = frame.Cols;
-	    using var netFace = CvDnn.ReadNet(modelFace, modelFaceTxt);
+	     using var netFace = CvDnn.ReadNet(modelFace, modelFaceTxt);
 			
 	    netFace.SetPreferableBackend(Net.Backend.INFERENCE_ENGINE);
             netFace.SetPreferableTarget(Net.Target.CPU);
