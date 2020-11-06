@@ -144,6 +144,7 @@
     <Compile Include="Samples\DrawBestMatch.cs" />
     <Compile Include="Samples\HandPose.cs" />
     <Compile Include="Samples\MatToWriteableBitmap.cs" />
+    <Compile Include="Samples\OpenVinoFaceDetection.cs" />
     <Compile Include="Samples\WatershedSample.cs" />
     <Compile Include="Samples\InpaintSample.cs" />
     <Compile Include="Samples\PerspectiveTransformSample.cs" />
