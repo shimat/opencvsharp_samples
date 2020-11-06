@@ -6,7 +6,7 @@ namespace SamplesCS
 {
     /// <summary>
     /// To run this example first you nedd to compile OPENCV with Intel OpenVino
-	/// Download the face detection model available here: https://github.com/openvinotoolkit/open_model_zoo/tree/master/models/intel/face-detection-adas-0001
+    /// Download the face detection model available here: https://github.com/openvinotoolkit/open_model_zoo/tree/master/models/intel/face-detection-adas-0001
     /// Add the files to the bin folder
     /// </summary>
     internal class OpenVinoFaceDetection : ISample
@@ -21,8 +21,8 @@ namespace SamplesCS
             using var frame = Cv2.ImRead(sampleImage);
             int frameHeight = frame.Rows;
             int frameWidth = frame.Cols;
-            using var netFace = CvDnn.ReadNet(modelFace, modelFaceTxt);
-			
+
+            using var netFace = CvDnn.ReadNet(modelFace, modelFaceTxt);			
             netFace.SetPreferableBackend(Net.Backend.INFERENCE_ENGINE);
             netFace.SetPreferableTarget(Net.Target.CPU);
 			
@@ -32,6 +32,7 @@ namespace SamplesCS
             using (var detection = netFace.Forward())
             {
                 Mat detectionMat = new Mat(detection.Size(2), detection.Size(3), MatType.CV_32F, detection.Ptr(0));
+
                 for (int i = 0; i < detectionMat.Rows; i++)
                 {
                     float confidence = detectionMat.At<float>(i, 2);
