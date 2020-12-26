@@ -47,8 +47,8 @@ namespace SamplesCS
             //new Pose();
             //new SeamlessClone();
             //new SiftSurfSample();
-            new OpenVinoFaceDetection();
-            //new SimpleBlobDetectorSample();
+            //new OpenVinoFaceDetection();
+            new SimpleBlobDetectorSample();
             //new SolveEquation();
             //new StarDetectorSample();
             //new Stitching();

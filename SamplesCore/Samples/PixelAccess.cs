@@ -29,8 +29,8 @@ namespace SamplesCore
                     for (int x = 0; x < mat.Width; x++)
                     {
                         Vec3b color = mat.Get<Vec3b>(y, x);
-                        Swap(ref color.Item0, ref color.Item2);
-                        mat.Set<Vec3b>(y, x, color);
+                        Vec3b newColor = new Vec3b(color.Item2, color.Item1, color.Item0);
+                        mat.Set<Vec3b>(y, x, newColor);
                     }
                 }
                 //Cv2.ImShow("Slow", mat);
@@ -52,8 +52,8 @@ namespace SamplesCore
                     for (int x = 0; x < mat.Width; x++)
                     {
                         Vec3b color = indexer[y, x];
-                        Swap(ref color.Item0, ref color.Item2);
-                        indexer[y, x] = color;
+                        Vec3b newColor = new Vec3b(color.Item2, color.Item1, color.Item0);
+                        indexer[y, x] = newColor;
                     }
                 }
                 //Cv2.ImShow("GenericIndexer", mat);
@@ -76,8 +76,8 @@ namespace SamplesCore
                     for (int x = 0; x < mat.Width; x++)
                     {
                         Vec3b color = indexer[y, x];
-                        Swap(ref color.Item0, ref color.Item2);
-                        indexer[y, x] = color;
+                        Vec3b newColor = new Vec3b(color.Item2, color.Item1, color.Item0);
+                        indexer[y, x] = newColor;
                     }
                 }
                 //Cv2.ImShow("TypeSpecificMat", mat);
