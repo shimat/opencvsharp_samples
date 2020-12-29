@@ -10,8 +10,9 @@ namespace SamplesCore
         {
             ISample sample =
                 //new CaffeSample();
-                new ClaheSample();
+                //new ClaheSample();
                 //new ConnectedComponentsSample();
+                new DnnSuperresSample();
                 //new HOGSample();
                 //new HoughLinesSample();
                 //new MatOperations();
