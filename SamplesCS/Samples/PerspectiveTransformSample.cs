@@ -1,8 +1,9 @@
 ﻿using OpenCvSharp;
 using System;
 using System.Collections.Generic;
+using SampleBase;
 
-namespace SamplesCS.Samples
+namespace SamplesCS
 {
     public class PerspectiveTransformSample : ISample
     {
@@ -27,7 +28,7 @@ namespace SamplesCS.Samples
         //PerspectiveTransform
         public void Run()
         {
-            OriginalImage = new Mat("./Resource.png", ImreadModes.AnyColor); // Your Resource
+            OriginalImage = new Mat(FilePath.Image.SurfBoxinscene, ImreadModes.AnyColor);
             using var Window = new Window("result", OriginalImage);
 
             Cv2.SetMouseCallback(Window.Name, CallbackOpenCVAnnotate);

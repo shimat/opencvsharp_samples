@@ -1,14 +1,12 @@
 ﻿using OpenCvSharp;
 using System;
 using System.Diagnostics;
+using SampleBase;
 
-namespace SamplesCS.Samples
+namespace SamplesCS
 {
     internal class WindowGUISample : ISample
     {
-
-        Mat WindowImage = new Mat("./Resource.png", ImreadModes.AnyColor); // Set your Resource
-
         public void Run()
         {
             Windows_Example();
@@ -42,13 +40,15 @@ namespace SamplesCS.Samples
 
         public void Windows_Example()
         {
-            var openCloseWindow = new Window("OpenCVWindow", WindowMode.AutoSize, WindowImage);
+            using var srcImg = new Mat(FilePath.Image.SurfBoxinscene, ImreadModes.AnyColor);
+            using var openCloseWindow = new Window("OpenCVWindow", WindowMode.AutoSize, srcImg);
             Debug.WriteLine(Cv2.WaitKey());
         }
         
         public void MouseCallBack_Example()
         {
-            using Window foo = new Window("OpenCVWindow", WindowMode.AutoSize, WindowImage);
+            using var srcImg = new Mat(FilePath.Image.SurfBoxinscene, ImreadModes.AnyColor);
+            using Window foo = new Window("MouseEvent", WindowMode.AutoSize, srcImg);
             Cv2.SetMouseCallback(foo.Name, CallbackOpenCVAnnotate);
             Cv2.WaitKey();
         }
@@ -75,7 +75,7 @@ namespace SamplesCS.Samples
 
         public void TrackBar_Example()
         {
-            using var src = WindowImage;
+            using var src = new Mat(FilePath.Image.SurfBoxinscene, ImreadModes.AnyColor);
             using var dst = new Mat();
 
             src.CopyTo(dst);
