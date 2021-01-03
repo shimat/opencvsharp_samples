@@ -42,9 +42,9 @@ namespace VideoCaptureForm
 
         private void VideoCaptureForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            backgroundWorker1.CancelAsync();
             capture.Dispose();
             cascadeClassifier.Dispose();
-            backgroundWorker1.CancelAsync();
         }
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
