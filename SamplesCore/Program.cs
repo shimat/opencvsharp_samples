@@ -1,5 +1,4 @@
 ﻿using System;
-using SamplesCS;
 
 namespace SamplesCore
 {
@@ -12,6 +11,7 @@ namespace SamplesCore
                 //new CaffeSample();
                 //new ClaheSample();
                 //new ConnectedComponentsSample();
+                //new CameraCaptureSample();
                 new DnnSuperresSample();
                 //new HOGSample();
                 //new HoughLinesSample();

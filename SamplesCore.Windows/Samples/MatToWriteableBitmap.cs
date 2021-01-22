@@ -1,9 +1,8 @@
 ﻿using System.Windows;
 using OpenCvSharp;
 using OpenCvSharp.WpfExtensions;
-using SamplesCore;
 
-namespace SamplesCS
+namespace SamplesCore.Windows
 {
     /// <summary>
     /// 
