@@ -53,8 +53,8 @@ namespace SamplesCS
                 }
 
                 // (5) Show results
-                using (new Window("Hough_line_standard", WindowMode.AutoSize, imgStd))
-                using (new Window("Hough_line_probabilistic", WindowMode.AutoSize, imgProb))
+                using (new Window("Hough_line_standard", imgStd))
+                using (new Window("Hough_line_probabilistic", imgProb))
                 {
                     Window.WaitKey(0);
                 }

@@ -63,11 +63,10 @@ namespace SamplesCS
             var ovalKeyPoints = ovalDetector.Detect(src);
             Cv2.DrawKeypoints(src, ovalKeyPoints, detectedOvals, Scalar.HotPink, DrawMatchesFlags.DrawRichKeypoints);
 
-            using var _1 = new Window("Detected Circles", WindowMode.AutoSize, detectedCircles);
-            using var _2 = new Window("Detected Ovals", WindowMode.AutoSize, detectedOvals);
+            using var w1 = new Window("Detected Circles", detectedCircles);
+            using var w2 = new Window("Detected Ovals", detectedOvals);
 
             Cv2.WaitKey();
-
         }
     }
 }

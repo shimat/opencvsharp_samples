@@ -36,8 +36,8 @@ namespace SamplesCS
             const int inHeight = 368;
 
             using var net = CvDnn.ReadNetFromCaffe(modelTxt, model);
-            net.SetPreferableBackend(Net.Backend.OPENCV);
-            net.SetPreferableTarget(Net.Target.CPU);
+            net.SetPreferableBackend(Backend.OPENCV);
+            net.SetPreferableTarget(Target.CPU);
 
             using var inpBlob = CvDnn.BlobFromImage(frame, 1.0 / 255, new Size(inWidth, inHeight), new Scalar(0, 0, 0), false, false);
 

@@ -48,8 +48,8 @@ namespace SamplesCS
                     -1);
             }
 
-            using (new Window("Image", WindowMode.AutoSize | WindowMode.FreeRatio, src))
-            using (new Window("Histogram", WindowMode.AutoSize | WindowMode.FreeRatio, render))
+            using (new Window("Image", src, WindowFlags.AutoSize | WindowFlags.FreeRatio))
+            using (new Window("Histogram", render, WindowFlags.AutoSize | WindowFlags.FreeRatio))
             {
                 Cv2.WaitKey();
             }

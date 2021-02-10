@@ -8,8 +8,8 @@ namespace SamplesCS
     {
         private static Mat[] SelectStitchingImages(int width, int height, int count)
         {
-            Mat source = new Mat(@"Data\Image\lenna.png", ImreadModes.Color);
-            Mat result = source.Clone();
+            using var source = new Mat(@"Data\Image\lenna.png", ImreadModes.Color);
+            using var result = source.Clone();
 
             var rand = new Random();
             var mats = new List<Mat>();
@@ -25,11 +25,11 @@ namespace SamplesCS
                 result.Line(new Point(x2, y2), new Point(x2, y1), new Scalar(0, 0, 255));
                 result.Line(new Point(x2, y1), new Point(x1, y1), new Scalar(0, 0, 255));
 
-                Mat m = source[new Rect(x1, y1, width, height)];
+                using var m = source[new Rect(x1, y1, width, height)];
                 mats.Add(m.Clone());
             }
 
-            using (new Window(result))
+            using (new Window("stitching", result))
             {
                 Cv2.WaitKey();
             }
@@ -41,9 +41,8 @@ namespace SamplesCS
         {
             Mat[] images = SelectStitchingImages(200, 200, 10);
 
-            var stitcher = Stitcher.Create(Stitcher.Mode.Scans);
-
-            Mat pano = new Mat();
+            using var stitcher = Stitcher.Create(Stitcher.Mode.Scans);
+            using var pano = new Mat();
 
             Console.Write("Stitching start...");
             // TODO: does not work??
@@ -52,7 +51,7 @@ namespace SamplesCS
 
             Window.ShowImages(pano);
 
-            foreach (Mat image in images)
+            foreach (var image in images)
             {
                 image.Dispose();
             }

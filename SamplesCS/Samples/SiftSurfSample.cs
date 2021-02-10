@@ -49,8 +49,8 @@ namespace SamplesCS
             using var flannView = new Mat();
             Cv2.DrawMatches(gray1, keypoints1, gray2, keypoints2, flannMatches, flannView);
 
-            using (new Window("SIFT matching (by BFMather)", WindowMode.AutoSize, bfView))
-            using (new Window("SIFT matching (by FlannBasedMatcher)", WindowMode.AutoSize, flannView))
+            using (new Window("SIFT matching (by BFMather)", bfView))
+            using (new Window("SIFT matching (by FlannBasedMatcher)", flannView))
             {
                 Cv2.WaitKey();
             }
@@ -85,8 +85,8 @@ namespace SamplesCS
             using var flannView = new Mat();
             Cv2.DrawMatches(gray1, keypoints1, gray2, keypoints2, flannMatches, flannView);
 
-            using (new Window("SURF matching (by BFMather)", WindowMode.AutoSize, bfView))
-            using (new Window("SURF matching (by FlannBasedMatcher)", WindowMode.AutoSize, flannView))
+            using (new Window("SURF matching (by BFMather)", bfView))
+            using (new Window("SURF matching (by FlannBasedMatcher)", flannView))
             {
                 Cv2.WaitKey();
             }

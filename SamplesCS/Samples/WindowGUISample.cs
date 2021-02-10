@@ -41,14 +41,14 @@ namespace SamplesCS
         public void Windows_Example()
         {
             using var srcImg = new Mat(FilePath.Image.SurfBoxinscene, ImreadModes.AnyColor);
-            using var openCloseWindow = new Window("OpenCVWindow", WindowMode.AutoSize, srcImg);
+            using var openCloseWindow = new Window("OpenCVWindow", srcImg);
             Debug.WriteLine(Cv2.WaitKey());
         }
         
         public void MouseCallBack_Example()
         {
             using var srcImg = new Mat(FilePath.Image.SurfBoxinscene, ImreadModes.AnyColor);
-            using Window foo = new Window("MouseEvent", WindowMode.AutoSize, srcImg);
+            using Window foo = new Window("MouseEvent", srcImg);
             Cv2.SetMouseCallback(foo.Name, CallbackOpenCVAnnotate);
             Cv2.WaitKey();
         }

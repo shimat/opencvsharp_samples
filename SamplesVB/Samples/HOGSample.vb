@@ -44,8 +44,8 @@ Friend Module HOGSample
             img.Rectangle(r.TopLeft, r.BottomRight, Scalar.Red, 3, LineTypes.Link8, 0)
         Next rect
 
-        Using window As New Window("people detector", WindowMode.Normal, img)
-            window.SetProperty(WindowProperty.Fullscreen, 1)
+        Using window As New Window("people detector", img, WindowFlags.Normal)
+            window.SetProperty(WindowPropertyFlags.Fullscreen, 1)
             Cv2.WaitKey(0)
         End Using
     End Sub

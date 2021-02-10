@@ -70,7 +70,7 @@ namespace SamplesCS
             using var normalizedImage = new Mat();
             Cv2.WarpPerspective(src, normalizedImage, transform, new Size(1024, 1024));
 
-            using var _1 = new Window("Original Image", WindowMode.AutoSize, src);
+            using var _1 = new Window("Original Image", src, WindowFlags.AutoSize);
             using var _2 = new Window($"Found {ids.Length} Markers", detectedMarkers);
             using var _3 = new Window("Normalized Image", normalizedImage);
 

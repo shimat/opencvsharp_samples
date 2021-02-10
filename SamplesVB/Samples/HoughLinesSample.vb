@@ -41,8 +41,8 @@ Friend Module HoughLinesSample
 
 
             ' (5)検出結果表示用のウィンドウを確保し表示する
-            Using TempCvWindow As Window = New Window("Hough_line_standard", WindowMode.AutoSize, imgStd), _
-                 TempCvWindowProb As Window = New Window("Hough_line_probabilistic", WindowMode.AutoSize, imgProb)
+            Using tempCvWindow = New Window("Hough_line_standard", imgStd),
+                 TempCvWindowProb = New Window("Hough_line_probabilistic", imgProb)
                 Window.WaitKey(0)
             End Using
         End Using

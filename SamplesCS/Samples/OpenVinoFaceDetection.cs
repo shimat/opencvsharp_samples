@@ -23,8 +23,8 @@ namespace SamplesCS
             int frameWidth = frame.Cols;
 
             using var netFace = CvDnn.ReadNet(modelFace, modelFaceTxt);			
-            netFace.SetPreferableBackend(Net.Backend.INFERENCE_ENGINE);
-            netFace.SetPreferableTarget(Net.Target.CPU);
+            netFace.SetPreferableBackend(Backend.INFERENCE_ENGINE);
+            netFace.SetPreferableTarget(Target.CPU);
 			
             using var blob = CvDnn.BlobFromImage(frame, 1.0, new OpenCvSharp.Size(672, 384), new OpenCvSharp.Scalar(0, 0, 0), false, false);
 			netFace.SetInput(blob);

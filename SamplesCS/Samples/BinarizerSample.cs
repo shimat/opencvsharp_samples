@@ -39,11 +39,11 @@ namespace SamplesCS
             sw.Stop();
             Console.WriteLine($"Nick {sw.ElapsedMilliseconds} ms");
 
-            using (new Window("src", WindowMode.AutoSize, src))
-            using (new Window("Niblack", WindowMode.AutoSize, niblack))
-            using (new Window("Sauvola", WindowMode.AutoSize, sauvola))
-            using (new Window("Bernsen", WindowMode.AutoSize, bernsen))
-            using (new Window("Nick", WindowMode.AutoSize, nick))
+            using (new Window("src", src, WindowFlags.AutoSize))
+            using (new Window("Niblack", niblack, WindowFlags.AutoSize))
+            using (new Window("Sauvola", sauvola, WindowFlags.AutoSize))
+            using (new Window("Bernsen", bernsen, WindowFlags.AutoSize))
+            using (new Window("Nick", nick, WindowFlags.AutoSize))
             {
                 Cv2.WaitKey();
             }

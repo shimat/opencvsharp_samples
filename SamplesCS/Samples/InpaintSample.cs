@@ -32,7 +32,7 @@ namespace SamplesCS
             using var inpaintMask = new Mat(img0.Size(), MatType.CV_8U, Scalar.Black);
             using var inpainted = img0.EmptyClone();
 
-            using var wImage = new Window("image", WindowMode.AutoSize, img);
+            using var wImage = new Window("image", img);
             var prevPt = new Point(-1, -1);
             wImage.SetMouseCallback((MouseEventTypes ev, int x, int y, MouseEventFlags flags, IntPtr userdata) =>
             {
@@ -76,10 +76,10 @@ namespace SamplesCS
                         case 'i':   // do Inpaint
                         case '\r':
                             Cv2.Inpaint(img, inpaintMask, inpainted, 3, InpaintMethod.Telea);
-                            wInpaint1 ??= new Window("inpainted image (algorithm by Alexandru Telea)", WindowMode.AutoSize);
+                            wInpaint1 ??= new Window("inpainted image (algorithm by Alexandru Telea)", WindowFlags.AutoSize);
                             wInpaint1.ShowImage(inpainted);
                             Cv2.Inpaint(img, inpaintMask, inpainted, 3, InpaintMethod.NS);
-                            wInpaint2 ??= new Window("inpainted image (algorithm by Navier-Strokes)", WindowMode.AutoSize);
+                            wInpaint2 ??= new Window("inpainted image (algorithm by Navier-Strokes)", WindowFlags.AutoSize);
                             wInpaint2.ShowImage(inpainted);
                             break;
                         case 's': // save images

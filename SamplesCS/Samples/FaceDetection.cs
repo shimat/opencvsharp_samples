@@ -42,7 +42,7 @@ namespace SamplesCS
 
                 // Detect faces
                 Rect[] faces = cascade.DetectMultiScale(
-                    gray, 1.08, 2, HaarDetectionType.ScaleImage, new Size(30, 30));
+                    gray, 1.08, 2, HaarDetectionTypes.ScaleImage, new Size(30, 30));
 
                 // Render all detected faces
                 foreach (Rect face in faces)

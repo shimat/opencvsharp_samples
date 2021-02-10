@@ -48,9 +48,9 @@ namespace SamplesCore
                 img.Rectangle(r.TopLeft, r.BottomRight, Scalar.Red, 3);
             }
 
-            using (var window = new Window("people detector", WindowMode.Normal, img))
+            using (var window = new Window("people detector", img, WindowFlags.Normal))
             {
-                window.SetProperty(WindowProperty.Fullscreen, 1);
+                window.SetProperty(WindowPropertyFlags.Fullscreen, 1);
                 Cv2.WaitKey(0);
             }
         }

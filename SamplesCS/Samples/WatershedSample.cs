@@ -19,7 +19,7 @@ namespace SamplesCS
             using var srcImg = Cv2.ImRead(FilePath.Image.Lenna, ImreadModes.AnyDepth | ImreadModes.AnyColor);            
             using var markers = new Mat(srcImg.Size(), MatType.CV_32SC1, Scalar.All(0));
 
-            using (var window = new Window("image", WindowMode.AutoSize, srcImg))
+            using (var window = new Window("image", srcImg))
             {
                 using var dspImg = srcImg.Clone();
 
@@ -55,7 +55,7 @@ namespace SamplesCS
                 }
             }
 
-            using (new Window("watershed transform", WindowMode.AutoSize, dstImg))
+            using (new Window("watershed transform", dstImg))
             {
                 Window.WaitKey();
             }

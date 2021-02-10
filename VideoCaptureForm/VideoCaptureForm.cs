@@ -55,7 +55,7 @@ namespace VideoCaptureForm
             {
                 using (var frameMat = capture.RetrieveMat())
                 {
-                    var rects = cascadeClassifier.DetectMultiScale(frameMat, 1.1, 5, HaarDetectionType.ScaleImage, new OpenCvSharp.Size(30, 30));
+                    var rects = cascadeClassifier.DetectMultiScale(frameMat, 1.1, 5, HaarDetectionTypes.ScaleImage, new OpenCvSharp.Size(30, 30));
                     if (rects.Length > 0)
                     {
                         Cv2.Rectangle(frameMat, rects[0], Scalar.Red);
