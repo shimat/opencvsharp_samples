@@ -48,6 +48,7 @@ namespace SamplesCS
                     Cv2.WarpPerspective(OriginalImage, dst, matrix, dst.Size());
                     using var dsts = new Window("dst", dst);
                     point2Fs.Clear();
+                    Window.WaitKey();
                 }
             }
         }
