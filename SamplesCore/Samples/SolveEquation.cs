@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using OpenCvSharp;
+using Sample.Test;
 
 namespace SamplesCore
 {
     /// <summary>
     /// 
     /// </summary>
-    class SolveEquation : ISample
+    class SolveEquation : ConsoleTestBase
     {
-        public void Run()
+        public override void RunTest()
         {
             ByMat();
             ByNormalArray();

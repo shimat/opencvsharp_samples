@@ -1,13 +1,15 @@
 ﻿using OpenCvSharp;
+using Sample.Test;
+using System.Threading.Tasks;
 
 namespace SamplesCore
 {
     /// <summary>
     /// 
     /// </summary>
-    class MorphologySample : ISample
+    class MorphologySample : ConsoleTestBase
     {
-        public void Run()
+        public override void RunTest()
         {
             using var gray = new Mat(FilePath.Image.Lenna, ImreadModes.Grayscale);
             using var binary = new Mat();

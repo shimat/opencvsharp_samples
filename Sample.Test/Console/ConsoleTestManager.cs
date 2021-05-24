@@ -64,6 +64,7 @@ namespace Sample.Test
         string _inputClear = "c";
         string _inputHelp = "h";
         string _helpMessage =
+            $"Follow these steps to use the testing framework: "+
             $"1 Create class that inherit from the [{nameof(ITestBase)}]{Environment.NewLine}" +
             $"2 Override the [{nameof(ConsoleTestBase.RunTest)}()] method of the class to execute your logic{Environment.NewLine}" +
             $"3 Manage all the test classes by an instance that inherits from {nameof(ITestManager)}{Environment.NewLine}" +
@@ -75,7 +76,7 @@ namespace Sample.Test
         /// </summary>
         private void PrintNamesAndRead()
         {
-            _msgPrinter.PrintSuccess($"Please enter a number to select the test to run.(Enter{_exitCode} to exit, Enter{_inputClear} to clear history,Enter{_inputHelp} to show help info.)");
+            _msgPrinter.PrintSuccess($"Please enter a number to select the test to run.{Environment.NewLine}Enter {_exitCode} to exit, Enter {_inputClear} to clear history,Enter {_inputHelp} to show help info.");
             ShowTestNames();
             _input = Console.ReadLine();
         }
@@ -126,7 +127,7 @@ namespace Sample.Test
 
                     if (number < 0 || number > _tests.Count)
                     {
-                        PrintErrorAndRead($"The number is out of range.Please reenter(enter{_exitCode} to exit）");
+                        PrintErrorAndRead($"The number is out of range.Please reenter(enter {_exitCode} to exit）");
                         continue;
                     }
                     var test = _tests.Skip(number - 1).FirstOrDefault();
@@ -136,14 +137,11 @@ namespace Sample.Test
                     try
                     {
                         DateTime start = DateTime.Now;
-                        Task task = null;
                         if (test is ITestBase testA)
-                            task = testA.RunTest();
+                            testA.RunTest();
 
                         if (test is Func<ITestBase> func)
-                            task = func().RunTest();
-
-                        Task.WaitAll(new Task[] { task });
+                            func().RunTest();                        
                         _msgPrinter.PrintSuccess($"{testName} completed,time cost:{DateTime.Now.Subtract(start).TotalMilliseconds.ToString("0.0000")}ms\n");
                     }
                     catch (Exception ex)
@@ -157,7 +155,7 @@ namespace Sample.Test
                 }
                 else
                 {
-                    PrintErrorAndRead($"The input is invalid.Please reenter(enter{_exitCode} to exit）");
+                    PrintErrorAndRead($"The input is invalid.Please reenter(enter {_exitCode} to exit）");
                 }
             }
         }

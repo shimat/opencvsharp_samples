@@ -1,19 +1,20 @@
 ﻿using System;
 using System.Diagnostics;
 using OpenCvSharp;
+using Sample.Test;
 
 namespace SamplesCore
 {
     /// <summary>
     /// samples/c/peopledetect.c
     /// </summary>
-    internal class HOGSample : ISample
+    internal class HOGSample : ConsoleTestBase
     {
         public HOGSample()
         {
         }
 
-        public void Run()
+        public override void RunTest()
         {
             using var img = Cv2.ImRead(FilePath.Image.Asahiyama, ImreadModes.Color);
 

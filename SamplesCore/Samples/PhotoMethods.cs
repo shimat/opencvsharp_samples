@@ -1,13 +1,14 @@
 ﻿using OpenCvSharp;
+using Sample.Test;
 
 namespace SamplesCore
 {
     /// <summary>
     /// sample of photo module methods
     /// </summary>
-    class PhotoMethods : ISample
+    class PhotoMethods : ConsoleTestBase
     {
-        public void Run()
+        public override void RunTest()
         {
             using var src = new Mat(FilePath.Image.Fruits, ImreadModes.Color);
 

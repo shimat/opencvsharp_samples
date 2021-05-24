@@ -58,8 +58,7 @@ namespace Sample.Test.Interfaces
         /// <summary>
         /// Run current test
         /// </summary>
-        /// <returns></returns>
-        Task RunTest();
+        void RunTest();
 
 
         /// <summary>

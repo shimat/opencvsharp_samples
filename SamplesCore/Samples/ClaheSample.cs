@@ -1,10 +1,11 @@
 ﻿using OpenCvSharp;
+using Sample.Test;
 
 namespace SamplesCore
 {
-    class ClaheSample : ISample
+    class ClaheSample : ConsoleTestBase
     {
-        public void Run()
+        public override void RunTest()
         {
             using var src = new Mat(FilePath.Image.TsukubaLeft, ImreadModes.Grayscale);
             using var dst1 = new Mat();

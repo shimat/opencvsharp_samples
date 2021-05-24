@@ -1,14 +1,15 @@
 ﻿using System;
 using OpenCvSharp;
+using Sample.Test;
 
 namespace SamplesCore
 {
     /// <summary>
     /// 
     /// </summary>
-    class VideoWriterSample : ISample
+    class VideoWriterSample : ConsoleTestBase
     {
-        public void Run()
+        public override void RunTest()
         {
             const string OutVideoFile = "out.avi";
 

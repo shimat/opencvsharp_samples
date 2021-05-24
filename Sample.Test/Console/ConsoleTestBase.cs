@@ -51,7 +51,7 @@ namespace Sample.Test
             return _msgPrinter;
         }
 
-        public abstract Task RunTest();
+        public abstract void RunTest();
 
 
         public string WaitToInput()

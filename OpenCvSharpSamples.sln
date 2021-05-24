@@ -15,7 +15,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CameraOpenCV", "CameraOpenC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoCaptureForm", "VideoCaptureForm\VideoCaptureForm.csproj", "{9DCC89F3-9D9F-4813-A4A3-36F8457E7F85}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SamplesCore.Windows", "SamplesCore.Windows\SamplesCore.Windows.csproj", "{41A0CB46-CEC7-4DB2-B2F5-C538D29DC11D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SamplesCore.Windows", "SamplesCore.Windows\SamplesCore.Windows.csproj", "{41A0CB46-CEC7-4DB2-B2F5-C538D29DC11D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Test", "Sample.Test\Sample.Test.csproj", "{E82FEE41-DE7E-4AB2-8346-8BC8F6C5A669}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -179,6 +181,26 @@ Global
 		{41A0CB46-CEC7-4DB2-B2F5-C538D29DC11D}.Release|x64.Build.0 = Release|Any CPU
 		{41A0CB46-CEC7-4DB2-B2F5-C538D29DC11D}.Release|x86.ActiveCfg = Release|Any CPU
 		{41A0CB46-CEC7-4DB2-B2F5-C538D29DC11D}.Release|x86.Build.0 = Release|Any CPU
+		{E82FEE41-DE7E-4AB2-8346-8BC8F6C5A669}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E82FEE41-DE7E-4AB2-8346-8BC8F6C5A669}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E82FEE41-DE7E-4AB2-8346-8BC8F6C5A669}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{E82FEE41-DE7E-4AB2-8346-8BC8F6C5A669}.Debug|ARM.Build.0 = Debug|Any CPU
+		{E82FEE41-DE7E-4AB2-8346-8BC8F6C5A669}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{E82FEE41-DE7E-4AB2-8346-8BC8F6C5A669}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{E82FEE41-DE7E-4AB2-8346-8BC8F6C5A669}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E82FEE41-DE7E-4AB2-8346-8BC8F6C5A669}.Debug|x64.Build.0 = Debug|Any CPU
+		{E82FEE41-DE7E-4AB2-8346-8BC8F6C5A669}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E82FEE41-DE7E-4AB2-8346-8BC8F6C5A669}.Debug|x86.Build.0 = Debug|Any CPU
+		{E82FEE41-DE7E-4AB2-8346-8BC8F6C5A669}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E82FEE41-DE7E-4AB2-8346-8BC8F6C5A669}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E82FEE41-DE7E-4AB2-8346-8BC8F6C5A669}.Release|ARM.ActiveCfg = Release|Any CPU
+		{E82FEE41-DE7E-4AB2-8346-8BC8F6C5A669}.Release|ARM.Build.0 = Release|Any CPU
+		{E82FEE41-DE7E-4AB2-8346-8BC8F6C5A669}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{E82FEE41-DE7E-4AB2-8346-8BC8F6C5A669}.Release|ARM64.Build.0 = Release|Any CPU
+		{E82FEE41-DE7E-4AB2-8346-8BC8F6C5A669}.Release|x64.ActiveCfg = Release|Any CPU
+		{E82FEE41-DE7E-4AB2-8346-8BC8F6C5A669}.Release|x64.Build.0 = Release|Any CPU
+		{E82FEE41-DE7E-4AB2-8346-8BC8F6C5A669}.Release|x86.ActiveCfg = Release|Any CPU
+		{E82FEE41-DE7E-4AB2-8346-8BC8F6C5A669}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

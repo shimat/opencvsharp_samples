@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Linq;
 using OpenCvSharp;
+using Sample.Test;
 
 namespace SamplesCore
 {
     /// <summary>
     /// cv::Subdiv2D test
     /// </summary>
-    class Subdiv2DSample : ISample
+    class Subdiv2DSample : ConsoleTestBase
     {
-        public void Run()
+        public override void RunTest()
         {
             const int Size = 600;
 
