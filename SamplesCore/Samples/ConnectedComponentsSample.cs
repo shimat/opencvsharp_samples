@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using OpenCvSharp;
-using Sample.Test;
+using SampleBase;
 
 namespace SamplesCore
 {
@@ -11,7 +11,7 @@ namespace SamplesCore
     {
         public override void RunTest()
         {
-            using var src = new Mat(FilePath.Image.Shapes, ImreadModes.Color);
+            using var src = new Mat(ImagePath.Shapes, ImreadModes.Color);
             using var gray = src.CvtColor(ColorConversionCodes.BGR2GRAY);
             using var binary = gray.Threshold(0, 255, ThresholdTypes.Otsu | ThresholdTypes.Binary);
             using var labelView = src.EmptyClone();

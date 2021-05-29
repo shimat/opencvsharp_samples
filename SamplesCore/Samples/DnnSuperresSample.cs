@@ -1,6 +1,6 @@
 ﻿using OpenCvSharp;
 using OpenCvSharp.DnnSuperres;
-using Sample.Test;
+using SampleBase;
 
 namespace SamplesCore
 {
@@ -14,7 +14,7 @@ namespace SamplesCore
             using var dnn = new DnnSuperResImpl("fsrcnn", 4);
             dnn.ReadModel(ModelFileName);
 
-            using var src = new Mat(FilePath.Image.Mandrill, ImreadModes.Color);
+            using var src = new Mat(ImagePath.Mandrill, ImreadModes.Color);
             using var dst = new Mat();
             dnn.Upsample(src, dst);
 

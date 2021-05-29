@@ -10,8 +10,8 @@ Imports SampleBase
 ''' </summary>
 Friend Module FASTSample
     Public Sub Start()
-        Using imgSrc As New Mat(FilePath.Image.Lenna, ImreadModes.Color), _
-            imgGray As New Mat(imgSrc.Size, MatType.CV_8UC1), _
+        Using imgSrc As New Mat(ImagePath.Lenna, ImreadModes.Color),
+            imgGray As New Mat(imgSrc.Size, MatType.CV_8UC1),
             imgDst As Mat = imgSrc.Clone()
             Cv2.CvtColor(imgSrc, imgGray, ColorConversionCodes.BGR2GRAY, 0)
 

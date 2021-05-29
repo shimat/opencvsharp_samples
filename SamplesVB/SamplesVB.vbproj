@@ -12,7 +12,7 @@
     <AssemblyName>SamplesVB</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Console</MyType>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -169,6 +169,7 @@
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -232,7 +233,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SampleBase\SampleBase.csproj">
-      <Project>{2d245c04-0f27-458a-a185-16242a3f918c}</Project>
+      <Project>{a2493ac8-54cf-41d4-ad10-625390149a7f}</Project>
       <Name>SampleBase</Name>
     </ProjectReference>
   </ItemGroup>

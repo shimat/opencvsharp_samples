@@ -13,7 +13,7 @@ Imports SampleBase
 ''' </summary>
 Friend Module HOGSample
     Public Sub Start()
-        Dim img As Mat = Cv2.ImRead(FilePath.Image.Asahiyama, ImreadModes.Color)
+        Dim img As Mat = Cv2.ImRead(ImagePath.Asahiyama, ImreadModes.Color)
 
         Dim hog As New HOGDescriptor()
         hog.SetSVMDetector(HOGDescriptor.GetDefaultPeopleDetector())

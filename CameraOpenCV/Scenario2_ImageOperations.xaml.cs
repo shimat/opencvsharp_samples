@@ -32,19 +32,16 @@ namespace SDKTemplate
             MotionDetector
         }
 
-        private const int ImageRows = 480;
-        private const int ImageCols = 640;
-
         public AlgorithmProperty StoredProperty { get; set; }
         public AlgorithmProperty LastStoredProperty { get; set; }
         private Algorithm storeditem;
 
         private MainPage rootPage;
 
-        private FrameRenderer previewRenderer;
-        private FrameRenderer outputRenderer;
+        private readonly FrameRenderer previewRenderer;
+        private readonly FrameRenderer outputRenderer;
 
-        private DispatcherTimer fpsTimer;
+        private readonly DispatcherTimer fpsTimer;
         private int frameCount = 0;
 
         private OperationType currentOperation;
@@ -99,7 +96,6 @@ namespace SDKTemplate
         {
             if (frame != null)
             {
-                SoftwareBitmap originalBitmap = null;
                 var inputBitmap = frame.SoftwareBitmap;
                 if (inputBitmap != null)
                 {
@@ -107,7 +103,7 @@ namespace SDKTemplate
                     {
                         // The XAML Image control can only display images in BRGA8 format with premultiplied or no alpha
                         // The frame reader as configured in this sample gives BGRA8 with straight alpha, so need to convert it
-                        originalBitmap = SoftwareBitmap.Convert(inputBitmap, BitmapPixelFormat.Bgra8, BitmapAlphaMode.Premultiplied);
+                        SoftwareBitmap originalBitmap = SoftwareBitmap.Convert(inputBitmap, BitmapPixelFormat.Bgra8, BitmapAlphaMode.Premultiplied);
 
                         SoftwareBitmap outputBitmap = new SoftwareBitmap(BitmapPixelFormat.Bgra8, originalBitmap.PixelWidth, originalBitmap.PixelHeight, BitmapAlphaMode.Premultiplied);
 
@@ -281,11 +277,9 @@ namespace SDKTemplate
         /// <param name="append">If false the file will be overwritten if it already exists. If true the contents will be appended to the file.</param>
         public static void WriteToBinaryFile<T>(string filePath, T objectToWrite, bool append = false)
         {
-            using (Stream stream = File.Open(filePath, append ? FileMode.Append : FileMode.Create))
-            {
-                var binaryFormatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-                binaryFormatter.Serialize(stream, objectToWrite);
-            }
+            using var stream = File.Open(filePath, append ? FileMode.Append : FileMode.Create);
+            var binaryFormatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+            binaryFormatter.Serialize(stream, objectToWrite);
         }
 
         /// <summary>
@@ -296,11 +290,9 @@ namespace SDKTemplate
         /// <returns>Returns a new instance of the object read from the binary file.</returns>
         public static T ReadFromBinaryFile<T>(string filePath)
         {
-            using (Stream stream = File.Open(filePath, FileMode.Open))
-            {
-                var binaryFormatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-                return (T)binaryFormatter.Deserialize(stream);
-            }
+            using var stream = File.Open(filePath, FileMode.Open);
+            var binaryFormatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+            return (T)binaryFormatter.Deserialize(stream);
         }
 
         private async void ToggleButton_Click(object sender, RoutedEventArgs e)
@@ -365,8 +357,10 @@ namespace SDKTemplate
             return AsyncInfo.Run(async (token) =>
             {
                 // Trigger file picker to select an image file
-                FileOpenPicker fileOpenPicker = new FileOpenPicker();
-                fileOpenPicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
+                FileOpenPicker fileOpenPicker = new FileOpenPicker
+                {
+                    SuggestedStartLocation = PickerLocationId.PicturesLibrary
+                };
                 fileOpenPicker.FileTypeFilter.Add(".jpg");
                 fileOpenPicker.FileTypeFilter.Add(".png");
                 fileOpenPicker.ViewMode = PickerViewMode.Thumbnail;

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using OpenCvSharp;
-using Sample.Test;
+using SampleBase;
 
 namespace SamplesCore
 {

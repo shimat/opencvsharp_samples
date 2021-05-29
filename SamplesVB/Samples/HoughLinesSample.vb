@@ -11,8 +11,8 @@ Friend Module HoughLinesSample
     Public Sub Start()
 
         ' (1)画像の読み込み 
-        Using imgGray As New Mat(FilePath.Image.Goryokaku, ImreadModes.GrayScale), _
-                 imgStd As New Mat(FilePath.Image.Goryokaku, ImreadModes.Color), _
+        Using imgGray As New Mat(ImagePath.Goryokaku, ImreadModes.Grayscale),
+                 imgStd As New Mat(ImagePath.Goryokaku, ImreadModes.Color),
              imgProb As Mat = imgStd.Clone()
             ' Preprocess
             Cv2.Canny(imgGray, imgGray, 50, 200, 3, False)

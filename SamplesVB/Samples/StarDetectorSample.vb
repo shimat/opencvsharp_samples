@@ -10,7 +10,7 @@ Imports SampleBase
 ''' </summary>
 Friend Module StarDetectorSample
     Public Sub Start()
-        Using src As New Mat(FilePath.Image.Lenna, ImreadModes.GrayScale),
+        Using src As New Mat(ImagePath.Lenna, ImreadModes.Grayscale),
               dst As New Mat()
             Cv2.CvtColor(src, dst, ColorConversionCodes.GRAY2BGR)
 

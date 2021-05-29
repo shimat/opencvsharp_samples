@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using OpenCvSharp;
-using Sample.Test;
+using SampleBase;
 
 namespace SamplesCore
 {
@@ -22,7 +22,7 @@ namespace SamplesCore
         /// </summary>
         private void SubMat()
         {
-            using var src = Cv2.ImRead(FilePath.Image.Lenna);
+            using var src = Cv2.ImRead(ImagePath.Lenna);
 
             // Assign small image to mat
             using var small = new Mat();
@@ -54,7 +54,7 @@ namespace SamplesCore
         /// </summary>
         private void RowColRangeOperation()
         {
-            using var src = Cv2.ImRead(FilePath.Image.Lenna);
+            using var src = Cv2.ImRead(ImagePath.Lenna);
 
             Cv2.GaussianBlur(
                 src.RowRange(100, 200),
@@ -77,7 +77,7 @@ namespace SamplesCore
         /// </summary>
         private void RowColOperation()
         {
-            using var src = Cv2.ImRead(FilePath.Image.Lenna);
+            using var src = Cv2.ImRead(ImagePath.Lenna);
 
             var rand = new Random();
             for (int i = 0; i < 200; i++)

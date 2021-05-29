@@ -1,6 +1,6 @@
 ﻿using System;
 using OpenCvSharp;
-using Sample.Test;
+using SampleBase;
 
 namespace SamplesCore
 {
@@ -12,7 +12,7 @@ namespace SamplesCore
         public override void RunTest()
         {
             // Opens MP4 file (ffmpeg is probably needed)
-            using var capture = new VideoCapture(FilePath.Movie.Bach);
+            using var capture = new VideoCapture(MoviePath.Bach);
             if (!capture.IsOpened())
                 return;
 
