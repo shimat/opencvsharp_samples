@@ -1,5 +1,6 @@
 ﻿using System;
 using OpenCvSharp;
+using Sample.Test;
 
 namespace SamplesCore
 {
@@ -7,9 +8,9 @@ namespace SamplesCore
     /// Hough Transform Sample / ハフ変換による直線検出
     /// </summary>
     /// <remarks>http://opencv.jp/sample/special_transforms.html#hough_line</remarks>
-    class HoughLinesSample : ISample
+    class HoughLinesSample : ConsoleTestBase
     {
-        public void Run()
+        public override void RunTest()
         {
             SampleCpp();      
         }

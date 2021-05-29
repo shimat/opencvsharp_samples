@@ -1,14 +1,15 @@
 ﻿using System;
 using OpenCvSharp;
+using Sample.Test;
 
 namespace SamplesCore
 {
     /// <summary>
     /// 
     /// </summary>
-    class VideoCaptureSample : ISample
+    class VideoCaptureSample : ConsoleTestBase
     {
-        public void Run()
+        public override void RunTest()
         {
             // Opens MP4 file (ffmpeg is probably needed)
             using var capture = new VideoCapture(FilePath.Movie.Bach);

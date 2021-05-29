@@ -2,17 +2,19 @@
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using OpenCvSharp;
 using OpenCvSharp.Dnn;
+using Sample.Test;
 
 namespace SamplesCore
 {
     /// <summary>
     /// https://docs.opencv.org/3.3.0/d5/de7/tutorial_dnn_googlenet.html
     /// </summary>
-    class CaffeSample : ISample
+    class CaffeSample : ConsoleTestBase
     {
-        public void Run()
+        public override void RunTest()
         {
             const string protoTxt = @"Data\Text\bvlc_googlenet.prototxt";
             const string caffeModel = "bvlc_googlenet.caffemodel";

@@ -1,14 +1,15 @@
 ﻿using System.Linq;
 using OpenCvSharp;
+using Sample.Test;
 
 namespace SamplesCore
 {
     /// <summary>
     /// 
     /// </summary>
-    class ConnectedComponentsSample : ISample
+    class ConnectedComponentsSample : ConsoleTestBase
     {
-        public void Run()
+        public override void RunTest()
         {
             using var src = new Mat(FilePath.Image.Shapes, ImreadModes.Color);
             using var gray = src.CvtColor(ColorConversionCodes.BGR2GRAY);

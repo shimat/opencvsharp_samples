@@ -36,6 +36,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Sample.Test\Sample.Test.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="dll\**\*.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

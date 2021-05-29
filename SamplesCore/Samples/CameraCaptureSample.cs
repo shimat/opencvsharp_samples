@@ -1,14 +1,16 @@
 ﻿using System;
+using System.Threading.Tasks;
 using OpenCvSharp;
+using Sample.Test;
 
 namespace SamplesCore
 {
     /// <summary>
     /// 
     /// </summary>
-    class CameraCaptureSample : ISample
+    class CameraCaptureSample : ConsoleTestBase
     {
-        public void Run()
+        public override void RunTest()
         {
             using var capture = new VideoCapture(0, VideoCaptureAPIs.DSHOW);
             if (!capture.IsOpened())

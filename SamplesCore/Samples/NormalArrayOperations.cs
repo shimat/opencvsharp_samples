@@ -1,22 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using Sample.Test.Interfaces;
 using OpenCvSharp;
+using Sample.Test;
+using System.Threading.Tasks;
 
 namespace SamplesCore
 {
     /// <summary>
     /// 
     /// </summary>
-    class NormalArrayOperations : ISample
+    class NormalArrayOperations : ConsoleTestBase
     {
-        public void Run()
+        public override void RunTest()
         {
             Threshold1();
             Threshold2();
             Threshold3();
-
-            Console.Read();
         }
 
         /// <summary>

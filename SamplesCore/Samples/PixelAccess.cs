@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Diagnostics;
 using OpenCvSharp;
+using Sample.Test;
 
 namespace SamplesCore
 {
     /// <summary>
     /// Swaps B for R 
     /// </summary>
-    class PixelAccess : ISample
+    class PixelAccess : ConsoleTestBase
     {
-        public void Run()
+        public override void RunTest()
         {
             Console.WriteLine("Get/Set: {0}ms", MeasureTime(GetSet));
             Console.WriteLine("GenericIndexer: {0}ms", MeasureTime(GenericIndexer));

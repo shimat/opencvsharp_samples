@@ -1,6 +1,7 @@
 ﻿using System;
 using OpenCvSharp;
 using OpenCvSharp.ML;
+using Sample.Test;
 
 namespace SamplesCore
 {
@@ -8,14 +9,14 @@ namespace SamplesCore
     /// Support Vector Machine
     /// </summary>
     /// <remarks>http://opencv.jp/sample/svm.html#svm</remarks>
-    internal class SVMSample : ISample
+    internal class SVMSample : ConsoleTestBase
     {
         private static double f(double x)
         {
             return x + 50 * Math.Sin(x / 15.0);
         }
 
-        public void Run()
+        public override void RunTest()
         {
             // Training data          
             var points = new Point2f[500];

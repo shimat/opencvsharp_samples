@@ -1,14 +1,16 @@
 ﻿using System;
+using System.Threading.Tasks;
 using OpenCvSharp;
+using Sample.Test;
 
 namespace SamplesCore
 {
     /// <summary>
     /// 
     /// </summary>
-    class MatOperations : ISample
+    class MatOperations : ConsoleTestBase
     {
-        public void Run()
+        public override void RunTest()
         {
             SubMat();
             RowColRangeOperation();
