@@ -57,10 +57,7 @@ namespace SamplesCore
                 new VideoWriterSample(),
                 new VideoCaptureSample(),
                 new WatershedSample());
-                        
-            var printer = new ConsoleMessagePrinter();
-            printer.PrintInfo("Superclass of all test classes has been replaced with ConsoleTestBase (ISample has been removed)");
-            printer.PrintInfo("To make it easier to execute test cases, it is expected to maintain test cases in this way.");
+
             testManager.ShowTestEntrance();
         }
     }
