@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Sample.Test.Interfaces;
 using OpenCvSharp;
-using Sample.Test;
-using System.Threading.Tasks;
+using SampleBase;
 
 namespace SamplesCore
 {

@@ -1,5 +1,5 @@
 ﻿using OpenCvSharp;
-using Sample.Test;
+using SampleBase;
 
 namespace SamplesCore
 {
@@ -7,7 +7,7 @@ namespace SamplesCore
     {
         public override void RunTest()
         {
-            using var src = new Mat(FilePath.Image.TsukubaLeft, ImreadModes.Grayscale);
+            using var src = new Mat(ImagePath.TsukubaLeft, ImreadModes.Grayscale);
             using var dst1 = new Mat();
             using var dst2 = new Mat();
             using var dst3 = new Mat();

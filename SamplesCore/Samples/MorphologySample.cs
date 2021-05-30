@@ -1,5 +1,5 @@
 ﻿using OpenCvSharp;
-using Sample.Test;
+using SampleBase;
 using System.Threading.Tasks;
 
 namespace SamplesCore
@@ -11,7 +11,7 @@ namespace SamplesCore
     {
         public override void RunTest()
         {
-            using var gray = new Mat(FilePath.Image.Lenna, ImreadModes.Grayscale);
+            using var gray = new Mat(ImagePath.Lenna, ImreadModes.Grayscale);
             using var binary = new Mat();
             using var dilate1 = new Mat();
             using var dilate2 = new Mat();

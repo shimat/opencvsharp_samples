@@ -8,6 +8,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Data\Image\box_in_scene.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Data\Image\box_in_scene.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="OpenCvSharp4.runtime.win" Version="4.5.2.20210404" />
     <PackageReference Include="OpenCvSharp4.WpfExtensions" Version="4.5.2.20210404" />
   </ItemGroup>

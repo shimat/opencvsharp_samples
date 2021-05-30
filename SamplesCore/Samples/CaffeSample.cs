@@ -5,7 +5,7 @@ using System.Net;
 using System.Threading.Tasks;
 using OpenCvSharp;
 using OpenCvSharp.Dnn;
-using Sample.Test;
+using SampleBase;
 
 namespace SamplesCore
 {
@@ -27,42 +27,32 @@ namespace SamplesCore
             PrepareModel(caffeModel);
             Console.WriteLine(" Done");
 
-            using (var net = CvDnn.ReadNetFromCaffe(protoTxt, caffeModel))
-            using (var img = new Mat(@"Data\Image\space_shuttle.jpg"))
-            {
-                Console.WriteLine("Layer names: {0}", string.Join(", ", net.GetLayerNames()));
-                Console.WriteLine();
+            using var net = CvDnn.ReadNetFromCaffe(protoTxt, caffeModel);
+            using var img = new Mat(@"Data\Image\space_shuttle.jpg");
+            Console.WriteLine("Layer names: {0}", string.Join(", ", net.GetLayerNames()));
+            Console.WriteLine();
 
-                // Convert Mat to batch of images
-                using (var inputBlob = CvDnn.BlobFromImage(img, 1, new Size(224, 224), new Scalar(104, 117, 123)))
-                {
-                    net.SetInput(inputBlob, "data");
-                    using (var prob = net.Forward("prob"))
-                    {
-                        // find the best class
-                        GetMaxClass(prob, out int classId, out double classProb);
-                        Console.WriteLine("Best class: #{0} '{1}'", classId, classNames[classId]);
-                        Console.WriteLine("Probability: {0:P2}", classProb);
+            // Convert Mat to batch of images
+            using var inputBlob = CvDnn.BlobFromImage(img, 1, new Size(224, 224), new Scalar(104, 117, 123));
+            net.SetInput(inputBlob, "data");
+            using var prob = net.Forward("prob");
+            // find the best class
+            GetMaxClass(prob, out int classId, out double classProb);
+            Console.WriteLine("Best class: #{0} '{1}'", classId, classNames[classId]);
+            Console.WriteLine("Probability: {0:P2}", classProb);
 
-                        Console.WriteLine("Press any key to exit");
-                        Console.Read();
-                    }
-                }
-            }
+            Console.WriteLine("Press any key to exit");
+            Console.Read();
         }
 
         private static byte[] DownloadBytes(string url)
         {
             var client = WebRequest.CreateHttp(url);
-            using (var response = client.GetResponseAsync().GetAwaiter().GetResult())
-            using (var responseStream = response.GetResponseStream())
-            {
-                using (var memory = new MemoryStream())
-                {
-                    responseStream.CopyTo(memory);
-                    return memory.ToArray();
-                }
-            }
+            using var response = client.GetResponseAsync().GetAwaiter().GetResult();
+            using var responseStream = response.GetResponseStream();
+            using var memory = new MemoryStream();
+            responseStream.CopyTo(memory);
+            return memory.ToArray();
         }
 
         private static void PrepareModel(string fileName)
@@ -83,11 +73,9 @@ namespace SamplesCore
         private static void GetMaxClass(Mat probBlob, out int classId, out double classProb)
         {
             // reshape the blob to 1x1000 matrix
-            using (var probMat = probBlob.Reshape(1, 1))
-            {
-                Cv2.MinMaxLoc(probMat, out _, out classProb, out _, out var classNumber);
-                classId = classNumber.X;
-            }
+            using var probMat = probBlob.Reshape(1, 1);
+            Cv2.MinMaxLoc(probMat, out _, out classProb, out _, out var classNumber);
+            classId = classNumber.X;
         }
     }
 }

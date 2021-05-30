@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using OpenCvSharp;
-using Sample.Test;
+using SampleBase;
 
 namespace SamplesCore
 {

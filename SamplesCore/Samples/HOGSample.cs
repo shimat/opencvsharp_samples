@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using OpenCvSharp;
-using Sample.Test;
+using SampleBase;
 
 namespace SamplesCore
 {
@@ -16,7 +16,7 @@ namespace SamplesCore
 
         public override void RunTest()
         {
-            using var img = Cv2.ImRead(FilePath.Image.Asahiyama, ImreadModes.Color);
+            using var img = Cv2.ImRead(ImagePath.Asahiyama, ImreadModes.Color);
 
             using var hog = new HOGDescriptor();
             hog.SetSVMDetector(HOGDescriptor.GetDefaultPeopleDetector());
@@ -49,11 +49,9 @@ namespace SamplesCore
                 img.Rectangle(r.TopLeft, r.BottomRight, Scalar.Red, 3);
             }
 
-            using (var window = new Window("people detector", img, WindowFlags.Normal))
-            {
-                window.SetProperty(WindowPropertyFlags.Fullscreen, 1);
-                Cv2.WaitKey(0);
-            }
+            using var window = new Window("people detector", img, WindowFlags.Normal);
+            window.SetProperty(WindowPropertyFlags.Fullscreen, 1);
+            Cv2.WaitKey(0);
         }
     }
 }

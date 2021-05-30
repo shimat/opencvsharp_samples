@@ -1,5 +1,5 @@
 ﻿using OpenCvSharp;
-using Sample.Test;
+using SampleBase;
 
 namespace SamplesCore
 {
@@ -10,7 +10,7 @@ namespace SamplesCore
     {
         public override void RunTest()
         {
-            using var src = new Mat(FilePath.Image.Fruits, ImreadModes.Color);
+            using var src = new Mat(ImagePath.Fruits, ImreadModes.Color);
 
             using var normconv = new Mat(); 
             using var recursFiltered = new Mat();

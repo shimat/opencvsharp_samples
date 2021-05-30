@@ -1,6 +1,6 @@
 ﻿using System;
 using OpenCvSharp;
-using Sample.Test;
+using SampleBase;
 
 namespace SamplesCore
 {
@@ -14,7 +14,7 @@ namespace SamplesCore
             const string OutVideoFile = "out.avi";
 
             // Opens MP4 file (ffmpeg is probably needed)
-            using var capture = new VideoCapture(FilePath.Movie.Bach);
+            using var capture = new VideoCapture(MoviePath.Bach);
 
             // Read movie frames and write them to VideoWriter 
             var dsize = new Size(640, 480);
