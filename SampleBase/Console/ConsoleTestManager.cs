@@ -137,7 +137,7 @@ namespace SampleBase
                         msgPrinter.PrintError(ex.StackTrace ?? "");
                     }
 
-                    PrintNamesAndRead();
+                    input = PrintNamesAndRead();
 
                 }
                 else
