@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp3.1;net48</TargetFrameworks>
+    <TargetFrameworks>net5.0;net48</TargetFrameworks>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <AssemblyName>SamplesCore</AssemblyName>
     <OutputType>Exe</OutputType> 
@@ -16,8 +16,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="OpenCvSharp4" Version="4.5.3.20210725" />
-    <PackageReference Include="OpenCvSharp4.runtime.win" Version="4.5.3.20210725" />
+    <PackageReference Include="OpenCvSharp4" Version="4.5.3.20210817" />
+    <PackageReference Include="OpenCvSharp4.runtime.win" Version="4.5.3.20210817" />
   </ItemGroup>
     
   <ItemGroup Condition=" '$(TargetFramework)' == 'net48' ">
