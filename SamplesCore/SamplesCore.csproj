@@ -16,8 +16,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="OpenCvSharp4" Version="4.5.3.20210817" />
-    <PackageReference Include="OpenCvSharp4.runtime.win" Version="4.5.3.20210817" />
+    <PackageReference Include="OpenCvSharp4" Version="4.5.3.20211207" />
+    <PackageReference Include="OpenCvSharp4.runtime.win" Version="4.5.3.20211207" />
   </ItemGroup>
     
   <ItemGroup Condition=" '$(TargetFramework)' == 'net48' ">
