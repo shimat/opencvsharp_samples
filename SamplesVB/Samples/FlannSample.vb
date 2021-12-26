@@ -31,8 +31,8 @@ Friend Module FlannSample
             ' knnSearch
             Using nnIndex As New Flann.Index(features, New Flann.KDTreeIndexParams(4))
                 Dim knn As Integer = 1
-                Dim indices() As Integer
-                Dim dists() As Single
+                Dim indices() As Integer = Nothing
+                Dim dists() As Single = Nothing
                 nnIndex.KnnSearch(queries, indices, dists, knn, New Flann.SearchParams(32))
 
                 For i As Integer = 0 To knn - 1

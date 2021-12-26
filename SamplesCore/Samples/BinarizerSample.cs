@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using OpenCvSharp;
-using OpenCvSharp.Extensions;
 using OpenCvSharp.XImgProc;
 using SampleBase;
 
@@ -14,7 +13,6 @@ namespace SamplesCore
             using var src = Cv2.ImRead(ImagePath.Binarization, ImreadModes.Grayscale);
             using var niblack = new Mat();
             using var sauvola = new Mat();
-            using var bernsen = new Mat();
             using var nick = new Mat();
             int kernelSize = 51;
 
@@ -30,11 +28,6 @@ namespace SamplesCore
             Console.WriteLine($"Sauvola {sw.ElapsedMilliseconds} ms");
 
             sw.Restart();
-            Binarizer.Bernsen(src, bernsen, kernelSize, 50, 200);
-            sw.Stop();
-            Console.WriteLine($"Bernsen {sw.ElapsedMilliseconds} ms");
-
-            sw.Restart();
             CvXImgProc.NiblackThreshold(src, nick, 255, ThresholdTypes.Binary, kernelSize, -0.14, LocalBinarizationMethods.Nick);
             sw.Stop();
             Console.WriteLine($"Nick {sw.ElapsedMilliseconds} ms");
@@ -42,7 +35,6 @@ namespace SamplesCore
             using (new Window("src", src, WindowFlags.AutoSize))
             using (new Window("Niblack", niblack, WindowFlags.AutoSize))
             using (new Window("Sauvola", sauvola, WindowFlags.AutoSize))
-            using (new Window("Bernsen", bernsen, WindowFlags.AutoSize))
             using (new Window("Nick", nick, WindowFlags.AutoSize))
             {
                 Cv2.WaitKey();

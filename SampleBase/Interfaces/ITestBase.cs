@@ -63,7 +63,7 @@ namespace SampleBase.Interfaces
         /// Waiting for input to complete, and take it as return value
         /// </summary>
         /// <returns></returns>
-        string WaitToInput();
+        string? WaitToInput();
 
         /// <summary>
         /// Show a tip message and wait util input anything

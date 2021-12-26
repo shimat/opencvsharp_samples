@@ -63,10 +63,10 @@ namespace SampleBase
         /// <summary>
         /// Output prompt message and start reading input (start again)
         /// </summary>
-        private string PrintNamesAndRead()
+        private string? PrintNamesAndRead()
         {
             msgPrinter.PrintSuccess(
-                $"Please enter a number to select the test to run.{Environment.NewLine}Enter {exitCode} to exit, Enter {inputClear} to clear history,Enter {inputHelp} to show help info.");
+                $"Please enter a number to select the test to run.{Environment.NewLine}Enter {exitCode} to exit, Enter {inputClear} to clear history, Enter {inputHelp} to show help info.");
             ShowTestNames();
             return Console.ReadLine();
         }
@@ -75,7 +75,7 @@ namespace SampleBase
         /// Output error message and re-read input
         /// </summary>
         /// <param name="message"></param>
-        private string PrintErrorAndRead(string message)
+        private string? PrintErrorAndRead(string message)
         {
             msgPrinter.PrintError(message);
             return Console.ReadLine();
@@ -98,13 +98,13 @@ namespace SampleBase
 
             while (true)
             {
-                if (input.ToLower() == inputClear)
+                if (input?.ToLower() == inputClear)
                 {
                     Console.Clear();
                     PrintNamesAndRead();
                     continue;
                 }
-                if (input.ToLower() == inputHelp)
+                if (input?.ToLower() == inputHelp)
                 {
                     msgPrinter.PrintSuccess(helpMessage);
                     PrintNamesAndRead();
@@ -117,10 +117,10 @@ namespace SampleBase
 
                     if (number < 0 || number > tests.Count)
                     {
-                        PrintErrorAndRead($"The number is out of range.Please reenter(enter {exitCode} to exit）");
+                        PrintErrorAndRead($"The number is out of range. Please reenter(enter {exitCode} to exit）");
                         continue;
                     }
-                    var test = tests.Skip(number - 1).FirstOrDefault();
+                    var test = tests[number - 1];
                     var testName = GetNameOfTest(test);
                     msgPrinter.PrintSuccess($"{testName} start executing...");
 
@@ -129,7 +129,7 @@ namespace SampleBase
                         var watch = Stopwatch.StartNew();
                         test.RunTest();
                         watch.Stop();
-                        msgPrinter.PrintSuccess($"{testName} completed,time cost:{watch.ElapsedMilliseconds}ms\n");
+                        msgPrinter.PrintSuccess($"{testName} completed, time cost:{watch.ElapsedMilliseconds}ms\n");
                     }
                     catch (Exception ex)
                     {
@@ -142,7 +142,7 @@ namespace SampleBase
                 }
                 else
                 {
-                    PrintErrorAndRead($"The input is invalid.Please reenter(enter {exitCode} to exit）");
+                    input = PrintErrorAndRead($"The input({input}) is invalid. Please reenter(enter {exitCode} to exit）");
                 }
             }
         }

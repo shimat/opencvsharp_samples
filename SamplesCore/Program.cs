@@ -9,6 +9,8 @@ namespace SamplesCore
         [STAThread]
         public static void Main(string[] args)
         {
+            Console.WriteLine("Runtime Version = {0}", Environment.Version);
+
             ITestManager testManager = new ConsoleTestManager();
             
             testManager.AddTests(

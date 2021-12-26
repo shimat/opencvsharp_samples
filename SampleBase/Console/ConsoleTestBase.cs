@@ -53,7 +53,7 @@ namespace SampleBase
             return msgPrinter;
         }
 
-        public string WaitToInput()
+        public string? WaitToInput()
         {
             return Console.ReadLine();
         }
