@@ -10,7 +10,6 @@ namespace SamplesLegacy
             using var src = Cv2.ImRead(ImagePath.Shapes);
             using var detectedCircles = new Mat();
             using var detectedOvals = new Mat();
-
             // Invert the image. Shapes has a black background and SimpleBlobDetector doesn't seem to work well with that.
             Cv2.BitwiseNot(src, src);
 
@@ -56,16 +55,15 @@ namespace SamplesLegacy
             };
 
             using var circleDetector = SimpleBlobDetector.Create(circleParams);
+            using var ovalDetector = SimpleBlobDetector.Create(ovalParams);
             var circleKeyPoints = circleDetector.Detect(src);
             Cv2.DrawKeypoints(src, circleKeyPoints, detectedCircles, Scalar.HotPink, DrawMatchesFlags.DrawRichKeypoints);
 
-            using var ovalDetector = SimpleBlobDetector.Create(ovalParams);
             var ovalKeyPoints = ovalDetector.Detect(src);
             Cv2.DrawKeypoints(src, ovalKeyPoints, detectedOvals, Scalar.HotPink, DrawMatchesFlags.DrawRichKeypoints);
 
             using var w1 = new Window("Detected Circles", detectedCircles);
             using var w2 = new Window("Detected Ovals", detectedOvals);
-
             Cv2.WaitKey();
         }
     }

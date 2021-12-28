@@ -1,4 +1,4 @@
-﻿namespace SamplesCore
+﻿namespace SamplesLegacy
 {
     /// <summary>
     /// Paths

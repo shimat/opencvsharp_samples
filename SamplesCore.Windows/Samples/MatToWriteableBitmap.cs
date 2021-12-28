@@ -2,7 +2,7 @@
 using OpenCvSharp;
 using OpenCvSharp.WpfExtensions;
 
-namespace SamplesCore.Windows
+namespace SamplesLegacy.Windows
 {
     /// <summary>
     /// 

@@ -24,13 +24,11 @@ namespace SamplesLegacy
         {
             using var gray1 = new Mat();
             using var gray2 = new Mat();
-
             Cv2.CvtColor(src1, gray1, ColorConversionCodes.BGR2GRAY);
             Cv2.CvtColor(src2, gray2, ColorConversionCodes.BGR2GRAY);
 
-            using var sift = SIFT.Create();
-
             // Detect the keypoints and generate their descriptors using SIFT
+            using var sift = SIFT.Create();
             using var descriptors1 = new Mat<float>();
             using var descriptors2 = new Mat<float>();
             sift.DetectAndCompute(gray1, null, out var keypoints1, descriptors1);
@@ -44,8 +42,8 @@ namespace SamplesLegacy
 
             // Draw matches
             using var bfView = new Mat();
-            Cv2.DrawMatches(gray1, keypoints1, gray2, keypoints2, bfMatches, bfView);
             using var flannView = new Mat();
+            Cv2.DrawMatches(gray1, keypoints1, gray2, keypoints2, bfMatches, bfView);
             Cv2.DrawMatches(gray1, keypoints1, gray2, keypoints2, flannMatches, flannView);
 
             using (new Window("SIFT matching (by BFMather)", bfView))
@@ -59,13 +57,11 @@ namespace SamplesLegacy
         {
             using var gray1 = new Mat();
             using var gray2 = new Mat();
-
             Cv2.CvtColor(src1, gray1, ColorConversionCodes.BGR2GRAY);
             Cv2.CvtColor(src2, gray2, ColorConversionCodes.BGR2GRAY);
 
-            using var surf = SURF.Create(200, 4, 2, true);
-
             // Detect the keypoints and generate their descriptors using SURF
+            using var surf = SURF.Create(200, 4, 2, true);
             using var descriptors1 = new Mat<float>();
             using var descriptors2 = new Mat<float>();
             surf.DetectAndCompute(gray1, null, out var keypoints1, descriptors1);
@@ -79,8 +75,8 @@ namespace SamplesLegacy
 
             // Draw matches
             using var bfView = new Mat();
-            Cv2.DrawMatches(gray1, keypoints1, gray2, keypoints2, bfMatches, bfView);
             using var flannView = new Mat();
+            Cv2.DrawMatches(gray1, keypoints1, gray2, keypoints2, bfMatches, bfView);
             Cv2.DrawMatches(gray1, keypoints1, gray2, keypoints2, flannMatches, flannView);
 
             using (new Window("SURF matching (by BFMather)", bfView))

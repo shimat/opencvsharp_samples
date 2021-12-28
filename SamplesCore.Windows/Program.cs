@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SamplesCore.Windows
+namespace SamplesLegacy.Windows
 {
     class Program
     {

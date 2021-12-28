@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net5.0;net6.0;</TargetFrameworks>
+    <TargetFrameworks>net6.0;net48;</TargetFrameworks>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <AssemblyName>SamplesCore</AssemblyName>
     <OutputType>Exe</OutputType> 
@@ -14,11 +14,6 @@
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <LangVersion>9</LangVersion>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="OpenCvSharp4.Extensions" Version="4.5.3.20211226" />
-    <PackageReference Include="OpenCvSharp4.runtime.win" Version="4.5.3.20211226" />
-  </ItemGroup>
     
   <ItemGroup Condition=" '$(TargetFramework)' == 'net48' ">
     <Reference Include="System" />
@@ -29,6 +24,11 @@
     <Reference Include="System.Xaml" />
     <Reference Include="WindowsBase" />
     <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+    
+  <ItemGroup>
+    <PackageReference Include="OpenCvSharp4.Extensions" Version="4.5.3.20211228" />
+    <PackageReference Include="OpenCvSharp4.runtime.win" Version="4.5.3.20211228" />
   </ItemGroup>
     
   <ItemGroup>
