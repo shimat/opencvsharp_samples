@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using OpenCvSharp;
 using SampleBase;
 
-namespace SamplesLegacy
+namespace SamplesCore
 {
     /// <summary>
     /// https://github.com/shimat/opencvsharp/issues/176

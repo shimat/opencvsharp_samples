@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SamplesLegacy.Windows
+namespace SamplesCore.Windows
 {
     interface ISample
     {

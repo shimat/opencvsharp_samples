@@ -2,7 +2,7 @@
 using OpenCvSharp.DnnSuperres;
 using SampleBase;
 
-namespace SamplesLegacy
+namespace SamplesCore
 {
     class DnnSuperresSample : ConsoleTestBase
     {

@@ -3,7 +3,7 @@ using OpenCvSharp;
 using OpenCvSharp.Flann;
 using SampleBase;
 
-namespace SamplesLegacy
+namespace SamplesCore
 {
     /// <summary>
     /// cv::flann

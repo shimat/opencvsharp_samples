@@ -2,7 +2,7 @@
 using OpenCvSharp;
 using SampleBase;
 
-namespace SamplesLegacy
+namespace SamplesCore
 {
     /// <summary>
     /// Hough Transform Sample / ハフ変換による直線検出

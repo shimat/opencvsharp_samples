@@ -3,7 +3,7 @@ using OpenCvSharp;
 using OpenCvSharp.ML;
 using SampleBase;
 
-namespace SamplesLegacy
+namespace SamplesCore
 {
     /// <summary>
     /// Support Vector Machine

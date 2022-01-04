@@ -7,7 +7,7 @@ using OpenCvSharp;
 using OpenCvSharp.Dnn;
 using SampleBase;
 
-namespace SamplesLegacy
+namespace SamplesCore
 {
     /// <summary>
     /// https://docs.opencv.org/3.3.0/d5/de7/tutorial_dnn_googlenet.html

@@ -4,7 +4,7 @@ using OpenCvSharp;
 using OpenCvSharp.Aruco;
 using SampleBase;
 
-namespace SamplesLegacy
+namespace SamplesCore
 {
     public class ArucoSample : ConsoleTestBase
     {

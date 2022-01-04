@@ -2,7 +2,7 @@
 using System;
 using System.Diagnostics;
 
-namespace SamplesLegacy.Windows
+namespace SamplesCore.Windows
 {
     internal class WindowGUISample : ISample
     {

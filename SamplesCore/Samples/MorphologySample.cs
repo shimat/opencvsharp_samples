@@ -2,7 +2,7 @@
 using SampleBase;
 using System.Threading.Tasks;
 
-namespace SamplesLegacy
+namespace SamplesCore
 {
     /// <summary>
     /// 
