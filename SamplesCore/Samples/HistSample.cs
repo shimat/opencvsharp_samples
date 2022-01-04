@@ -2,7 +2,7 @@
 using OpenCvSharp;
 using SampleBase;
 
-namespace SamplesLegacy
+namespace SamplesCore
 {
     /// <summary>
     /// Histogram sample

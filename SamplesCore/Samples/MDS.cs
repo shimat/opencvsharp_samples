@@ -5,7 +5,7 @@ using System.Text;
 using OpenCvSharp;
 using SampleBase;
 
-namespace SamplesLegacy
+namespace SamplesCore
 {
     /// <summary>
     /// Multidimensional Scaling (多次元尺度構成法)

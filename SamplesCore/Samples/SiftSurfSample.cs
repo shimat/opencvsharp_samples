@@ -3,7 +3,7 @@ using OpenCvSharp.Features2D;
 using OpenCvSharp.XFeatures2D;
 using SampleBase;
 
-namespace SamplesLegacy
+namespace SamplesCore
 {
     /// <summary>
     /// SIFT and SURF sample

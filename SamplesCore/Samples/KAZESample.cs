@@ -3,7 +3,7 @@ using System.Diagnostics;
 using OpenCvSharp;
 using SampleBase;
 
-namespace SamplesLegacy
+namespace SamplesCore
 {
     /// <summary>
     /// Retrieves keypoints using the KAZE and AKAZE algorithm.

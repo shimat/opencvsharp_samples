@@ -6,7 +6,7 @@ using System.Text;
 using OpenCvSharp;
 using SampleBase;
 
-namespace SamplesLegacy
+namespace SamplesCore
 {
     /// <summary>
     /// Watershed algorithm sample

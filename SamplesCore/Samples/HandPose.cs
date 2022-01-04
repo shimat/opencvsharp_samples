@@ -3,7 +3,7 @@ using OpenCvSharp;
 using OpenCvSharp.Dnn;
 using SampleBase;
 
-namespace SamplesLegacy
+namespace SamplesCore
 {
     /// <summary>
     /// To run this example first download the hand model available here: http://posefs1.perception.cs.cmu.edu/OpenPose/models/hand/pose_iter_102000.caffemodel

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using SampleBase;
 
-namespace SamplesLegacy
+namespace SamplesCore
 {
     public class PerspectiveTransformSample : ConsoleTestBase
     {

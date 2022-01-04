@@ -3,7 +3,7 @@ using OpenCvSharp;
 using OpenCvSharp.Dnn;
 using SampleBase;
 
-namespace SamplesLegacy
+namespace SamplesCore
 {
     /// <summary>
     /// To run this example first download the pose model available here: https://github.com/CMU-Perceptual-Computing-Lab/openpose/tree/master/models

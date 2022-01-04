@@ -2,7 +2,7 @@
 using OpenCvSharp.XFeatures2D;
 using SampleBase;
 
-namespace SamplesLegacy
+namespace SamplesCore
 {
     /// <summary>
     /// Retrieves keypoints using the FREAK algorithm.

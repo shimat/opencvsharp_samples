@@ -1,7 +1,7 @@
 ﻿using OpenCvSharp;
 using SampleBase;
 
-namespace SamplesLegacy
+namespace SamplesCore
 {
     internal class SimpleBlobDetectorSample : ConsoleTestBase
     {

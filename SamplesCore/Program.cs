@@ -2,7 +2,7 @@
 using SampleBase.Interfaces;
 using System;
 
-namespace SamplesLegacy
+namespace SamplesCore
 {
     public static class Program
     {

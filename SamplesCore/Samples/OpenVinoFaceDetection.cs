@@ -3,7 +3,7 @@ using OpenCvSharp;
 using OpenCvSharp.Dnn;
 using SampleBase;
 
-namespace SamplesLegacy
+namespace SamplesCore
 {
     /// <summary>
     /// To run this example first you nedd to compile OPENCV with Intel OpenVino

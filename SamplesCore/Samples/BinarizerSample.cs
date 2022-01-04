@@ -4,7 +4,7 @@ using OpenCvSharp;
 using OpenCvSharp.XImgProc;
 using SampleBase;
 
-namespace SamplesLegacy
+namespace SamplesCore
 {
     internal class BinarizerSample : ConsoleTestBase
     {

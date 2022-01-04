@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using OpenCvSharp;
 using SampleBase;
 
-namespace SamplesLegacy
+namespace SamplesCore
 {
     class Stitching : ConsoleTestBase
     {
