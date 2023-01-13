@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using OpenCvSharp;
+﻿using OpenCvSharp;
 using SampleBase;
 
 namespace SamplesLegacy

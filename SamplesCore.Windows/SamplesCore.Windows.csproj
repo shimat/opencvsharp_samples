@@ -19,7 +19,7 @@
 
   <ItemGroup>
     <PackageReference Include="OpenCvSharp4.runtime.win" Version="4.6.0.20220608" />
-    <PackageReference Include="OpenCvSharp4.WpfExtensions" Version="4.6.0.20220608" />
+    <PackageReference Include="OpenCvSharp4.WpfExtensions" Version="4.7.0.20230112" />
   </ItemGroup>
 
   <ItemGroup>

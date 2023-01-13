@@ -188,13 +188,13 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.2.13</Version>
+      <Version>6.2.14</Version>
     </PackageReference>
     <PackageReference Include="OpenCvSharp4">
-      <Version>4.6.0.20220608</Version>
+      <Version>4.7.0.20230112</Version>
     </PackageReference>
     <PackageReference Include="OpenCvSharp4.runtime.uwp">
-      <Version>4.6.0.20220608</Version>
+      <Version>4.7.0.20230112</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup />

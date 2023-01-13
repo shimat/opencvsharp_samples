@@ -1,5 +1,4 @@
-﻿using System;
-using OpenCvSharp;
+﻿using OpenCvSharp;
 using OpenCvSharp.Dnn;
 using SampleBase;
 

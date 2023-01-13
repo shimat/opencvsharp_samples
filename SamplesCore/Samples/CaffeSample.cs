@@ -1,8 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
+using System.Net.Http;
 using OpenCvSharp;
 using OpenCvSharp.Dnn;
 using SampleBase;
@@ -14,6 +13,8 @@ namespace SamplesCore
     /// </summary>
     class CaffeSample : ConsoleTestBase
     {
+        private static readonly HttpClient httpClient = new() { Timeout = TimeSpan.FromMinutes(10) };
+
         public override void RunTest()
         {
             const string protoTxt = @"Data\Text\bvlc_googlenet.prototxt";
@@ -47,9 +48,14 @@ namespace SamplesCore
 
         private static byte[] DownloadBytes(string url)
         {
-            var client = WebRequest.CreateHttp(url);
-            using var response = client.GetResponseAsync().GetAwaiter().GetResult();
-            using var responseStream = response.GetResponseStream();
+            using var httpRequest = new HttpRequestMessage(HttpMethod.Get, url);
+#if NETFRAMEWORK
+            using var response = httpClient.SendAsync(httpRequest).Result.EnsureSuccessStatusCode();
+            using var responseStream = response.Content.ReadAsStreamAsync().Result;
+#else
+            using var response = httpClient.Send(httpRequest).EnsureSuccessStatusCode();
+            using var responseStream = response.Content.ReadAsStream();
+#endif
             using var memory = new MemoryStream();
             responseStream.CopyTo(memory);
             return memory.ToArray();

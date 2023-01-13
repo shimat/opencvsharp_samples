@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using OpenCvSharp;
+﻿using OpenCvSharp;
 using OpenCvSharp.Dnn;
 using SampleBase;
 

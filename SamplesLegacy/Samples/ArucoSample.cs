@@ -18,7 +18,7 @@ namespace SamplesLegacy
 
             using var src = Cv2.ImRead(ImagePath.Aruco);
 
-            var detectorParameters = DetectorParameters.Create();
+            var detectorParameters = new DetectorParameters();
             detectorParameters.CornerRefinementMethod = CornerRefineMethod.Subpix;
             detectorParameters.CornerRefinementWinSize = 9;
 
