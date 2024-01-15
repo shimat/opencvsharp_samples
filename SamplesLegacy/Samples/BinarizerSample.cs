@@ -3,6 +3,7 @@ using System.Diagnostics;
 using OpenCvSharp;
 using OpenCvSharp.XImgProc;
 using SampleBase;
+using SampleBase.Console;
 
 namespace SamplesLegacy
 {

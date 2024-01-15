@@ -1,25 +1,26 @@
 ﻿using System;
 using OpenCvSharp;
 using SampleBase;
+using SampleBase.Console;
 
-namespace SamplesCore
+namespace SamplesCore;
+
+/// <summary>
+/// Hough Transform Sample / ハフ変換による直線検出
+/// </summary>
+/// <remarks>http://opencv.jp/sample/special_transforms.html#hough_line</remarks>
+class HoughLinesSample : ConsoleTestBase
 {
-    /// <summary>
-    /// Hough Transform Sample / ハフ変換による直線検出
-    /// </summary>
-    /// <remarks>http://opencv.jp/sample/special_transforms.html#hough_line</remarks>
-    class HoughLinesSample : ConsoleTestBase
+    public override void RunTest()
     {
-        public override void RunTest()
-        {
             SampleCpp();      
         }
 
-        /// <summary>
-        /// sample of new C++ style wrapper
-        /// </summary>
-        private void SampleCpp()
-        {
+    /// <summary>
+    /// sample of new C++ style wrapper
+    /// </summary>
+    private void SampleCpp()
+    {
             // (1) Load the image
             using var imgGray = new Mat(ImagePath.Goryokaku, ImreadModes.Grayscale);
             using var imgStd = new Mat(ImagePath.Goryokaku, ImreadModes.Color);
@@ -27,8 +28,7 @@ namespace SamplesCore
             // Preprocess
             Cv2.Canny(imgGray, imgGray, 50, 200, 3, false);
 
-            // (3) Run Standard Hough Transform 
-            LineSegmentPolar[] segStd = Cv2.HoughLines(imgGray, 1, Math.PI / 180, 50, 0, 0);
+            // (3) Run Standard Hough Transform      LineSegmentPolar[] segStd = Cv2.HoughLines(imgGray, 1, Math.PI / 180, 50, 0, 0);
             int limit = Math.Min(segStd.Length, 10);
             for (int i = 0; i < limit; i++)
             {
@@ -58,5 +58,4 @@ namespace SamplesCore
                 Window.WaitKey(0);
             }
         }
-    }
 }

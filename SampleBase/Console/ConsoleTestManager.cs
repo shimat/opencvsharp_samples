@@ -1,10 +1,10 @@
-﻿using SampleBase.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using SampleBase.Interfaces;
 
-namespace SampleBase
+namespace SampleBase.Console
 {
     public class ConsoleTestManager : ITestManager
     {
@@ -68,7 +68,7 @@ namespace SampleBase
             msgPrinter.PrintSuccess(
                 $"Please enter a number to select the test to run.{Environment.NewLine}Enter {exitCode} to exit, Enter {inputClear} to clear history, Enter {inputHelp} to show help info.");
             ShowTestNames();
-            return Console.ReadLine();
+            return System.Console.ReadLine();
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace SampleBase
         private string? PrintErrorAndRead(string message)
         {
             msgPrinter.PrintError(message);
-            return Console.ReadLine();
+            return System.Console.ReadLine();
         }
 
         private string GetNameOfTest(object test)
@@ -100,7 +100,7 @@ namespace SampleBase
             {
                 if (input?.ToLower() == inputClear)
                 {
-                    Console.Clear();
+                    System.Console.Clear();
                     PrintNamesAndRead();
                     continue;
                 }

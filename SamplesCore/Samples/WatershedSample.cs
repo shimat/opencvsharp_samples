@@ -1,17 +1,18 @@
 ﻿using System;
 using OpenCvSharp;
 using SampleBase;
+using SampleBase.Console;
 
-namespace SamplesCore
+namespace SamplesCore;
+
+/// <summary>
+/// Watershed algorithm sample
+/// </summary>
+/// <remarks>http://opencv.jp/sample/segmentation_and_connection.html#watershed</remarks>
+public class WatershedSample : ConsoleTestBase
 {
-    /// <summary>
-    /// Watershed algorithm sample
-    /// </summary>
-    /// <remarks>http://opencv.jp/sample/segmentation_and_connection.html#watershed</remarks>
-    public class WatershedSample : ConsoleTestBase
+    public override void RunTest()
     {
-        public override void RunTest()
-        {
             using var srcImg = Cv2.ImRead(ImagePath.Lenna, ImreadModes.AnyDepth | ImreadModes.AnyColor);            
             using var markers = new Mat(srcImg.Size(), MatType.CV_32SC1, Scalar.All(0));
 
@@ -20,7 +21,7 @@ namespace SamplesCore
                 using var dspImg = srcImg.Clone();
 
                 // Mouse event  
-                int seedNum = 0;
+     int seedNum = 0;
                 window.SetMouseCallback((MouseEventTypes ev, int x, int y, MouseEventFlags flags, IntPtr userdata) =>
                 {
                     if (ev == MouseEventTypes.LButtonDown)
@@ -56,5 +57,4 @@ namespace SamplesCore
                 Window.WaitKey();
             }
         }
-    }
 }

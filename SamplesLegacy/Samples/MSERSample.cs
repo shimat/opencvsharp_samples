@@ -1,5 +1,6 @@
 ﻿using OpenCvSharp;
 using SampleBase;
+using SampleBase.Console;
 
 namespace SamplesLegacy
 {

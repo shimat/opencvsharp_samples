@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using OpenCvSharp;
 using OpenCvSharp.Aruco;
 using SampleBase;
+using SampleBase.Console;
 
-namespace SamplesCore
+namespace SamplesCore;
+
+public class ArucoSample : ConsoleTestBase
 {
-    public class ArucoSample : ConsoleTestBase
+    public override void RunTest()
     {
-        public override void RunTest()
-        {
             // The locations of the markers in the image at FilePath.Image.Aruco.
             const int upperLeftMarkerId = 160;
             const int upperRightMarkerId = 268;
@@ -76,5 +77,4 @@ namespace SamplesCore
 
             Cv2.WaitKey();
         }
-    }
 }

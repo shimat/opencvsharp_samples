@@ -2,17 +2,18 @@
 using OpenCvSharp;
 using OpenCvSharp.Dnn;
 using SampleBase;
+using SampleBase.Console;
 
-namespace SamplesCore
+namespace SamplesCore;
+
+/// <summary>
+/// To run this example first download the pose model available here: https://github.com/CMU-Perceptual-Computing-Lab/openpose/tree/master/models
+/// Add the files to the bin folder
+/// </summary>
+internal class Pose : ConsoleTestBase
 {
-    /// <summary>
-    /// To run this example first download the pose model available here: https://github.com/CMU-Perceptual-Computing-Lab/openpose/tree/master/models
-    /// Add the files to the bin folder
-    /// </summary>
-    internal class Pose : ConsoleTestBase
+    public override void RunTest()
     {
-        public override void RunTest()
-        {
             const string model = "pose_iter_160000.caffemodel";
             const string modelTxt = "pose_deploy_linevec_faster_4_stages.prototxt";
             const string sampleImage = "single.jpeg";
@@ -92,5 +93,4 @@ namespace SamplesCore
             var finalOutput = outputLoc;
             Cv2.ImWrite(finalOutput, frame);
         }
-    }
 }

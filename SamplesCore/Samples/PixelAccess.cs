@@ -2,27 +2,28 @@
 using System.Diagnostics;
 using OpenCvSharp;
 using SampleBase;
+using SampleBase.Console;
 
-namespace SamplesCore
+namespace SamplesCore;
+
+/// <summary>
+/// Swaps B for R 
+/// </summary>
+class PixelAccess : ConsoleTestBase
 {
-    /// <summary>
-    /// Swaps B for R 
-    /// </summary>
-    class PixelAccess : ConsoleTestBase
+    public override void RunTest()
     {
-        public override void RunTest()
-        {
             Console.WriteLine("Get/Set: {0}ms", MeasureTime(GetSet));
             Console.WriteLine("GenericIndexer: {0}ms", MeasureTime(GenericIndexer));
             Console.WriteLine("TypeSpecificMat: {0}ms", MeasureTime(TypeSpecificMat));
             Console.Read();
         }
 
-        /// <summary>
-        /// Slow
-        /// </summary>
-        private void GetSet()
-        {
+    /// <summary>
+    /// Slow
+    /// </summary>
+    private void GetSet()
+    {
             using var mat = new Mat(ImagePath.Lenna, ImreadModes.Color);
             for (int y = 0; y < mat.Height; y++)
             {
@@ -38,11 +39,11 @@ namespace SamplesCore
             //Cv2.DestroyAllWindows();
         }
 
-        /// <summary>
-        /// Reasonably fast
-        /// </summary>
-        private void GenericIndexer()
-        {
+    /// <summary>
+    /// Reasonably fast
+    /// </summary>
+    private void GenericIndexer()
+    {
             using var mat = new Mat(ImagePath.Lenna, ImreadModes.Color);
             var indexer = mat.GetGenericIndexer<Vec3b>();
             for (int y = 0; y < mat.Height; y++)
@@ -59,11 +60,11 @@ namespace SamplesCore
             //Cv2.DestroyAllWindows();
         }
 
-        /// <summary>
-        /// Faster
-        /// </summary>
-        private void TypeSpecificMat()
-        {
+    /// <summary>
+    /// Faster
+    /// </summary>
+    private void TypeSpecificMat()
+    {
             using var mat = new Mat(ImagePath.Lenna, ImreadModes.Color);
             var mat3 = new Mat<Vec3b>(mat);
             var indexer = mat3.GetIndexer();
@@ -81,12 +82,11 @@ namespace SamplesCore
             //Cv2.DestroyAllWindows();
         }
 
-        private static long MeasureTime(Action action)
-        {
+    private static long MeasureTime(Action action)
+    {
             var watch = Stopwatch.StartNew();
             action();
             watch.Stop();
             return watch.ElapsedMilliseconds;
         }
-    }
 }

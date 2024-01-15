@@ -1,16 +1,17 @@
 ﻿using OpenCvSharp;
 using OpenCvSharp.XFeatures2D;
 using SampleBase;
+using SampleBase.Console;
 
-namespace SamplesCore
+namespace SamplesCore;
+
+/// <summary>
+/// Retrieves keypoints using the StarDetector algorithm.
+/// </summary>
+class StarDetectorSample : ConsoleTestBase
 {
-    /// <summary>
-    /// Retrieves keypoints using the StarDetector algorithm.
-    /// </summary>
-    class StarDetectorSample : ConsoleTestBase
+    public override void RunTest()
     {
-        public override void RunTest()
-        {
             var dst = new Mat(ImagePath.Lenna, ImreadModes.Color);
             var gray = new Mat(ImagePath.Lenna, ImreadModes.Grayscale);
 
@@ -40,5 +41,4 @@ namespace SamplesCore
                 Cv2.WaitKey();
             }
         }
-    }
 }

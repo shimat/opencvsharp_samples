@@ -2,6 +2,7 @@
 using OpenCvSharp.Features2D;
 using OpenCvSharp.XFeatures2D;
 using SampleBase;
+using SampleBase.Console;
 
 namespace SamplesLegacy
 {

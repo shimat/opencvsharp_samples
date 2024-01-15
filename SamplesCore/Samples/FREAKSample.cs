@@ -1,16 +1,17 @@
 ﻿using OpenCvSharp;
 using OpenCvSharp.XFeatures2D;
 using SampleBase;
+using SampleBase.Console;
 
-namespace SamplesCore
+namespace SamplesCore;
+
+/// <summary>
+/// Retrieves keypoints using the FREAK algorithm.
+/// </summary>
+class FREAKSample : ConsoleTestBase
 {
-    /// <summary>
-    /// Retrieves keypoints using the FREAK algorithm.
-    /// </summary>
-    class FREAKSample : ConsoleTestBase
+    public override void RunTest()
     {
-        public override void RunTest()
-        {
             using var gray = new Mat(ImagePath.Lenna, ImreadModes.Grayscale);
             using var dst = new Mat(ImagePath.Lenna, ImreadModes.Color);
 
@@ -46,5 +47,4 @@ namespace SamplesCore
                 Cv2.WaitKey();
             }
         }
-    }
 }

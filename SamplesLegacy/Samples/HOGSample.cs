@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using OpenCvSharp;
 using SampleBase;
+using SampleBase.Console;
 
 namespace SamplesLegacy
 {

@@ -1,15 +1,16 @@
 ﻿using OpenCvSharp;
 using SampleBase;
+using SampleBase.Console;
 
-namespace SamplesCore
+namespace SamplesCore;
+
+/// <summary>
+/// cv::FAST
+/// </summary>
+class FASTSample : ConsoleTestBase
 {
-    /// <summary>
-    /// cv::FAST
-    /// </summary>
-    class FASTSample : ConsoleTestBase
+    public override void RunTest()
     {
-        public override void RunTest()
-        {
             using Mat imgSrc = new Mat(ImagePath.Lenna, ImreadModes.Color);
             using Mat imgGray = new Mat();
             using Mat imgDst = imgSrc.Clone();
@@ -26,5 +27,4 @@ namespace SamplesCore
             Cv2.WaitKey(0);
             Cv2.DestroyAllWindows();
         }
-    }
 }

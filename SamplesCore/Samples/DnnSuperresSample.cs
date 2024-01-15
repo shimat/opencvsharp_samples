@@ -1,16 +1,17 @@
 ﻿using OpenCvSharp;
 using OpenCvSharp.DnnSuperres;
 using SampleBase;
+using SampleBase.Console;
 
-namespace SamplesCore
+namespace SamplesCore;
+
+class DnnSuperresSample : ConsoleTestBase
 {
-    class DnnSuperresSample : ConsoleTestBase
-    {
-        // https://github.com/Saafke/FSRCNN_Tensorflow/tree/master/models
-        private const string ModelFileName = "Data/Model/FSRCNN_x4.pb";
+    // https://github.com/Saafke/FSRCNN_Tensorflow/tree/master/models
+    private const string ModelFileName = "Data/Model/FSRCNN_x4.pb";
 
-        public override void RunTest()
-        {
+    public override void RunTest()
+    {
             using var dnn = new DnnSuperResImpl("fsrcnn", 4);
             dnn.ReadModel(ModelFileName);
 
@@ -22,5 +23,4 @@ namespace SamplesCore
                 new[]{src, dst}, 
                 new[]{"src", "dst0"});
         }
-    }
 }

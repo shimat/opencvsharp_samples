@@ -1,16 +1,17 @@
 ﻿using OpenCvSharp;
 using SampleBase;
+using SampleBase.Console;
 
-namespace SamplesCore
+namespace SamplesCore;
+
+/// <summary>
+/// Histogram sample
+/// http://book.mynavi.jp/support/pc/opencv2/c3/opencv_img.html
+/// </summary>
+class HistSample : ConsoleTestBase
 {
-    /// <summary>
-    /// Histogram sample
-    /// http://book.mynavi.jp/support/pc/opencv2/c3/opencv_img.html
-    /// </summary>
-    class HistSample : ConsoleTestBase
+    public override void RunTest()
     {
-        public override void RunTest()
-        {
             using var src = Cv2.ImRead(ImagePath.Lenna, ImreadModes.Grayscale);
 
             // Histogram view
@@ -20,8 +21,7 @@ namespace SamplesCore
             // Calculate histogram
             var hist = new Mat();
             int[] hdims = {256}; // Histogram size for each dimension
-            Rangef[] ranges = { new Rangef(0,256), }; // min/max 
-            Cv2.CalcHist(
+            Rangef[] ranges = { new Rangef(0,256), }; // min/max      Cv2.CalcHist(
                 new Mat[]{src}, 
                 new int[]{0}, 
                 null,
@@ -52,5 +52,4 @@ namespace SamplesCore
                 Cv2.WaitKey();
             }
         }
-    }
 }

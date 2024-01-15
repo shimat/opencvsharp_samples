@@ -1,16 +1,17 @@
 ﻿using System;
 using OpenCvSharp;
 using SampleBase;
+using SampleBase.Console;
 
-namespace SamplesCore
+namespace SamplesCore;
+
+/// <summary>
+/// 
+/// </summary>
+class VideoCaptureSample : ConsoleTestBase
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    class VideoCaptureSample : ConsoleTestBase
+    public override void RunTest()
     {
-        public override void RunTest()
-        {
             // Opens MP4 file (ffmpeg is probably needed)
             using var capture = new VideoCapture(MoviePath.Bach);
             if (!capture.IsOpened())
@@ -33,5 +34,4 @@ namespace SamplesCore
                 Cv2.WaitKey(sleepTime);
             }
         }
-    }
 }

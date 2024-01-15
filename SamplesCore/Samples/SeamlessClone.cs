@@ -1,15 +1,16 @@
 ﻿using OpenCvSharp;
 using SampleBase;
+using SampleBase.Console;
 
-namespace SamplesCore
+namespace SamplesCore;
+
+/// <summary>
+/// cv::seamlessClone
+/// </summary>
+class SeamlessClone : ConsoleTestBase
 {
-    /// <summary>
-    /// cv::seamlessClone
-    /// </summary>
-    class SeamlessClone : ConsoleTestBase
+    public override void RunTest()
     {
-        public override void RunTest()
-        {
             Mat src = new Mat(ImagePath.Girl, ImreadModes.Color);
             Mat dst = new Mat(ImagePath.Lenna, ImreadModes.Color);
             Mat src0 = src.Resize(dst.Size(), 0, 0, InterpolationFlags.Lanczos4);
@@ -40,5 +41,4 @@ namespace SamplesCore
                 Cv2.WaitKey();
             }
         }
-    }
 }

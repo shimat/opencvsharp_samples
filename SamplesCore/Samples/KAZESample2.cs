@@ -4,21 +4,22 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using OpenCvSharp;
 using SampleBase;
+using SampleBase.Console;
 
-namespace SamplesCore
+namespace SamplesCore;
+
+/// <summary>
+/// https://github.com/shimat/opencvsharp/issues/176
+/// </summary>
+class KAZESample2 : ConsoleTestBase
 {
-    /// <summary>
-    /// https://github.com/shimat/opencvsharp/issues/176
-    /// </summary>
-    class KAZESample2 : ConsoleTestBase
+    public static Point2d Point2fToPoint2d(Point2f pf)
     {
-        public static Point2d Point2fToPoint2d(Point2f pf)
-        {
             return new Point2d(((int) pf.X), ((int) pf.Y));
         }
 
-        public override void RunTest()
-        {
+    public override void RunTest()
+    {
             using var img1 = new Mat(ImagePath.SurfBox);
             using var img2 = new Mat(ImagePath.SurfBoxinscene);
             using var descriptors1 = new Mat();
@@ -100,9 +101,9 @@ namespace SamplesCore
             }
         }
 
-        // to avoid opencvsharp's bug
-        static Point2d[] MyPerspectiveTransform1(Point2f[] yourData, Mat transformationMatrix)
-        {
+    // to avoid opencvsharp's bug
+    static Point2d[] MyPerspectiveTransform1(Point2f[] yourData, Mat transformationMatrix)
+    {
             using Mat src = new Mat(yourData.Length, 1, MatType.CV_32FC2, yourData);
             using Mat dst = new Mat();
             Cv2.PerspectiveTransform(src, dst, transformationMatrix);
@@ -111,9 +112,9 @@ namespace SamplesCore
             return result;
         }
 
-        // fixed FromArray behavior
-        static Point2d[] MyPerspectiveTransform2(Point2f[] yourData, Mat transformationMatrix)
-        {
+    // fixed FromArray behavior
+    static Point2d[] MyPerspectiveTransform2(Point2f[] yourData, Mat transformationMatrix)
+    {
             using var s = Mat<Point2f>.FromArray(yourData);
             using var d = new Mat<Point2f>();
             Cv2.PerspectiveTransform(s, d, transformationMatrix);
@@ -121,15 +122,15 @@ namespace SamplesCore
             return f.Select(Point2fToPoint2d).ToArray();
         }
 
-        // new API
-        static Point2d[] MyPerspectiveTransform3(Point2f[] yourData, Mat transformationMatrix)
-        {
+    // new API
+    static Point2d[] MyPerspectiveTransform3(Point2f[] yourData, Mat transformationMatrix)
+    {
             Point2f[] ret = Cv2.PerspectiveTransform(yourData, transformationMatrix);
             return ret.Select(Point2fToPoint2d).ToArray();
         }
 
-        static int VoteForSizeAndOrientation(KeyPoint[] modelKeyPoints, KeyPoint[] observedKeyPoints, DMatch[][] matches, Mat mask, float scaleIncrement, int rotationBins)
-        {
+    static int VoteForSizeAndOrientation(KeyPoint[] modelKeyPoints, KeyPoint[] observedKeyPoints, DMatch[][] matches, Mat mask, float scaleIncrement, int rotationBins)
+    {
             int idx = 0;
             int nonZeroCount = 0;
             byte[] maskMat = new byte[mask.Rows];
@@ -205,8 +206,8 @@ namespace SamplesCore
             return nonZeroCount;
         }
 
-        private static void VoteForUniqueness(DMatch[][] matches, Mat mask, float uniqnessThreshold = 0.80f)
-        {
+    private static void VoteForUniqueness(DMatch[][] matches, Mat mask, float uniqnessThreshold = 0.80f)
+    {
             byte[] maskData = new byte[matches.Length];
             GCHandle maskHandle = GCHandle.Alloc(maskData, GCHandleType.Pinned);
             using (Mat m = new Mat(matches.Length, 1, MatType.CV_8U, maskHandle.AddrOfPinnedObject()))
@@ -224,5 +225,4 @@ namespace SamplesCore
             }
             maskHandle.Free();
         }
-    }
 }

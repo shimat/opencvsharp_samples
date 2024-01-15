@@ -1,6 +1,7 @@
 ﻿using SampleBase;
 using SampleBase.Interfaces;
 using System;
+using SampleBase.Console;
 
 namespace SamplesLegacy
 {

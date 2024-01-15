@@ -1,7 +1,7 @@
-﻿using SampleBase.Interfaces;
-using System;
+﻿using System;
+using SampleBase.Interfaces;
 
-namespace SampleBase
+namespace SampleBase.Console
 {
     public abstract class ConsoleTestBase : ITestBase
     {
@@ -55,14 +55,14 @@ namespace SampleBase
 
         public string? WaitToInput()
         {
-            return Console.ReadLine();
+            return System.Console.ReadLine();
         }
 
         public void WaitToContinue(string? tip = null)
         {
             if (tip != null)
-                Console.WriteLine(tip);
-            Console.ReadLine();
+                System.Console.WriteLine(tip);
+            System.Console.ReadLine();
         }
     }
 }

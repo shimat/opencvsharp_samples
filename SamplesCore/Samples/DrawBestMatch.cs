@@ -1,16 +1,17 @@
 ﻿using System.Linq;
 using OpenCvSharp;
 using SampleBase;
+using SampleBase.Console;
 
-namespace SamplesCore
+namespace SamplesCore;
+
+/// <summary>
+/// https://stackoverflow.com/questions/51606215/how-to-draw-bounding-box-on-best-matches/51607041#51607041
+/// </summary>
+class DrawBestMatchRectangle : ConsoleTestBase
 {
-    /// <summary>
-    /// https://stackoverflow.com/questions/51606215/how-to-draw-bounding-box-on-best-matches/51607041#51607041
-    /// </summary>
-    class DrawBestMatchRectangle : ConsoleTestBase
+    public override void RunTest()
     {
-        public override void RunTest()
-        {
             using var img1 = new Mat(ImagePath.Match1, ImreadModes.Color);
             using var img2 = new Mat(ImagePath.Match2, ImreadModes.Color);
 
@@ -52,5 +53,4 @@ namespace SamplesCore
                 Cv2.WaitKey();
             }
         }
-    }
 }

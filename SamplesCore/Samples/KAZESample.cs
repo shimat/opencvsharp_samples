@@ -2,16 +2,17 @@
 using System.Diagnostics;
 using OpenCvSharp;
 using SampleBase;
+using SampleBase.Console;
 
-namespace SamplesCore
+namespace SamplesCore;
+
+/// <summary>
+/// Retrieves keypoints using the KAZE and AKAZE algorithm.
+/// </summary>
+internal class KAZESample : ConsoleTestBase
 {
-    /// <summary>
-    /// Retrieves keypoints using the KAZE and AKAZE algorithm.
-    /// </summary>
-    internal class KAZESample : ConsoleTestBase
+    public override void RunTest()
     {
-        public override void RunTest()
-        {
             var gray = new Mat(ImagePath.Lenna, ImreadModes.Grayscale);
             var kaze = KAZE.Create();
             var akaze = AKAZE.Create();
@@ -36,12 +37,11 @@ namespace SamplesCore
             }
         }
 
-        private TimeSpan MeasureTime(Action action)
-        {
+    private TimeSpan MeasureTime(Action action)
+    {
             var watch = Stopwatch.StartNew();
             action();
             watch.Stop();
             return watch.Elapsed;
         }
-    }
 }

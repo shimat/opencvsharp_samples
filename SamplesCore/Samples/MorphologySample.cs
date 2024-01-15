@@ -1,15 +1,16 @@
 ﻿using OpenCvSharp;
 using SampleBase;
+using SampleBase.Console;
 
-namespace SamplesCore
+namespace SamplesCore;
+
+/// <summary>
+/// 
+/// </summary>
+class MorphologySample : ConsoleTestBase
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    class MorphologySample : ConsoleTestBase
+    public override void RunTest()
     {
-        public override void RunTest()
-        {
             using var gray = new Mat(ImagePath.Lenna, ImreadModes.Grayscale);
             using var binary = new Mat();
             using var dilate1 = new Mat();
@@ -31,5 +32,4 @@ namespace SamplesCore
             Cv2.WaitKey(0);
             Cv2.DestroyAllWindows();
         }
-    }
 }

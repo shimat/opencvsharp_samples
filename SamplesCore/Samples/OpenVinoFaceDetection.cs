@@ -1,23 +1,24 @@
 ﻿using OpenCvSharp;
 using OpenCvSharp.Dnn;
 using SampleBase;
+using SampleBase.Console;
 
-namespace SamplesCore
+namespace SamplesCore;
+
+/// <summary>
+/// To run this example first you nedd to compile OPENCV with Intel OpenVino
+/// Download the face detection model available here: https://github.com/openvinotoolkit/open_model_zoo/tree/master/models/intel/face-detection-adas-0001
+/// Add the files to the bin folder
+/// </summary>
+internal class OpenVinoFaceDetection : ConsoleTestBase
 {
-    /// <summary>
-    /// To run this example first you nedd to compile OPENCV with Intel OpenVino
-    /// Download the face detection model available here: https://github.com/openvinotoolkit/open_model_zoo/tree/master/models/intel/face-detection-adas-0001
-    /// Add the files to the bin folder
-    /// </summary>
-    internal class OpenVinoFaceDetection : ConsoleTestBase
-    {
-        const string modelFace = "face-detection-adas-0001.bin"; 
-        const string modelFaceTxt = "face-detection-adas-0001.xml";
-        const string sampleImage = "sample.jpg";
-        const string outputLoc = "sample_output.jpg";
+    const string modelFace = "face-detection-adas-0001.bin"; 
+    const string modelFaceTxt = "face-detection-adas-0001.xml";
+    const string sampleImage = "sample.jpg";
+    const string outputLoc = "sample_output.jpg";
 
-        public override void RunTest()
-        {
+    public override void RunTest()
+    {
             using var frame = Cv2.ImRead(sampleImage);
             int frameHeight = frame.Rows;
             int frameWidth = frame.Cols;
@@ -43,8 +44,7 @@ namespace SamplesCore
                         int y1 = (int)(detectionMat.At<float>(i, 4) * frameHeight); //ymin
                         int x2 = (int)(detectionMat.At<float>(i, 5) * frameWidth); //xmax
                         int y2 = (int)(detectionMat.At<float>(i, 6) * frameHeight); //ymax                            
-
-                        var roi = new Rect(x1, y1, (x2 - x1), (y2 - y1));							
+     var roi = new Rect(x1, y1, (x2 - x1), (y2 - y1));							
                         roi = AdjustBoundingBox(roi);							
                         Cv2.Rectangle(frame, roi, new Scalar(0, 255, 0), 2, LineTypes.Link4);
                     }
@@ -55,8 +55,8 @@ namespace SamplesCore
             Cv2.ImWrite(finalOutput, frame);
         }
 
-        private Rect AdjustBoundingBox(Rect faceRect)
-        {
+    private Rect AdjustBoundingBox(Rect faceRect)
+    {
             int w = faceRect.Width;
             int h = faceRect.Height;
 
@@ -80,5 +80,4 @@ namespace SamplesCore
             }
             return faceRect;
         }
-    }
 }

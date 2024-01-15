@@ -3,13 +3,14 @@ using System.Diagnostics;
 using OpenCvSharp;
 using OpenCvSharp.XImgProc;
 using SampleBase;
+using SampleBase.Console;
 
-namespace SamplesCore
+namespace SamplesCore;
+
+internal class BinarizerSample : ConsoleTestBase
 {
-    internal class BinarizerSample : ConsoleTestBase
+    public override void RunTest()
     {
-        public override void RunTest()
-        {
             using var src = Cv2.ImRead(ImagePath.Binarization, ImreadModes.Grayscale);
             using var niblack = new Mat();
             using var sauvola = new Mat();
@@ -40,5 +41,4 @@ namespace SamplesCore
                 Cv2.WaitKey();
             }
         }
-    }
 }

@@ -2,20 +2,21 @@
 using System.Diagnostics;
 using OpenCvSharp;
 using SampleBase;
+using SampleBase.Console;
 
-namespace SamplesCore
+namespace SamplesCore;
+
+/// <summary>
+/// samples/c/peopledetect.c
+/// </summary>
+internal class HOGSample : ConsoleTestBase
 {
-    /// <summary>
-    /// samples/c/peopledetect.c
-    /// </summary>
-    internal class HOGSample : ConsoleTestBase
+    public HOGSample()
     {
-        public HOGSample()
-        {
         }
 
-        public override void RunTest()
-        {
+    public override void RunTest()
+    {
             using var img = Cv2.ImRead(ImagePath.Asahiyama, ImreadModes.Color);
 
             using var hog = new HOGDescriptor();
@@ -53,5 +54,4 @@ namespace SamplesCore
             window.SetProperty(WindowPropertyFlags.Fullscreen, 1);
             Cv2.WaitKey(0);
         }
-    }
 }

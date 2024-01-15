@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using OpenCvSharp;
 using SampleBase;
+using SampleBase.Console;
 
 namespace SamplesLegacy
 {

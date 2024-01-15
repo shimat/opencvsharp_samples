@@ -1,15 +1,16 @@
 ﻿using OpenCvSharp;
 using SampleBase;
+using SampleBase.Console;
 
-namespace SamplesCore
+namespace SamplesCore;
+
+/// <summary>
+/// Retrieves keypoints using the BRISK algorithm.
+/// </summary>
+class BRISKSample : ConsoleTestBase
 {
-    /// <summary>
-    /// Retrieves keypoints using the BRISK algorithm.
-    /// </summary>
-    class BRISKSample : ConsoleTestBase
+    public override void RunTest()
     {
-        public override void RunTest()
-        {
             var gray = new Mat(ImagePath.Lenna, ImreadModes.Grayscale);
             var dst = new Mat(ImagePath.Lenna, ImreadModes.Color);
 
@@ -39,5 +40,4 @@ namespace SamplesCore
                 Cv2.WaitKey();
             }
         }
-    }
 }

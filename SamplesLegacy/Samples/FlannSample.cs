@@ -2,6 +2,7 @@
 using OpenCvSharp;
 using OpenCvSharp.Flann;
 using SampleBase;
+using SampleBase.Console;
 
 namespace SamplesLegacy
 {

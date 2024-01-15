@@ -1,16 +1,17 @@
 ﻿using OpenCvSharp;
 using SampleBase;
+using SampleBase.Console;
 
-namespace SamplesCore
+namespace SamplesCore;
+
+/// <summary>
+/// Human face detection
+/// http://docs.opencv.org/doc/tutorials/objdetect/cascade_classifier/cascade_classifier.html
+/// </summary>
+class FaceDetection : ConsoleTestBase
 {
-    /// <summary>
-    /// Human face detection
-    /// http://docs.opencv.org/doc/tutorials/objdetect/cascade_classifier/cascade_classifier.html
-    /// </summary>
-    class FaceDetection : ConsoleTestBase
+    public override void RunTest()
     {
-        public override void RunTest()
-        {
             // Load the cascades
             using var haarCascade = new CascadeClassifier(TextPath.HaarCascade);
             using var lbpCascade = new CascadeClassifier(TextPath.LbpCascade);
@@ -25,13 +26,13 @@ namespace SamplesCore
             Cv2.DestroyAllWindows();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="cascade"></param>
-        /// <returns></returns>
-        private Mat DetectFace(CascadeClassifier cascade)
-        {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="cascade"></param>
+    /// <returns></returns>
+    private Mat DetectFace(CascadeClassifier cascade)
+    {
             Mat result;
 
             using (var src = new Mat(ImagePath.Yalta, ImreadModes.Color))
@@ -62,5 +63,4 @@ namespace SamplesCore
             }
             return result;
         }
-    }
 }

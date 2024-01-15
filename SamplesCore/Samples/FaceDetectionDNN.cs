@@ -1,22 +1,23 @@
 ﻿using OpenCvSharp;
 using OpenCvSharp.Dnn;
 using SampleBase;
+using SampleBase.Console;
 
-namespace SamplesCore
+namespace SamplesCore;
+
+/// <summary>
+/// To run this example first download the face model available here: https://github.com/spmallick/learnopencv/tree/master/FaceDetectionComparison/models
+/// Add the files to the bin folder.
+/// You should also prepare the input images (faces.jpg) yourself.
+/// </summary>
+internal class FaceDetectionDNN : ConsoleTestBase
 {
-    /// <summary>
-    /// To run this example first download the face model available here: https://github.com/spmallick/learnopencv/tree/master/FaceDetectionComparison/models
-    /// Add the files to the bin folder.
-    /// You should also prepare the input images (faces.jpg) yourself.
-    /// </summary>
-    internal class FaceDetectionDNN : ConsoleTestBase
-    {
-        const string configFile = "deploy.prototxt";
-        const string faceModel = "res10_300x300_ssd_iter_140000_fp16.caffemodel";
-        const string image = "faces.jpg";
+    const string configFile = "deploy.prototxt";
+    const string faceModel = "res10_300x300_ssd_iter_140000_fp16.caffemodel";
+    const string image = "faces.jpg";
 
-        public override void RunTest()
-        {
+    public override void RunTest()
+    {
             // Read sample image
             using var frame = Cv2.ImRead(image);
             int frameHeight = frame.Rows;
@@ -45,5 +46,4 @@ namespace SamplesCore
 
             Window.ShowImages(frame);
         }
-    }
 }

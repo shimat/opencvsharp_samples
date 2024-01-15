@@ -1,16 +1,17 @@
 ﻿using System;
 using OpenCvSharp;
 using SampleBase;
+using SampleBase.Console;
 
-namespace SamplesCore
+namespace SamplesCore;
+
+/// <summary>
+/// 
+/// </summary>
+class SuperResolutionSample : ConsoleTestBase
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    class SuperResolutionSample : ConsoleTestBase
+    public override void RunTest()
     {
-        public override void RunTest()
-        {
             var capture = new VideoCapture();
             capture.Set(VideoCaptureProperties.FrameWidth, 640);
             capture.Set(VideoCaptureProperties.FrameHeight, 480);
@@ -37,5 +38,4 @@ namespace SamplesCore
                 Cv2.WaitKey(100);
             }
         }
-    }
 }

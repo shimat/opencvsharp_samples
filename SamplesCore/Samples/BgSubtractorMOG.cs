@@ -1,12 +1,13 @@
 ﻿using OpenCvSharp;
 using SampleBase;
+using SampleBase.Console;
 
-namespace SamplesCore
+namespace SamplesCore;
+
+class BgSubtractorMOG : ConsoleTestBase
 {
-    class BgSubtractorMOG : ConsoleTestBase
+    public override void RunTest()
     {
-        public override void RunTest()
-        {
             using var capture = new VideoCapture(MoviePath.Bach);
             using var mog = BackgroundSubtractorMOG.Create();
             using var windowSrc = new Window("src");
@@ -26,5 +27,4 @@ namespace SamplesCore
                 Cv2.WaitKey(50);
             }
         }
-    }
 }

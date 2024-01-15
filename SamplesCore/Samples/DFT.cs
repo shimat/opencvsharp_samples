@@ -1,16 +1,17 @@
 ﻿using OpenCvSharp;
 using SampleBase;
+using SampleBase.Console;
 
-namespace SamplesCore
+namespace SamplesCore;
+
+/// <summary>
+/// DFT, inverse DFT
+/// http://stackoverflow.com/questions/19761526/how-to-do-inverse-dft-in-opencv
+/// </summary>
+class DFT : ConsoleTestBase
 {
-    /// <summary>
-    /// DFT, inverse DFT
-    /// http://stackoverflow.com/questions/19761526/how-to-do-inverse-dft-in-opencv
-    /// </summary>
-    class DFT : ConsoleTestBase
+    public override void RunTest()
     {
-        public override void RunTest()
-        {
             using var img = Cv2.ImRead(ImagePath.Lenna, ImreadModes.Grayscale);
 
             // expand input image to optimal size
@@ -83,5 +84,4 @@ namespace SamplesCore
             Cv2.WaitKey();
             Cv2.DestroyAllWindows();
         }
-    }
 }

@@ -1,23 +1,23 @@
 ﻿using System;
 using OpenCvSharp;
 using SampleBase;
+using SampleBase.Console;
 
-namespace SamplesCore
+namespace SamplesCore;
+
+/// <summary>
+/// 
+/// </summary>
+class VideoWriterSample : ConsoleTestBase
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    class VideoWriterSample : ConsoleTestBase
+    public override void RunTest()
     {
-        public override void RunTest()
-        {
             const string OutVideoFile = "out.avi";
 
             // Opens MP4 file (ffmpeg is probably needed)
             using var capture = new VideoCapture(MoviePath.Bach);
 
-            // Read movie frames and write them to VideoWriter 
-            var dsize = new Size(640, 480);
+            // Read movie frames and write them to VideoWriter      var dsize = new Size(640, 480);
             using (var writer = new VideoWriter(OutVideoFile, -1, capture.Fps, dsize))
             {
                 Console.WriteLine("Converting each movie frames...");
@@ -64,5 +64,4 @@ namespace SamplesCore
             }
         }
 
-    }
 }

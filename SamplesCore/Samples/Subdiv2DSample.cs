@@ -2,16 +2,17 @@
 using System.Linq;
 using OpenCvSharp;
 using SampleBase;
+using SampleBase.Console;
 
-namespace SamplesCore
+namespace SamplesCore;
+
+/// <summary>
+/// cv::Subdiv2D test
+/// </summary>
+class Subdiv2DSample : ConsoleTestBase
 {
-    /// <summary>
-    /// cv::Subdiv2D test
-    /// </summary>
-    class Subdiv2DSample : ConsoleTestBase
+    public override void RunTest()
     {
-        public override void RunTest()
-        {
             const int Size = 600;
 
             // Creates random point list
@@ -60,5 +61,4 @@ namespace SamplesCore
             Cv2.WaitKey();
             Cv2.DestroyAllWindows();
         }
-    }
 }

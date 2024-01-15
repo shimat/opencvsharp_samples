@@ -2,17 +2,18 @@
 using OpenCvSharp.Features2D;
 using OpenCvSharp.XFeatures2D;
 using SampleBase;
+using SampleBase.Console;
 
-namespace SamplesCore
+namespace SamplesCore;
+
+/// <summary>
+/// SIFT and SURF sample
+/// http://www.prism.gatech.edu/~ahuaman3/docs/OpenCV_Docs/tutorials/nonfree_1/nonfree_1.html
+/// </summary>
+class SiftSurfSample : ConsoleTestBase
 {
-    /// <summary>
-    /// SIFT and SURF sample
-    /// http://www.prism.gatech.edu/~ahuaman3/docs/OpenCV_Docs/tutorials/nonfree_1/nonfree_1.html
-    /// </summary>
-    class SiftSurfSample : ConsoleTestBase
+    public override void RunTest()
     {
-        public override void RunTest()
-        {
             using var src1 = new Mat(ImagePath.Match1, ImreadModes.Color);
             using var src2 = new Mat(ImagePath.Match2, ImreadModes.Color);
 
@@ -20,8 +21,8 @@ namespace SamplesCore
             MatchBySurf(src1, src2);
         }
 
-        private void MatchBySift(Mat src1, Mat src2)
-        {
+    private void MatchBySift(Mat src1, Mat src2)
+    {
             using var gray1 = new Mat();
             using var gray2 = new Mat();
 
@@ -55,8 +56,8 @@ namespace SamplesCore
             }
         }
 
-        private void MatchBySurf(Mat src1, Mat src2)
-        {
+    private void MatchBySurf(Mat src1, Mat src2)
+    {
             using var gray1 = new Mat();
             using var gray2 = new Mat();
 
@@ -71,8 +72,7 @@ namespace SamplesCore
             surf.DetectAndCompute(gray1, null, out var keypoints1, descriptors1);
             surf.DetectAndCompute(gray2, null, out var keypoints2, descriptors2);
 
-            // Match descriptor vectors 
-            using var bfMatcher = new BFMatcher(NormTypes.L2, false);
+            // Match descriptor vectors      using var bfMatcher = new BFMatcher(NormTypes.L2, false);
             using var flannMatcher = new FlannBasedMatcher();
             DMatch[] bfMatches = bfMatcher.Match(descriptors1, descriptors2);
             DMatch[] flannMatches = flannMatcher.Match(descriptors1, descriptors2);
@@ -90,5 +90,4 @@ namespace SamplesCore
             }
         }
 
-    }
 }

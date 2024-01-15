@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using OpenCvSharp;
 using OpenCvSharp.Aruco;
 using SampleBase;
+using SampleBase.Console;
 
 namespace SamplesLegacy
 {

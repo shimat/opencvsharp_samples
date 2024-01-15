@@ -2,17 +2,18 @@
 using System.IO;
 using OpenCvSharp;
 using SampleBase;
+using SampleBase.Console;
 
-namespace SamplesCore
+namespace SamplesCore;
+
+/// <summary>
+/// Inpainting
+/// </summary>
+/// <remarks>http://opencv.jp/sample/special_transforms.html#inpaint</remarks>
+public class InpaintSample : ConsoleTestBase
 {
-    /// <summary>
-    /// Inpainting
-    /// </summary>
-    /// <remarks>http://opencv.jp/sample/special_transforms.html#inpaint</remarks>
-    public class InpaintSample : ConsoleTestBase
+    public override void RunTest()
     {
-        public override void RunTest()
-        {
             // cvInpaint
 
             Console.WriteLine(
@@ -96,5 +97,4 @@ namespace SamplesCore
                 Window.DestroyAllWindows();
             }
         }
-    }
 }

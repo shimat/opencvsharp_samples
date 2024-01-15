@@ -1,22 +1,23 @@
 ﻿using System;
 using OpenCvSharp;
 using SampleBase;
+using SampleBase.Console;
 
-namespace SamplesCore
+namespace SamplesCore;
+
+/// <summary>
+/// Multidimensional Scaling (多次元尺度構成法)
+/// for C++ cv::Mat testing
+/// </summary>
+class MDS : ConsoleTestBase
 {
     /// <summary>
-    /// Multidimensional Scaling (多次元尺度構成法)
-    /// for C++ cv::Mat testing
+    /// Distance among 10 American cities
     /// </summary>
-    class MDS : ConsoleTestBase
-    {
-        /// <summary>
-        /// Distance among 10 American cities
-        /// </summary>
-        /// <example>
-        /// * The linear distance between Atlanta and Chicago is 587km.
-        /// </example>
-        static readonly double[,] CityDistance = 
+    /// <example>
+    /// * The linear distance between Atlanta and Chicago is 587km.
+    /// </example>
+    static readonly double[,] CityDistance = 
         {
             /*Atlanta*/         {0,      587,    1212,   701,    1936,   604,    748,    2139,   2182,   543},
             /*Chicago*/         {587,    0,      920,    940,    1745,   1188,   713,    1858,   1737,   597},
@@ -30,20 +31,20 @@ namespace SamplesCore
             /*Washington D.C.*/ {543,    597,    1494,   1220,   2300,   923,    205,    2442,   2329,   0}
         };
 
-        /// <summary>
-        /// City names
-        /// </summary>
-        static readonly string[] CityNames = 
+    /// <summary>
+    /// City names
+    /// </summary>
+    static readonly string[] CityNames = 
         {
             "Atlanta","Chicago","Denver","Houston","Los Angeles","Miami","New York","San Francisco","Seattle","Washington D.C."
         };
 
 
-        /// <summary>
-        /// Classical Multidimensional Scaling
-        /// </summary>
-        public override void RunTest()
-        {
+    /// <summary>
+    /// Classical Multidimensional Scaling
+    /// </summary>
+    public override void RunTest()
+    {
             // creates distance matrix
             int size = CityDistance.GetLength(0);
             var t = new Mat(size, size, MatType.CV_64FC1, CityDistance);
@@ -105,13 +106,13 @@ namespace SamplesCore
             }
         }
 
-        /// <summary>
-        /// Returns Torgerson's additive constant
-        /// </summary>
-        /// <param name="mat"></param>
-        /// <returns></returns>
-        private double Torgerson(Mat mat)
-        {
+    /// <summary>
+    /// Returns Torgerson's additive constant
+    /// </summary>
+    /// <param name="mat"></param>
+    /// <returns></returns>
+    private double Torgerson(Mat mat)
+    {
             if (mat == null)
                 throw new ArgumentNullException();
             if (mat.Rows != mat.Cols)
@@ -142,15 +143,14 @@ namespace SamplesCore
             return Math.Max(Math.Max(c1, c2), 0);
         }
 
-        /// <summary>
-        /// Returns centering matrix
-        /// </summary>
-        /// <param name="n">Size of matrix</param>
-        /// <returns></returns>
-        private Mat CenteringMatrix(int n)
-        {
+    /// <summary>
+    /// Returns centering matrix
+    /// </summary>
+    /// <param name="n">Size of matrix</param>
+    /// <returns></returns>
+    private Mat CenteringMatrix(int n)
+    {
             using var eye = Mat.Eye(n, n, MatType.CV_64FC1) ;
             return (eye - 1.0 / n);
         }
-    }
 }

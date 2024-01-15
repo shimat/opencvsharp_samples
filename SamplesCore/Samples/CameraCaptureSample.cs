@@ -1,15 +1,16 @@
 ﻿using OpenCvSharp;
 using SampleBase;
+using SampleBase.Console;
 
-namespace SamplesCore
+namespace SamplesCore;
+
+/// <summary>
+/// 
+/// </summary>
+class CameraCaptureSample : ConsoleTestBase
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    class CameraCaptureSample : ConsoleTestBase
+    public override void RunTest()
     {
-        public override void RunTest()
-        {
             using var capture = new VideoCapture(0, VideoCaptureAPIs.DSHOW);
             if (!capture.IsOpened())
                 return;
@@ -37,5 +38,4 @@ namespace SamplesCore
                 }
             }
         }
-    }
 }

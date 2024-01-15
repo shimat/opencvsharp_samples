@@ -2,16 +2,17 @@
 using OpenCvSharp;
 using OpenCvSharp.Flann;
 using SampleBase;
+using SampleBase.Console;
 
-namespace SamplesCore
+namespace SamplesCore;
+
+/// <summary>
+/// cv::flann
+/// </summary>
+class FlannSample : ConsoleTestBase
 {
-    /// <summary>
-    /// cv::flann
-    /// </summary>
-    class FlannSample : ConsoleTestBase
+    public override void RunTest()
     {
-        public override void RunTest()
-        {
             Console.WriteLine("===== FlannTest =====");
 
             // creates data set
@@ -51,5 +52,4 @@ namespace SamplesCore
             }
             Console.Read();
         }
-    }
 }

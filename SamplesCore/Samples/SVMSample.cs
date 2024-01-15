@@ -2,24 +2,24 @@
 using OpenCvSharp;
 using OpenCvSharp.ML;
 using SampleBase;
+using SampleBase.Console;
 
-namespace SamplesCore
+namespace SamplesCore;
+
+/// <summary>
+/// Support Vector Machine
+/// </summary>
+/// <remarks>http://opencv.jp/sample/svm.html#svm</remarks>
+internal class SVMSample : ConsoleTestBase
 {
-    /// <summary>
-    /// Support Vector Machine
-    /// </summary>
-    /// <remarks>http://opencv.jp/sample/svm.html#svm</remarks>
-    internal class SVMSample : ConsoleTestBase
+    private static double Function(double x)
     {
-        private static double Function(double x)
-        {
             return x + 50 * Math.Sin(x / 15.0);
         }
 
-        public override void RunTest()
-        {
-            // Training data          
-            var points = new Point2f[500];
+    public override void RunTest()
+    {
+            // Training data               var points = new Point2f[500];
             var responses = new int[points.Length];
             var rand = new Random();
             for (int i = 0; i < responses.Length; i++)
@@ -90,5 +90,4 @@ namespace SamplesCore
             Window.ShowImages(retPlot);
         }
 
-    }
 }

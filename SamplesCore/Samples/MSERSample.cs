@@ -1,15 +1,16 @@
 ﻿using OpenCvSharp;
 using SampleBase;
+using SampleBase.Console;
 
-namespace SamplesCore
+namespace SamplesCore;
+
+/// <summary>
+/// Maximally Stable Extremal Regions
+/// </summary>
+class MSERSample : ConsoleTestBase
 {
-    /// <summary>
-    /// Maximally Stable Extremal Regions
-    /// </summary>
-    class MSERSample : ConsoleTestBase
+    public override void RunTest()
     {
-        public override void RunTest()
-        {
             using Mat src = new Mat(ImagePath.Distortion, ImreadModes.Color);
             using Mat gray = new Mat();
             using Mat dst = src.Clone();
@@ -25,13 +26,13 @@ namespace SamplesCore
             }
         }
         
-        /// <summary>
-        /// Extracts MSER by C++-style code (cv::MSER)
-        /// </summary>
-        /// <param name="gray"></param>
-        /// <param name="dst"></param>
-        private void CppStyleMSER(Mat gray, Mat dst)
-        {
+    /// <summary>
+    /// Extracts MSER by C++-style code (cv::MSER)
+    /// </summary>
+    /// <param name="gray"></param>
+    /// <param name="dst"></param>
+    private void CppStyleMSER(Mat gray, Mat dst)
+    {
             MSER mser = MSER.Create();
             mser.DetectRegions(gray, out Point[][] contours, out _);
             foreach (Point[] pts in contours)
@@ -43,5 +44,4 @@ namespace SamplesCore
                 }
             }
         }
-    }
 }

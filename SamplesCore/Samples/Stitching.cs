@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using OpenCvSharp;
 using SampleBase;
+using SampleBase.Console;
 
-namespace SamplesCore
+namespace SamplesCore;
+
+class Stitching : ConsoleTestBase
 {
-    class Stitching : ConsoleTestBase
+    public override void RunTest()
     {
-        public override void RunTest()
-        {
             Mat[] images = SelectStitchingImages(200, 200, 10);
 
             using var stitcher = Stitcher.Create(Stitcher.Mode.Scans);
@@ -27,8 +28,8 @@ namespace SamplesCore
             }
         }
 
-        private static Mat[] SelectStitchingImages(int width, int height, int count)
-        {
+    private static Mat[] SelectStitchingImages(int width, int height, int count)
+    {
             using var source = new Mat(@"Data\Image\lenna.png", ImreadModes.Color);
             using var result = source.Clone();
 
@@ -57,5 +58,4 @@ namespace SamplesCore
 
             return mats.ToArray();
         }
-    }
 }

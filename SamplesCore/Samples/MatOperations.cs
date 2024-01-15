@@ -1,26 +1,27 @@
 ﻿using System;
 using OpenCvSharp;
 using SampleBase;
+using SampleBase.Console;
 
-namespace SamplesCore
+namespace SamplesCore;
+
+/// <summary>
+/// 
+/// </summary>
+class MatOperations : ConsoleTestBase
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    class MatOperations : ConsoleTestBase
+    public override void RunTest()
     {
-        public override void RunTest()
-        {
             SubMat();
             RowColRangeOperation();
             RowColOperation();
         }
 
-        /// <summary>
-        /// Submatrix operations
-        /// </summary>
-        private void SubMat()
-        {
+    /// <summary>
+    /// Submatrix operations
+    /// </summary>
+    private void SubMat()
+    {
             using var src = Cv2.ImRead(ImagePath.Lenna);
 
             // Assign small image to mat
@@ -48,11 +49,11 @@ namespace SamplesCore
             part.Dispose();
         }
 
-        /// <summary>
-        /// Submatrix operations
-        /// </summary>
-        private void RowColRangeOperation()
-        {
+    /// <summary>
+    /// Submatrix operations
+    /// </summary>
+    private void RowColRangeOperation()
+    {
             using var src = Cv2.ImRead(ImagePath.Lenna);
 
             Cv2.GaussianBlur(
@@ -71,11 +72,11 @@ namespace SamplesCore
             }
         }
 
-        /// <summary>
-        /// Submatrix expression operations
-        /// </summary>
-        private void RowColOperation()
-        {
+    /// <summary>
+    /// Submatrix expression operations
+    /// </summary>
+    private void RowColOperation()
+    {
             using var src = Cv2.ImRead(ImagePath.Lenna);
 
             var rand = new Random();
@@ -97,5 +98,4 @@ namespace SamplesCore
                 Cv2.WaitKey();
             }
         }
-    }
 }

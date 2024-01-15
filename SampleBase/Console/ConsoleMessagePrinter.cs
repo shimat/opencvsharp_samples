@@ -1,7 +1,7 @@
-﻿using SampleBase.Interfaces;
-using System;
+﻿using System;
+using SampleBase.Interfaces;
 
-namespace SampleBase
+namespace SampleBase.Console
 {
     public class ConsoleMessagePrinter : IMessagePrinter
     {
@@ -16,12 +16,12 @@ namespace SampleBase
 
         public void PrintObject(object obj, bool newLine = true, ConsoleColor consoleColor = ConsoleColor.White)
         {
-            Console.ForegroundColor = consoleColor;
+            System.Console.ForegroundColor = consoleColor;
             if (newLine)
-                Console.WriteLine(obj);
+                System.Console.WriteLine(obj);
             else
-                Console.Write(obj);
-            Console.ResetColor();
+                System.Console.Write(obj);
+            System.Console.ResetColor();
         }
 
         public void PrintInfo(string message, bool newLine = true)

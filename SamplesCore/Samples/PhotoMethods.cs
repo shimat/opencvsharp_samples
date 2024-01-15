@@ -1,15 +1,16 @@
 ﻿using OpenCvSharp;
 using SampleBase;
+using SampleBase.Console;
 
-namespace SamplesCore
+namespace SamplesCore;
+
+/// <summary>
+/// sample of photo module methods
+/// </summary>
+class PhotoMethods : ConsoleTestBase
 {
-    /// <summary>
-    /// sample of photo module methods
-    /// </summary>
-    class PhotoMethods : ConsoleTestBase
+    public override void RunTest()
     {
-        public override void RunTest()
-        {
             using var src = new Mat(ImagePath.Fruits, ImreadModes.Color);
 
             using var normconv = new Mat(); 
@@ -38,5 +39,4 @@ namespace SamplesCore
                 Cv2.WaitKey();
             }
         }
-    }
 }

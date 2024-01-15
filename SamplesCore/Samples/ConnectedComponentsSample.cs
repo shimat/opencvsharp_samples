@@ -1,16 +1,17 @@
 ﻿using System.Linq;
 using OpenCvSharp;
 using SampleBase;
+using SampleBase.Console;
 
-namespace SamplesCore
+namespace SamplesCore;
+
+/// <summary>
+/// 
+/// </summary>
+class ConnectedComponentsSample : ConsoleTestBase
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    class ConnectedComponentsSample : ConsoleTestBase
+    public override void RunTest()
     {
-        public override void RunTest()
-        {
             using var src = new Mat(ImagePath.Shapes, ImreadModes.Color);
             using var gray = src.CvtColor(ColorConversionCodes.BGR2GRAY);
             using var binary = gray.Threshold(0, 255, ThresholdTypes.Otsu | ThresholdTypes.Binary);
@@ -44,5 +45,4 @@ namespace SamplesCore
                 Cv2.WaitKey();
             }
         }
-    }
 }

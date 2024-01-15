@@ -1,12 +1,13 @@
 ﻿using OpenCvSharp;
 using SampleBase;
+using SampleBase.Console;
 
-namespace SamplesCore
+namespace SamplesCore;
+
+class ClaheSample : ConsoleTestBase
 {
-    class ClaheSample : ConsoleTestBase
+    public override void RunTest()
     {
-        public override void RunTest()
-        {
             using var src = new Mat(ImagePath.TsukubaLeft, ImreadModes.Grayscale);
             using var dst1 = new Mat();
             using var dst2 = new Mat();
@@ -26,5 +27,4 @@ namespace SamplesCore
                 new[]{src, dst1, dst2, dst3}, 
                 new[]{"src", "dst clip20", "dst clip40", "dst tile4x4"});
         }
-    }
 }

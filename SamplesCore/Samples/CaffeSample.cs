@@ -5,18 +5,19 @@ using System.Net.Http;
 using OpenCvSharp;
 using OpenCvSharp.Dnn;
 using SampleBase;
+using SampleBase.Console;
 
-namespace SamplesCore
+namespace SamplesCore;
+
+/// <summary>
+/// https://docs.opencv.org/3.3.0/d5/de7/tutorial_dnn_googlenet.html
+/// </summary>
+class CaffeSample : ConsoleTestBase
 {
-    /// <summary>
-    /// https://docs.opencv.org/3.3.0/d5/de7/tutorial_dnn_googlenet.html
-    /// </summary>
-    class CaffeSample : ConsoleTestBase
-    {
-        private static readonly HttpClient httpClient = new() { Timeout = TimeSpan.FromMinutes(10) };
+    private static readonly HttpClient httpClient = new() { Timeout = TimeSpan.FromMinutes(10) };
 
-        public override void RunTest()
-        {
+    public override void RunTest()
+    {
             const string protoTxt = @"Data\Text\bvlc_googlenet.prototxt";
             const string caffeModel = "bvlc_googlenet.caffemodel";
             const string synsetWords = @"Data\Text\synset_words.txt";
@@ -46,23 +47,23 @@ namespace SamplesCore
             Console.Read();
         }
 
-        private static byte[] DownloadBytes(string url)
-        {
-            using var httpRequest = new HttpRequestMessage(HttpMethod.Get, url);
+    private static byte[] DownloadBytes(string url)
+    {
+        using var httpRequest = new HttpRequestMessage(HttpMethod.Get, url);
 #if NETFRAMEWORK
-            using var response = httpClient.SendAsync(httpRequest).Result.EnsureSuccessStatusCode();
-            using var responseStream = response.Content.ReadAsStreamAsync().Result;
+        using var response = httpClient.SendAsync(httpRequest).Result.EnsureSuccessStatusCode();
+        using var responseStream = response.Content.ReadAsStreamAsync().Result;
 #else
             using var response = httpClient.Send(httpRequest).EnsureSuccessStatusCode();
             using var responseStream = response.Content.ReadAsStream();
 #endif
-            using var memory = new MemoryStream();
-            responseStream.CopyTo(memory);
-            return memory.ToArray();
-        }
+        using var memory = new MemoryStream();
+        responseStream.CopyTo(memory);
+        return memory.ToArray();
+    }
 
-        private static void PrepareModel(string fileName)
-        {
+    private static void PrepareModel(string fileName)
+    {
             if (!File.Exists(fileName))
             {
                 var contents = DownloadBytes("http://dl.caffe.berkeleyvision.org/bvlc_googlenet.caffemodel");
@@ -70,18 +71,17 @@ namespace SamplesCore
             }
         }
 
-        /// <summary>
-        /// Find best class for the blob (i. e. class with maximal probability)
-        /// </summary>
-        /// <param name="probBlob"></param>
-        /// <param name="classId"></param>
-        /// <param name="classProb"></param>
-        private static void GetMaxClass(Mat probBlob, out int classId, out double classProb)
-        {
+    /// <summary>
+    /// Find best class for the blob (i. e. class with maximal probability)
+    /// </summary>
+    /// <param name="probBlob"></param>
+    /// <param name="classId"></param>
+    /// <param name="classProb"></param>
+    private static void GetMaxClass(Mat probBlob, out int classId, out double classProb)
+    {
             // reshape the blob to 1x1000 matrix
             using var probMat = probBlob.Reshape(1, 1);
             Cv2.MinMaxLoc(probMat, out _, out classProb, out _, out var classNumber);
             classId = classNumber.X;
         }
-    }
 }
