@@ -12,15 +12,15 @@ class DnnSuperresSample : ConsoleTestBase
 
     public override void RunTest()
     {
-            using var dnn = new DnnSuperResImpl("fsrcnn", 4);
-            dnn.ReadModel(ModelFileName);
+        using var dnn = new DnnSuperResImpl("fsrcnn", 4);
+        dnn.ReadModel(ModelFileName);
 
-            using var src = new Mat(ImagePath.Mandrill, ImreadModes.Color);
-            using var dst = new Mat();
-            dnn.Upsample(src, dst);
+        using var src = new Mat(ImagePath.Mandrill, ImreadModes.Color);
+        using var dst = new Mat();
+        dnn.Upsample(src, dst);
 
-            Window.ShowImages(
-                new[]{src, dst}, 
-                new[]{"src", "dst0"});
-        }
+        Window.ShowImages(
+            new[] { src, dst },
+            new[] { "src", "dst0" });
+    }
 }

@@ -1,15 +1,13 @@
-﻿using SampleBase;
-using SampleBase.Interfaces;
+﻿using SampleBase.Interfaces;
 using System;
 using SampleBase.Console;
-using OpenCvSharp;
 
 namespace SamplesCore;
 
 public static class Program
 {
     [STAThread]
-    public static void Main(string[] args)
+    public static void Main()
     {
         Console.WriteLine("Runtime Version = {0}", Environment.Version);
 

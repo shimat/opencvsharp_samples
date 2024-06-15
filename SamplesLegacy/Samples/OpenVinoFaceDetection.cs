@@ -12,7 +12,7 @@ namespace SamplesLegacy
     /// </summary>
     internal class OpenVinoFaceDetection : ConsoleTestBase
     {
-        const string modelFace = "face-detection-adas-0001.bin"; 
+        const string modelFace = "face-detection-adas-0001.bin";
         const string modelFaceTxt = "face-detection-adas-0001.xml";
         const string sampleImage = "sample.jpg";
         const string outputLoc = "sample_output.jpg";
@@ -23,16 +23,16 @@ namespace SamplesLegacy
             int frameHeight = frame.Rows;
             int frameWidth = frame.Cols;
 
-            using var netFace = CvDnn.ReadNet(modelFace, modelFaceTxt);			
+            using var netFace = CvDnn.ReadNet(modelFace, modelFaceTxt);
             netFace.SetPreferableBackend(Backend.INFERENCE_ENGINE);
             netFace.SetPreferableTarget(Target.CPU);
-			
+
             using var blob = CvDnn.BlobFromImage(frame, 1.0, new Size(672, 384), new Scalar(0, 0, 0), false, false);
-			netFace.SetInput(blob);
-			
+            netFace.SetInput(blob);
+
             using (var detection = netFace.Forward())
             {
-                using var detectionMat = new Mat(detection.Size(2), detection.Size(3), MatType.CV_32F, detection.Ptr(0));
+                using var detectionMat = Mat.FromPixelData(detection.Size(2), detection.Size(3), MatType.CV_32F, detection.Ptr(0));
 
                 for (int i = 0; i < detectionMat.Rows; i++)
                 {
@@ -45,13 +45,13 @@ namespace SamplesLegacy
                         int x2 = (int)(detectionMat.At<float>(i, 5) * frameWidth); //xmax
                         int y2 = (int)(detectionMat.At<float>(i, 6) * frameHeight); //ymax                            
 
-                        var roi = new Rect(x1, y1, (x2 - x1), (y2 - y1));							
-                        roi = AdjustBoundingBox(roi);							
+                        var roi = new Rect(x1, y1, (x2 - x1), (y2 - y1));
+                        roi = AdjustBoundingBox(roi);
                         Cv2.Rectangle(frame, roi, new Scalar(0, 255, 0), 2, LineTypes.Link4);
                     }
                 }
             }
-								
+
             var finalOutput = outputLoc;
             Cv2.ImWrite(finalOutput, frame);
         }

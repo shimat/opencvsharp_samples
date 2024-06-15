@@ -36,9 +36,9 @@ namespace SamplesLegacy
             int frameWidth = frame.Cols;
             int frameHeight = frame.Rows;
 
-            float aspectRatio = frameWidth / (float) frameHeight;
+            float aspectRatio = frameWidth / (float)frameHeight;
             int inHeight = 368;
-            int inWidth = ((int) (aspectRatio * inHeight) * 8) / 8;
+            int inWidth = ((int)(aspectRatio * inHeight) * 8) / 8;
 
             using var net = CvDnn.ReadNetFromCaffe(modelTxt, model);
             using var inpBlob = CvDnn.BlobFromImage(frame, 1.0 / 255, new Size(inWidth, inHeight),
@@ -55,7 +55,7 @@ namespace SamplesLegacy
             for (int n = 0; n < nPoints; n++)
             {
                 // Probability map of corresponding body's part.
-                using var probMap = new Mat(H, W, MatType.CV_32F, output.Ptr(0, n));
+                using var probMap = Mat.FromPixelData(H, W, MatType.CV_32F, output.Ptr(0, n));
                 Cv2.Resize(probMap, probMap, new Size(frameWidth, frameHeight));
                 Cv2.MinMaxLoc(probMap, out _, out var maxVal, out _, out var maxLoc);
 

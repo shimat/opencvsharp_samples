@@ -28,12 +28,12 @@ namespace SamplesLegacy
             // 2x + 3y = 26
             // (x=4, y=6)
 
-            double[,] av = {{1, 1}, 
+            double[,] av = {{1, 1},
                           {2, 3}};
-            double[] yv = {10, 26};
+            double[] yv = { 10, 26 };
 
-            using var a = new Mat(2, 2, MatType.CV_64FC1, av);
-            using var y = new Mat(2, 1, MatType.CV_64FC1, yv);
+            using var a = Mat.FromPixelData(2, 2, MatType.CV_64FC1, av);
+            using var y = Mat.FromPixelData(2, 1, MatType.CV_64FC1, yv);
             using var x = new Mat();
 
             Cv2.Solve(a, y, x, DecompTypes.LU);
@@ -51,7 +51,7 @@ namespace SamplesLegacy
             // 2x + 3y = 26
             // (x=4, y=6)
 
-            double[,] a = {{1, 1}, 
+            double[,] a = {{1, 1},
                           {2, 3}};
 
             double[] y = { 10, 26 };

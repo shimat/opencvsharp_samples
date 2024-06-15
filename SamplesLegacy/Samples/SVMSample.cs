@@ -53,8 +53,8 @@ namespace SamplesLegacy
             }
 
             // Train
-            var dataMat = new Mat(points.Length, 2, MatType.CV_32FC1, points);
-            var resMat = new Mat(responses.Length, 1, MatType.CV_32SC1, responses);
+            var dataMat = Mat.FromPixelData(points.Length, 2, MatType.CV_32FC1, points);
+            var resMat = Mat.FromPixelData(responses.Length, 1, MatType.CV_32SC1, responses);
             using var svm = SVM.Create();
             // normalize data
             dataMat /= 300.0;
@@ -79,7 +79,7 @@ namespace SamplesLegacy
                 for (int y = 0; y < 300; y++)
                 {
                     float[] sample = { x / 300f, y / 300f };
-                    var sampleMat = new Mat(1, 2, MatType.CV_32FC1, sample);
+                    var sampleMat = Mat.FromPixelData(1, 2, MatType.CV_32FC1, sample);
                     int ret = (int)svm.Predict(sampleMat);
                     var plotRect = new Rect(x, 300 - y, 1, 1);
                     if (ret == 1)

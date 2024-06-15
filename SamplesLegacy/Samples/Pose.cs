@@ -28,7 +28,7 @@ namespace SamplesLegacy
                 new[] {6, 7}, new[] {1, 14}, new[] {14, 8}, new[] {8, 9},
                 new[] {9, 10}, new[] {14, 11}, new[] {11, 12}, new[] {12, 13},
             };
-            
+
             using var frame = Cv2.ImRead(sampleImage);
             using var frameCopy = frame.Clone();
             int frameWidth = frame.Cols;
@@ -54,8 +54,8 @@ namespace SamplesLegacy
             for (int n = 0; n < nPoints; n++)
             {
                 // Probability map of corresponding body's part.
-                using var probMap = new Mat(H, W, MatType.CV_32F, output.Ptr(0, n));
-                var p = new Point2f(-1,-1);
+                using var probMap = Mat.FromPixelData(H, W, MatType.CV_32F, output.Ptr(0, n));
+                var p = new Point2f(-1, -1);
 
                 Cv2.MinMaxLoc(probMap, out _, out var maxVal, out _, out var maxLoc);
 
@@ -89,7 +89,7 @@ namespace SamplesLegacy
                 Cv2.Circle(frame, partA.X, partA.Y, 8, new Scalar(0, 0, 255), -1);
                 Cv2.Circle(frame, partB.X, partB.Y, 8, new Scalar(0, 0, 255), -1);
             }
-			
+
             var finalOutput = outputLoc;
             Cv2.ImWrite(finalOutput, frame);
         }

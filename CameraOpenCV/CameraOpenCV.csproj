@@ -191,7 +191,7 @@
       <Version>6.2.14</Version>
     </PackageReference>
     <PackageReference Include="OpenCvSharp4">
-      <Version>4.9.0.20240103</Version>
+      <Version>4.10.0.20240615</Version>
     </PackageReference>
     <PackageReference Include="OpenCvSharp4.runtime.uwp">
       <Version>4.8.0.20230708</Version>

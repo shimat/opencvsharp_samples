@@ -15,7 +15,7 @@ namespace SamplesLegacy
     {
         public static Point2d Point2fToPoint2d(Point2f pf)
         {
-            return new Point2d(((int) pf.X), ((int) pf.Y));
+            return new Point2d(((int)pf.X), ((int)pf.Y));
         }
 
         public override void RunTest()
@@ -104,7 +104,7 @@ namespace SamplesLegacy
         // to avoid opencvsharp's bug
         static Point2d[] MyPerspectiveTransform1(Point2f[] yourData, Mat transformationMatrix)
         {
-            using Mat src = new Mat(yourData.Length, 1, MatType.CV_32FC2, yourData);
+            using Mat src = Mat.FromPixelData(yourData.Length, 1, MatType.CV_32FC2, yourData);
             using Mat dst = new Mat();
             Cv2.PerspectiveTransform(src, dst, transformationMatrix);
             dst.GetArray(out Point2f[] dstArray);
@@ -134,8 +134,8 @@ namespace SamplesLegacy
             int idx = 0;
             int nonZeroCount = 0;
             byte[] maskMat = new byte[mask.Rows];
-            GCHandle maskHandle = GCHandle.Alloc(maskMat, GCHandleType.Pinned);
-            using (Mat m = new Mat(mask.Rows, 1, MatType.CV_8U, maskHandle.AddrOfPinnedObject()))
+            var maskHandle = GCHandle.Alloc(maskMat, GCHandleType.Pinned);
+            using (var m = Mat.FromPixelData(mask.Rows, 1, MatType.CV_8U, maskHandle.AddrOfPinnedObject()))
             {
                 mask.CopyTo(m);
                 List<float> logScale = new List<float>();
@@ -210,7 +210,7 @@ namespace SamplesLegacy
         {
             byte[] maskData = new byte[matches.Length];
             GCHandle maskHandle = GCHandle.Alloc(maskData, GCHandleType.Pinned);
-            using (Mat m = new Mat(matches.Length, 1, MatType.CV_8U, maskHandle.AddrOfPinnedObject()))
+            using (Mat m = Mat.FromPixelData(matches.Length, 1, MatType.CV_8U, maskHandle.AddrOfPinnedObject()))
             {
                 mask.CopyTo(m);
                 for (int i = 0; i < matches.Length; i++)

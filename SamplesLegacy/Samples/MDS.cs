@@ -17,7 +17,7 @@ namespace SamplesLegacy
         /// <example>
         /// * The linear distance between Atlanta and Chicago is 587km.
         /// </example>
-        static readonly double[,] CityDistance = 
+        static readonly double[,] CityDistance =
         {
             /*Atlanta*/         {0,      587,    1212,   701,    1936,   604,    748,    2139,   2182,   543},
             /*Chicago*/         {587,    0,      920,    940,    1745,   1188,   713,    1858,   1737,   597},
@@ -34,7 +34,7 @@ namespace SamplesLegacy
         /// <summary>
         /// City names
         /// </summary>
-        static readonly string[] CityNames = 
+        static readonly string[] CityNames =
         {
             "Atlanta","Chicago","Denver","Houston","Los Angeles","Miami","New York","San Francisco","Seattle","Washington D.C."
         };
@@ -47,10 +47,10 @@ namespace SamplesLegacy
         {
             // creates distance matrix
             int size = CityDistance.GetLength(0);
-            var t = new Mat(size, size, MatType.CV_64FC1, CityDistance);
+            var t = Mat.FromPixelData(size, size, MatType.CV_64FC1, CityDistance);
             // adds Torgerson's additive constant to t
             double torgarson = Torgerson(t);
-            t += torgarson;
+            t += (Scalar)torgarson;
             // squares all elements of t
             t = t.Mul(t);
 
@@ -150,8 +150,8 @@ namespace SamplesLegacy
         /// <returns></returns>
         private Mat CenteringMatrix(int n)
         {
-            using var eye = Mat.Eye(n, n, MatType.CV_64FC1) ;
-            return (eye - 1.0 / n);
+            using var eye = Mat.Eye(n, n, MatType.CV_64FC1);
+            return eye - (Scalar)(1.0 / n);
         }
     }
 }

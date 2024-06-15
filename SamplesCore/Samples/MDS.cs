@@ -1,6 +1,5 @@
 ﻿using System;
 using OpenCvSharp;
-using SampleBase;
 using SampleBase.Console;
 
 namespace SamplesCore;
@@ -17,7 +16,7 @@ class MDS : ConsoleTestBase
     /// <example>
     /// * The linear distance between Atlanta and Chicago is 587km.
     /// </example>
-    static readonly double[,] CityDistance = 
+    static readonly double[,] CityDistance =
         {
             /*Atlanta*/         {0,      587,    1212,   701,    1936,   604,    748,    2139,   2182,   543},
             /*Chicago*/         {587,    0,      920,    940,    1745,   1188,   713,    1858,   1737,   597},
@@ -34,7 +33,7 @@ class MDS : ConsoleTestBase
     /// <summary>
     /// City names
     /// </summary>
-    static readonly string[] CityNames = 
+    static readonly string[] CityNames =
         {
             "Atlanta","Chicago","Denver","Houston","Los Angeles","Miami","New York","San Francisco","Seattle","Washington D.C."
         };
@@ -45,66 +44,66 @@ class MDS : ConsoleTestBase
     /// </summary>
     public override void RunTest()
     {
-            // creates distance matrix
-            int size = CityDistance.GetLength(0);
-            var t = new Mat(size, size, MatType.CV_64FC1, CityDistance);
-            // adds Torgerson's additive constant to t
-            double torgarson = Torgerson(t);
-            t += torgarson;
-            // squares all elements of t
-            t = t.Mul(t);
+        // creates distance matrix
+        int size = CityDistance.GetLength(0);
+        var t = Mat.FromPixelData(size, size, MatType.CV_64FC1, CityDistance);
+        // adds Torgerson's additive constant to t
+        double torgarson = Torgerson(t);
+        t += new Scalar(torgarson);
+        // squares all elements of t
+        t = t.Mul(t);
 
-            // centering matrix G
-            using var g = CenteringMatrix(size);
-            // calculates inner product matrix B
-            using var b = g * t * g.T() * -0.5;
-            // calculates eigenvalues and eigenvectors of B
-            using var values = new Mat();
-            using var vectors = new Mat();
-            Cv2.Eigen(b, values, vectors);
-            for (int r = 0; r < values.Rows; r++)
+        // centering matrix G
+        using var g = CenteringMatrix(size);
+        // calculates inner product matrix B
+        using var b = g * t * g.T() * -0.5;
+        // calculates eigenvalues and eigenvectors of B
+        using var values = new Mat();
+        using var vectors = new Mat();
+        Cv2.Eigen(b, values, vectors);
+        for (int r = 0; r < values.Rows; r++)
+        {
+            if (values.Get<double>(r) < 0)
+                values.Set<double>(r, 0);
+        }
+
+        //Console.WriteLine(values.Dump());
+
+        // multiplies sqrt(eigenvalue) by eigenvector
+        using var result = vectors.RowRange(0, 2);
+        {
+            var at = result.GetGenericIndexer<double>();
+            for (int r = 0; r < result.Rows; r++)
             {
-                if (values.Get<double>(r) < 0)
-                    values.Set<double>(r, 0);
-            }
-
-            //Console.WriteLine(values.Dump());
-
-            // multiplies sqrt(eigenvalue) by eigenvector
-            using var result = vectors.RowRange(0, 2);
-            {
-                var at = result.GetGenericIndexer<double>();
-                for (int r = 0; r < result.Rows; r++)
+                for (int c = 0; c < result.Cols; c++)
                 {
-                    for (int c = 0; c < result.Cols; c++)
-                    {
-                        at[r, c] *= Math.Sqrt(values.Get<double>(r));
-                    }
+                    at[r, c] *= Math.Sqrt(values.Get<double>(r));
                 }
-            }
-
-            // scaling
-            Cv2.Normalize(result, result, 0, 800, NormTypes.MinMax);
-
-            // opens a window
-            using (Mat img = Mat.Zeros(600, 800, MatType.CV_8UC3))
-            using (var window = new Window("City Location Estimation"))
-            {
-                var at = result.GetGenericIndexer<double>();
-                for (int c = 0; c < size; c++)
-                {
-                    double x = at[0, c];
-                    double y = at[1, c];
-                    x = x * 0.7 + img.Width * 0.1;
-                    y = y * 0.7 + img.Height * 0.1;
-                    img.Circle((int)x, (int)y, 5, Scalar.Red, -1);
-                    Point textPos = new Point(x + 5, y + 10);
-                    img.PutText(CityNames[c], textPos, HersheyFonts.HersheySimplex, 0.5, Scalar.White);
-                }
-                window.Image = img;
-                Cv2.WaitKey();
             }
         }
+
+        // scaling
+        Cv2.Normalize(result, result, 0, 800, NormTypes.MinMax);
+
+        // opens a window
+        using (Mat img = Mat.Zeros(600, 800, MatType.CV_8UC3))
+        using (var window = new Window("City Location Estimation"))
+        {
+            var at = result.GetGenericIndexer<double>();
+            for (int c = 0; c < size; c++)
+            {
+                double x = at[0, c];
+                double y = at[1, c];
+                x = x * 0.7 + img.Width * 0.1;
+                y = y * 0.7 + img.Height * 0.1;
+                img.Circle((int)x, (int)y, 5, Scalar.Red, -1);
+                Point textPos = new Point(x + 5, y + 10);
+                img.PutText(CityNames[c], textPos, HersheyFonts.HersheySimplex, 0.5, Scalar.White);
+            }
+            window.Image = img;
+            Cv2.WaitKey();
+        }
+    }
 
     /// <summary>
     /// Returns Torgerson's additive constant
@@ -113,35 +112,35 @@ class MDS : ConsoleTestBase
     /// <returns></returns>
     private double Torgerson(Mat mat)
     {
-            if (mat == null)
-                throw new ArgumentNullException();
-            if (mat.Rows != mat.Cols)
-                throw new ArgumentException();
+        if (mat == null)
+            throw new ArgumentNullException();
+        if (mat.Rows != mat.Cols)
+            throw new ArgumentException();
 
-            int n = mat.Rows;
-            // Additive constant in case of negative value
-            Cv2.MinMaxLoc(-mat, out _, out double max);
-            double c2 = max;
-            // Additive constant from triangular inequality
-            double c1 = 0;
+        int n = mat.Rows;
+        // Additive constant in case of negative value
+        Cv2.MinMaxLoc(-mat, out _, out double max);
+        double c2 = max;
+        // Additive constant from triangular inequality
+        double c1 = 0;
 
-            var at = mat.GetGenericIndexer<double>();
-            for (int i = 0; i < n; i++)
+        var at = mat.GetGenericIndexer<double>();
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
             {
-                for (int j = 0; j < n; j++)
+                for (int k = 0; k < n; k++)
                 {
-                    for (int k = 0; k < n; k++)
+                    double v = at[i, k] - at[i, j] - at[j, k];
+                    if (v > c1)
                     {
-                        double v = at[i, k] - at[i, j] - at[j, k];
-                        if (v > c1)
-                        {
-                            c1 = v;
-                        }
+                        c1 = v;
                     }
                 }
             }
-            return Math.Max(Math.Max(c1, c2), 0);
         }
+        return Math.Max(Math.Max(c1, c2), 0);
+    }
 
     /// <summary>
     /// Returns centering matrix
@@ -150,7 +149,7 @@ class MDS : ConsoleTestBase
     /// <returns></returns>
     private Mat CenteringMatrix(int n)
     {
-            using var eye = Mat.Eye(n, n, MatType.CV_64FC1) ;
-            return (eye - 1.0 / n);
-        }
+        using var eye = Mat.Eye(n, n, MatType.CV_64FC1);
+        return (eye - (Scalar)(1.0 / n));
+    }
 }
