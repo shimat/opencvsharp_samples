@@ -166,8 +166,8 @@ class KAZESample2 : ConsoleTestBase
                 scaleBinSize = 2;
             float[] scaleRanges = { (float)minS, (float)(minS + scaleBinSize + Math.Log10(scaleIncrement)) };
 
-            using var scalesMat = new Mat<float>(rows: logScale.Count, cols: 1, data: logScale.ToArray());
-            using var rotationsMat = new Mat<float>(rows: rotations.Count, cols: 1, data: rotations.ToArray());
+            using var scalesMat = Mat.FromArray(logScale.ToArray());
+            using var rotationsMat = Mat.FromArray(rotations.ToArray());
             using var flagsMat = new Mat<float>(logScale.Count, 1);
             using Mat hist = new Mat();
             flagsMat.SetTo(new Scalar(0.0f));
