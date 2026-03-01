@@ -23,7 +23,7 @@ public class ArucoSample : ConsoleTestBase
         detectorParameters.CornerRefinementMethod = CornerRefineMethod.Subpix;
         detectorParameters.CornerRefinementWinSize = 9;
 
-        using var dictionary = CvAruco.GetPredefinedDictionary(PredefinedDictionaryName.Dict4X4_1000);
+        using var dictionary = CvAruco.GetPredefinedDictionary(PredefinedDictionaryType.Dict4X4_1000);
 
         CvAruco.DetectMarkers(src, dictionary, out var corners, out var ids, detectorParameters, out var rejectedPoints);
 

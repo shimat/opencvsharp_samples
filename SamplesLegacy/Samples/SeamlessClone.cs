@@ -23,13 +23,13 @@ namespace SamplesLegacy
             Mat blend3 = new Mat();
             Cv2.SeamlessClone(
                 src0, dst, mask, new Point(260, 270), blend1,
-                SeamlessCloneMethods.NormalClone);
+                SeamlessCloneFlags.NormalClone);
             Cv2.SeamlessClone(
                 src0, dst, mask, new Point(260, 270), blend2,
-                SeamlessCloneMethods.MonochromeTransfer);
+                SeamlessCloneFlags.MonochromeTransfer);
                         Cv2.SeamlessClone(
                 src0, dst, mask, new Point(260, 270), blend3,
-                SeamlessCloneMethods.MixedClone);
+                SeamlessCloneFlags.MixedClone);
 
             using (new Window("src", src0))
             using (new Window("dst", dst))
