@@ -20,7 +20,7 @@ class MatOperations : ConsoleTestBase
     /// <summary>
     /// Submatrix operations
     /// </summary>
-    private void SubMat()
+    private static void SubMat()
     {
         using var src = Cv2.ImRead(ImagePath.Lenna);
 
