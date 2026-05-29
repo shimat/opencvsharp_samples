@@ -55,6 +55,7 @@ namespace SamplesLegacy
                     indexer[y, x] = newColor;
                 }
             }
+                        
             //Cv2.ImShow("GenericIndexer", mat);
             //Cv2.WaitKey(0);
             //Cv2.DestroyAllWindows();

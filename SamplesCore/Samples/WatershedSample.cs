@@ -22,7 +22,7 @@ public class WatershedSample : ConsoleTestBase
 
             // Mouse event  
             int seedNum = 0;
-            window.SetMouseCallback((MouseEventTypes ev, int x, int y, MouseEventFlags flags, IntPtr userdata) =>
+            window.SetMouseCallback((ev, x, y, flags, userdata) =>
             {
                 if (ev == MouseEventTypes.LButtonDown)
                 {
@@ -40,9 +40,11 @@ public class WatershedSample : ConsoleTestBase
 
         // draws watershed
         using var dstImg = srcImg.Clone();
-        for (int y = 0; y < markers.Height; y++)
+        int height = markers.Height;
+        int width = markers.Width;
+        for (int y = 0; y < height; y++)
         {
-            for (int x = 0; x < markers.Width; x++)
+            for (int x = 0; x < width; x++)
             {
                 int idx = markers.Get<int>(y, x);
                 if (idx == -1)

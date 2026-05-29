@@ -27,7 +27,8 @@ internal class FaceDetectionDNN : ConsoleTestBase
 
         using var detection = faceNet.Forward("detection_out");
         using var detectionMat = Mat.FromPixelData(detection.Size(2), detection.Size(3), MatType.CV_32F, detection.Ptr(0));
-        for (int i = 0; i < detectionMat.Rows; i++)
+        int rows = detectionMat.Rows;
+        for (int i = 0; i < rows; i++)
         {
             float confidence = detectionMat.At<float>(i, 2);
 

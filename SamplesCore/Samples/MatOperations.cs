@@ -52,7 +52,7 @@ class MatOperations : ConsoleTestBase
     /// <summary>
     /// Submatrix operations
     /// </summary>
-    private void RowColRangeOperation()
+    private static void RowColRangeOperation()
     {
         using var src = Cv2.ImRead(ImagePath.Lenna);
 
@@ -75,23 +75,33 @@ class MatOperations : ConsoleTestBase
     /// <summary>
     /// Submatrix expression operations
     /// </summary>
-    private void RowColOperation()
+    private static void RowColOperation()
     {
         using var src = Cv2.ImRead(ImagePath.Lenna);
 
         var rand = new Random();
+        var srcRows = src.AsRows<Vec3b>();
         for (int i = 0; i < 200; i++)
         {
             int c1 = rand.Next(100, 400);
             int c2 = rand.Next(100, 400);
-            using Mat temp = src.Row(c1).Clone();
-            src.Row(c2).CopyTo(src.Row(c1));
-            temp.CopyTo(src.Row(c2));
+            var row1 = srcRows[c1];
+            var row2 = srcRows[c2];
+            var temp = row1.ToArray();
+            row2.CopyTo(row1);
+            temp.CopyTo(row2);
         }
 
-            ((Mat)~src.ColRange(450, 500)).CopyTo(src.ColRange(0, 50));
+        using (var colSrc = src.ColRange(450, 500))
+        using (var colDst = src.ColRange(0, 50))
+        {
+            ((Mat)~colSrc).CopyTo(colDst);
+        }
 
-        src.RowRange(450, 460).SetTo(new Scalar(0, 0, 255));
+        using (var rowRange = src.RowRange(450, 460))
+        {
+            rowRange.SetTo(new Scalar(0, 0, 255));
+        }
 
         using (new Window("RowColOperation", src))
         {

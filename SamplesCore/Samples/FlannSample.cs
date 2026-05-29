@@ -18,7 +18,8 @@ class FlannSample : ConsoleTestBase
         using (var features = new Mat(10000, 2, MatType.CV_32FC1))
         {
             var rand = new Random();
-            for (int i = 0; i < features.Rows; i++)
+            int rows = features.Rows;
+            for (int i = 0; i < rows; i++)
             {
                 features.Set<float>(i, 0, rand.Next(10000));
                 features.Set<float>(i, 1, rand.Next(10000));

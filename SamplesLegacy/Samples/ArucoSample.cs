@@ -19,13 +19,16 @@ namespace SamplesLegacy
 
             using var src = Cv2.ImRead(ImagePath.Aruco);
 
-            var detectorParameters = new DetectorParameters();
-            detectorParameters.CornerRefinementMethod = CornerRefineMethod.Subpix;
-            detectorParameters.CornerRefinementWinSize = 9;
+            var detectorParameters = new DetectorParameters
+            {
+                CornerRefinementMethod = CornerRefineMethod.Subpix,
+                CornerRefinementWinSize = 9
+            };
 
             using var dictionary = CvAruco.GetPredefinedDictionary(PredefinedDictionaryType.Dict4X4_1000);
+            using var detector = new ArucoDetector(dictionary, detectorParameters, new RefineParameters());
 
-            CvAruco.DetectMarkers(src, dictionary, out var corners, out var ids, detectorParameters, out var rejectedPoints);
+            detector.DetectMarkers(src, out var corners, out var ids, out var rejectedPoints);
 
             using var detectedMarkers = src.Clone();
             CvAruco.DrawDetectedMarkers(detectedMarkers, corners, ids, Scalar.Crimson);

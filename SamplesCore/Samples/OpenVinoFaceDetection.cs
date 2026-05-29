@@ -32,8 +32,8 @@ internal class OpenVinoFaceDetection : ConsoleTestBase
         using (var detection = netFace.Forward())
         {
             using var detectionMat = Mat.FromPixelData(detection.Size(2), detection.Size(3), MatType.CV_32F, detection.Ptr(0));
-
-            for (int i = 0; i < detectionMat.Rows; i++)
+            int rows = detectionMat.Rows;
+            for (int i = 0; i < rows; i++)
             {
                 float confidence = detectionMat.At<float>(i, 2);
 
@@ -55,7 +55,7 @@ internal class OpenVinoFaceDetection : ConsoleTestBase
         Cv2.ImWrite(finalOutput, frame);
     }
 
-    private Rect AdjustBoundingBox(Rect faceRect)
+    private static Rect AdjustBoundingBox(Rect faceRect)
     {
         int w = faceRect.Width;
         int h = faceRect.Height;

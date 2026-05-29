@@ -34,9 +34,9 @@ class MDS : ConsoleTestBase
     /// City names
     /// </summary>
     static readonly string[] CityNames =
-        {
+        [
             "Atlanta","Chicago","Denver","Houston","Los Angeles","Miami","New York","San Francisco","Seattle","Washington D.C."
-        };
+        ];
 
 
     /// <summary>
@@ -56,12 +56,17 @@ class MDS : ConsoleTestBase
         // centering matrix G
         using var g = CenteringMatrix(size);
         // calculates inner product matrix B
-        using var b = g * t * g.T() * -0.5;
+        using var gt = g.T();
+        using var gt_mat = new Mat(gt);
+        using var tmp = g * t;
+        using var tmp2 = tmp * gt_mat;
+        using var b = tmp2 * -0.5;
         // calculates eigenvalues and eigenvectors of B
         using var values = new Mat();
         using var vectors = new Mat();
         Cv2.Eigen(b, values, vectors);
-        for (int r = 0; r < values.Rows; r++)
+        int valuesRows = values.Rows;
+        for (int r = 0; r < valuesRows; r++)
         {
             if (values.Get<double>(r) < 0)
                 values.Set<double>(r, 0);
@@ -72,12 +77,14 @@ class MDS : ConsoleTestBase
         // multiplies sqrt(eigenvalue) by eigenvector
         using var result = vectors.RowRange(0, 2);
         {
-            var at = result.GetGenericIndexer<double>();
-            for (int r = 0; r < result.Rows; r++)
+            var resultRows = result.AsRows<double>();
+            int rows = result.Rows;
+            int cols = result.Cols;
+            for (int r = 0; r < rows; r++)
             {
-                for (int c = 0; c < result.Cols; c++)
+                for (int c = 0; c < cols; c++)
                 {
-                    at[r, c] *= Math.Sqrt(values.Get<double>(r));
+                    resultRows[r][c] *= Math.Sqrt(values.Get<double>(r));
                 }
             }
         }
@@ -89,15 +96,15 @@ class MDS : ConsoleTestBase
         using (Mat img = Mat.Zeros(600, 800, MatType.CV_8UC3))
         using (var window = new Window("City Location Estimation"))
         {
-            var at = result.GetGenericIndexer<double>();
+            var resultRows = result.AsRows<double>();
             for (int c = 0; c < size; c++)
             {
-                double x = at[0, c];
-                double y = at[1, c];
+                double x = resultRows[0][c];
+                double y = resultRows[1][c];
                 x = x * 0.7 + img.Width * 0.1;
                 y = y * 0.7 + img.Height * 0.1;
                 img.Circle((int)x, (int)y, 5, Scalar.Red, -1);
-                Point textPos = new Point(x + 5, y + 10);
+                var textPos = new Point(x + 5, y + 10);
                 img.PutText(CityNames[c], textPos, HersheyFonts.HersheySimplex, 0.5, Scalar.White);
             }
             window.Image = img;
@@ -110,12 +117,12 @@ class MDS : ConsoleTestBase
     /// </summary>
     /// <param name="mat"></param>
     /// <returns></returns>
-    private double Torgerson(Mat mat)
+    private static double Torgerson(Mat mat)
     {
-        if (mat == null)
-            throw new ArgumentNullException();
+        if (mat is null)
+            throw new ArgumentNullException(nameof(mat));
         if (mat.Rows != mat.Cols)
-            throw new ArgumentException();
+            throw new ArgumentException("mat.Rows != mat.Cols", nameof(mat));
 
         int n = mat.Rows;
         // Additive constant in case of negative value
@@ -124,14 +131,14 @@ class MDS : ConsoleTestBase
         // Additive constant from triangular inequality
         double c1 = 0;
 
-        var at = mat.GetGenericIndexer<double>();
+        var matRows = mat.AsRows<double>();
         for (int i = 0; i < n; i++)
         {
             for (int j = 0; j < n; j++)
             {
                 for (int k = 0; k < n; k++)
                 {
-                    double v = at[i, k] - at[i, j] - at[j, k];
+                    double v = matRows[i][k] - matRows[i][j] - matRows[j][k];
                     if (v > c1)
                     {
                         c1 = v;
@@ -147,7 +154,7 @@ class MDS : ConsoleTestBase
     /// </summary>
     /// <param name="n">Size of matrix</param>
     /// <returns></returns>
-    private Mat CenteringMatrix(int n)
+    private static Mat CenteringMatrix(int n)
     {
         using var eye = Mat.Eye(n, n, MatType.CV_64FC1);
         return (eye - (Scalar)(1.0 / n));

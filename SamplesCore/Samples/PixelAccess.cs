@@ -25,12 +25,14 @@ class PixelAccess : ConsoleTestBase
     private void GetSet()
     {
         using var mat = new Mat(ImagePath.Lenna, ImreadModes.Color);
-        for (int y = 0; y < mat.Height; y++)
+        int height = mat.Height;
+        int width = mat.Width;
+        for (int y = 0; y < height; y++)
         {
-            for (int x = 0; x < mat.Width; x++)
+            for (int x = 0; x < width; x++)
             {
-                Vec3b color = mat.Get<Vec3b>(y, x);
-                Vec3b newColor = new Vec3b(color.Item2, color.Item1, color.Item0);
+                var color = mat.Get<Vec3b>(y, x);
+                var newColor = new Vec3b(color.Item2, color.Item1, color.Item0);
                 mat.Set<Vec3b>(y, x, newColor);
             }
         }
@@ -45,14 +47,15 @@ class PixelAccess : ConsoleTestBase
     private void GenericIndexer()
     {
         using var mat = new Mat(ImagePath.Lenna, ImreadModes.Color);
-        var indexer = mat.GetGenericIndexer<Vec3b>();
-        for (int y = 0; y < mat.Height; y++)
+        var matRows = mat.AsRows<Vec3b>();
+        int height = mat.Height;
+        int width = mat.Width;
+        for (int y = 0; y < height; y++)
         {
-            for (int x = 0; x < mat.Width; x++)
+            for (int x = 0; x < width; x++)
             {
-                Vec3b color = indexer[y, x];
-                Vec3b newColor = new Vec3b(color.Item2, color.Item1, color.Item0);
-                indexer[y, x] = newColor;
+                Vec3b color = matRows[y][x];
+                matRows[y][x] = new Vec3b(color.Item2, color.Item1, color.Item0);
             }
         }
         //Cv2.ImShow("GenericIndexer", mat);
@@ -68,12 +71,14 @@ class PixelAccess : ConsoleTestBase
         using var mat = new Mat(ImagePath.Lenna, ImreadModes.Color);
         var mat3 = new Mat<Vec3b>(mat);
         var indexer = mat3.GetIndexer();
-        for (int y = 0; y < mat.Height; y++)
+        int height = mat.Height;
+        int width = mat.Width;
+        for (int y = 0; y < height; y++)
         {
-            for (int x = 0; x < mat.Width; x++)
+            for (int x = 0; x < width; x++)
             {
-                Vec3b color = indexer[y, x];
-                Vec3b newColor = new Vec3b(color.Item2, color.Item1, color.Item0);
+                var color = indexer[y, x];
+                var newColor = new Vec3b(color.Item2, color.Item1, color.Item0);
                 indexer[y, x] = newColor;
             }
         }
