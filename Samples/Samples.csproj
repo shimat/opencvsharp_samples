@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- OpenCvSharp5 targets net8.0 only; net48 is no longer supported. -->
+    <TargetFramework>net8.0</TargetFramework>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Nullable>enable</Nullable>
+    <AssemblyName>Samples</AssemblyName>
+    <OutputType>Exe</OutputType>
+    <PackageId>Samples</PackageId>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <LangVersion>12</LangVersion>
+    <NoWarn>IDE0130;</NoWarn>
+    <AnalysisMode>recommended</AnalysisMode>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="OpenCvSharp5.GdipExtensions" Version="5.0.0.20260702-beta" />
+    <PackageReference Include="OpenCvSharp5.runtime.win" Version="5.0.0.20260702-beta" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Data\**\*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Data\**\*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>

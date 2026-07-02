@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
 using OpenCvSharp;
-using OpenCvSharp.Extensions;
+using OpenCvSharp.GdipExtensions;
 
 namespace VideoCaptureForm
 {
