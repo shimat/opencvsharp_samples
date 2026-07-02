@@ -9,8 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="OpenCvSharp5.runtime.win" Version="5.0.0.20260702-beta" />
-    <PackageReference Include="OpenCvSharp5.GdipExtensions" Version="5.0.0.20260702-beta" />
+    <PackageReference Include="OpenCvSharp5.runtime.win" Version="5.0.0.20260702" />
+    <PackageReference Include="OpenCvSharp5.GdipExtensions" Version="5.0.0.20260702" />
   </ItemGroup>
 
   <ItemGroup>
