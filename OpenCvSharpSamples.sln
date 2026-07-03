@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples", "Samples\Samples.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoCaptureForm", "VideoCaptureForm\VideoCaptureForm.csproj", "{9DCC89F3-9D9F-4813-A4A3-36F8457E7F85}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SamplesCore.Windows", "SamplesCore.Windows\SamplesCore.Windows.csproj", "{41A0CB46-CEC7-4DB2-B2F5-C538D29DC11D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Windows", "Samples.Windows\Samples.Windows.csproj", "{41A0CB46-CEC7-4DB2-B2F5-C538D29DC11D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VideoCaptureWPF", "VideoCaptureWPF\VideoCaptureWPF.csproj", "{2817650D-BC43-454E-928E-C89ACD1A5D7E}"
 EndProject

@@ -1,4 +1,4 @@
-﻿namespace SamplesCore.Windows
+﻿namespace Samples.Windows
 {
     interface ISample
     {
