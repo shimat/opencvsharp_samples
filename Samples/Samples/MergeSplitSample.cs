@@ -13,7 +13,7 @@ class MergeSplitSample : ConsoleTestBase
     {
         // Split/Merge Test
         {
-            using var src = new Mat(ImagePath.Lenna, ImreadModes.Color);
+            using var src = new Mat(ImagePath.Penguin1b, ImreadModes.Color);
 
             // Split each plane
             Cv2.Split(src, out var planes);

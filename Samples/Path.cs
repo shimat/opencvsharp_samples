@@ -5,8 +5,6 @@
     /// </summary>
     public static class ImagePath
     {
-        public const string Lenna = "Data/Image/lenna.png";
-        public const string Lenna511 = "Data/Image/lenna511.png";
         public const string Girl = "Data/Image/Girl.bmp";
         public const string Mandrill = "Data/Image/Mandrill.bmp";
         public const string Goryokaku = "Data/Image/goryokaku.jpg";

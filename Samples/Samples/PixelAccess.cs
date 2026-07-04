@@ -24,7 +24,7 @@ class PixelAccess : ConsoleTestBase
     /// </summary>
     private void GetSet()
     {
-        using var mat = new Mat(ImagePath.Lenna, ImreadModes.Color);
+        using var mat = new Mat(ImagePath.Hand, ImreadModes.Color);
         int height = mat.Height;
         int width = mat.Width;
         for (int y = 0; y < height; y++)
@@ -46,7 +46,7 @@ class PixelAccess : ConsoleTestBase
     /// </summary>
     private void GenericIndexer()
     {
-        using var mat = new Mat(ImagePath.Lenna, ImreadModes.Color);
+        using var mat = new Mat(ImagePath.Hand, ImreadModes.Color);
         var matRows = mat.AsRows<Vec3b>();
         int height = mat.Height;
         int width = mat.Width;
@@ -68,7 +68,7 @@ class PixelAccess : ConsoleTestBase
     /// </summary>
     private void TypeSpecificMat()
     {
-        using var mat = new Mat(ImagePath.Lenna, ImreadModes.Color);
+        using var mat = new Mat(ImagePath.Hand, ImreadModes.Color);
         var mat3 = new Mat<Vec3b>(mat);
         var indexer = mat3.GetIndexer();
         int height = mat.Height;

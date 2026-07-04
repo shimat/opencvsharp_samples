@@ -11,7 +11,7 @@ class FASTSample : ConsoleTestBase
 {
     public override void RunTest()
     {
-        using Mat imgSrc = new Mat(ImagePath.Lenna, ImreadModes.Color);
+        using Mat imgSrc = new Mat(ImagePath.Maltese, ImreadModes.Color);
         using Mat imgGray = new Mat();
         using Mat imgDst = imgSrc.Clone();
         Cv2.CvtColor(imgSrc, imgGray, ColorConversionCodes.BGR2GRAY, 0);

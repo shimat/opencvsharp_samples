@@ -22,7 +22,7 @@ class MatOperations : ConsoleTestBase
     /// </summary>
     private static void SubMat()
     {
-        using var src = Cv2.ImRead(ImagePath.Lenna);
+        using var src = Cv2.ImRead(ImagePath.Fruits);
 
         // Assign small image to mat
         using var small = new Mat();
@@ -54,7 +54,7 @@ class MatOperations : ConsoleTestBase
     /// </summary>
     private static void RowColRangeOperation()
     {
-        using var src = Cv2.ImRead(ImagePath.Lenna);
+        using var src = Cv2.ImRead(ImagePath.Fruits);
 
         Cv2.GaussianBlur(
             src.RowRange(100, 200),
@@ -77,7 +77,7 @@ class MatOperations : ConsoleTestBase
     /// </summary>
     private static void RowColOperation()
     {
-        using var src = Cv2.ImRead(ImagePath.Lenna);
+        using var src = Cv2.ImRead(ImagePath.Fruits);
 
         var rand = new Random();
         var srcRows = src.AsRows<Vec3b>();

@@ -12,8 +12,8 @@ class BRISKSample : ConsoleTestBase
 {
     public override void RunTest()
     {
-        var gray = new Mat(ImagePath.Lenna, ImreadModes.Grayscale);
-        var dst = new Mat(ImagePath.Lenna, ImreadModes.Color);
+        var gray = new Mat(ImagePath.Penguin1, ImreadModes.Grayscale);
+        var dst = new Mat(ImagePath.Penguin1, ImreadModes.Color);
 
         using var brisk = BRISK.Create();
         KeyPoint[] keypoints = brisk.Detect(gray);

@@ -14,7 +14,7 @@ internal class KAZESample : ConsoleTestBase
 {
     public override void RunTest()
     {
-        var gray = new Mat(ImagePath.Lenna, ImreadModes.Grayscale);
+        var gray = new Mat(ImagePath.Cat, ImreadModes.Grayscale);
         var kaze = KAZE.Create();
         var akaze = AKAZE.Create();
 

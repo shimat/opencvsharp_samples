@@ -12,7 +12,7 @@ class DFT : ConsoleTestBase
 {
     public override void RunTest()
     {
-        using var img = Cv2.ImRead(ImagePath.Lenna, ImreadModes.Grayscale);
+        using var img = Cv2.ImRead(ImagePath.Walkman, ImreadModes.Grayscale);
 
         // expand input image to optimal size
         using var padded = new Mat();

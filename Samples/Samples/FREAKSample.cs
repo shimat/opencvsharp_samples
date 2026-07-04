@@ -12,8 +12,8 @@ class FREAKSample : ConsoleTestBase
 {
     public override void RunTest()
     {
-        using var gray = new Mat(ImagePath.Lenna, ImreadModes.Grayscale);
-        using var dst = new Mat(ImagePath.Lenna, ImreadModes.Color);
+        using var gray = new Mat(ImagePath.Penguin2, ImreadModes.Grayscale);
+        using var dst = new Mat(ImagePath.Penguin2, ImreadModes.Color);
 
         // ORB
         using var orb = ORB.Create(1000);
