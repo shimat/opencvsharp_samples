@@ -51,6 +51,7 @@ public static class Program
             new SolveEquation(),
             new SquareDetectionSample(),
             new StarDetectorSample(),
+            new StereoMatchingSample(),
             new Stitching(),
             new Subdiv2DSample(),
             new SVMSample(),
