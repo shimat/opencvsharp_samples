@@ -30,6 +30,7 @@ public static class Program
             new FASTSample(),
             new FlannSample(),
             new FREAKSample(),
+            new GrabCutSample(),
             new HistSample(),
             new HOGSample(),
             new HoughLinesSample(),
