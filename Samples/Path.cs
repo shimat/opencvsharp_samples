@@ -40,6 +40,7 @@
         public const string Match1 = "Data/Image/match1.png";
         public const string Match2 = "Data/Image/match2.png";
         public const string Aruco = "Data/Image/aruco_markers_photo.jpg";
+        public const string QrCode = "Data/Image/qrcode.png";
     }
 
     /// <summary>

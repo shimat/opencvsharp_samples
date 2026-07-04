@@ -45,6 +45,7 @@ public static class Program
             new PerspectiveTransformSample(),
             new PhotoMethods(),
             new PixelAccess(),
+            new QRCodeDetectionSample(),
             new SeamlessClone(),
             new SiftSurfSample(),
             new SimpleBlobDetectorSample(),
