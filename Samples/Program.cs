@@ -1,7 +1,7 @@
-﻿using OpenCvSharp;
-using SampleBase.Console;
+﻿using SampleBase.Console;
 using SampleBase.Interfaces;
 using System;
+using System.Linq;
 
 namespace SamplesCore;
 
@@ -13,61 +13,9 @@ public static class Program
         Console.WriteLine("Runtime Version = {0}", Environment.Version);
 
         ITestManager testManager = new ConsoleTestManager();
-            
-        testManager.AddTests(
-            new ArucoSample(),
-            new BgSubtractorMOG(),
-            new BinarizerSample(),
-            new BRISKSample(),
-            new CameraCalibrationSample(),
-            new CameraCaptureSample(),
-            new ClaheSample(),
-            new ConnectedComponentsSample(),
-            new DFT(),
-            new DnnSuperresSample(),
-            new DrawBestMatchRectangle(),
-            new FaceDetection(),
-            new FASTSample(),
-            new FlannSample(),
-            new FREAKSample(),
-            new GrabCutSample(),
-            new HistSample(),
-            new HOGSample(),
-            new HoughLinesSample(),
-            new InpaintSample(),
-            new KAZESample(),
-            new KAZESample2(),
-            new MatOperations(),
-            new MDS(),
-            new MergeSplitSample(),
-            new MorphologySample(),
-            new MSERSample(),
-            new NormalArrayOperations(),
-            new ObjectTrackingSample(),
-            new OpticalFlowSample(),
-            new PerspectiveTransformSample(),
-            new PhotoMethods(),
-            new PixelAccess(),
-            new QRCodeDetectionSample(),
-            new SeamlessClone(),
-            new SiftSurfSample(),
-            new SimpleBlobDetectorSample(),
-            new SolveEquation(),
-            new SquareDetectionSample(),
-            new StarDetectorSample(),
-            new StereoMatchingSample(),
-            new Stitching(),
-            new Subdiv2DSample(),
-            new SVMSample(),
-            new VideoWriterSample(),
-            new VideoCaptureSample(),
-            new WatershedSample());
+
+        testManager.AddTests(TestDiscovery.DiscoverTests().OrderBy(t => t.Name).ToArray());
 
         testManager.ShowTestEntrance();
-
-
-
-        var mat = new Mat();
-        mat.ToString();
     }
 }
