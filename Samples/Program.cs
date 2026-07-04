@@ -48,6 +48,7 @@ public static class Program
             new SiftSurfSample(),
             new SimpleBlobDetectorSample(),
             new SolveEquation(),
+            new SquareDetectionSample(),
             new StarDetectorSample(),
             new Stitching(),
             new Subdiv2DSample(),
