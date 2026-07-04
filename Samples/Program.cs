@@ -19,6 +19,7 @@ public static class Program
             new BgSubtractorMOG(),
             new BinarizerSample(),
             new BRISKSample(),
+            new CameraCalibrationSample(),
             new CameraCaptureSample(),
             new ClaheSample(),
             new ConnectedComponentsSample(),
