@@ -5,8 +5,6 @@
     /// </summary>
     public static class ImagePath
     {
-        public const string Lenna = "Data/Image/lenna.png";
-        public const string Lenna511 = "Data/Image/lenna511.png";
         public const string Girl = "Data/Image/Girl.bmp";
         public const string Mandrill = "Data/Image/Mandrill.bmp";
         public const string Goryokaku = "Data/Image/goryokaku.jpg";
@@ -18,6 +16,7 @@
         public const string Penguin2 = "Data/Image/penguin2.png";
         public const string Distortion = "Data/Image/Calibration/01.jpg";
         public const string Calibration = "Data/Image/Calibration/{0:D2}.jpg";
+        public const string CalibrationLeft = "Data/Image/Calibration/left{0:D2}.jpg";
         public const string SurfBox = "Data/Image/box.png";
         public const string SurfBoxinscene = "Data/Image/box_in_scene.png";
         public const string TsukubaLeft = "Data/Image/tsukuba_left.png";
@@ -41,6 +40,7 @@
         public const string Match1 = "Data/Image/match1.png";
         public const string Match2 = "Data/Image/match2.png";
         public const string Aruco = "Data/Image/aruco_markers_photo.jpg";
+        public const string QrCode = "Data/Image/qrcode.png";
     }
 
     /// <summary>

@@ -13,7 +13,7 @@ public class WatershedSample : ConsoleTestBase
 {
     public override void RunTest()
     {
-        using var srcImg = Cv2.ImRead(ImagePath.Lenna, ImreadModes.AnyDepth | ImreadModes.AnyColor);
+        using var srcImg = Cv2.ImRead(ImagePath.Asahiyama, ImreadModes.AnyDepth | ImreadModes.AnyColor);
         using var markers = new Mat(srcImg.Size(), MatType.CV_32SC1, Scalar.All(0));
 
         using (var window = new Window("image", srcImg))

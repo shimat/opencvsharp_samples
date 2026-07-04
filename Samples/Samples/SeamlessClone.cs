@@ -12,7 +12,7 @@ class SeamlessClone : ConsoleTestBase
     public override void RunTest()
     {
             Mat src = new Mat(ImagePath.Girl, ImreadModes.Color);
-            Mat dst = new Mat(ImagePath.Lenna, ImreadModes.Color);
+            Mat dst = new Mat(ImagePath.Fruits, ImreadModes.Color);
             Mat src0 = new Mat();
             Cv2.Resize(src, src0, dst.Size(), 0, 0, InterpolationFlags.Lanczos4);
             Mat mask = Mat.Zeros(src0.Size(), MatType.CV_8UC3);

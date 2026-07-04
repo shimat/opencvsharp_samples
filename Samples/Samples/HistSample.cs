@@ -12,7 +12,7 @@ class HistSample : ConsoleTestBase
 {
     public override void RunTest()
     {
-        using var src = Cv2.ImRead(ImagePath.Lenna, ImreadModes.Grayscale);
+        using var src = Cv2.ImRead(ImagePath.Balloon, ImreadModes.Grayscale);
 
         // Histogram view
         const int Width = 260, Height = 200;
