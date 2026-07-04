@@ -43,6 +43,7 @@ public static class Program
             new MorphologySample(),
             new MSERSample(),
             new NormalArrayOperations(),
+            new ObjectTrackingSample(),
             new OpticalFlowSample(),
             new PerspectiveTransformSample(),
             new PhotoMethods(),
