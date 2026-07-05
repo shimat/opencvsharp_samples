@@ -5,7 +5,7 @@ namespace SampleBase.Console
 {
     public abstract class ConsoleTestBase : ITestBase
     {
-        private readonly IMessagePrinter msgPrinter;
+        private readonly ConsoleMessagePrinter msgPrinter;
 
         public string Name { get; set; }
 
@@ -46,11 +46,6 @@ namespace SampleBase.Console
         public void PrintSuccess(string message, bool newLine = true)
         {
             msgPrinter.PrintSuccess(message, newLine);
-        }
-
-        public IMessagePrinter GetMessagePrinter()
-        {
-            return msgPrinter;
         }
 
         public string? WaitToInput()

@@ -6,10 +6,10 @@ using SampleBase.Interfaces;
 
 namespace SampleBase.Console
 {
-    public class ConsoleTestManager : ITestManager
+    public class ConsoleTestManager
     {
         private readonly List<ITestBase> tests;
-        private readonly IMessagePrinter msgPrinter;
+        private readonly ConsoleMessagePrinter msgPrinter;
         private readonly bool isHeadless;
 
         public ConsoleTestManager(bool isHeadless = false)
@@ -23,6 +23,14 @@ namespace SampleBase.Console
         {
             if (!tests.Contains(test))
                 tests.Add(test);
+        }
+
+        public void AddTests(params ITestBase[] tests)
+        {
+            foreach (var test in tests)
+            {
+                AddTest(test);
+            }
         }
 
         public void RemoveTest(ITestBase test)
@@ -64,10 +72,10 @@ namespace SampleBase.Console
         private const string inputHelp = "h";
         private static readonly string helpMessage =
             $"Follow these steps to use the testing framework: " +
-            $"1 Create class that inherit from the [{nameof(ITestBase)}]{Environment.NewLine}" +
+            $"1 Create a class that inherits from {nameof(ConsoleTestBase)}{Environment.NewLine}" +
             $"2 Override the [{nameof(ConsoleTestBase.RunTest)}()] method of the class to execute your logic{Environment.NewLine}" +
-            $"3 Manage all the test classes by an instance that inherits from {nameof(ITestManager)}{Environment.NewLine}" +
-            $"4 Start the tests selection by runnig the [{nameof(ShowTestEntrance)}()] method of the ITestManager instance{Environment.NewLine}";
+            $"3 Register it with a {nameof(ConsoleTestManager)} instance via {nameof(AddTest)}/{nameof(AddTests)}{Environment.NewLine}" +
+            $"4 Start the tests selection by running the [{nameof(ShowTestEntrance)}()] method of the {nameof(ConsoleTestManager)} instance{Environment.NewLine}";
 
         /// <summary>
         /// Output prompt message and start reading input (start again)
@@ -109,14 +117,16 @@ namespace SampleBase.Console
             {
                 if (input?.ToLower() == inputClear)
                 {
-                    System.Console.Clear();
-                    PrintNamesAndRead();
+                    // Console.Clear() throws when stdout is redirected (e.g. piped/CI).
+                    if (!System.Console.IsOutputRedirected)
+                        System.Console.Clear();
+                    input = PrintNamesAndRead();
                     continue;
                 }
                 if (input?.ToLower() == inputHelp)
                 {
                     msgPrinter.PrintSuccess(helpMessage);
-                    PrintNamesAndRead();
+                    input = PrintNamesAndRead();
                     continue;
                 }
                 if (int.TryParse(input, out int number))

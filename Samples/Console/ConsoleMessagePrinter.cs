@@ -1,9 +1,8 @@
 ﻿using System;
-using SampleBase.Interfaces;
 
 namespace SampleBase.Console
 {
-    public class ConsoleMessagePrinter : IMessagePrinter
+    public class ConsoleMessagePrinter
     {
         public ConsoleMessagePrinter()
         {
