@@ -49,8 +49,7 @@ class SiftSurfSample : ConsoleTestBase
         Cv2.DrawMatches(gray1, keypoints1, gray2, keypoints2, flannMatches, flannView);
 
         DisplayHelper.Show(nameof(SiftSurfSample),
-            new[] { "SIFT matching (by BFMather)", "SIFT matching (by FlannBasedMatcher)" },
-            new[] { bfView, flannView });
+            ("SIFT matching (by BFMather)", bfView), ("SIFT matching (by FlannBasedMatcher)", flannView));
     }
 
     private void MatchBySurf(Mat src1, Mat src2)
@@ -82,8 +81,7 @@ class SiftSurfSample : ConsoleTestBase
         Cv2.DrawMatches(gray1, keypoints1, gray2, keypoints2, flannMatches, flannView);
 
         DisplayHelper.Show(nameof(SiftSurfSample),
-            new[] { "SURF matching (by BFMather)", "SURF matching (by FlannBasedMatcher)" },
-            new[] { bfView, flannView });
+            ("SURF matching (by BFMather)", bfView), ("SURF matching (by FlannBasedMatcher)", flannView));
     }
 
 }

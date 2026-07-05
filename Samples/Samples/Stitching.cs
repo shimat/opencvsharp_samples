@@ -20,7 +20,7 @@ class Stitching : ConsoleTestBase
         var status = stitcher.Stitch(images, pano);
         Console.WriteLine(" finish (status:{0})", status);
 
-        DisplayHelper.Show(nameof(Stitching), "pano", pano);
+        DisplayHelper.Show(nameof(Stitching), ("pano", pano));
 
         foreach (var image in images)
         {
@@ -51,7 +51,7 @@ class Stitching : ConsoleTestBase
             mats.Add(m.Clone());
         }
 
-        DisplayHelper.Show(nameof(Stitching), "stitching", result);
+        DisplayHelper.Show(nameof(Stitching), ("stitching", result));
 
         return mats.ToArray();
     }

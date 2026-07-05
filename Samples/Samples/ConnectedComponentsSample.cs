@@ -40,7 +40,6 @@ class ConnectedComponentsSample : ConsoleTestBase
         cc.FilterByBlob(src, filtered, maxBlob);
 
         DisplayHelper.Show(nameof(ConnectedComponentsSample),
-            new[] { "src", "binary", "labels", "bonding boxes", "maximum blob" },
-            new[] { src, binary, labelView, rectView, filtered });
+            ("src", src), ("binary", binary), ("labels", labelView), ("bonding boxes", rectView), ("maximum blob", filtered));
     }
 }

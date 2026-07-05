@@ -50,6 +50,6 @@ internal class HOGSample : ConsoleTestBase
             Cv2.Rectangle(img, r.TopLeft, r.BottomRight, Scalar.Red, 3);
         }
 
-        DisplayHelper.Show(nameof(HOGSample), "people detector", img);
+        DisplayHelper.Show(nameof(HOGSample), ("people detector", img));
     }
 }

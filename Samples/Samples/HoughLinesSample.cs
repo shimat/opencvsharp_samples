@@ -53,6 +53,6 @@ class HoughLinesSample : ConsoleTestBase
         }
 
         // (5) Show results
-        DisplayHelper.Show(nameof(HoughLinesSample), new[] { "Hough_line_standard", "Hough_line_probabilistic" }, new[] { imgStd, imgProb });
+        DisplayHelper.Show(nameof(HoughLinesSample), ("Hough_line_standard", imgStd), ("Hough_line_probabilistic", imgProb));
     }
 }

@@ -19,6 +19,6 @@ class DnnSuperresSample : ConsoleTestBase
         using var dst = new Mat();
         dnn.Upsample(src, dst);
 
-        DisplayHelper.Show(nameof(DnnSuperresSample), new[] { "src", "dst0" }, new[] { src, dst });
+        DisplayHelper.Show(nameof(DnnSuperresSample), ("src", src), ("dst0", dst));
     }
 }

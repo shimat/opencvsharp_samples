@@ -18,7 +18,7 @@ class MergeSplitSample : ConsoleTestBase
             // Split each plane
             Cv2.Split(src, out var planes);
 
-            DisplayHelper.Show(nameof(MergeSplitSample), new[] { "planes 0", "planes 1", "planes 2" }, new[] { planes[0], planes[1], planes[2] });
+            DisplayHelper.Show(nameof(MergeSplitSample), ("planes 0", planes[0]), ("planes 1", planes[1]), ("planes 2", planes[2]));
 
             // Invert G plane
             Cv2.BitwiseNot(planes[1], planes[1]);
@@ -27,7 +27,7 @@ class MergeSplitSample : ConsoleTestBase
             using var merged = new Mat();
             Cv2.Merge(planes, merged);
 
-            DisplayHelper.Show(nameof(MergeSplitSample), new[] { "src", "merged" }, new[] { src, merged });
+            DisplayHelper.Show(nameof(MergeSplitSample), ("src", src), ("merged", merged));
         }
 
         // MixChannels Test
@@ -43,7 +43,7 @@ class MergeSplitSample : ConsoleTestBase
             int[] fromTo = { 0, 2, 1, 1, 2, 0, 3, 3 };
             Cv2.MixChannels(input, output, fromTo);
 
-            DisplayHelper.Show(nameof(MergeSplitSample), new[] { "rgba", "bgr", "alpha" }, new[] { rgba, bgr, alpha });
+            DisplayHelper.Show(nameof(MergeSplitSample), ("rgba", rgba), ("bgr", bgr), ("alpha", alpha));
         }
     }
 }

@@ -34,7 +34,7 @@ class CameraCaptureSample : ConsoleTestBase
             if (image.Empty())
                 break;
 
-            if (!DisplayHelper.ShowFrame(nameof(CameraCaptureSample), "capture", image, sleepTime))
+            if (!DisplayHelper.ShowFrame(nameof(CameraCaptureSample), waitMs: sleepTime, maxHeadlessFrames: 5, ("capture", image)))
                 break;
         }
     }

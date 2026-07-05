@@ -41,7 +41,7 @@ class MatOperations : ConsoleTestBase
         part = src.SubMat(50, 100, 400, 450);
         part.SetTo(128);
 
-        DisplayHelper.Show(nameof(MatOperations), "SubMat", src);
+        DisplayHelper.Show(nameof(MatOperations), ("SubMat", src));
 
         part.Dispose();
     }
@@ -63,7 +63,7 @@ class MatOperations : ConsoleTestBase
             src.ColRange(100, 200),
             new Size(7, 7), 20);
 
-        DisplayHelper.Show(nameof(MatOperations), "RowColRangeOperation", src);
+        DisplayHelper.Show(nameof(MatOperations), ("RowColRangeOperation", src));
     }
 
     /// <summary>
@@ -97,6 +97,6 @@ class MatOperations : ConsoleTestBase
             rowRange.SetTo(new Scalar(0, 0, 255));
         }
 
-        DisplayHelper.Show(nameof(MatOperations), "RowColOperation", src);
+        DisplayHelper.Show(nameof(MatOperations), ("RowColOperation", src));
     }
 }

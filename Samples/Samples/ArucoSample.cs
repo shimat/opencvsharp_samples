@@ -72,6 +72,6 @@ public class ArucoSample : ConsoleTestBase
         using var normalizedImage = new Mat();
         Cv2.WarpPerspective(src, normalizedImage, transform, new Size(1024, 1024));
 
-        DisplayHelper.Show(nameof(ArucoSample), new[] { "Original Image", $"Found {ids.Length} Markers", "Normalized Image" }, new[] { src, detectedMarkers, normalizedImage });
+        DisplayHelper.Show(nameof(ArucoSample), ("Original Image", src), ($"Found {ids.Length} Markers", detectedMarkers), ("Normalized Image", normalizedImage));
     }
 }

@@ -77,6 +77,6 @@ class DFT : ConsoleTestBase
         inverseTransform.ConvertTo(inverseTransform, MatType.CV_8U);
 
         // Show the result
-        DisplayHelper.Show(nameof(DFT), new[] { "Input Image", "Spectrum Magnitude", "Reconstructed by Inverse DFT" }, new[] { img, spectrum, inverseTransform });
+        DisplayHelper.Show(nameof(DFT), ("Input Image", img), ("Spectrum Magnitude", spectrum), ("Reconstructed by Inverse DFT", inverseTransform));
     }
 }

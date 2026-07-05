@@ -63,7 +63,7 @@ class OpticalFlowSample : ConsoleTestBase
             }
             Cv2.Add(view, mask, view);
 
-            if (!DisplayHelper.ShowFrame(nameof(OpticalFlowSample), "Lucas-Kanade optical flow", view, 30))
+            if (!DisplayHelper.ShowFrame(nameof(OpticalFlowSample), ("Lucas-Kanade optical flow", view)))
                 break;
 
             gray.CopyTo(prevGray);

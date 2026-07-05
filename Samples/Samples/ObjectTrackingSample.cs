@@ -37,7 +37,7 @@ class ObjectTrackingSample : ConsoleTestBase
             {
                 Cv2.Rectangle(view, box, Scalar.Red, 2);
             }
-            if (!DisplayHelper.ShowFrame(nameof(ObjectTrackingSample), "CSRT object tracking", view, 30))
+            if (!DisplayHelper.ShowFrame(nameof(ObjectTrackingSample), ("CSRT object tracking", view)))
                 break;
 
             capture.Read(frame);

@@ -36,6 +36,6 @@ class StarDetectorSample : ConsoleTestBase
             }
         }
 
-        DisplayHelper.Show(nameof(StarDetectorSample), "StarDetector features", dst);
+        DisplayHelper.Show(nameof(StarDetectorSample), ("StarDetector features", dst));
     }
 }

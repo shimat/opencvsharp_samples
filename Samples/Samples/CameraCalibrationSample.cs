@@ -87,10 +87,10 @@ class CameraCalibrationSample : ConsoleTestBase
         {
             using (img)
             {
-                DisplayHelper.Show(nameof(CameraCalibrationSample), "detected corners", img);
+                DisplayHelper.Show(nameof(CameraCalibrationSample), ("detected corners", img));
             }
         }
 
-        DisplayHelper.Show(nameof(CameraCalibrationSample), new[] { "original", "undistorted" }, new[] { sample, undistorted });
+        DisplayHelper.Show(nameof(CameraCalibrationSample), ("original", sample), ("undistorted", undistorted));
     }
 }

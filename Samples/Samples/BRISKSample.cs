@@ -36,6 +36,6 @@ class BRISKSample : ConsoleTestBase
             }
         }
 
-        DisplayHelper.Show(nameof(BRISKSample), "BRISK features", dst);
+        DisplayHelper.Show(nameof(BRISKSample), ("BRISK features", dst));
     }
 }

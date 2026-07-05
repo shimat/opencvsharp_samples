@@ -33,7 +33,7 @@ class SeamlessClone : ConsoleTestBase
                 SeamlessCloneFlags.MixedClone);
 
             DisplayHelper.Show(nameof(SeamlessClone),
-                new[] { "src", "dst", "mask", "blend NormalClone", "blend MonochromeTransfer", "blend MixedClone" },
-                new[] { src0, dst, mask, blend1, blend2, blend3 });
+                ("src", src0), ("dst", dst), ("mask", mask),
+                ("blend NormalClone", blend1), ("blend MonochromeTransfer", blend2), ("blend MixedClone", blend3));
         }
 }

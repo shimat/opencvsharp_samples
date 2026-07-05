@@ -33,6 +33,6 @@ class StereoMatchingSample : ConsoleTestBase
         Cv2.Normalize(disparityBm, disparityBmView, 0, 255, NormTypes.MinMax, MatType.CV_8U);
         Cv2.Normalize(disparitySgbm, disparitySgbmView, 0, 255, NormTypes.MinMax, MatType.CV_8U);
 
-        DisplayHelper.Show(nameof(StereoMatchingSample), new[] { "left", "right", "disparity (BM)", "disparity (SGBM)" }, new[] { left, right, disparityBmView, disparitySgbmView });
+        DisplayHelper.Show(nameof(StereoMatchingSample), ("left", left), ("right", right), ("disparity (BM)", disparityBmView), ("disparity (SGBM)", disparitySgbmView));
     }
 }

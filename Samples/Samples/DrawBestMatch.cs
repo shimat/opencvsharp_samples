@@ -48,6 +48,6 @@ class DrawBestMatchRectangle : ConsoleTestBase
         var drawingPoints = img2BoundsTransformed.Select(p => (Point)p).ToArray();
         Cv2.Polylines(view, new[] { drawingPoints }, true, Scalar.Red, 3);
 
-        DisplayHelper.Show(nameof(DrawBestMatchRectangle), "view", view);
+        DisplayHelper.Show(nameof(DrawBestMatchRectangle), ("view", view));
     }
 }

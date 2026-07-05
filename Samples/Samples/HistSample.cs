@@ -48,6 +48,6 @@ class HistSample : ConsoleTestBase
                 -1);
         }
 
-        DisplayHelper.Show(nameof(HistSample), new[] { "Image", "Histogram" }, new[] { src, render });
+        DisplayHelper.Show(nameof(HistSample), ("Image", src), ("Histogram", render));
     }
 }

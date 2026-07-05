@@ -18,7 +18,7 @@ class MSERSample : ConsoleTestBase
 
         CppStyleMSER(gray, dst);  // C++ style
 
-        DisplayHelper.Show(nameof(MSERSample), new[] { "MSER src", "MSER gray", "MSER dst" }, new[] { src, gray, dst });
+        DisplayHelper.Show(nameof(MSERSample), ("MSER src", src), ("MSER gray", gray), ("MSER dst", dst));
     }
 
     /// <summary>

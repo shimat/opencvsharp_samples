@@ -32,8 +32,8 @@ internal class KAZESample : ConsoleTestBase
         Cv2.DrawKeypoints(gray, akazeKeyPoints, dstAkaze);
 
         DisplayHelper.Show(nameof(KAZESample),
-            new[] { String.Format("KAZE [{0:F2}ms]", kazeTime.TotalMilliseconds), String.Format("AKAZE [{0:F2}ms]", akazeTime.TotalMilliseconds) },
-            new[] { dstKaze, dstAkaze });
+            (String.Format("KAZE [{0:F2}ms]", kazeTime.TotalMilliseconds), dstKaze),
+            (String.Format("AKAZE [{0:F2}ms]", akazeTime.TotalMilliseconds), dstAkaze));
     }
 
     private TimeSpan MeasureTime(Action action)

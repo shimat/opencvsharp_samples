@@ -23,6 +23,6 @@ class FASTSample : ConsoleTestBase
             Cv2.Circle(imgDst, (Point)kp.Pt, 3, Scalar.Red, -1, LineTypes.AntiAlias, 0);
         }
 
-        DisplayHelper.Show(nameof(FASTSample), "FAST", imgDst);
+        DisplayHelper.Show(nameof(FASTSample), ("FAST", imgDst));
     }
 }

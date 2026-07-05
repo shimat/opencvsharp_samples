@@ -65,7 +65,7 @@ class VideoWriterSample : ConsoleTestBase
                 if (frame.Empty())
                     break;
 
-                if (!DisplayHelper.ShowFrame(nameof(VideoWriterSample), "result", frame, sleepTime))
+                if (!DisplayHelper.ShowFrame(nameof(VideoWriterSample), waitMs: sleepTime, maxHeadlessFrames: 5, ("result", frame)))
                     break;
             }
         }

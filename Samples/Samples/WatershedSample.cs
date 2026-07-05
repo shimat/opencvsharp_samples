@@ -60,6 +60,6 @@ public class WatershedSample : ConsoleTestBase
             }
         }
 
-        DisplayHelper.Show(nameof(WatershedSample), "watershed transform", dstImg);
+        DisplayHelper.Show(nameof(WatershedSample), ("watershed transform", dstImg));
     }
 }

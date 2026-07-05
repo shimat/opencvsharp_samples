@@ -1,4 +1,5 @@
-﻿using SampleBase.Console;
+﻿using Microsoft.Extensions.Configuration;
+using SampleBase.Console;
 using SampleBase.Interfaces;
 using System;
 using System.Linq;
@@ -8,9 +9,19 @@ namespace SamplesCore;
 public static class Program
 {
     [STAThread]
-    public static void Main()
+    public static void Main(string[] args)
     {
         Console.WriteLine("Runtime Version = {0}", Environment.Version);
+
+        // Env var: OPENCV_SAMPLES_HEADLESS=1 (via Configuration rather than a raw
+        // Environment.GetEnvironmentVariable lookup). CLI: --headless.
+        // AddCommandLine doesn't support a bare value-less switch meaning "true", so that part is
+        // just a plain args check.
+        var configuration = new ConfigurationBuilder()
+            .AddEnvironmentVariables(prefix: "OPENCV_SAMPLES_")
+            .Build();
+        bool headless = args.Contains("--headless") || configuration["Headless"] is "1" or "true";
+        DisplayHelper.Initialize(headless);
 
         ITestManager testManager = new ConsoleTestManager();
 

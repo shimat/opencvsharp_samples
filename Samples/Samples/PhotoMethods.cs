@@ -30,7 +30,12 @@ class PhotoMethods : ConsoleTestBase
 
         DisplayHelper.Show(
             nameof(PhotoMethods),
-            new[] { "src", "edgePreservingFilter - NormconvFilter", "edgePreservingFilter - RecursFilter", "detailEnhance", "pencilSketch grayscale", "pencilSketch color", "stylized" },
-            new[] { src, normconv, recursFiltered, detailEnhance, pencil1, pencil2, stylized });
+            ("src", src),
+            ("edgePreservingFilter - NormconvFilter", normconv),
+            ("edgePreservingFilter - RecursFilter", recursFiltered),
+            ("detailEnhance", detailEnhance),
+            ("pencilSketch grayscale", pencil1),
+            ("pencilSketch color", pencil2),
+            ("stylized", stylized));
     }
 }

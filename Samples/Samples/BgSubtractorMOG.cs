@@ -20,7 +20,7 @@ class BgSubtractorMOG : ConsoleTestBase
                 break;
             mog.Apply(frame, fg, 0.01);
 
-            if (!DisplayHelper.ShowFrame(nameof(BgSubtractorMOG), new[] { "src", "dst" }, new[] { frame, fg }, 50))
+            if (!DisplayHelper.ShowFrame(nameof(BgSubtractorMOG), waitMs: 50, maxHeadlessFrames: 5, ("src", frame), ("dst", fg)))
                 break;
         }
     }

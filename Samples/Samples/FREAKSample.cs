@@ -42,6 +42,6 @@ class FREAKSample : ConsoleTestBase
             }
         }
 
-        DisplayHelper.Show(nameof(FREAKSample), "FREAK", dst);
+        DisplayHelper.Show(nameof(FREAKSample), ("FREAK", dst));
     }
 }

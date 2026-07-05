@@ -106,7 +106,7 @@ class MDS : ConsoleTestBase
                 var textPos = new Point(x + 5, y + 10);
                 Cv2.PutText(img, CityNames[c], textPos, HersheyFonts.HersheySimplex, 0.5, Scalar.White);
             }
-            DisplayHelper.Show(nameof(MDS), "City Location Estimation", img);
+            DisplayHelper.Show(nameof(MDS), ("City Location Estimation", img));
         }
     }
 

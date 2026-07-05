@@ -33,6 +33,6 @@ internal class BinarizerSample : ConsoleTestBase
         sw.Stop();
         Console.WriteLine($"Nick {sw.ElapsedMilliseconds} ms");
 
-        DisplayHelper.Show(nameof(BinarizerSample), new[] { "src", "Niblack", "Sauvola", "Nick" }, new[] { src, niblack, sauvola, nick });
+        DisplayHelper.Show(nameof(BinarizerSample), ("src", src), ("Niblack", niblack), ("Sauvola", sauvola), ("Nick", nick));
     }
 }

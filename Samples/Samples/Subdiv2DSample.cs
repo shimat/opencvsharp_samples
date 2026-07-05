@@ -55,6 +55,6 @@ class Subdiv2DSample : ConsoleTestBase
             Cv2.Line(delaunay, p1, p2, new Scalar(64, 255, 128), 1);
         }
 
-        DisplayHelper.Show(nameof(Subdiv2DSample), new[] { "voronoi", "delaunay" }, new[] { vonoroi, delaunay });
+        DisplayHelper.Show(nameof(Subdiv2DSample), ("voronoi", vonoroi), ("delaunay", delaunay));
     }
 }

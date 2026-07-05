@@ -29,7 +29,7 @@ class VideoCaptureSample : ConsoleTestBase
                 if(image.Empty())
                     break;
 
-                if (!DisplayHelper.ShowFrame(nameof(VideoCaptureSample), "capture", image, sleepTime))
+                if (!DisplayHelper.ShowFrame(nameof(VideoCaptureSample), waitMs: sleepTime, maxHeadlessFrames: 5, ("capture", image)))
                     break;
             }
         }
