@@ -1,6 +1,7 @@
 ﻿using OpenCvSharp;
 using SampleBase;
 using SampleBase.Console;
+using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
@@ -9,7 +10,7 @@ namespace SamplesCore;
 /// </summary>
 class SeamlessClone : ConsoleTestBase
 {
-    public override void RunTest()
+    public override void RunTest(DisplayHelper display)
     {
             Mat src = new Mat(ImagePath.Girl, ImreadModes.Color);
             Mat dst = new Mat(ImagePath.Fruits, ImreadModes.Color);
@@ -32,7 +33,7 @@ class SeamlessClone : ConsoleTestBase
                 src0, dst, mask, new Point(260, 270), blend3,
                 SeamlessCloneFlags.MixedClone);
 
-            DisplayHelper.Show(nameof(SeamlessClone),
+            display.Show(
                 ("src", src0), ("dst", dst), ("mask", mask),
                 ("blend NormalClone", blend1), ("blend MonochromeTransfer", blend2), ("blend MixedClone", blend3));
         }

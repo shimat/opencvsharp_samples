@@ -2,6 +2,7 @@
 using OpenCvSharp;
 using SampleBase;
 using SampleBase.Console;
+using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
@@ -11,9 +12,9 @@ namespace SamplesCore;
 /// <remarks>http://opencv.jp/sample/segmentation_and_connection.html#watershed</remarks>
 public class WatershedSample : ConsoleTestBase
 {
-    public override void RunTest()
+    public override void RunTest(DisplayHelper display)
     {
-        if (DisplayHelper.IsHeadless)
+        if (display.IsHeadless)
         {
             PrintWarning("Skipping: this sample requires interactively marking seed points with the mouse and cannot be meaningfully verified headlessly.");
             return;
@@ -60,6 +61,6 @@ public class WatershedSample : ConsoleTestBase
             }
         }
 
-        DisplayHelper.Show(nameof(WatershedSample), ("watershed transform", dstImg));
+        display.Show(("watershed transform", dstImg));
     }
 }

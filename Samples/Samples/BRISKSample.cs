@@ -2,6 +2,7 @@
 using OpenCvSharp.XFeatures2D;
 using SampleBase;
 using SampleBase.Console;
+using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
@@ -10,7 +11,7 @@ namespace SamplesCore;
 /// </summary>
 class BRISKSample : ConsoleTestBase
 {
-    public override void RunTest()
+    public override void RunTest(DisplayHelper display)
     {
         var gray = new Mat(ImagePath.Penguin1, ImreadModes.Grayscale);
         var dst = new Mat(ImagePath.Penguin1, ImreadModes.Color);
@@ -36,6 +37,6 @@ class BRISKSample : ConsoleTestBase
             }
         }
 
-        DisplayHelper.Show(nameof(BRISKSample), ("BRISK features", dst));
+        display.Show(("BRISK features", dst));
     }
 }

@@ -21,7 +21,7 @@ namespace SampleBase.Console
             msgPrinter = new ConsoleMessagePrinter();
         }
 
-        public abstract void RunTest();
+        public abstract void RunTest(DisplayHelper display);
 
         public void PrintInfo(string message, bool newLine = true)
         {

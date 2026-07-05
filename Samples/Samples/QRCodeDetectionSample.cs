@@ -2,6 +2,7 @@ using System;
 using OpenCvSharp;
 using SampleBase;
 using SampleBase.Console;
+using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
@@ -10,7 +11,7 @@ namespace SamplesCore;
 /// </summary>
 class QRCodeDetectionSample : ConsoleTestBase
 {
-    public override void RunTest()
+    public override void RunTest(DisplayHelper display)
     {
         using var src = new Mat(ImagePath.QrCode, ImreadModes.Color);
 
@@ -29,6 +30,6 @@ class QRCodeDetectionSample : ConsoleTestBase
             ? "No QR code found."
             : $"Decoded text: {text}");
 
-        DisplayHelper.Show(nameof(QRCodeDetectionSample), ("detected", dst), ("rectified", straightQrCode));
+        display.Show(("detected", dst), ("rectified", straightQrCode));
     }
 }

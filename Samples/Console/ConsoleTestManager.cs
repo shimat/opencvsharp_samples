@@ -10,11 +10,13 @@ namespace SampleBase.Console
     {
         private readonly List<ITestBase> tests;
         private readonly IMessagePrinter msgPrinter;
+        private readonly bool isHeadless;
 
-        public ConsoleTestManager()
+        public ConsoleTestManager(bool isHeadless = false)
         {
             tests = new List<ITestBase>();
             msgPrinter = new ConsoleMessagePrinter();
+            this.isHeadless = isHeadless;
         }
 
         public void AddTest(ITestBase test)
@@ -124,10 +126,11 @@ namespace SampleBase.Console
                     var testName = GetNameOfTest(test);
                     msgPrinter.PrintSuccess($"{testName} start executing...");
 
+                    var display = new DisplayHelper(testName, isHeadless);
                     try
                     {
                         var watch = Stopwatch.StartNew();
-                        test.RunTest();
+                        test.RunTest(display);
                         watch.Stop();
                         msgPrinter.PrintSuccess($"{testName} completed, time cost:{watch.ElapsedMilliseconds}ms\n");
                     }
@@ -138,7 +141,7 @@ namespace SampleBase.Console
                     }
                     finally
                     {
-                        DisplayHelper.DestroyAll();
+                        display.DestroyAll();
                     }
 
                     input = PrintNamesAndRead();

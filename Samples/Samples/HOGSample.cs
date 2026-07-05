@@ -3,6 +3,7 @@ using System.Diagnostics;
 using OpenCvSharp;
 using SampleBase;
 using SampleBase.Console;
+using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
@@ -15,7 +16,7 @@ internal class HOGSample : ConsoleTestBase
     {
     }
 
-    public override void RunTest()
+    public override void RunTest(DisplayHelper display)
     {
         using var img = Cv2.ImRead(ImagePath.Asahiyama, ImreadModes.Color);
 
@@ -50,6 +51,6 @@ internal class HOGSample : ConsoleTestBase
             Cv2.Rectangle(img, r.TopLeft, r.BottomRight, Scalar.Red, 3);
         }
 
-        DisplayHelper.Show(nameof(HOGSample), ("people detector", img));
+        display.Show(("people detector", img));
     }
 }

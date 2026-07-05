@@ -2,6 +2,7 @@
 using OpenCvSharp.XFeatures2D;
 using SampleBase;
 using SampleBase.Console;
+using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
@@ -11,16 +12,16 @@ namespace SamplesCore;
 /// </summary>
 class SiftSurfSample : ConsoleTestBase
 {
-    public override void RunTest()
+    public override void RunTest(DisplayHelper display)
     {
         using var src1 = new Mat(ImagePath.Match1, ImreadModes.Color);
         using var src2 = new Mat(ImagePath.Match2, ImreadModes.Color);
 
-        MatchBySift(src1, src2);
-        MatchBySurf(src1, src2);
+        MatchBySift(src1, src2, display);
+        MatchBySurf(src1, src2, display);
     }
 
-    private void MatchBySift(Mat src1, Mat src2)
+    private void MatchBySift(Mat src1, Mat src2, DisplayHelper display)
     {
         using var gray1 = new Mat();
         using var gray2 = new Mat();
@@ -48,11 +49,11 @@ class SiftSurfSample : ConsoleTestBase
         using var flannView = new Mat();
         Cv2.DrawMatches(gray1, keypoints1, gray2, keypoints2, flannMatches, flannView);
 
-        DisplayHelper.Show(nameof(SiftSurfSample),
+        display.Show(
             ("SIFT matching (by BFMather)", bfView), ("SIFT matching (by FlannBasedMatcher)", flannView));
     }
 
-    private void MatchBySurf(Mat src1, Mat src2)
+    private void MatchBySurf(Mat src1, Mat src2, DisplayHelper display)
     {
         using var gray1 = new Mat();
         using var gray2 = new Mat();
@@ -80,7 +81,7 @@ class SiftSurfSample : ConsoleTestBase
         using var flannView = new Mat();
         Cv2.DrawMatches(gray1, keypoints1, gray2, keypoints2, flannMatches, flannView);
 
-        DisplayHelper.Show(nameof(SiftSurfSample),
+        display.Show(
             ("SURF matching (by BFMather)", bfView), ("SURF matching (by FlannBasedMatcher)", flannView));
     }
 

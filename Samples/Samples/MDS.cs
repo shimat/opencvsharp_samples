@@ -1,6 +1,7 @@
 ﻿using System;
 using OpenCvSharp;
 using SampleBase.Console;
+using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
@@ -42,7 +43,7 @@ class MDS : ConsoleTestBase
     /// <summary>
     /// Classical Multidimensional Scaling
     /// </summary>
-    public override void RunTest()
+    public override void RunTest(DisplayHelper display)
     {
         // creates distance matrix
         int size = CityDistance.GetLength(0);
@@ -106,7 +107,7 @@ class MDS : ConsoleTestBase
                 var textPos = new Point(x + 5, y + 10);
                 Cv2.PutText(img, CityNames[c], textPos, HersheyFonts.HersheySimplex, 0.5, Scalar.White);
             }
-            DisplayHelper.Show(nameof(MDS), ("City Location Estimation", img));
+            display.Show(("City Location Estimation", img));
         }
     }
 

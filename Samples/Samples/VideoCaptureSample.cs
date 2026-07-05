@@ -2,6 +2,7 @@
 using OpenCvSharp;
 using SampleBase;
 using SampleBase.Console;
+using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
@@ -10,7 +11,7 @@ namespace SamplesCore;
 /// </summary>
 class VideoCaptureSample : ConsoleTestBase
 {
-    public override void RunTest()
+    public override void RunTest(DisplayHelper display)
     {
             // Opens MP4 file (ffmpeg is probably needed)
             using var capture = new VideoCapture(MoviePath.Bach);
@@ -29,7 +30,7 @@ class VideoCaptureSample : ConsoleTestBase
                 if(image.Empty())
                     break;
 
-                if (!DisplayHelper.ShowFrame(nameof(VideoCaptureSample), waitMs: sleepTime, maxHeadlessFrames: 5, ("capture", image)))
+                if (!display.ShowFrame(waitMs: sleepTime, maxHeadlessFrames: 5, ("capture", image)))
                     break;
             }
         }

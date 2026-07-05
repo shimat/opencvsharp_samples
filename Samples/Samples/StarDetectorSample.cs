@@ -2,6 +2,7 @@
 using OpenCvSharp.XFeatures2D;
 using SampleBase;
 using SampleBase.Console;
+using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
@@ -10,7 +11,7 @@ namespace SamplesCore;
 /// </summary>
 class StarDetectorSample : ConsoleTestBase
 {
-    public override void RunTest()
+    public override void RunTest(DisplayHelper display)
     {
         var dst = new Mat(ImagePath.Newspaper, ImreadModes.Color);
         var gray = new Mat(ImagePath.Newspaper, ImreadModes.Grayscale);
@@ -36,6 +37,6 @@ class StarDetectorSample : ConsoleTestBase
             }
         }
 
-        DisplayHelper.Show(nameof(StarDetectorSample), ("StarDetector features", dst));
+        display.Show(("StarDetector features", dst));
     }
 }

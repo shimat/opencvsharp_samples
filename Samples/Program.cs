@@ -21,9 +21,8 @@ public static class Program
             .AddEnvironmentVariables(prefix: "OPENCV_SAMPLES_")
             .Build();
         bool headless = args.Contains("--headless") || configuration["Headless"] is "1" or "true";
-        DisplayHelper.Initialize(headless);
 
-        ITestManager testManager = new ConsoleTestManager();
+        ITestManager testManager = new ConsoleTestManager(headless);
 
         testManager.AddTests(TestDiscovery.DiscoverTests().OrderBy(t => t.Name).ToArray());
 

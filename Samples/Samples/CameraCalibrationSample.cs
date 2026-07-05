@@ -4,6 +4,7 @@ using System.Linq;
 using OpenCvSharp;
 using SampleBase;
 using SampleBase.Console;
+using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
@@ -20,7 +21,7 @@ class CameraCalibrationSample : ConsoleTestBase
         .Select(i => string.Format(ImagePath.CalibrationLeft, i))
         .ToArray();
 
-    public override void RunTest()
+    public override void RunTest(DisplayHelper display)
     {
         var objectPoints = new List<Point3f[]>();
         var imagePoints = new List<Point2f[]>();
@@ -87,10 +88,10 @@ class CameraCalibrationSample : ConsoleTestBase
         {
             using (img)
             {
-                DisplayHelper.Show(nameof(CameraCalibrationSample), ("detected corners", img));
+                display.Show(("detected corners", img));
             }
         }
 
-        DisplayHelper.Show(nameof(CameraCalibrationSample), ("original", sample), ("undistorted", undistorted));
+        display.Show(("original", sample), ("undistorted", undistorted));
     }
 }

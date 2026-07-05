@@ -1,6 +1,7 @@
 ﻿using OpenCvSharp;
 using SampleBase;
 using SampleBase.Console;
+using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
@@ -9,7 +10,7 @@ namespace SamplesCore;
 /// </summary>
 class FASTSample : ConsoleTestBase
 {
-    public override void RunTest()
+    public override void RunTest(DisplayHelper display)
     {
         using Mat imgSrc = new Mat(ImagePath.Maltese, ImreadModes.Color);
         using Mat imgGray = new Mat();
@@ -23,6 +24,6 @@ class FASTSample : ConsoleTestBase
             Cv2.Circle(imgDst, (Point)kp.Pt, 3, Scalar.Red, -1, LineTypes.AntiAlias, 0);
         }
 
-        DisplayHelper.Show(nameof(FASTSample), ("FAST", imgDst));
+        display.Show(("FAST", imgDst));
     }
 }

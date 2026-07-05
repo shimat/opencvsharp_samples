@@ -6,6 +6,7 @@ using OpenCvSharp;
 using OpenCvSharp.XFeatures2D;
 using SampleBase;
 using SampleBase.Console;
+using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
@@ -19,7 +20,7 @@ class KAZESample2 : ConsoleTestBase
         return new Point2d(((int)pf.X), ((int)pf.Y));
     }
 
-    public override void RunTest()
+    public override void RunTest(DisplayHelper display)
     {
         using var img1 = new Mat(ImagePath.SurfBox);
         using var img2 = new Mat(ImagePath.SurfBoxinscene);
@@ -99,7 +100,7 @@ class KAZESample2 : ConsoleTestBase
                 //Cv2.Line(img3, scene_corners[2] + new Point2d(img1.Cols, 0), scene_corners[3] + new Point2d(img1.Cols, 0), Scalar.LimeGreen);
                 //Cv2.Line(img3, scene_corners[3] + new Point2d(img1.Cols, 0), scene_corners[0] + new Point2d(img1.Cols, 0), Scalar.LimeGreen);
 
-                DisplayHelper.Show(nameof(KAZESample2), ("img3", img3));
+                display.Show(("img3", img3));
             }
         }
     }

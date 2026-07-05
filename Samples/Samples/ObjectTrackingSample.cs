@@ -2,6 +2,7 @@ using OpenCvSharp;
 using OpenCvSharp.Tracking;
 using SampleBase;
 using SampleBase.Console;
+using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
@@ -14,7 +15,7 @@ class ObjectTrackingSample : ConsoleTestBase
     // Bounding box around the puppy in the first frame
     private static readonly Rect InitialBox = new(300, 150, 180, 200);
 
-    public override void RunTest()
+    public override void RunTest(DisplayHelper display)
     {
         using var capture = new VideoCapture(MoviePath.Hara);
         if (!capture.IsOpened())
@@ -37,7 +38,7 @@ class ObjectTrackingSample : ConsoleTestBase
             {
                 Cv2.Rectangle(view, box, Scalar.Red, 2);
             }
-            if (!DisplayHelper.ShowFrame(nameof(ObjectTrackingSample), ("CSRT object tracking", view)))
+            if (!display.ShowFrame(("CSRT object tracking", view)))
                 break;
 
             capture.Read(frame);

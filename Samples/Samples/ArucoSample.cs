@@ -4,12 +4,13 @@ using OpenCvSharp;
 using OpenCvSharp.Aruco;
 using SampleBase;
 using SampleBase.Console;
+using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
 public class ArucoSample : ConsoleTestBase
 {
-    public override void RunTest()
+    public override void RunTest(DisplayHelper display)
     {
         // The locations of the markers in the image at FilePath.Image.Aruco.
         const int upperLeftMarkerId = 160;
@@ -72,6 +73,6 @@ public class ArucoSample : ConsoleTestBase
         using var normalizedImage = new Mat();
         Cv2.WarpPerspective(src, normalizedImage, transform, new Size(1024, 1024));
 
-        DisplayHelper.Show(nameof(ArucoSample), ("Original Image", src), ($"Found {ids.Length} Markers", detectedMarkers), ("Normalized Image", normalizedImage));
+        display.Show(("Original Image", src), ($"Found {ids.Length} Markers", detectedMarkers), ("Normalized Image", normalizedImage));
     }
 }

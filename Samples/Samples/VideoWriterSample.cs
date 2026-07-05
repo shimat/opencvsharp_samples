@@ -2,6 +2,7 @@
 using OpenCvSharp;
 using SampleBase;
 using SampleBase.Console;
+using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
@@ -10,7 +11,7 @@ namespace SamplesCore;
 /// </summary>
 class VideoWriterSample : ConsoleTestBase
 {
-    public override void RunTest()
+    public override void RunTest(DisplayHelper display)
     {
         const string OutVideoFile = "out.avi";
 
@@ -65,7 +66,7 @@ class VideoWriterSample : ConsoleTestBase
                 if (frame.Empty())
                     break;
 
-                if (!DisplayHelper.ShowFrame(nameof(VideoWriterSample), waitMs: sleepTime, maxHeadlessFrames: 5, ("result", frame)))
+                if (!display.ShowFrame(waitMs: sleepTime, maxHeadlessFrames: 5, ("result", frame)))
                     break;
             }
         }

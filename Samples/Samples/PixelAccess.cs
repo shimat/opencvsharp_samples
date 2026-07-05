@@ -3,6 +3,7 @@ using System.Diagnostics;
 using OpenCvSharp;
 using SampleBase;
 using SampleBase.Console;
+using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
@@ -11,7 +12,7 @@ namespace SamplesCore;
 /// </summary>
 class PixelAccess : ConsoleTestBase
 {
-    public override void RunTest()
+    public override void RunTest(DisplayHelper display)
     {
         Console.WriteLine("Get/Set: {0}ms", MeasureTime(GetSet));
         Console.WriteLine("GenericIndexer: {0}ms", MeasureTime(GenericIndexer));

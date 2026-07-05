@@ -4,6 +4,7 @@ using OpenCvSharp;
 using OpenCvSharp.XFeatures2D;
 using SampleBase;
 using SampleBase.Console;
+using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
@@ -12,7 +13,7 @@ namespace SamplesCore;
 /// </summary>
 internal class KAZESample : ConsoleTestBase
 {
-    public override void RunTest()
+    public override void RunTest(DisplayHelper display)
     {
         var gray = new Mat(ImagePath.Cat, ImreadModes.Grayscale);
         var kaze = KAZE.Create();
@@ -31,7 +32,7 @@ internal class KAZESample : ConsoleTestBase
         Cv2.DrawKeypoints(gray, kazeKeyPoints, dstKaze);
         Cv2.DrawKeypoints(gray, akazeKeyPoints, dstAkaze);
 
-        DisplayHelper.Show(nameof(KAZESample),
+        display.Show(
             (String.Format("KAZE [{0:F2}ms]", kazeTime.TotalMilliseconds), dstKaze),
             (String.Format("AKAZE [{0:F2}ms]", akazeTime.TotalMilliseconds), dstAkaze));
     }

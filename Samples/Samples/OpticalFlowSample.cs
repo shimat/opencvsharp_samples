@@ -3,6 +3,7 @@ using System.Linq;
 using OpenCvSharp;
 using SampleBase;
 using SampleBase.Console;
+using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
@@ -16,7 +17,7 @@ class OpticalFlowSample : ConsoleTestBase
     private static readonly TermCriteria Criteria =
         new(CriteriaTypes.Eps | CriteriaTypes.Count, 10, 0.03);
 
-    public override void RunTest()
+    public override void RunTest(DisplayHelper display)
     {
         using var capture = new VideoCapture(MoviePath.Bach);
         if (!capture.IsOpened())
@@ -63,7 +64,7 @@ class OpticalFlowSample : ConsoleTestBase
             }
             Cv2.Add(view, mask, view);
 
-            if (!DisplayHelper.ShowFrame(nameof(OpticalFlowSample), ("Lucas-Kanade optical flow", view)))
+            if (!display.ShowFrame(("Lucas-Kanade optical flow", view)))
                 break;
 
             gray.CopyTo(prevGray);

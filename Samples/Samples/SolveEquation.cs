@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using OpenCvSharp;
 using SampleBase.Console;
+using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
@@ -10,7 +11,7 @@ namespace SamplesCore;
 /// </summary>
 class SolveEquation : ConsoleTestBase
 {
-    public override void RunTest()
+    public override void RunTest(DisplayHelper display)
     {
         ByMat();
         ByNormalArray();

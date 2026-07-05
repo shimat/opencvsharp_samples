@@ -2,6 +2,7 @@
 using System.Linq;
 using OpenCvSharp;
 using SampleBase.Console;
+using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
@@ -10,7 +11,7 @@ namespace SamplesCore;
 /// </summary>
 class Subdiv2DSample : ConsoleTestBase
 {
-    public override void RunTest()
+    public override void RunTest(DisplayHelper display)
     {
         const int Size = 600;
 
@@ -55,6 +56,6 @@ class Subdiv2DSample : ConsoleTestBase
             Cv2.Line(delaunay, p1, p2, new Scalar(64, 255, 128), 1);
         }
 
-        DisplayHelper.Show(nameof(Subdiv2DSample), ("voronoi", vonoroi), ("delaunay", delaunay));
+        display.Show(("voronoi", vonoroi), ("delaunay", delaunay));
     }
 }

@@ -1,6 +1,7 @@
 using OpenCvSharp;
 using SampleBase;
 using SampleBase.Console;
+using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
@@ -10,7 +11,7 @@ namespace SamplesCore;
 /// <remarks>https://docs.opencv.org/4.x/dd/d53/tutorial_py_depthmap.html</remarks>
 class StereoMatchingSample : ConsoleTestBase
 {
-    public override void RunTest()
+    public override void RunTest(DisplayHelper display)
     {
         using var left = new Mat(ImagePath.TsukubaLeft, ImreadModes.Grayscale);
         using var right = new Mat(ImagePath.TsukubaRight, ImreadModes.Grayscale);
@@ -33,6 +34,6 @@ class StereoMatchingSample : ConsoleTestBase
         Cv2.Normalize(disparityBm, disparityBmView, 0, 255, NormTypes.MinMax, MatType.CV_8U);
         Cv2.Normalize(disparitySgbm, disparitySgbmView, 0, 255, NormTypes.MinMax, MatType.CV_8U);
 
-        DisplayHelper.Show(nameof(StereoMatchingSample), ("left", left), ("right", right), ("disparity (BM)", disparityBmView), ("disparity (SGBM)", disparitySgbmView));
+        display.Show(("left", left), ("right", right), ("disparity (BM)", disparityBmView), ("disparity (SGBM)", disparitySgbmView));
     }
 }

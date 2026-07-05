@@ -2,6 +2,7 @@
 using OpenCvSharp;
 using SampleBase;
 using SampleBase.Console;
+using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
@@ -10,7 +11,7 @@ namespace SamplesCore;
 /// </summary>
 class ConnectedComponentsSample : ConsoleTestBase
 {
-    public override void RunTest()
+    public override void RunTest(DisplayHelper display)
     {
         using var src = new Mat(ImagePath.Shapes, ImreadModes.Color);
         using var gray = new Mat();
@@ -39,7 +40,7 @@ class ConnectedComponentsSample : ConsoleTestBase
         var filtered = new Mat();
         cc.FilterByBlob(src, filtered, maxBlob);
 
-        DisplayHelper.Show(nameof(ConnectedComponentsSample),
+        display.Show(
             ("src", src), ("binary", binary), ("labels", labelView), ("bonding boxes", rectView), ("maximum blob", filtered));
     }
 }

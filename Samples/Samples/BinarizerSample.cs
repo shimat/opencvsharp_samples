@@ -4,12 +4,13 @@ using OpenCvSharp;
 using OpenCvSharp.XImgProc;
 using SampleBase;
 using SampleBase.Console;
+using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
 internal class BinarizerSample : ConsoleTestBase
 {
-    public override void RunTest()
+    public override void RunTest(DisplayHelper display)
     {
         using var src = Cv2.ImRead(ImagePath.Binarization, ImreadModes.Grayscale);
         using var niblack = new Mat();
@@ -33,6 +34,6 @@ internal class BinarizerSample : ConsoleTestBase
         sw.Stop();
         Console.WriteLine($"Nick {sw.ElapsedMilliseconds} ms");
 
-        DisplayHelper.Show(nameof(BinarizerSample), ("src", src), ("Niblack", niblack), ("Sauvola", sauvola), ("Nick", nick));
+        display.Show(("src", src), ("Niblack", niblack), ("Sauvola", sauvola), ("Nick", nick));
     }
 }

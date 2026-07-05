@@ -2,6 +2,7 @@
 using OpenCvSharp;
 using OpenCvSharp.Flann;
 using SampleBase.Console;
+using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
@@ -10,7 +11,7 @@ namespace SamplesCore;
 /// </summary>
 class FlannSample : ConsoleTestBase
 {
-    public override void RunTest()
+    public override void RunTest(DisplayHelper display)
     {
         Console.WriteLine("===== FlannTest =====");
 

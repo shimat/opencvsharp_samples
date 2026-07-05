@@ -2,6 +2,7 @@
 using OpenCvSharp;
 using SampleBase;
 using SampleBase.Console;
+using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
@@ -10,17 +11,17 @@ namespace SamplesCore;
 /// </summary>
 class MatOperations : ConsoleTestBase
 {
-    public override void RunTest()
+    public override void RunTest(DisplayHelper display)
     {
-        SubMat();
-        RowColRangeOperation();
-        RowColOperation();
+        SubMat(display);
+        RowColRangeOperation(display);
+        RowColOperation(display);
     }
 
     /// <summary>
     /// Submatrix operations
     /// </summary>
-    private static void SubMat()
+    private static void SubMat(DisplayHelper display)
     {
         using var src = Cv2.ImRead(ImagePath.Fruits);
 
@@ -41,7 +42,7 @@ class MatOperations : ConsoleTestBase
         part = src.SubMat(50, 100, 400, 450);
         part.SetTo(128);
 
-        DisplayHelper.Show(nameof(MatOperations), ("SubMat", src));
+        display.Show(("SubMat", src));
 
         part.Dispose();
     }
@@ -49,7 +50,7 @@ class MatOperations : ConsoleTestBase
     /// <summary>
     /// Submatrix operations
     /// </summary>
-    private static void RowColRangeOperation()
+    private static void RowColRangeOperation(DisplayHelper display)
     {
         using var src = Cv2.ImRead(ImagePath.Fruits);
 
@@ -63,13 +64,13 @@ class MatOperations : ConsoleTestBase
             src.ColRange(100, 200),
             new Size(7, 7), 20);
 
-        DisplayHelper.Show(nameof(MatOperations), ("RowColRangeOperation", src));
+        display.Show(("RowColRangeOperation", src));
     }
 
     /// <summary>
     /// Submatrix expression operations
     /// </summary>
-    private static void RowColOperation()
+    private static void RowColOperation(DisplayHelper display)
     {
         using var src = Cv2.ImRead(ImagePath.Fruits);
 
@@ -97,6 +98,6 @@ class MatOperations : ConsoleTestBase
             rowRange.SetTo(new Scalar(0, 0, 255));
         }
 
-        DisplayHelper.Show(nameof(MatOperations), ("RowColOperation", src));
+        display.Show(("RowColOperation", src));
     }
 }

@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using OpenCvSharp;
 using SampleBase;
 using SampleBase.Console;
+using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
 class Stitching : ConsoleTestBase
 {
-    public override void RunTest()
+    public override void RunTest(DisplayHelper display)
     {
-        Mat[] images = SelectStitchingImages(200, 200, 10);
+        Mat[] images = SelectStitchingImages(200, 200, 10, display);
 
         using var stitcher = Stitcher.Create(Stitcher.Mode.Scans);
         using var pano = new Mat();
@@ -20,7 +21,7 @@ class Stitching : ConsoleTestBase
         var status = stitcher.Stitch(images, pano);
         Console.WriteLine(" finish (status:{0})", status);
 
-        DisplayHelper.Show(nameof(Stitching), ("pano", pano));
+        display.Show(("pano", pano));
 
         foreach (var image in images)
         {
@@ -28,7 +29,7 @@ class Stitching : ConsoleTestBase
         }
     }
 
-    private static Mat[] SelectStitchingImages(int width, int height, int count)
+    private static Mat[] SelectStitchingImages(int width, int height, int count, DisplayHelper display)
     {
         using var source = new Mat(ImagePath.Asahiyama, ImreadModes.Color);
         using var result = source.Clone();
@@ -51,7 +52,7 @@ class Stitching : ConsoleTestBase
             mats.Add(m.Clone());
         }
 
-        DisplayHelper.Show(nameof(Stitching), ("stitching", result));
+        display.Show(("stitching", result));
 
         return mats.ToArray();
     }

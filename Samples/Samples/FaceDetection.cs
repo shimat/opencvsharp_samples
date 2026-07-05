@@ -1,6 +1,7 @@
 ﻿using OpenCvSharp;
 using SampleBase;
 using SampleBase.Console;
+using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
@@ -10,7 +11,7 @@ namespace SamplesCore;
 /// </summary>
 class FaceDetection : ConsoleTestBase
 {
-    public override void RunTest()
+    public override void RunTest(DisplayHelper display)
     {
         // Load the cascades
         using var haarCascade = new CascadeClassifier(TextPath.HaarCascade);
@@ -20,7 +21,7 @@ class FaceDetection : ConsoleTestBase
         Mat haarResult = DetectFace(haarCascade);
         Mat lbpResult = DetectFace(lbpCascade);
 
-        DisplayHelper.Show(nameof(FaceDetection), ("Faces by Haar", haarResult), ("Faces by LBP", lbpResult));
+        display.Show(("Faces by Haar", haarResult), ("Faces by LBP", lbpResult));
     }
 
     /// <summary>

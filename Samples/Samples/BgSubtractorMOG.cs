@@ -1,12 +1,13 @@
 ﻿using OpenCvSharp;
 using SampleBase;
 using SampleBase.Console;
+using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
 class BgSubtractorMOG : ConsoleTestBase
 {
-    public override void RunTest()
+    public override void RunTest(DisplayHelper display)
     {
         using var capture = new VideoCapture(MoviePath.Bach);
         using var mog = BackgroundSubtractorMOG.Create();
@@ -20,7 +21,7 @@ class BgSubtractorMOG : ConsoleTestBase
                 break;
             mog.Apply(frame, fg, 0.01);
 
-            if (!DisplayHelper.ShowFrame(nameof(BgSubtractorMOG), waitMs: 50, maxHeadlessFrames: 5, ("src", frame), ("dst", fg)))
+            if (!display.ShowFrame(waitMs: 50, maxHeadlessFrames: 5, ("src", frame), ("dst", fg)))
                 break;
         }
     }

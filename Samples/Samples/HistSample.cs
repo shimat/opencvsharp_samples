@@ -1,6 +1,7 @@
 ﻿using OpenCvSharp;
 using SampleBase;
 using SampleBase.Console;
+using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
@@ -10,7 +11,7 @@ namespace SamplesCore;
 /// </summary>
 class HistSample : ConsoleTestBase
 {
-    public override void RunTest()
+    public override void RunTest(DisplayHelper display)
     {
         using var src = Cv2.ImRead(ImagePath.Balloon, ImreadModes.Grayscale);
 
@@ -48,6 +49,6 @@ class HistSample : ConsoleTestBase
                 -1);
         }
 
-        DisplayHelper.Show(nameof(HistSample), ("Image", src), ("Histogram", render));
+        display.Show(("Image", src), ("Histogram", render));
     }
 }

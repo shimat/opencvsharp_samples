@@ -1,6 +1,7 @@
 ﻿using OpenCvSharp;
 using SampleBase;
 using SampleBase.Console;
+using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
@@ -9,7 +10,7 @@ namespace SamplesCore;
 /// </summary>
 class PhotoMethods : ConsoleTestBase
 {
-    public override void RunTest()
+    public override void RunTest(DisplayHelper display)
     {
         using var src = new Mat(ImagePath.Fruits, ImreadModes.Color);
 
@@ -28,8 +29,7 @@ class PhotoMethods : ConsoleTestBase
         using var stylized = new Mat();
         Cv2.Stylization(src, stylized);
 
-        DisplayHelper.Show(
-            nameof(PhotoMethods),
+        display.Show(
             ("src", src),
             ("edgePreservingFilter - NormconvFilter", normconv),
             ("edgePreservingFilter - RecursFilter", recursFiltered),

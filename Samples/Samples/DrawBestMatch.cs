@@ -2,6 +2,7 @@
 using OpenCvSharp;
 using SampleBase;
 using SampleBase.Console;
+using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
@@ -10,7 +11,7 @@ namespace SamplesCore;
 /// </summary>
 class DrawBestMatchRectangle : ConsoleTestBase
 {
-    public override void RunTest()
+    public override void RunTest(DisplayHelper display)
     {
         using var img1 = new Mat(ImagePath.Match1, ImreadModes.Color);
         using var img2 = new Mat(ImagePath.Match2, ImreadModes.Color);
@@ -48,6 +49,6 @@ class DrawBestMatchRectangle : ConsoleTestBase
         var drawingPoints = img2BoundsTransformed.Select(p => (Point)p).ToArray();
         Cv2.Polylines(view, new[] { drawingPoints }, true, Scalar.Red, 3);
 
-        DisplayHelper.Show(nameof(DrawBestMatchRectangle), ("view", view));
+        display.Show(("view", view));
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using OpenCvSharp;
 using SampleBase;
 using SampleBase.Console;
+using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
@@ -27,7 +28,7 @@ class SquareDetectionSample : ConsoleTestBase
         ImagePath.Square6,
     };
 
-    public override void RunTest()
+    public override void RunTest(DisplayHelper display)
     {
         foreach (var path in ImagePaths)
         {
@@ -37,7 +38,7 @@ class SquareDetectionSample : ConsoleTestBase
             using var dst = src.Clone();
             Cv2.Polylines(dst, squares, true, Scalar.Red, 3, LineTypes.AntiAlias);
 
-            DisplayHelper.Show(nameof(SquareDetectionSample), (path, dst));
+            display.Show((path, dst));
         }
     }
 

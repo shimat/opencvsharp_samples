@@ -1,5 +1,6 @@
 ﻿using OpenCvSharp;
 using SampleBase.Console;
+using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
@@ -8,9 +9,9 @@ namespace SamplesCore;
 /// </summary>
 class CameraCaptureSample : ConsoleTestBase
 {
-    public override void RunTest()
+    public override void RunTest(DisplayHelper display)
     {
-        if (DisplayHelper.IsHeadless)
+        if (display.IsHeadless)
         {
             PrintWarning("Skipping: this sample needs a live camera and cannot be meaningfully verified headlessly.");
             return;
@@ -34,7 +35,7 @@ class CameraCaptureSample : ConsoleTestBase
             if (image.Empty())
                 break;
 
-            if (!DisplayHelper.ShowFrame(nameof(CameraCaptureSample), waitMs: sleepTime, maxHeadlessFrames: 5, ("capture", image)))
+            if (!display.ShowFrame(waitMs: sleepTime, maxHeadlessFrames: 5, ("capture", image)))
                 break;
         }
     }

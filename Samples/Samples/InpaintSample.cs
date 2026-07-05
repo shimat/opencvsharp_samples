@@ -2,6 +2,7 @@
 using OpenCvSharp;
 using SampleBase;
 using SampleBase.Console;
+using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
@@ -11,11 +12,11 @@ namespace SamplesCore;
 /// <remarks>http://opencv.jp/sample/special_transforms.html#inpaint</remarks>
 public class InpaintSample : ConsoleTestBase
 {
-    public override void RunTest()
+    public override void RunTest(DisplayHelper display)
     {
         // cvInpaint
 
-        if (DisplayHelper.IsHeadless)
+        if (display.IsHeadless)
         {
             PrintWarning("Skipping: this sample requires interactively painting a mask with the mouse and cannot be meaningfully verified headlessly.");
             return;

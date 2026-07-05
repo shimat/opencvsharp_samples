@@ -2,6 +2,7 @@
 using OpenCvSharp.XFeatures2D;
 using SampleBase;
 using SampleBase.Console;
+using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
@@ -10,7 +11,7 @@ namespace SamplesCore;
 /// </summary>
 class FREAKSample : ConsoleTestBase
 {
-    public override void RunTest()
+    public override void RunTest(DisplayHelper display)
     {
         using var gray = new Mat(ImagePath.Penguin2, ImreadModes.Grayscale);
         using var dst = new Mat(ImagePath.Penguin2, ImreadModes.Color);
@@ -42,6 +43,6 @@ class FREAKSample : ConsoleTestBase
             }
         }
 
-        DisplayHelper.Show(nameof(FREAKSample), ("FREAK", dst));
+        display.Show(("FREAK", dst));
     }
 }

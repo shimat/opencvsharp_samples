@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using SampleBase;
 using SampleBase.Console;
+using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
@@ -26,9 +27,9 @@ public class PerspectiveTransformSample : ConsoleTestBase
 
     private Mat OriginalImage;
 
-    public override void RunTest()
+    public override void RunTest(DisplayHelper display)
     {
-        if (DisplayHelper.IsHeadless)
+        if (display.IsHeadless)
         {
             PrintWarning("Skipping: this sample requires interactively clicking 4 corner points with the mouse and cannot be meaningfully verified headlessly.");
             return;

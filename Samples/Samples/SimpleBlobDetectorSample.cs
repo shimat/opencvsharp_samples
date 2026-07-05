@@ -1,12 +1,13 @@
 ﻿using OpenCvSharp;
 using SampleBase;
 using SampleBase.Console;
+using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
 internal class SimpleBlobDetectorSample : ConsoleTestBase
 {
-    public override void RunTest()
+    public override void RunTest(DisplayHelper display)
     {
         using var src = Cv2.ImRead(ImagePath.Shapes);
         using var detectedCircles = new Mat();
@@ -64,6 +65,6 @@ internal class SimpleBlobDetectorSample : ConsoleTestBase
         var ovalKeyPoints = ovalDetector.Detect(src);
         Cv2.DrawKeypoints(src, ovalKeyPoints, detectedOvals, Scalar.HotPink, DrawMatchesFlags.DrawRichKeypoints);
 
-        DisplayHelper.Show(nameof(SimpleBlobDetectorSample), ("Detected Circles", detectedCircles), ("Detected Ovals", detectedOvals));
+        display.Show(("Detected Circles", detectedCircles), ("Detected Ovals", detectedOvals));
     }
 }

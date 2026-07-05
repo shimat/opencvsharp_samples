@@ -1,6 +1,7 @@
 ﻿using OpenCvSharp;
 using SampleBase;
 using SampleBase.Console;
+using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
@@ -9,7 +10,7 @@ namespace SamplesCore;
 /// </summary>
 class MorphologySample : ConsoleTestBase
 {
-    public override void RunTest()
+    public override void RunTest(DisplayHelper display)
     {
         using var gray = new Mat(ImagePath.Cake, ImreadModes.Grayscale);
         using var binary = new Mat();
@@ -26,6 +27,6 @@ class MorphologySample : ConsoleTestBase
         // + kernel
         Cv2.Dilate(binary, dilate2, kernel);
 
-        DisplayHelper.Show(nameof(MorphologySample), ("binary", binary), ("dilate (kernel = null)", dilate1), ("dilate (kernel = +)", dilate2));
+        display.Show(("binary", binary), ("dilate (kernel = null)", dilate1), ("dilate (kernel = +)", dilate2));
     }
 }

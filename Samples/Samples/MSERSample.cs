@@ -1,6 +1,7 @@
 ﻿using OpenCvSharp;
 using SampleBase;
 using SampleBase.Console;
+using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
@@ -9,7 +10,7 @@ namespace SamplesCore;
 /// </summary>
 class MSERSample : ConsoleTestBase
 {
-    public override void RunTest()
+    public override void RunTest(DisplayHelper display)
     {
         using Mat src = new Mat(ImagePath.Distortion, ImreadModes.Color);
         using Mat gray = new Mat();
@@ -18,7 +19,7 @@ class MSERSample : ConsoleTestBase
 
         CppStyleMSER(gray, dst);  // C++ style
 
-        DisplayHelper.Show(nameof(MSERSample), ("MSER src", src), ("MSER gray", gray), ("MSER dst", dst));
+        display.Show(("MSER src", src), ("MSER gray", gray), ("MSER dst", dst));
     }
 
     /// <summary>

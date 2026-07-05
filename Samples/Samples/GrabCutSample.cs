@@ -1,6 +1,7 @@
 using OpenCvSharp;
 using SampleBase;
 using SampleBase.Console;
+using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
@@ -10,7 +11,7 @@ namespace SamplesCore;
 /// <remarks>https://docs.opencv.org/4.x/d8/d83/tutorial_py_grabcut.html</remarks>
 class GrabCutSample : ConsoleTestBase
 {
-    public override void RunTest()
+    public override void RunTest(DisplayHelper display)
     {
         using var src = new Mat(ImagePath.Fruits, ImreadModes.Color);
 
@@ -33,6 +34,6 @@ class GrabCutSample : ConsoleTestBase
         using var rectView = src.Clone();
         Cv2.Rectangle(rectView, rect, Scalar.Red, 2);
 
-        DisplayHelper.Show(nameof(GrabCutSample), ("initial rect", rectView), ("foreground mask", fgMask), ("extracted foreground", foreground));
+        display.Show(("initial rect", rectView), ("foreground mask", fgMask), ("extracted foreground", foreground));
     }
 }

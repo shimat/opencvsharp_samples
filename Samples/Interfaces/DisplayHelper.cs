@@ -2,41 +2,42 @@ using System.Collections.Generic;
 using System.IO;
 using OpenCvSharp;
 
-namespace SampleBase.Console
+namespace SampleBase.Interfaces
 {
     /// <summary>
-    /// Single entry point for showing sample output. Replaces direct use of
-    /// <see cref="Window"/>/<see cref="Cv2.ImShow"/>/<see cref="Cv2.WaitKey(int)"/> so that samples
-    /// can run without a display (pass --headless, or set OPENCV_SAMPLES_HEADLESS=1) by writing
-    /// images to disk instead of opening windows.
+    /// Per-run helper for showing a sample's output. Replaces direct use of
+    /// <see cref="Window"/>/<see cref="Cv2.ImShow"/>/<see cref="Cv2.WaitKey(int)"/> so that a
+    /// sample can run without a display (headless mode) by writing images to disk instead of
+    /// opening windows. One instance is created per test run and passed into
+    /// <see cref="ITestBase.RunTest"/>, so its state never leaks between samples or between
+    /// repeated runs of the same sample.
     /// </summary>
-    public static class DisplayHelper
+    public sealed class DisplayHelper
     {
-        /// <summary>
-        /// Set once by <see cref="SamplesCore.Program"/> at startup, from configuration.
-        /// </summary>
-        public static bool IsHeadless { get; private set; }
-
-        public static void Initialize(bool headless)
-        {
-            IsHeadless = headless;
-        }
-
         private const string OutputRoot = "headless-output";
 
-        private static readonly Dictionary<string, Window> windowCache = new();
-        private static readonly Dictionary<string, int> headlessFrameCounts = new();
+        private readonly string sampleName;
+        private readonly Dictionary<string, Window> windowCache = new();
+        private int headlessFrameCount;
+
+        public bool IsHeadless { get; }
+
+        public DisplayHelper(string sampleName, bool isHeadless)
+        {
+            this.sampleName = sampleName;
+            IsHeadless = isHeadless;
+        }
 
         /// <summary>
         /// Shows one window per (title, image) pair, or writes them to disk when headless.
         /// </summary>
-        public static void Show(string sampleName, params (string Title, Mat Image)[] frames)
+        public void Show(params (string Title, Mat Image)[] frames)
         {
             if (IsHeadless)
             {
                 foreach (var (title, image) in frames)
                 {
-                    WriteToDisk(sampleName, title, image);
+                    WriteToDisk(title, image);
                 }
                 return;
             }
@@ -58,22 +59,21 @@ namespace SampleBase.Console
         /// reached). Windows are kept open and updated in place across calls, matching the
         /// original new Window(...) + Image-property-update pattern.
         /// </summary>
-        public static bool ShowFrame(string sampleName, params (string Title, Mat Frame)[] frames)
-            => ShowFrame(sampleName, waitMs: 30, maxHeadlessFrames: 5, frames);
+        public bool ShowFrame(params (string Title, Mat Frame)[] frames)
+            => ShowFrame(waitMs: 30, maxHeadlessFrames: 5, frames);
 
-        public static bool ShowFrame(string sampleName, int waitMs, int maxHeadlessFrames, params (string Title, Mat Frame)[] frames)
+        public bool ShowFrame(int waitMs, int maxHeadlessFrames, params (string Title, Mat Frame)[] frames)
         {
             if (IsHeadless)
             {
-                headlessFrameCounts.TryGetValue(sampleName, out int count);
-                if (count >= maxHeadlessFrames)
+                if (headlessFrameCount >= maxHeadlessFrames)
                     return false;
 
                 foreach (var (title, frame) in frames)
                 {
-                    WriteToDisk(sampleName, $"{title}_{count:D3}", frame);
+                    WriteToDisk($"{title}_{headlessFrameCount:D3}", frame);
                 }
-                headlessFrameCounts[sampleName] = count + 1;
+                headlessFrameCount++;
                 return true;
             }
 
@@ -90,10 +90,10 @@ namespace SampleBase.Console
         }
 
         /// <summary>
-        /// Closes any windows opened by <see cref="ShowFrame(string, (string, Mat)[])"/>. Called
-        /// once per sample run by <see cref="ConsoleTestManager"/>; a no-op when headless.
+        /// Closes any windows opened by <see cref="ShowFrame(int, int, (string, Mat)[])"/>. Called
+        /// once per sample run by <c>ConsoleTestManager</c>; a no-op when headless.
         /// </summary>
-        public static void DestroyAll()
+        public void DestroyAll()
         {
             if (IsHeadless)
                 return;
@@ -104,7 +104,7 @@ namespace SampleBase.Console
             Cv2.DestroyAllWindows();
         }
 
-        private static void WriteToDisk(string sampleName, string title, Mat image)
+        private void WriteToDisk(string title, Mat image)
         {
             string dir = Path.Combine(OutputRoot, sampleName);
             Directory.CreateDirectory(dir);

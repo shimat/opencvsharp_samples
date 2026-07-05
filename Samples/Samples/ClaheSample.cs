@@ -1,12 +1,13 @@
 ﻿using OpenCvSharp;
 using SampleBase;
 using SampleBase.Console;
+using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
 class ClaheSample : ConsoleTestBase
 {
-    public override void RunTest()
+    public override void RunTest(DisplayHelper display)
     {
         using var src = new Mat(ImagePath.TsukubaLeft, ImreadModes.Grayscale);
         using var dst1 = new Mat();
@@ -23,6 +24,6 @@ class ClaheSample : ConsoleTestBase
             clahe.Apply(src, dst3);
         }
 
-        DisplayHelper.Show(nameof(ClaheSample), ("src", src), ("dst clip20", dst1), ("dst clip40", dst2), ("dst tile4x4", dst3));
+        display.Show(("src", src), ("dst clip20", dst1), ("dst clip40", dst2), ("dst tile4x4", dst3));
     }
 }

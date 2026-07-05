@@ -2,6 +2,7 @@
 using OpenCvSharp;
 using OpenCvSharp.ML;
 using SampleBase.Console;
+using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
@@ -16,9 +17,9 @@ internal class SVMSample : ConsoleTestBase
         return x + 50 * Math.Sin(x / 15.0);
     }
 
-    public override void RunTest()
+    public override void RunTest(DisplayHelper display)
     {
-        // Training data          
+        // Training data
         var points = new Point2f[500];
         var responses = new int[points.Length];
         var rand = new Random();
@@ -48,7 +49,7 @@ internal class SVMSample : ConsoleTestBase
                 int y2 = (int)(300 - Function(x));
                 Cv2.Line(pointsPlot, x - 1, y1, x, y2, Scalar.LightBlue, 1);
             }
-            DisplayHelper.Show(nameof(SVMSample), ("pointsPlot", pointsPlot));
+            display.Show(("pointsPlot", pointsPlot));
         }
 
         // Train
@@ -87,6 +88,6 @@ internal class SVMSample : ConsoleTestBase
                     Cv2.Rectangle(retPlot, plotRect, Scalar.GreenYellow);
             }
         }
-        DisplayHelper.Show(nameof(SVMSample), ("retPlot", retPlot));
+        display.Show(("retPlot", retPlot));
     }
 }

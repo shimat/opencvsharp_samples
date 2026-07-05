@@ -1,6 +1,7 @@
 ﻿using OpenCvSharp;
 using SampleBase;
 using SampleBase.Console;
+using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
@@ -9,7 +10,7 @@ namespace SamplesCore;
 /// </summary>
 class MergeSplitSample : ConsoleTestBase
 {
-    public override void RunTest()
+    public override void RunTest(DisplayHelper display)
     {
         // Split/Merge Test
         {
@@ -18,7 +19,7 @@ class MergeSplitSample : ConsoleTestBase
             // Split each plane
             Cv2.Split(src, out var planes);
 
-            DisplayHelper.Show(nameof(MergeSplitSample), ("planes 0", planes[0]), ("planes 1", planes[1]), ("planes 2", planes[2]));
+            display.Show(("planes 0", planes[0]), ("planes 1", planes[1]), ("planes 2", planes[2]));
 
             // Invert G plane
             Cv2.BitwiseNot(planes[1], planes[1]);
@@ -27,7 +28,7 @@ class MergeSplitSample : ConsoleTestBase
             using var merged = new Mat();
             Cv2.Merge(planes, merged);
 
-            DisplayHelper.Show(nameof(MergeSplitSample), ("src", src), ("merged", merged));
+            display.Show(("src", src), ("merged", merged));
         }
 
         // MixChannels Test
@@ -43,7 +44,7 @@ class MergeSplitSample : ConsoleTestBase
             int[] fromTo = { 0, 2, 1, 1, 2, 0, 3, 3 };
             Cv2.MixChannels(input, output, fromTo);
 
-            DisplayHelper.Show(nameof(MergeSplitSample), ("rgba", rgba), ("bgr", bgr), ("alpha", alpha));
+            display.Show(("rgba", rgba), ("bgr", bgr), ("alpha", alpha));
         }
     }
 }

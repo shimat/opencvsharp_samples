@@ -57,7 +57,8 @@ namespace SampleBase.Interfaces
         /// <summary>
         /// Run current test
         /// </summary>
-        void RunTest();
+        /// <param name="display">Per-run helper for showing results; see <see cref="DisplayHelper"/>.</param>
+        void RunTest(DisplayHelper display);
 
         /// <summary>
         /// Waiting for input to complete, and take it as return value

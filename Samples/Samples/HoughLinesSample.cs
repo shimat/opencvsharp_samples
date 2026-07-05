@@ -2,6 +2,7 @@
 using OpenCvSharp;
 using SampleBase;
 using SampleBase.Console;
+using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
@@ -11,15 +12,15 @@ namespace SamplesCore;
 /// <remarks>http://opencv.jp/sample/special_transforms.html#hough_line</remarks>
 class HoughLinesSample : ConsoleTestBase
 {
-    public override void RunTest()
+    public override void RunTest(DisplayHelper display)
     {
-        SampleCpp();
+        SampleCpp(display);
     }
 
     /// <summary>
     /// sample of new C++ style wrapper
     /// </summary>
-    private void SampleCpp()
+    private void SampleCpp(DisplayHelper display)
     {
         // (1) Load the image
         using var imgGray = new Mat(ImagePath.Goryokaku, ImreadModes.Grayscale);
@@ -53,6 +54,6 @@ class HoughLinesSample : ConsoleTestBase
         }
 
         // (5) Show results
-        DisplayHelper.Show(nameof(HoughLinesSample), ("Hough_line_standard", imgStd), ("Hough_line_probabilistic", imgProb));
+        display.Show(("Hough_line_standard", imgStd), ("Hough_line_probabilistic", imgProb));
     }
 }

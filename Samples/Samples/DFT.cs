@@ -1,6 +1,7 @@
 ﻿using OpenCvSharp;
 using SampleBase;
 using SampleBase.Console;
+using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
@@ -10,7 +11,7 @@ namespace SamplesCore;
 /// </summary>
 class DFT : ConsoleTestBase
 {
-    public override void RunTest()
+    public override void RunTest(DisplayHelper display)
     {
         using var img = Cv2.ImRead(ImagePath.Walkman, ImreadModes.Grayscale);
 
@@ -77,6 +78,6 @@ class DFT : ConsoleTestBase
         inverseTransform.ConvertTo(inverseTransform, MatType.CV_8U);
 
         // Show the result
-        DisplayHelper.Show(nameof(DFT), ("Input Image", img), ("Spectrum Magnitude", spectrum), ("Reconstructed by Inverse DFT", inverseTransform));
+        display.Show(("Input Image", img), ("Spectrum Magnitude", spectrum), ("Reconstructed by Inverse DFT", inverseTransform));
     }
 }
