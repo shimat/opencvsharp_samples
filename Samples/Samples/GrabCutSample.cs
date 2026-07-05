@@ -33,8 +33,6 @@ class GrabCutSample : ConsoleTestBase
         using var rectView = src.Clone();
         Cv2.Rectangle(rectView, rect, Scalar.Red, 2);
 
-        Window.ShowImages(
-            new[] { rectView, fgMask, foreground },
-            new[] { "initial rect", "foreground mask", "extracted foreground" });
+        DisplayHelper.Show(nameof(GrabCutSample), new[] { "initial rect", "foreground mask", "extracted foreground" }, new[] { rectView, fgMask, foreground });
     }
 }

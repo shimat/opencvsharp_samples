@@ -31,11 +31,9 @@ internal class KAZESample : ConsoleTestBase
         Cv2.DrawKeypoints(gray, kazeKeyPoints, dstKaze);
         Cv2.DrawKeypoints(gray, akazeKeyPoints, dstAkaze);
 
-        using (new Window(String.Format("KAZE [{0:F2}ms]", kazeTime.TotalMilliseconds), dstKaze))
-        using (new Window(String.Format("AKAZE [{0:F2}ms]", akazeTime.TotalMilliseconds), dstAkaze))
-        {
-            Cv2.WaitKey();
-        }
+        DisplayHelper.Show(nameof(KAZESample),
+            new[] { String.Format("KAZE [{0:F2}ms]", kazeTime.TotalMilliseconds), String.Format("AKAZE [{0:F2}ms]", akazeTime.TotalMilliseconds) },
+            new[] { dstKaze, dstAkaze });
     }
 
     private TimeSpan MeasureTime(Action action)

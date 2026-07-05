@@ -29,7 +29,6 @@ class ObjectTrackingSample : ConsoleTestBase
         Rect box = InitialBox;
         tracker.Init(frame, box);
 
-        using var window = new Window("CSRT object tracking");
         while (true)
         {
             bool found = tracker.Update(frame, ref box);
@@ -38,8 +37,8 @@ class ObjectTrackingSample : ConsoleTestBase
             {
                 Cv2.Rectangle(view, box, Scalar.Red, 2);
             }
-            window.Image = view;
-            Cv2.WaitKey(30);
+            if (!DisplayHelper.ShowFrame(nameof(ObjectTrackingSample), "CSRT object tracking", view, 30))
+                break;
 
             capture.Read(frame);
             if (frame.Empty())

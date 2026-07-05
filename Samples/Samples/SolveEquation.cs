@@ -14,8 +14,6 @@ class SolveEquation : ConsoleTestBase
     {
         ByMat();
         ByNormalArray();
-
-        Console.Read();
     }
 
     /// <summary>

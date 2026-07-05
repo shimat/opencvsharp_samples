@@ -36,9 +36,6 @@ class StarDetectorSample : ConsoleTestBase
             }
         }
 
-        using (new Window("StarDetector features", dst))
-        {
-            Cv2.WaitKey();
-        }
+        DisplayHelper.Show(nameof(StarDetectorSample), "StarDetector features", dst);
     }
 }

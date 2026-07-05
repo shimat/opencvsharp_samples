@@ -48,7 +48,7 @@ internal class SVMSample : ConsoleTestBase
                 int y2 = (int)(300 - Function(x));
                 Cv2.Line(pointsPlot, x - 1, y1, x, y2, Scalar.LightBlue, 1);
             }
-            Window.ShowImages(pointsPlot);
+            DisplayHelper.Show(nameof(SVMSample), "pointsPlot", pointsPlot);
         }
 
         // Train
@@ -87,6 +87,6 @@ internal class SVMSample : ConsoleTestBase
                     Cv2.Rectangle(retPlot, plotRect, Scalar.GreenYellow);
             }
         }
-        Window.ShowImages(retPlot);
+        DisplayHelper.Show(nameof(SVMSample), "retPlot", retPlot);
     }
 }

@@ -16,7 +16,6 @@ class PixelAccess : ConsoleTestBase
         Console.WriteLine("Get/Set: {0}ms", MeasureTime(GetSet));
         Console.WriteLine("GenericIndexer: {0}ms", MeasureTime(GenericIndexer));
         Console.WriteLine("TypeSpecificMat: {0}ms", MeasureTime(TypeSpecificMat));
-        Console.Read();
     }
 
     /// <summary>

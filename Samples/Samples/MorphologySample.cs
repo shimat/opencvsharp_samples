@@ -26,10 +26,6 @@ class MorphologySample : ConsoleTestBase
         // + kernel
         Cv2.Dilate(binary, dilate2, kernel);
 
-        Cv2.ImShow("binary", binary);
-        Cv2.ImShow("dilate (kernel = null)", dilate1);
-        Cv2.ImShow("dilate (kernel = +)", dilate2);
-        Cv2.WaitKey(0);
-        Cv2.DestroyAllWindows();
+        DisplayHelper.Show(nameof(MorphologySample), new[] { "binary", "dilate (kernel = null)", "dilate (kernel = +)" }, new[] { binary, dilate1, dilate2 });
     }
 }

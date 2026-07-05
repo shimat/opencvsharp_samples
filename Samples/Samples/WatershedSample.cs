@@ -13,6 +13,12 @@ public class WatershedSample : ConsoleTestBase
 {
     public override void RunTest()
     {
+        if (DisplayHelper.IsHeadless)
+        {
+            PrintWarning("Skipping: this sample requires interactively marking seed points with the mouse and cannot be meaningfully verified headlessly.");
+            return;
+        }
+
         using var srcImg = Cv2.ImRead(ImagePath.Asahiyama, ImreadModes.AnyDepth | ImreadModes.AnyColor);
         using var markers = new Mat(srcImg.Size(), MatType.CV_32SC1, Scalar.All(0));
 
@@ -54,9 +60,6 @@ public class WatershedSample : ConsoleTestBase
             }
         }
 
-        using (new Window("watershed transform", dstImg))
-        {
-            Window.WaitKey();
-        }
+        DisplayHelper.Show(nameof(WatershedSample), "watershed transform", dstImg);
     }
 }

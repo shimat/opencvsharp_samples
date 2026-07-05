@@ -42,9 +42,6 @@ class FREAKSample : ConsoleTestBase
             }
         }
 
-        using (new Window("FREAK", dst))
-        {
-            Cv2.WaitKey();
-        }
+        DisplayHelper.Show(nameof(FREAKSample), "FREAK", dst);
     }
 }

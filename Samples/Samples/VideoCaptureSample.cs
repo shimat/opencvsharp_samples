@@ -19,7 +19,6 @@ class VideoCaptureSample : ConsoleTestBase
 
             int sleepTime = (int)Math.Round(1000 / capture.Fps);
 
-            using var window = new Window("capture");
             // Frame image buffer
             var image = new Mat();
 
@@ -30,8 +29,8 @@ class VideoCaptureSample : ConsoleTestBase
                 if(image.Empty())
                     break;
 
-                window.ShowImage(image);
-                Cv2.WaitKey(sleepTime);
+                if (!DisplayHelper.ShowFrame(nameof(VideoCaptureSample), "capture", image, sleepTime))
+                    break;
             }
         }
 }

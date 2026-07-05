@@ -86,16 +86,11 @@ class CameraCalibrationSample : ConsoleTestBase
         foreach (var img in annotated)
         {
             using (img)
-            using (new Window("detected corners", img))
             {
-                Cv2.WaitKey();
+                DisplayHelper.Show(nameof(CameraCalibrationSample), "detected corners", img);
             }
         }
 
-        using (new Window("original", sample))
-        using (new Window("undistorted", undistorted))
-        {
-            Cv2.WaitKey();
-        }
+        DisplayHelper.Show(nameof(CameraCalibrationSample), new[] { "original", "undistorted" }, new[] { sample, undistorted });
     }
 }

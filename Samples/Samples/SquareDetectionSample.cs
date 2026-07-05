@@ -37,10 +37,7 @@ class SquareDetectionSample : ConsoleTestBase
             using var dst = src.Clone();
             Cv2.Polylines(dst, squares, true, Scalar.Red, 3, LineTypes.AntiAlias);
 
-            using (new Window(path, dst))
-            {
-                Cv2.WaitKey();
-            }
+            DisplayHelper.Show(nameof(SquareDetectionSample), path, dst);
         }
     }
 

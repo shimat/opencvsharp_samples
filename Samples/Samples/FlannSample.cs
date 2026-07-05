@@ -50,6 +50,5 @@ class FlannSample : ConsoleTestBase
                 Console.WriteLine();
             }
         }
-        Console.Read();
     }
 }

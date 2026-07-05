@@ -48,10 +48,6 @@ class HistSample : ConsoleTestBase
                 -1);
         }
 
-        using (new Window("Image", src, WindowFlags.AutoSize | WindowFlags.FreeRatio))
-        using (new Window("Histogram", render, WindowFlags.AutoSize | WindowFlags.FreeRatio))
-        {
-            Cv2.WaitKey();
-        }
+        DisplayHelper.Show(nameof(HistSample), new[] { "Image", "Histogram" }, new[] { src, render });
     }
 }

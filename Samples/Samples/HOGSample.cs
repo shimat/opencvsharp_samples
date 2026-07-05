@@ -50,8 +50,6 @@ internal class HOGSample : ConsoleTestBase
             Cv2.Rectangle(img, r.TopLeft, r.BottomRight, Scalar.Red, 3);
         }
 
-        using var window = new Window("people detector", img, WindowFlags.Normal);
-        window.SetProperty(WindowPropertyFlags.Fullscreen, 1);
-        Cv2.WaitKey(0);
+        DisplayHelper.Show(nameof(HOGSample), "people detector", img);
     }
 }

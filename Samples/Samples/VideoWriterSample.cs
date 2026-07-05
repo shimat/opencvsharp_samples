@@ -17,9 +17,11 @@ class VideoWriterSample : ConsoleTestBase
         // Opens MP4 file (ffmpeg is probably needed)
         using var capture = new VideoCapture(MoviePath.Bach);
 
-        // Read movie frames and write them to VideoWriter 
+        // Read movie frames and write them to VideoWriter
         var dsize = new Size(640, 480);
-        using (var writer = new VideoWriter(OutVideoFile, -1, capture.Fps, dsize))
+        int fourcc = VideoWriter.FourCC('M', 'J', 'P', 'G');
+        // isColor: false because the frames written below (grayscale -> Canny) are single-channel.
+        using (var writer = new VideoWriter(OutVideoFile, fourcc, capture.Fps, dsize, isColor: false))
         {
             Console.WriteLine("Converting each movie frames...");
             using var frame = new Mat();
@@ -30,8 +32,13 @@ class VideoWriterSample : ConsoleTestBase
                 if (frame.Empty())
                     break;
 
-                Console.CursorLeft = 0;
-                Console.Write("{0} / {1}", capture.PosFrames, capture.FrameCount);
+                // Console.CursorLeft throws when stdout is redirected (e.g. piped/CI), so only
+                // do the in-place progress update when attached to a real console.
+                if (!Console.IsOutputRedirected)
+                {
+                    Console.CursorLeft = 0;
+                    Console.Write("{0} / {1}", capture.PosFrames, capture.FrameCount);
+                }
 
                 // grayscale -> canny -> resize
                 using var gray = new Mat();
@@ -48,7 +55,6 @@ class VideoWriterSample : ConsoleTestBase
 
         // Watch result movie
         using (var capture2 = new VideoCapture(OutVideoFile))
-        using (var window = new Window("result"))
         {
             int sleepTime = (int)(1000 / capture.Fps);
 
@@ -59,8 +65,8 @@ class VideoWriterSample : ConsoleTestBase
                 if (frame.Empty())
                     break;
 
-                window.ShowImage(frame);
-                Cv2.WaitKey(sleepTime);
+                if (!DisplayHelper.ShowFrame(nameof(VideoWriterSample), "result", frame, sleepTime))
+                    break;
             }
         }
     }

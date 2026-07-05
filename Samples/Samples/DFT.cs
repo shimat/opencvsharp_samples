@@ -70,18 +70,13 @@ class DFT : ConsoleTestBase
         Cv2.Normalize(spectrum, spectrum, 0, 255, NormTypes.MinMax);
         spectrum.ConvertTo(spectrum, MatType.CV_8U);
 
-        // Show the result
-        Cv2.ImShow("Input Image", img);
-        Cv2.ImShow("Spectrum Magnitude", spectrum);
-
         // calculating the idft
         using var inverseTransform = new Mat();
         Cv2.Dft(dft, inverseTransform, DftFlags.Inverse | DftFlags.RealOutput);
         Cv2.Normalize(inverseTransform, inverseTransform, 0, 255, NormTypes.MinMax);
         inverseTransform.ConvertTo(inverseTransform, MatType.CV_8U);
 
-        Cv2.ImShow("Reconstructed by Inverse DFT", inverseTransform);
-        Cv2.WaitKey();
-        Cv2.DestroyAllWindows();
+        // Show the result
+        DisplayHelper.Show(nameof(DFT), new[] { "Input Image", "Spectrum Magnitude", "Reconstructed by Inverse DFT" }, new[] { img, spectrum, inverseTransform });
     }
 }

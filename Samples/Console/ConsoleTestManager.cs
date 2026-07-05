@@ -136,6 +136,10 @@ namespace SampleBase.Console
                         msgPrinter.PrintError(ex.Message);
                         msgPrinter.PrintError(ex.StackTrace ?? "");
                     }
+                    finally
+                    {
+                        DisplayHelper.DestroyAll();
+                    }
 
                     input = PrintNamesAndRead();
 

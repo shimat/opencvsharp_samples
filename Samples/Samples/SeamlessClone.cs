@@ -32,14 +32,8 @@ class SeamlessClone : ConsoleTestBase
                 src0, dst, mask, new Point(260, 270), blend3,
                 SeamlessCloneFlags.MixedClone);
 
-            using (new Window("src", src0))
-            using (new Window("dst", dst))
-            using (new Window("mask", mask))
-            using (new Window("blend NormalClone", blend1))
-            using (new Window("blend MonochromeTransfer", blend2))
-            using (new Window("blend MixedClone", blend3))
-            {
-                Cv2.WaitKey();
-            }
+            DisplayHelper.Show(nameof(SeamlessClone),
+                new[] { "src", "dst", "mask", "blend NormalClone", "blend MonochromeTransfer", "blend MixedClone" },
+                new[] { src0, dst, mask, blend1, blend2, blend3 });
         }
 }

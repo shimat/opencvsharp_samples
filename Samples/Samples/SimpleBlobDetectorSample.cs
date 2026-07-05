@@ -64,9 +64,6 @@ internal class SimpleBlobDetectorSample : ConsoleTestBase
         var ovalKeyPoints = ovalDetector.Detect(src);
         Cv2.DrawKeypoints(src, ovalKeyPoints, detectedOvals, Scalar.HotPink, DrawMatchesFlags.DrawRichKeypoints);
 
-        using var w1 = new Window("Detected Circles", detectedCircles);
-        using var w2 = new Window("Detected Ovals", detectedOvals);
-
-        Cv2.WaitKey();
+        DisplayHelper.Show(nameof(SimpleBlobDetectorSample), new[] { "Detected Circles", "Detected Ovals" }, new[] { detectedCircles, detectedOvals });
     }
 }

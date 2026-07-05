@@ -55,9 +55,6 @@ class Subdiv2DSample : ConsoleTestBase
             Cv2.Line(delaunay, p1, p2, new Scalar(64, 255, 128), 1);
         }
 
-        Cv2.ImShow("voronoi", vonoroi);
-        Cv2.ImShow("delaunay", delaunay);
-        Cv2.WaitKey();
-        Cv2.DestroyAllWindows();
+        DisplayHelper.Show(nameof(Subdiv2DSample), new[] { "voronoi", "delaunay" }, new[] { vonoroi, delaunay });
     }
 }

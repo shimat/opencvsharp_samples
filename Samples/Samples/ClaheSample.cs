@@ -23,8 +23,6 @@ class ClaheSample : ConsoleTestBase
             clahe.Apply(src, dst3);
         }
 
-        Window.ShowImages(
-            new[] { src, dst1, dst2, dst3 },
-            new[] { "src", "dst clip20", "dst clip40", "dst tile4x4" });
+        DisplayHelper.Show(nameof(ClaheSample), new[] { "src", "dst clip20", "dst clip40", "dst tile4x4" }, new[] { src, dst1, dst2, dst3 });
     }
 }

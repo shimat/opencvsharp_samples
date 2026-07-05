@@ -18,12 +18,7 @@ class MSERSample : ConsoleTestBase
 
         CppStyleMSER(gray, dst);  // C++ style
 
-        using (new Window("MSER src", src))
-        using (new Window("MSER gray", gray))
-        using (new Window("MSER dst", dst))
-        {
-            Cv2.WaitKey();
-        }
+        DisplayHelper.Show(nameof(MSERSample), new[] { "MSER src", "MSER gray", "MSER dst" }, new[] { src, gray, dst });
     }
 
     /// <summary>

@@ -53,10 +53,6 @@ class HoughLinesSample : ConsoleTestBase
         }
 
         // (5) Show results
-        using (new Window("Hough_line_standard", imgStd, WindowFlags.AutoSize))
-        using (new Window("Hough_line_probabilistic", imgProb, WindowFlags.AutoSize))
-        {
-            Window.WaitKey(0);
-        }
+        DisplayHelper.Show(nameof(HoughLinesSample), new[] { "Hough_line_standard", "Hough_line_probabilistic" }, new[] { imgStd, imgProb });
     }
 }

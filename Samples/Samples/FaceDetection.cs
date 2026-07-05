@@ -20,10 +20,7 @@ class FaceDetection : ConsoleTestBase
         Mat haarResult = DetectFace(haarCascade);
         Mat lbpResult = DetectFace(lbpCascade);
 
-        Cv2.ImShow("Faces by Haar", haarResult);
-        Cv2.ImShow("Faces by LBP", lbpResult);
-        Cv2.WaitKey(0);
-        Cv2.DestroyAllWindows();
+        DisplayHelper.Show(nameof(FaceDetection), new[] { "Faces by Haar", "Faces by LBP" }, new[] { haarResult, lbpResult });
     }
 
     /// <summary>

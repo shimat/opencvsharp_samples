@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using OpenCvSharp;
 using SampleBase;
 using SampleBase.Console;
@@ -16,13 +15,18 @@ public class InpaintSample : ConsoleTestBase
     {
         // cvInpaint
 
+        if (DisplayHelper.IsHeadless)
+        {
+            PrintWarning("Skipping: this sample requires interactively painting a mask with the mouse and cannot be meaningfully verified headlessly.");
+            return;
+        }
+
         Console.WriteLine(
             "Hot keys: \n" +
             "\tESC - quit the program\n" +
             "\tr - restore the original image\n" +
             "\ti or ENTER - run inpainting algorithm\n" +
-            "\t\t(before running it, paint something on the image)\n" +
-            "\ts - save the original image, mask image, original+mask image and inpainted image to desktop."
+            "\t\t(before running it, paint something on the image)"
         );
 
         using var img0 = Cv2.ImRead(ImagePath.Fruits, ImreadModes.AnyDepth | ImreadModes.AnyColor);
@@ -79,13 +83,6 @@ public class InpaintSample : ConsoleTestBase
                         Cv2.Inpaint(img, inpaintMask, inpainted, 3, InpaintTypes.NS);
                         wInpaint2 ??= new Window("inpainted image (algorithm by Navier-Strokes)", WindowFlags.AutoSize);
                         wInpaint2.ShowImage(inpainted);
-                        break;
-                    case 's': // save images
-                        string desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                        Cv2.ImWrite(Path.Combine(desktop, "original.png"), img0);
-                        Cv2.ImWrite(Path.Combine(desktop, "mask.png"), inpaintMask);
-                        Cv2.ImWrite(Path.Combine(desktop, "original+mask.png"), img);
-                        Cv2.ImWrite(Path.Combine(desktop, "inpainted.png"), inpainted);
                         break;
                 }
             }

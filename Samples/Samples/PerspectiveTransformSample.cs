@@ -28,6 +28,12 @@ public class PerspectiveTransformSample : ConsoleTestBase
 
     public override void RunTest()
     {
+        if (DisplayHelper.IsHeadless)
+        {
+            PrintWarning("Skipping: this sample requires interactively clicking 4 corner points with the mouse and cannot be meaningfully verified headlessly.");
+            return;
+        }
+
         OriginalImage = new Mat(ImagePath.SurfBoxinscene, ImreadModes.AnyColor);
         using var Window = new Window("result", OriginalImage);
 

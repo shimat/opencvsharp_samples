@@ -33,12 +33,6 @@ internal class BinarizerSample : ConsoleTestBase
         sw.Stop();
         Console.WriteLine($"Nick {sw.ElapsedMilliseconds} ms");
 
-        using (new Window("src", src, WindowFlags.AutoSize))
-        using (new Window("Niblack", niblack, WindowFlags.AutoSize))
-        using (new Window("Sauvola", sauvola, WindowFlags.AutoSize))
-        using (new Window("Nick", nick, WindowFlags.AutoSize))
-        {
-            Cv2.WaitKey();
-        }
+        DisplayHelper.Show(nameof(BinarizerSample), new[] { "src", "Niblack", "Sauvola", "Nick" }, new[] { src, niblack, sauvola, nick });
     }
 }

@@ -10,6 +10,12 @@ class CameraCaptureSample : ConsoleTestBase
 {
     public override void RunTest()
     {
+        if (DisplayHelper.IsHeadless)
+        {
+            PrintWarning("Skipping: this sample needs a live camera and cannot be meaningfully verified headlessly.");
+            return;
+        }
+
         using var capture = new VideoCapture(0, VideoCaptureAPIs.DSHOW);
         if (!capture.IsOpened())
             return;
@@ -20,7 +26,6 @@ class CameraCaptureSample : ConsoleTestBase
 
         const int sleepTime = 10;
 
-        using var window = new Window("capture");
         var image = new Mat();
 
         while (true)
@@ -29,12 +34,8 @@ class CameraCaptureSample : ConsoleTestBase
             if (image.Empty())
                 break;
 
-            window.ShowImage(image);
-            int c = Cv2.WaitKey(sleepTime);
-            if (c >= 0)
-            {
+            if (!DisplayHelper.ShowFrame(nameof(CameraCaptureSample), "capture", image, sleepTime))
                 break;
-            }
         }
     }
 }

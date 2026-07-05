@@ -28,15 +28,9 @@ class PhotoMethods : ConsoleTestBase
         using var stylized = new Mat();
         Cv2.Stylization(src, stylized);
 
-        using (new Window("src", src))
-        using (new Window("edgePreservingFilter - NormconvFilter", normconv))
-        using (new Window("edgePreservingFilter - RecursFilter", recursFiltered))
-        using (new Window("detailEnhance", detailEnhance))
-        using (new Window("pencilSketch grayscale", pencil1))
-        using (new Window("pencilSketch color", pencil2))
-        using (new Window("stylized", stylized))
-        {
-            Cv2.WaitKey();
-        }
+        DisplayHelper.Show(
+            nameof(PhotoMethods),
+            new[] { "src", "edgePreservingFilter - NormconvFilter", "edgePreservingFilter - RecursFilter", "detailEnhance", "pencilSketch grayscale", "pencilSketch color", "stylized" },
+            new[] { src, normconv, recursFiltered, detailEnhance, pencil1, pencil2, stylized });
     }
 }

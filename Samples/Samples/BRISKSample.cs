@@ -36,9 +36,6 @@ class BRISKSample : ConsoleTestBase
             }
         }
 
-        using (new Window("BRISK features", dst))
-        {
-            Cv2.WaitKey();
-        }
+        DisplayHelper.Show(nameof(BRISKSample), "BRISK features", dst);
     }
 }

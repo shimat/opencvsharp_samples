@@ -29,8 +29,6 @@ class QRCodeDetectionSample : ConsoleTestBase
             ? "No QR code found."
             : $"Decoded text: {text}");
 
-        Window.ShowImages(
-            new[] { dst, straightQrCode },
-            new[] { "detected", "rectified" });
+        DisplayHelper.Show(nameof(QRCodeDetectionSample), new[] { "detected", "rectified" }, new[] { dst, straightQrCode });
     }
 }

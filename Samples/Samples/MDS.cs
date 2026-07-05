@@ -94,7 +94,6 @@ class MDS : ConsoleTestBase
 
         // opens a window
         using (Mat img = Mat.Zeros(600, 800, MatType.CV_8UC3))
-        using (var window = new Window("City Location Estimation"))
         {
             var resultRows = result.AsRows<double>();
             for (int c = 0; c < size; c++)
@@ -107,8 +106,7 @@ class MDS : ConsoleTestBase
                 var textPos = new Point(x + 5, y + 10);
                 Cv2.PutText(img, CityNames[c], textPos, HersheyFonts.HersheySimplex, 0.5, Scalar.White);
             }
-            window.Image = img;
-            Cv2.WaitKey();
+            DisplayHelper.Show(nameof(MDS), "City Location Estimation", img);
         }
     }
 

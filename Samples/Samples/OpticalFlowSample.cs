@@ -37,7 +37,6 @@ class OpticalFlowSample : ConsoleTestBase
         var colors = points.Select(_ => new Scalar(random.Next(256), random.Next(256), random.Next(256))).ToArray();
 
         using Mat mask = Mat.Zeros(prevGray.Rows, prevGray.Cols, MatType.CV_8UC3);
-        using var window = new Window("Lucas-Kanade optical flow");
         using var frame = new Mat();
         using var gray = new Mat();
 
@@ -64,8 +63,8 @@ class OpticalFlowSample : ConsoleTestBase
             }
             Cv2.Add(view, mask, view);
 
-            window.Image = view;
-            Cv2.WaitKey(30);
+            if (!DisplayHelper.ShowFrame(nameof(OpticalFlowSample), "Lucas-Kanade optical flow", view, 30))
+                break;
 
             gray.CopyTo(prevGray);
             points = good.Select(i => nextPoints[i]).ToArray();

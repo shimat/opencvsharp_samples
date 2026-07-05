@@ -99,8 +99,7 @@ class KAZESample2 : ConsoleTestBase
                 //Cv2.Line(img3, scene_corners[2] + new Point2d(img1.Cols, 0), scene_corners[3] + new Point2d(img1.Cols, 0), Scalar.LimeGreen);
                 //Cv2.Line(img3, scene_corners[3] + new Point2d(img1.Cols, 0), scene_corners[0] + new Point2d(img1.Cols, 0), Scalar.LimeGreen);
 
-                Cv2.ImWrite("Kaze_Output.png", img3);
-                Window.ShowImages(img3);
+                DisplayHelper.Show(nameof(KAZESample2), "img3", img3);
             }
         }
     }

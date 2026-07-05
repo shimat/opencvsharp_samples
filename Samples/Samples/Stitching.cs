@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using OpenCvSharp;
+using SampleBase;
 using SampleBase.Console;
 
 namespace SamplesCore;
@@ -19,7 +20,7 @@ class Stitching : ConsoleTestBase
         var status = stitcher.Stitch(images, pano);
         Console.WriteLine(" finish (status:{0})", status);
 
-        Window.ShowImages(pano);
+        DisplayHelper.Show(nameof(Stitching), "pano", pano);
 
         foreach (var image in images)
         {
@@ -29,7 +30,7 @@ class Stitching : ConsoleTestBase
 
     private static Mat[] SelectStitchingImages(int width, int height, int count)
     {
-        using var source = new Mat(@"Data\Image\lenna.png", ImreadModes.Color);
+        using var source = new Mat(ImagePath.Asahiyama, ImreadModes.Color);
         using var result = source.Clone();
 
         var rand = new Random();
@@ -50,10 +51,7 @@ class Stitching : ConsoleTestBase
             mats.Add(m.Clone());
         }
 
-        using (new Window("stitching", result))
-        {
-            Cv2.WaitKey();
-        }
+        DisplayHelper.Show(nameof(Stitching), "stitching", result);
 
         return mats.ToArray();
     }
