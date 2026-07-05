@@ -39,11 +39,18 @@ namespace SampleBase.Console
         {
             msgPrinter.PrintLine();
             int testNumber = 1;
+            SampleCategory? currentCategory = null;
             foreach (var x in tests)
             {
-                string name = GetNameOfTest(x);
+                var category = TestDiscovery.GetCategory(x);
+                if (category != currentCategory)
+                {
+                    msgPrinter.PrintInfo($"[{category}]");
+                    currentCategory = category;
+                }
 
-                msgPrinter.PrintInfo($"{testNumber} {name}");
+                string name = GetNameOfTest(x);
+                msgPrinter.PrintInfo($"  {testNumber} {name}");
                 testNumber++;
 
             };

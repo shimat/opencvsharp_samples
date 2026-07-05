@@ -24,7 +24,7 @@ public static class Program
 
         ITestManager testManager = new ConsoleTestManager(headless);
 
-        testManager.AddTests(TestDiscovery.DiscoverTests().OrderBy(t => t.Name).ToArray());
+        testManager.AddTests(TestDiscovery.DiscoverTests().ToArray());
 
         testManager.ShowTestEntrance();
     }

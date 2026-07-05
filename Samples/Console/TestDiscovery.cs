@@ -24,7 +24,21 @@ namespace SampleBase.Console
                         ?? throw new InvalidOperationException(
                             $"{t.Name} implements {nameof(ITestBase)} but has no public parameterless constructor.");
                     return (ITestBase)ctor.Invoke(null);
-                });
+                })
+                .OrderBy(GetCategory)
+                .ThenBy(t => t.Name);
+        }
+
+        /// <summary>
+        /// Reads the <see cref="SampleCategoryAttribute"/> declared on a discovered test's type.
+        /// </summary>
+        public static SampleCategory GetCategory(ITestBase test)
+        {
+            var type = test.GetType();
+            var attribute = type.GetCustomAttribute<SampleCategoryAttribute>()
+                ?? throw new InvalidOperationException(
+                    $"{type.Name} implements {nameof(ITestBase)} but has no [{nameof(SampleCategoryAttribute)}].");
+            return attribute.Category;
         }
     }
 }
