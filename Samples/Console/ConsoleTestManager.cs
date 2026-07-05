@@ -75,7 +75,7 @@ namespace SampleBase.Console
             $"1 Create a class that inherits from {nameof(ConsoleTestBase)}{Environment.NewLine}" +
             $"2 Override the [{nameof(ConsoleTestBase.RunTest)}()] method of the class to execute your logic{Environment.NewLine}" +
             $"3 Register it with a {nameof(ConsoleTestManager)} instance via {nameof(AddTest)}/{nameof(AddTests)}{Environment.NewLine}" +
-            $"4 Start the tests selection by runnig the [{nameof(ShowTestEntrance)}()] method of the {nameof(ConsoleTestManager)} instance{Environment.NewLine}";
+            $"4 Start the tests selection by running the [{nameof(ShowTestEntrance)}()] method of the {nameof(ConsoleTestManager)} instance{Environment.NewLine}";
 
         /// <summary>
         /// Output prompt message and start reading input (start again)
