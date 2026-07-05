@@ -8,6 +8,7 @@ namespace SamplesCore;
 /// <summary>
 /// sample of photo module methods
 /// </summary>
+[SampleCategory(SampleCategory.Photo)]
 class PhotoMethods : ConsoleTestBase
 {
     public override void RunTest(DisplayHelper display)

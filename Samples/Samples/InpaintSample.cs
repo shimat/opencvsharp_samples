@@ -10,6 +10,7 @@ namespace SamplesCore;
 /// Inpainting
 /// </summary>
 /// <remarks>http://opencv.jp/sample/special_transforms.html#inpaint</remarks>
+[SampleCategory(SampleCategory.Photo)]
 public class InpaintSample : ConsoleTestBase
 {
     public override void RunTest(DisplayHelper display)

@@ -9,6 +9,7 @@ namespace SamplesCore;
 /// <summary>
 /// Retrieves keypoints using the StarDetector algorithm.
 /// </summary>
+[SampleCategory(SampleCategory.Features2D)]
 class StarDetectorSample : ConsoleTestBase
 {
     public override void RunTest(DisplayHelper display)

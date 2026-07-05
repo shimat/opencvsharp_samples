@@ -9,7 +9,8 @@ namespace SamplesCore;
 /// DFT, inverse DFT
 /// http://stackoverflow.com/questions/19761526/how-to-do-inverse-dft-in-opencv
 /// </summary>
-class DFT : ConsoleTestBase
+[SampleCategory(SampleCategory.Core)]
+class DFTSample : ConsoleTestBase
 {
     public override void RunTest(DisplayHelper display)
     {

@@ -5,6 +5,7 @@ using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
+[SampleCategory(SampleCategory.Features2D)]
 internal class SimpleBlobDetectorSample : ConsoleTestBase
 {
     public override void RunTest(DisplayHelper display)

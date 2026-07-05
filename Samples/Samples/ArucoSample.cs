@@ -8,6 +8,7 @@ using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
+[SampleCategory(SampleCategory.ObjDetect)]
 public class ArucoSample : ConsoleTestBase
 {
     public override void RunTest(DisplayHelper display)

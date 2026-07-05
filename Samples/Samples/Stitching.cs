@@ -7,6 +7,7 @@ using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
+[SampleCategory(SampleCategory.Stitching)]
 class Stitching : ConsoleTestBase
 {
     public override void RunTest(DisplayHelper display)

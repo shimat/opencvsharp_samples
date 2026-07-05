@@ -7,8 +7,9 @@ using SampleBase.Interfaces;
 namespace SamplesCore;
 
 /// <summary>
-/// 
+///
 /// </summary>
+[SampleCategory(SampleCategory.ImgProc)]
 class ConnectedComponentsSample : ConsoleTestBase
 {
     public override void RunTest(DisplayHelper display)

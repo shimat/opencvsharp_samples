@@ -9,6 +9,7 @@ namespace SamplesCore;
 /// Extracts the foreground from an image using the GrabCut algorithm.
 /// </summary>
 /// <remarks>https://docs.opencv.org/4.x/d8/d83/tutorial_py_grabcut.html</remarks>
+[SampleCategory(SampleCategory.ImgProc)]
 class GrabCutSample : ConsoleTestBase
 {
     public override void RunTest(DisplayHelper display)

@@ -9,7 +9,8 @@ namespace SamplesCore;
 /// Human face detection
 /// http://docs.opencv.org/doc/tutorials/objdetect/cascade_classifier/cascade_classifier.html
 /// </summary>
-class FaceDetection : ConsoleTestBase
+[SampleCategory(SampleCategory.ObjDetect)]
+class FaceDetectionSample : ConsoleTestBase
 {
     public override void RunTest(DisplayHelper display)
     {

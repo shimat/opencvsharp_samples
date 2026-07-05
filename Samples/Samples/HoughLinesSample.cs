@@ -10,6 +10,7 @@ namespace SamplesCore;
 /// Hough Transform Sample / ハフ変換による直線検出
 /// </summary>
 /// <remarks>http://opencv.jp/sample/special_transforms.html#hough_line</remarks>
+[SampleCategory(SampleCategory.ImgProc)]
 class HoughLinesSample : ConsoleTestBase
 {
     public override void RunTest(DisplayHelper display)

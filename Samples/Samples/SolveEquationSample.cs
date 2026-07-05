@@ -7,9 +7,10 @@ using SampleBase.Interfaces;
 namespace SamplesCore;
 
 /// <summary>
-/// 
+///
 /// </summary>
-class SolveEquation : ConsoleTestBase
+[SampleCategory(SampleCategory.Core)]
+class SolveEquationSample : ConsoleTestBase
 {
     public override void RunTest(DisplayHelper display)
     {

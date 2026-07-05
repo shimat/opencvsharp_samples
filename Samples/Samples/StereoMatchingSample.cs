@@ -9,6 +9,7 @@ namespace SamplesCore;
 /// Computes a disparity map from a stereo pair using StereoBM and StereoSGBM.
 /// </summary>
 /// <remarks>https://docs.opencv.org/4.x/dd/d53/tutorial_py_depthmap.html</remarks>
+[SampleCategory(SampleCategory.Calib3D)]
 class StereoMatchingSample : ConsoleTestBase
 {
     public override void RunTest(DisplayHelper display)

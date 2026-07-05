@@ -9,6 +9,7 @@ namespace SamplesCore;
 /// <summary>
 /// cv::Subdiv2D test
 /// </summary>
+[SampleCategory(SampleCategory.ImgProc)]
 class Subdiv2DSample : ConsoleTestBase
 {
     public override void RunTest(DisplayHelper display)

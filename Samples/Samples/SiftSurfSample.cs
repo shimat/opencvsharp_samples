@@ -10,6 +10,7 @@ namespace SamplesCore;
 /// SIFT and SURF sample
 /// http://www.prism.gatech.edu/~ahuaman3/docs/OpenCV_Docs/tutorials/nonfree_1/nonfree_1.html
 /// </summary>
+[SampleCategory(SampleCategory.Features2D)]
 class SiftSurfSample : ConsoleTestBase
 {
     public override void RunTest(DisplayHelper display)

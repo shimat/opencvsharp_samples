@@ -9,7 +9,8 @@ namespace SamplesCore;
 /// Multidimensional Scaling (多次元尺度構成法)
 /// for C++ cv::Mat testing
 /// </summary>
-class MDS : ConsoleTestBase
+[SampleCategory(SampleCategory.Core)]
+class MDSSample : ConsoleTestBase
 {
     /// <summary>
     /// Distance among 10 American cities

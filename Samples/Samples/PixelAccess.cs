@@ -8,8 +8,9 @@ using SampleBase.Interfaces;
 namespace SamplesCore;
 
 /// <summary>
-/// Swaps B for R 
+/// Swaps B for R
 /// </summary>
+[SampleCategory(SampleCategory.Core)]
 class PixelAccess : ConsoleTestBase
 {
     public override void RunTest(DisplayHelper display)

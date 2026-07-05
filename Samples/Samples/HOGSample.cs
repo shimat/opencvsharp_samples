@@ -10,6 +10,7 @@ namespace SamplesCore;
 /// <summary>
 /// samples/c/peopledetect.c
 /// </summary>
+[SampleCategory(SampleCategory.ObjDetect)]
 internal class HOGSample : ConsoleTestBase
 {
     public HOGSample()

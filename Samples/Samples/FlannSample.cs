@@ -9,6 +9,7 @@ namespace SamplesCore;
 /// <summary>
 /// cv::flann
 /// </summary>
+[SampleCategory(SampleCategory.Features2D)]
 class FlannSample : ConsoleTestBase
 {
     public override void RunTest(DisplayHelper display)

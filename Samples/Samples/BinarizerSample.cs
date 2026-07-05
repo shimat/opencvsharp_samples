@@ -8,6 +8,7 @@ using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
+[SampleCategory(SampleCategory.ImgProc)]
 internal class BinarizerSample : ConsoleTestBase
 {
     public override void RunTest(DisplayHelper display)

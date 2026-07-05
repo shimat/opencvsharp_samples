@@ -7,8 +7,9 @@ using SampleBase.Interfaces;
 namespace SamplesCore;
 
 /// <summary>
-/// 
+///
 /// </summary>
+[SampleCategory(SampleCategory.Video)]
 class VideoCaptureSample : ConsoleTestBase
 {
     public override void RunTest(DisplayHelper display)

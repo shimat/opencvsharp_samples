@@ -9,6 +9,7 @@ namespace SamplesCore;
 /// <summary>
 /// https://stackoverflow.com/questions/51606215/how-to-draw-bounding-box-on-best-matches/51607041#51607041
 /// </summary>
+[SampleCategory(SampleCategory.Features2D)]
 class DrawBestMatchRectangle : ConsoleTestBase
 {
     public override void RunTest(DisplayHelper display)

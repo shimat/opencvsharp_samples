@@ -9,6 +9,7 @@ namespace SamplesCore;
 /// <summary>
 /// Retrieves keypoints using the FREAK algorithm.
 /// </summary>
+[SampleCategory(SampleCategory.Features2D)]
 class FREAKSample : ConsoleTestBase
 {
     public override void RunTest(DisplayHelper display)

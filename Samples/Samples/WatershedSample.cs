@@ -10,6 +10,7 @@ namespace SamplesCore;
 /// Watershed algorithm sample
 /// </summary>
 /// <remarks>http://opencv.jp/sample/segmentation_and_connection.html#watershed</remarks>
+[SampleCategory(SampleCategory.ImgProc)]
 public class WatershedSample : ConsoleTestBase
 {
     public override void RunTest(DisplayHelper display)

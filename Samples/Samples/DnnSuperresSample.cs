@@ -6,6 +6,7 @@ using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
+[SampleCategory(SampleCategory.Dnn)]
 class DnnSuperresSample : ConsoleTestBase
 {
     // https://github.com/Saafke/FSRCNN_Tensorflow/tree/master/models

@@ -6,8 +6,9 @@ using SampleBase.Interfaces;
 namespace SamplesCore;
 
 /// <summary>
-/// 
+///
 /// </summary>
+[SampleCategory(SampleCategory.ImgProc)]
 class MorphologySample : ConsoleTestBase
 {
     public override void RunTest(DisplayHelper display)

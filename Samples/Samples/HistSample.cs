@@ -9,6 +9,7 @@ namespace SamplesCore;
 /// Histogram sample
 /// http://book.mynavi.jp/support/pc/opencv2/c3/opencv_img.html
 /// </summary>
+[SampleCategory(SampleCategory.ImgProc)]
 class HistSample : ConsoleTestBase
 {
     public override void RunTest(DisplayHelper display)

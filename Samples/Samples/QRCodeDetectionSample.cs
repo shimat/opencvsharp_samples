@@ -9,6 +9,7 @@ namespace SamplesCore;
 /// <summary>
 /// Detects and decodes a QR code using QRCodeDetector.
 /// </summary>
+[SampleCategory(SampleCategory.ObjDetect)]
 class QRCodeDetectionSample : ConsoleTestBase
 {
     public override void RunTest(DisplayHelper display)

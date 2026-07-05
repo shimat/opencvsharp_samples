@@ -13,6 +13,7 @@ namespace SamplesCore;
 /// A C# port of the official OpenCV squares.cpp sample.
 /// </summary>
 /// <remarks>https://github.com/opencv/opencv/blob/4.x/samples/cpp/squares.cpp</remarks>
+[SampleCategory(SampleCategory.ImgProc)]
 class SquareDetectionSample : ConsoleTestBase
 {
     private const int Thresh = 50;

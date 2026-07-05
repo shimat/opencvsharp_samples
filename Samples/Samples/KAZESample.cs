@@ -11,6 +11,7 @@ namespace SamplesCore;
 /// <summary>
 /// Retrieves keypoints using the KAZE and AKAZE algorithm.
 /// </summary>
+[SampleCategory(SampleCategory.Features2D)]
 internal class KAZESample : ConsoleTestBase
 {
     public override void RunTest(DisplayHelper display)

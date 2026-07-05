@@ -12,6 +12,7 @@ namespace SamplesCore;
 /// drawing each point's recent motion trail.
 /// </summary>
 /// <remarks>https://docs.opencv.org/4.x/d4/dee/tutorial_optical_flow.html</remarks>
+[SampleCategory(SampleCategory.Video)]
 class OpticalFlowSample : ConsoleTestBase
 {
     private static readonly TermCriteria Criteria =

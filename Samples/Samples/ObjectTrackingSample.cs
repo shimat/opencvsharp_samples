@@ -10,6 +10,7 @@ namespace SamplesCore;
 /// Tracks a moving object across video frames using the CSRT tracker.
 /// </summary>
 /// <remarks>https://docs.opencv.org/4.x/d2/d0a/tutorial_introduction_to_tracker.html</remarks>
+[SampleCategory(SampleCategory.Video)]
 class ObjectTrackingSample : ConsoleTestBase
 {
     // Bounding box around the puppy in the first frame

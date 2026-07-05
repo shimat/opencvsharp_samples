@@ -9,6 +9,7 @@ namespace SamplesCore;
 /// <summary>
 /// Retrieves keypoints using the BRISK algorithm.
 /// </summary>
+[SampleCategory(SampleCategory.Features2D)]
 class BRISKSample : ConsoleTestBase
 {
     public override void RunTest(DisplayHelper display)

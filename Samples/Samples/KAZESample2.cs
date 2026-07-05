@@ -13,6 +13,7 @@ namespace SamplesCore;
 /// <summary>
 /// https://github.com/shimat/opencvsharp/issues/176
 /// </summary>
+[SampleCategory(SampleCategory.Features2D)]
 class KAZESample2 : ConsoleTestBase
 {
     public static Point2d Point2fToPoint2d(Point2f pf)

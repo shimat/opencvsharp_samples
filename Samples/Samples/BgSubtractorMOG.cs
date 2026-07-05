@@ -5,6 +5,7 @@ using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
+[SampleCategory(SampleCategory.Video)]
 class BgSubtractorMOG : ConsoleTestBase
 {
     public override void RunTest(DisplayHelper display)

@@ -7,6 +7,7 @@ using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
+[SampleCategory(SampleCategory.ImgProc)]
 public class PerspectiveTransformSample : ConsoleTestBase
 {
     private readonly List<Point2f> point2Fs = new List<Point2f>();

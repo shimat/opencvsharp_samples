@@ -8,6 +8,7 @@ namespace SamplesCore;
 /// <summary>
 /// cv::FAST
 /// </summary>
+[SampleCategory(SampleCategory.Features2D)]
 class FASTSample : ConsoleTestBase
 {
     public override void RunTest(DisplayHelper display)

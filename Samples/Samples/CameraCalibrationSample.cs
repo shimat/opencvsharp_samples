@@ -13,6 +13,7 @@ namespace SamplesCore;
 /// A C# port of the official OpenCV camera calibration tutorial.
 /// </summary>
 /// <remarks>https://docs.opencv.org/4.x/d4/d94/tutorial_camera_calibration.html</remarks>
+[SampleCategory(SampleCategory.Calib3D)]
 class CameraCalibrationSample : ConsoleTestBase
 {
     private static readonly Size PatternSize = new(9, 6);

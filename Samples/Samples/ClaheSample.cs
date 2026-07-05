@@ -5,6 +5,7 @@ using SampleBase.Interfaces;
 
 namespace SamplesCore;
 
+[SampleCategory(SampleCategory.ImgProc)]
 class ClaheSample : ConsoleTestBase
 {
     public override void RunTest(DisplayHelper display)

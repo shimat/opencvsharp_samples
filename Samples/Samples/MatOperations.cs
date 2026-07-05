@@ -7,8 +7,9 @@ using SampleBase.Interfaces;
 namespace SamplesCore;
 
 /// <summary>
-/// 
+///
 /// </summary>
+[SampleCategory(SampleCategory.Core)]
 class MatOperations : ConsoleTestBase
 {
     public override void RunTest(DisplayHelper display)

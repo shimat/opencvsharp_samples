@@ -8,6 +8,7 @@ namespace SamplesCore;
 /// <summary>
 /// cv::seamlessClone
 /// </summary>
+[SampleCategory(SampleCategory.Photo)]
 class SeamlessClone : ConsoleTestBase
 {
     public override void RunTest(DisplayHelper display)

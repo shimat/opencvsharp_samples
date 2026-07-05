@@ -8,6 +8,7 @@ namespace SamplesCore;
 /// <summary>
 /// Maximally Stable Extremal Regions
 /// </summary>
+[SampleCategory(SampleCategory.Features2D)]
 class MSERSample : ConsoleTestBase
 {
     public override void RunTest(DisplayHelper display)

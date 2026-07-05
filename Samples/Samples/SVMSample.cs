@@ -10,6 +10,7 @@ namespace SamplesCore;
 /// Support Vector Machine
 /// </summary>
 /// <remarks>http://opencv.jp/sample/svm.html#svm</remarks>
+[SampleCategory(SampleCategory.Ml)]
 internal class SVMSample : ConsoleTestBase
 {
     private static double Function(double x)
