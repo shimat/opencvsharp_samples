@@ -1,0 +1,67 @@
+﻿using System;
+using OpenCvSharp;
+using SampleBase;
+using SampleBase.Console;
+using SampleBase.Interfaces;
+
+namespace SamplesCore;
+
+/// <summary>
+/// Watershed algorithm sample
+/// </summary>
+/// <remarks>http://opencv.jp/sample/segmentation_and_connection.html#watershed</remarks>
+[SampleCategory(SampleCategory.ImgProc)]
+public class WatershedSample : ConsoleTestBase
+{
+    public override void RunTest(DisplayHelper display)
+    {
+        if (display.IsHeadless)
+        {
+            PrintWarning("Skipping: this sample requires interactively marking seed points with the mouse and cannot be meaningfully verified headlessly.");
+            return;
+        }
+
+        using var srcImg = Cv2.ImRead(ImagePath.Asahiyama, ImreadModes.AnyDepth | ImreadModes.AnyColor);
+        using var markers = new Mat(srcImg.Size(), MatType.CV_32SC1, Scalar.All(0));
+
+        using (var window = new Window("image", srcImg))
+        {
+            using var dspImg = srcImg.Clone();
+
+            // Mouse event  
+            int seedNum = 0;
+            window.SetMouseCallback((ev, x, y, flags, userdata) =>
+            {
+                if (ev == MouseEventTypes.LButtonDown)
+                {
+                    seedNum++;
+                    var pt = new Point(x, y);
+                    Cv2.Circle(markers, pt, 10, Scalar.All(seedNum), Cv2.FILLED, LineTypes.Link8);
+                    Cv2.Circle(dspImg, pt, 10, Scalar.White, 3, LineTypes.Link8);
+                    window.Image = dspImg;
+                }
+            });
+            Window.WaitKey();
+        }
+
+        Cv2.Watershed(srcImg, markers);
+
+        // draws watershed
+        using var dstImg = srcImg.Clone();
+        int height = markers.Height;
+        int width = markers.Width;
+        for (int y = 0; y < height; y++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                int idx = markers.Get<int>(y, x);
+                if (idx == -1)
+                {
+                    Cv2.Rectangle(dstImg, new Rect(x, y, 2, 2), Scalar.Red, -1);
+                }
+            }
+        }
+
+        display.Show(("watershed transform", dstImg));
+    }
+}
