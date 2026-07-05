@@ -22,7 +22,7 @@ public static class Program
             .Build();
         bool headless = args.Contains("--headless") || configuration["Headless"] is "1" or "true";
 
-        ITestManager testManager = new ConsoleTestManager(headless);
+        var testManager = new ConsoleTestManager(headless);
 
         testManager.AddTests(TestDiscovery.DiscoverTests().ToArray());
 
