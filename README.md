@@ -9,3 +9,4 @@ If you need samples for the older **OpenCvSharp4** (OpenCV 4.x) API, check out t
 - `Samples.Windows` C# (.NET 8, Windows) samples using Windows-only APIs
 - `VideoCaptureForm` WinForms sample
 - `VideoCaptureWPF` WPF sample
+- `AvaloniaViewer` Avalonia sample: live Canny edge detection preview driven by sliders
