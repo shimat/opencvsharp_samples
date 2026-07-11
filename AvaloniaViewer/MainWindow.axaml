@@ -1,0 +1,64 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="AvaloniaViewer.MainWindow"
+        Title="AvaloniaViewer"
+        Width="1000" Height="750">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <MenuItem Header="_Open..." Click="OnOpenClick" />
+            </MenuItem>
+            <MenuItem Header="_View">
+                <MenuItem Header="_Fit to Window" Click="OnFitToWindowClick" />
+                <MenuItem Header="_Actual Size (100%)" Click="OnActualSizeClick" />
+            </MenuItem>
+        </Menu>
+
+        <TextBlock DockPanel.Dock="Top" Text="Canny Edge Detection" FontSize="20" FontWeight="Bold"
+                   Margin="12,8,12,12" />
+
+        <TextBlock x:Name="StatusText" DockPanel.Dock="Bottom" Margin="12,8" Opacity="0.8" />
+
+        <StackPanel DockPanel.Dock="Bottom" Spacing="8" Margin="12,0">
+            <DockPanel>
+                <TextBlock Text="Threshold1" Width="90" VerticalAlignment="Center" />
+                <TextBlock x:Name="Threshold1ValueText" Width="50" VerticalAlignment="Center" DockPanel.Dock="Right" />
+                <Slider x:Name="Threshold1Slider" Minimum="0" Maximum="500" Value="100"
+                        ValueChanged="OnThresholdChanged" />
+            </DockPanel>
+            <DockPanel>
+                <TextBlock Text="Threshold2" Width="90" VerticalAlignment="Center" />
+                <TextBlock x:Name="Threshold2ValueText" Width="50" VerticalAlignment="Center" DockPanel.Dock="Right" />
+                <Slider x:Name="Threshold2Slider" Minimum="0" Maximum="500" Value="200"
+                        ValueChanged="OnThresholdChanged" />
+            </DockPanel>
+        </StackPanel>
+
+        <Grid ColumnDefinitions="*,220" Margin="12">
+            <Border Grid.Column="0" ClipToBounds="True" Background="#FF202020"
+                    Name="ViewerHost"
+                    PointerWheelChanged="OnViewerPointerWheelChanged"
+                    PointerPressed="OnViewerPointerPressed"
+                    PointerMoved="OnViewerPointerMoved"
+                    PointerReleased="OnViewerPointerReleased">
+                <Canvas Name="ImageCanvas" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <Image x:Name="BeforeImage" Stretch="None" RenderOptions.BitmapInterpolationMode="None" />
+                    <Image x:Name="AfterImage" Stretch="None" RenderOptions.BitmapInterpolationMode="None" />
+                    <Rectangle x:Name="DividerLine" Width="2" Fill="White" Opacity="0.9" />
+                </Canvas>
+            </Border>
+
+            <StackPanel Grid.Column="1" Spacing="4" Margin="12,0,0,0">
+                <TextBlock Text="Pixel Inspector" FontWeight="Bold" Margin="0,0,0,8" />
+                <TextBlock Text="Position" FontWeight="SemiBold" />
+                <TextBlock x:Name="PixelPosText" Text="-" Margin="0,0,0,8" />
+                <TextBlock Text="Original (B, G, R)" FontWeight="SemiBold" />
+                <TextBlock x:Name="PixelColorText" Text="-" Margin="0,0,0,8" />
+                <TextBlock Text="Edge (0/255)" FontWeight="SemiBold" />
+                <TextBlock x:Name="PixelEdgeText" Text="-" Margin="0,0,0,8" />
+                <TextBlock TextWrapping="Wrap" Opacity="0.7" FontSize="11" Margin="0,12,0,0"
+                           Text="Drag the vertical line to compare Before/After. Drag elsewhere to pan. Mouse wheel to zoom." />
+            </StackPanel>
+        </Grid>
+    </DockPanel>
+</Window>
