@@ -6,6 +6,7 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Media;
+using Avalonia.Media.Imaging;
 using Avalonia.Platform.Storage;
 using OpenCvSharp;
 using AvaPoint = Avalonia.Point;
@@ -30,6 +31,9 @@ public partial class MainWindow : Avalonia.Controls.Window
     private Mat sourceColor = new();
     private Mat sourceGray = new();
     private readonly Mat edges = new();
+
+    private WriteableBitmap? beforeBitmap;
+    private WriteableBitmap? afterBitmap;
 
     private int imageWidth;
     private int imageHeight;
@@ -56,6 +60,8 @@ public partial class MainWindow : Avalonia.Controls.Window
             sourceColor.Dispose();
             sourceGray.Dispose();
             edges.Dispose();
+            beforeBitmap?.Dispose();
+            afterBitmap?.Dispose();
         };
     }
 
@@ -64,6 +70,7 @@ public partial class MainWindow : Avalonia.Controls.Window
         using var loaded = Cv2.ImRead(path, ImreadModes.Color);
         if (loaded.Empty())
         {
+            StatusText.Text = $"Failed to load '{path}'. The file may be missing, corrupt, or an unsupported format.";
             return;
         }
 
@@ -76,7 +83,9 @@ public partial class MainWindow : Avalonia.Controls.Window
         imageWidth = sourceColor.Width;
         imageHeight = sourceColor.Height;
 
-        BeforeImage.Source = sourceColor.ToAvaloniaBitmap();
+        beforeBitmap?.Dispose();
+        beforeBitmap = sourceColor.ToAvaloniaBitmap();
+        BeforeImage.Source = beforeBitmap;
 
         zoomTransform.ScaleX = 1;
         zoomTransform.ScaleY = 1;
@@ -119,6 +128,12 @@ public partial class MainWindow : Avalonia.Controls.Window
 
     private void UpdateEdges()
     {
+        // Guards against ValueChanged firing before the first LoadImage call completes.
+        if (sourceGray.Empty())
+        {
+            return;
+        }
+
         Threshold1ValueText.Text = $"{Threshold1Slider.Value:F0}";
         Threshold2ValueText.Text = $"{Threshold2Slider.Value:F0}";
 
@@ -126,7 +141,9 @@ public partial class MainWindow : Avalonia.Controls.Window
         Cv2.Canny(sourceGray, edges, Threshold1Slider.Value, Threshold2Slider.Value);
         stopwatch.Stop();
 
-        AfterImage.Source = edges.ToAvaloniaBitmap();
+        afterBitmap?.Dispose();
+        afterBitmap = edges.ToAvaloniaBitmap();
+        AfterImage.Source = afterBitmap;
         UpdateDividerVisual();
 
         StatusText.Text = $"{imageWidth} x {imageHeight}px    Canny: {stopwatch.Elapsed.TotalMilliseconds:F1} ms";
