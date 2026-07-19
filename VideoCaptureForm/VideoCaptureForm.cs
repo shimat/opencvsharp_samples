@@ -19,6 +19,8 @@ public partial class VideoCaptureForm : Form
 
         capture = new VideoCapture();
         cascadeClassifier = new CascadeClassifier("haarcascade_frontalface_default.xml");
+
+        backgroundWorker1.RunWorkerCompleted += backgroundWorker1_RunWorkerCompleted;
     }
 
     private void VideoCaptureForm_Load(object sender, EventArgs e)
@@ -37,7 +39,14 @@ public partial class VideoCaptureForm : Form
 
     private void VideoCaptureForm_FormClosing(object sender, FormClosingEventArgs e)
     {
+        // The worker may still be using capture/cascadeClassifier at this point; actually
+        // dispose them once it has observed cancellation and fully exited (see
+        // backgroundWorker1_RunWorkerCompleted), not immediately here.
         backgroundWorker1.CancelAsync();
+    }
+
+    private void backgroundWorker1_RunWorkerCompleted(object? sender, RunWorkerCompletedEventArgs e)
+    {
         capture.Dispose();
         cascadeClassifier.Dispose();
     }
@@ -52,6 +61,9 @@ public partial class VideoCaptureForm : Form
         while (!bgWorker.CancellationPending)
         {
             using var frameMat = capture.RetrieveMat();
+            if (frameMat.Empty())
+                break;
+
             var rects = cascadeClassifier.DetectMultiScale(frameMat, 1.1, 5, HaarDetectionTypes.ScaleImage, new OpenCvSharp.Size(30, 30));
             if (rects.Length > 0)
             {

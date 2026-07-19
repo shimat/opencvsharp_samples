@@ -52,7 +52,7 @@ public class ConsoleMessagePrinter
     public void PrintTime(DateTime? time, bool newLine = true)
     {
         time ??= DateTime.Now;
-        PrintColorInfo(time.Value.ToString("HH:mm:ss"));
+        PrintColorInfo(time.Value.ToString("HH:mm:ss"), newLine);
     }
 
     public void PrintLine(bool newLine = true)

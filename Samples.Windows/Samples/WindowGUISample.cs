@@ -52,7 +52,7 @@ internal class WindowGUISample : ISample
         var elementShape = MorphShapes.Rect;
         var maxIterations = 10;
 
-        var openCloseWindow = new Window("Open/Close", image: dst);
+        using var openCloseWindow = new Window("Open/Close", image: dst);
         var openCloseTrackbar = openCloseWindow.CreateTrackbar(
             trackbarName: "Iterations",
             initialPos: 10,
@@ -83,7 +83,7 @@ internal class WindowGUISample : ISample
             });
 
 
-        var erodeDilateWindow = new Window("Erode/Dilate", image: dst);
+        using var erodeDilateWindow = new Window("Erode/Dilate", image: dst);
         var erodeDilateTrackbar = erodeDilateWindow.CreateTrackbar(
             trackbarName: "Iterations",
             initialPos: 10,
@@ -128,9 +128,6 @@ internal class WindowGUISample : ISample
                 _ => elementShape,
             };
         }
-
-        openCloseWindow.Dispose();
-        erodeDilateWindow.Dispose();
     }
 
 }

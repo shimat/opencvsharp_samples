@@ -77,7 +77,7 @@ internal class SVMSample : ConsoleTestBase
             for (int y = 0; y < 300; y++)
             {
                 float[] sample = [x / 300f, y / 300f];
-                var sampleMat = Mat.FromPixelData(1, 2, MatType.CV_32FC1, sample);
+                using var sampleMat = Mat.FromPixelData(1, 2, MatType.CV_32FC1, sample);
                 int ret = (int)svm.Predict(sampleMat);
                 var plotRect = new Rect(x, 300 - y, 1, 1);
                 Scalar? color = ret switch

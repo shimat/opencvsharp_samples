@@ -112,7 +112,10 @@ public class ConsoleTestManager
 
         while (true)
         {
-            if (input?.ToLower() == inputClear)
+            if (input is null)
+                break;
+
+            if (input.ToLower() == inputClear)
             {
                 // Console.Clear() throws when stdout is redirected (e.g. piped/CI).
                 if (!System.Console.IsOutputRedirected)
@@ -120,7 +123,7 @@ public class ConsoleTestManager
                 input = PrintNamesAndRead();
                 continue;
             }
-            if (input?.ToLower() == inputHelp)
+            if (input.ToLower() == inputHelp)
             {
                 msgPrinter.PrintSuccess(helpMessage);
                 input = PrintNamesAndRead();

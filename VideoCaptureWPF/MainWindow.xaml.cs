@@ -25,6 +25,7 @@ public partial class MainWindow : System.Windows.Window
 
         bkgWorker = new BackgroundWorker { WorkerSupportsCancellation = true };
         bkgWorker.DoWork += Worker_DoWork;
+        bkgWorker.RunWorkerCompleted += Worker_RunWorkerCompleted;
 
         Loaded += MainWindow_Loaded;
         Closing += MainWindow_Closing;
@@ -44,8 +45,14 @@ public partial class MainWindow : System.Windows.Window
 
     private void MainWindow_Closing(object? sender, CancelEventArgs e)
     {
+        // The worker may still be using capture/cascadeClassifier at this point; actually
+        // dispose them once it has observed cancellation and fully exited (see
+        // Worker_RunWorkerCompleted), not immediately here.
         bkgWorker.CancelAsync();
+    }
 
+    private void Worker_RunWorkerCompleted(object? sender, RunWorkerCompletedEventArgs e)
+    {
         capture.Dispose();
         cascadeClassifier.Dispose();
     }
@@ -60,6 +67,9 @@ public partial class MainWindow : System.Windows.Window
         while (!worker.CancellationPending)
         {
             using var frameMat = capture.RetrieveMat();
+            if (frameMat.Empty())
+                break;
+
             var rects = cascadeClassifier.DetectMultiScale(frameMat, 1.1, 5, HaarDetectionTypes.ScaleImage, new OpenCvSharp.Size(30, 30));
 
             foreach (var rect in rects)
