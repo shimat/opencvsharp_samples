@@ -30,7 +30,7 @@ class MSERSample : ConsoleTestBase
     /// <param name="dst"></param>
     private void CppStyleMSER(Mat gray, Mat dst)
     {
-        MSER mser = MSER.Create();
+        using MSER mser = MSER.Create();
         mser.DetectRegions(gray, out Point[][] contours, out _);
         foreach (Point[] pts in contours)
         {

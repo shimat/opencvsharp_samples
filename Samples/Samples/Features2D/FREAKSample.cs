@@ -23,7 +23,7 @@ class FREAKSample : ConsoleTestBase
 
         // FREAK
         using var freak = FREAK.Create();
-        Mat freakDescriptors = new Mat();
+        using var freakDescriptors = new Mat();
         freak.Compute(gray, ref keypoints, freakDescriptors);
 
         if (keypoints != null)

@@ -28,7 +28,7 @@ class CameraCaptureSample : ConsoleTestBase
 
         const int sleepTime = 10;
 
-        var image = new Mat();
+        using var image = new Mat();
 
         while (true)
         {

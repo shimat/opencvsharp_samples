@@ -23,35 +23,32 @@ internal class SVMSample : ConsoleTestBase
         // Training data
         var points = new Point2f[500];
         var responses = new int[points.Length];
-        var rand = new Random();
         for (int i = 0; i < responses.Length; i++)
         {
-            float x = rand.Next(0, 300);
-            float y = rand.Next(0, 300);
+            float x = Random.Shared.Next(0, 300);
+            float y = Random.Shared.Next(0, 300);
             points[i] = new Point2f(x, y);
             responses[i] = (y > Function(x)) ? 1 : 2;
         }
 
         // Show training data and f(x)
-        using (Mat pointsPlot = Mat.Zeros(300, 300, MatType.CV_8UC3))
+        using Mat pointsPlot = Mat.Zeros(300, 300, MatType.CV_8UC3);
+        for (int i = 0; i < points.Length; i++)
         {
-            for (int i = 0; i < points.Length; i++)
-            {
-                int x = (int)points[i].X;
-                int y = (int)(300 - points[i].Y);
-                int res = responses[i];
-                Scalar color = (res == 1) ? Scalar.Red : Scalar.GreenYellow;
-                Cv2.Circle(pointsPlot, x, y, 2, color, -1);
-            }
-            // f(x)
-            for (int x = 1; x < 300; x++)
-            {
-                int y1 = (int)(300 - Function(x - 1));
-                int y2 = (int)(300 - Function(x));
-                Cv2.Line(pointsPlot, x - 1, y1, x, y2, Scalar.LightBlue, 1);
-            }
-            display.Show(("pointsPlot", pointsPlot));
+            int x = (int)points[i].X;
+            int y = (int)(300 - points[i].Y);
+            int res = responses[i];
+            Scalar color = (res == 1) ? Scalar.Red : Scalar.GreenYellow;
+            Cv2.Circle(pointsPlot, x, y, 2, color, -1);
         }
+        // f(x)
+        for (int x = 1; x < 300; x++)
+        {
+            int y1 = (int)(300 - Function(x - 1));
+            int y2 = (int)(300 - Function(x));
+            Cv2.Line(pointsPlot, x - 1, y1, x, y2, Scalar.LightBlue, 1);
+        }
+        display.Show(("pointsPlot", pointsPlot));
 
         // Train
         var dataMat = Mat.FromPixelData(points.Length, 2, MatType.CV_32FC1, points);
@@ -79,14 +76,18 @@ internal class SVMSample : ConsoleTestBase
         {
             for (int y = 0; y < 300; y++)
             {
-                float[] sample = { x / 300f, y / 300f };
-                var sampleMat = Mat.FromPixelData(1, 2, MatType.CV_32FC1, sample);
+                float[] sample = [x / 300f, y / 300f];
+                using var sampleMat = Mat.FromPixelData(1, 2, MatType.CV_32FC1, sample);
                 int ret = (int)svm.Predict(sampleMat);
                 var plotRect = new Rect(x, 300 - y, 1, 1);
-                if (ret == 1)
-                    Cv2.Rectangle(retPlot, plotRect, Scalar.Red);
-                else if (ret == 2)
-                    Cv2.Rectangle(retPlot, plotRect, Scalar.GreenYellow);
+                Scalar? color = ret switch
+                {
+                    1 => Scalar.Red,
+                    2 => Scalar.GreenYellow,
+                    _ => null
+                };
+                if (color is { } c)
+                    Cv2.Rectangle(retPlot, plotRect, c);
             }
         }
         display.Show(("retPlot", retPlot));

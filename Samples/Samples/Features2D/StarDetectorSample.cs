@@ -14,10 +14,10 @@ class StarDetectorSample : ConsoleTestBase
 {
     public override void RunTest(DisplayHelper display)
     {
-        var dst = new Mat(ImagePath.Newspaper, ImreadModes.Color);
-        var gray = new Mat(ImagePath.Newspaper, ImreadModes.Grayscale);
+        using var dst = new Mat(ImagePath.Newspaper, ImreadModes.Color);
+        using var gray = new Mat(ImagePath.Newspaper, ImreadModes.Grayscale);
 
-        StarDetector detector = StarDetector.Create(45);
+        using StarDetector detector = StarDetector.Create(45);
         KeyPoint[] keypoints = detector.Detect(gray);
 
         if (keypoints != null)

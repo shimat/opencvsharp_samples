@@ -1,77 +1,68 @@
-﻿using System.Diagnostics;
+using System.Diagnostics;
 
-namespace SampleBase
+namespace SampleBase;
+
+/// <summary>
+///
+/// </summary>
+public static class MyProcess
 {
     /// <summary>
-    /// 
+    /// Physical memory usage
     /// </summary>
-    public static class MyProcess
+    /// <returns></returns>
+    public static long WorkingSet64
     {
-        /// <summary>
-        /// 物理メモリ使用量
-        /// </summary>
-        /// <returns></returns>
-        public static long WorkingSet64
+        get
         {
-            get
-            {
-                using (var proc = GetCurrentProcess())
-                {
-                    return proc.WorkingSet64;
-                }
-            }
+            using var proc = GetCurrentProcess();
+            return proc.WorkingSet64;
         }
+    }
 
-        /// <summary>
-        /// 仮想メモリ使用量
-        /// </summary>
-        /// <returns></returns>
-        public static long VirtualMemorySize64
+    /// <summary>
+    /// Virtual memory usage
+    /// </summary>
+    /// <returns></returns>
+    public static long VirtualMemorySize64
+    {
+        get
         {
-            get
-            {
-                using (var proc = GetCurrentProcess())
-                {
-                    return proc.VirtualMemorySize64;
-                }
-            }
+            using var proc = GetCurrentProcess();
+            return proc.VirtualMemorySize64;
         }
+    }
 
-        /// <summary>
-        /// 物理メモリ最大使用量
-        /// </summary>
-        /// <returns></returns>
-        public static long PeakPagedMemorySize64
+    /// <summary>
+    /// Peak physical memory usage
+    /// </summary>
+    /// <returns></returns>
+    public static long PeakPagedMemorySize64
+    {
+        get
         {
-            get
-            {
-                using (var proc = GetCurrentProcess())
-                {
-                    return proc.PeakPagedMemorySize64;
-                }
-            }
+            using var proc = GetCurrentProcess();
+            return proc.PeakPagedMemorySize64;
         }
+    }
 
-        /// <summary>
-        /// 仮想メモリ最大使用量
-        /// </summary>
-        /// <returns></returns>
-        public static long PeakVirtualMemorySize64
+    /// <summary>
+    /// Peak virtual memory usage
+    /// </summary>
+    /// <returns></returns>
+    public static long PeakVirtualMemorySize64
+    {
+        get
         {
-            get
-            {
-                using (var proc = GetCurrentProcess())
-                {
-                    return proc.PeakVirtualMemorySize64;
-                }
-            }
+            using var proc = GetCurrentProcess();
+            return proc.PeakVirtualMemorySize64;
         }
+    }
 
-        private static Process GetCurrentProcess()
-        {
-            var proc = Process.GetCurrentProcess();
-            proc.Refresh();
-            return proc;
-        }
+    private static Process GetCurrentProcess()
+    {
+        var proc = Process.GetCurrentProcess();
+        proc.Refresh();
+        return proc;
     }
 }

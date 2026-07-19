@@ -6,7 +6,7 @@ using SampleBase.Interfaces;
 namespace SamplesCore;
 
 /// <summary>
-/// Multidimensional Scaling (多次元尺度構成法)
+/// Multidimensional Scaling
 /// for C++ cv::Mat testing
 /// </summary>
 [SampleCategory(SampleCategory.Core)]
@@ -59,7 +59,7 @@ class MDSSample : ConsoleTestBase
         using var g = CenteringMatrix(size);
         // calculates inner product matrix B
         var gt = g.T();
-        using var gt_mat = new Mat(gt);
+        using var gt_mat = gt.ToMat();
         var tmp = g * t;
         var tmp2 = tmp * gt_mat;
         var b = tmp2 * -0.5;
@@ -119,8 +119,7 @@ class MDSSample : ConsoleTestBase
     /// <returns></returns>
     private static double Torgerson(Mat mat)
     {
-        if (mat is null)
-            throw new ArgumentNullException(nameof(mat));
+        ArgumentNullException.ThrowIfNull(mat);
         if (mat.Rows != mat.Cols)
             throw new ArgumentException("mat.Rows != mat.Cols", nameof(mat));
 

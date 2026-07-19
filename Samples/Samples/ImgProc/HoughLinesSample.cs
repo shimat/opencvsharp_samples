@@ -7,7 +7,7 @@ using SampleBase.Interfaces;
 namespace SamplesCore;
 
 /// <summary>
-/// Hough Transform Sample / ハフ変換による直線検出
+/// Hough Transform Sample
 /// </summary>
 /// <remarks>http://opencv.jp/sample/special_transforms.html#hough_line</remarks>
 [SampleCategory(SampleCategory.ImgProc)]
@@ -42,8 +42,8 @@ class HoughLinesSample : ConsoleTestBase
             double b = Math.Sin(theta);
             double x0 = a * rho;
             double y0 = b * rho;
-            Point pt1 = new Point { X = (int)Math.Round(x0 + 1000 * (-b)), Y = (int)Math.Round(y0 + 1000 * (a)) };
-            Point pt2 = new Point { X = (int)Math.Round(x0 - 1000 * (-b)), Y = (int)Math.Round(y0 - 1000 * (a)) };
+            Point pt1 = new((int)Math.Round(x0 + 1000 * -b), (int)Math.Round(y0 + 1000 * a));
+            Point pt2 = new((int)Math.Round(x0 - 1000 * -b), (int)Math.Round(y0 - 1000 * a));
             Cv2.Line(imgStd, pt1, pt2, Scalar.Red, 3, LineTypes.AntiAlias, 0);
         }
 

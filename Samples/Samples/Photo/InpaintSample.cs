@@ -62,11 +62,11 @@ public class InpaintSample : ConsoleTestBase
             }
         });
 
-        Window wInpaint1 = null;
-        Window wInpaint2 = null;
+        Window? wInpaint1 = null;
+        Window? wInpaint2 = null;
         try
         {
-            for (; ; )
+            while (true)
             {
                 switch ((char)Window.WaitKey(0))
                 {

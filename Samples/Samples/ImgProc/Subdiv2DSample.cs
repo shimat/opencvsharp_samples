@@ -17,9 +17,8 @@ class Subdiv2DSample : ConsoleTestBase
         const int Size = 600;
 
         // Creates random point list
-        var rand = new Random();
         var points = Enumerable.Range(0, 100).Select(_ =>
-            new Point2f(rand.Next(0, Size), rand.Next(0, Size))).ToArray();
+            new Point2f(Random.Shared.Next(0, Size), Random.Shared.Next(0, Size))).ToArray();
 
         var imgExpr = Mat.Zeros(Size, Size, MatType.CV_8UC3);
         using var img = imgExpr.ToMat();

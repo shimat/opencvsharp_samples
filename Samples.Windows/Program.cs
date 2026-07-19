@@ -1,16 +1,15 @@
-﻿using System;
+using System;
 
-namespace Samples.Windows
+namespace Samples.Windows;
+
+class Program
 {
-    class Program
+    [STAThread]
+    static void Main(string[] args)
     {
-        [STAThread]
-        static void Main(string[] args)
-        {
-            ISample sample =
-                new MatToWriteableBitmap();
+        ISample sample =
+            new MatToWriteableBitmap();
 
-            sample.Run();
-        }
+        sample.Run();
     }
 }

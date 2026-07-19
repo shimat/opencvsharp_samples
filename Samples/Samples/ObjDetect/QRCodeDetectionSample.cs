@@ -24,7 +24,7 @@ class QRCodeDetectionSample : ConsoleTestBase
         if (points.Length > 0)
         {
             var corners = Array.ConvertAll(points, p => (Point)p);
-            Cv2.Polylines(dst, new[] { corners }, true, Scalar.Red, 3, LineTypes.AntiAlias);
+            Cv2.Polylines(dst, [corners], true, Scalar.Red, 3, LineTypes.AntiAlias);
         }
 
         Console.WriteLine(string.IsNullOrEmpty(text)

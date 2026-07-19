@@ -38,11 +38,11 @@ class MergeSplitSample : ConsoleTestBase
             using var bgr = new Mat(rgba.Rows, rgba.Cols, MatType.CV_8UC3);
             using var alpha = new Mat(rgba.Rows, rgba.Cols, MatType.CV_8UC1);
 
-            Mat[] input = { rgba };
-            Mat[] output = { bgr, alpha };
+            Mat[] input = [rgba];
+            Mat[] output = [bgr, alpha];
             // rgba[0] -> bgr[2], rgba[1] -> bgr[1],
             // rgba[2] -> bgr[0], rgba[3] -> alpha[0]
-            int[] fromTo = { 0, 2, 1, 1, 2, 0, 3, 3 };
+            int[] fromTo = [0, 2, 1, 1, 2, 0, 3, 3];
             Cv2.MixChannels(input, output, fromTo);
 
             display.Show(("rgba", rgba), ("bgr", bgr), ("alpha", alpha));

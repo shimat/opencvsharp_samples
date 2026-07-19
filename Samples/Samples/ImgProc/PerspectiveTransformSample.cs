@@ -10,23 +10,13 @@ namespace SamplesCore;
 [SampleCategory(SampleCategory.ImgProc)]
 public class PerspectiveTransformSample : ConsoleTestBase
 {
-    private readonly List<Point2f> point2Fs = new List<Point2f>();
+    private readonly List<Point2f> point2Fs = [];
 
-    private Point2f[] srcPoints = new Point2f[] {
-            new Point2f(0, 0),
-            new Point2f(0, 0),
-            new Point2f(0, 0),
-            new Point2f(0, 0),
-        };
+    private Point2f[] srcPoints = [new(0, 0), new(0, 0), new(0, 0), new(0, 0)];
 
-    private readonly Point2f[] dstPoints = new Point2f[] {
-            new Point2f(0, 0),
-            new Point2f(0, 480),
-            new Point2f(640, 480),
-            new Point2f(640, 0),
-        };
+    private readonly Point2f[] dstPoints = [new(0, 0), new(0, 480), new(640, 480), new(640, 0)];
 
-    private Mat OriginalImage;
+    private Mat? OriginalImage;
 
     public override void RunTest(DisplayHelper display)
     {
@@ -53,7 +43,7 @@ public class PerspectiveTransformSample : ConsoleTestBase
                 srcPoints = point2Fs.ToArray();
                 using var matrix = Cv2.GetPerspectiveTransform(srcPoints, dstPoints);
                 using var dst = new Mat(new Size(640, 480), MatType.CV_8UC3);
-                Cv2.WarpPerspective(OriginalImage, dst, matrix, dst.Size());
+                Cv2.WarpPerspective(OriginalImage!, dst, matrix, dst.Size());
                 using var dsts = new Window("dst", dst);
                 point2Fs.Clear();
                 Window.WaitKey();

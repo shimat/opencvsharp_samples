@@ -27,16 +27,16 @@ class NormalArrayOperations : ConsoleTestBase
         const int T = 3;
         const int Max = 5;
 
-        byte[] input = { 1, 2, 3, 4, 5, };
+        byte[] input = [1, 2, 3, 4, 5];
         using var output = new Mat();
 
         Cv2.Threshold(InputArray.Create(input), output,
             T, Max, ThresholdTypes.Binary);
         output.GetArray(out byte[] outputArr);
 
-        Console.WriteLine("Threshold: {0}", T);
-        Console.WriteLine("input:  {0}", string.Join(",", input));
-        Console.WriteLine("output: {0}", string.Join(",", outputArr));
+        Console.WriteLine($"Threshold: {T}");
+        Console.WriteLine($"input:  {string.Join(",", input)}");
+        Console.WriteLine($"output: {string.Join(",", outputArr)}");
     }
 
     /// <summary>
@@ -47,16 +47,16 @@ class NormalArrayOperations : ConsoleTestBase
         const int T = 150;
         const int Max = 250;
 
-        short[] input = { 50, 100, 150, 200, 250, };
+        short[] input = [50, 100, 150, 200, 250];
         using var output = new Mat();
 
         Cv2.Threshold(InputArray.Create(input), output,
             T, Max, ThresholdTypes.Binary);
         output.GetArray(out short[] outputArr);
 
-        Console.WriteLine("Threshold: {0}", T);
-        Console.WriteLine("input:  {0}", string.Join(",", input));
-        Console.WriteLine("output: {0}", string.Join(",", outputArr));
+        Console.WriteLine($"Threshold: {T}");
+        Console.WriteLine($"input:  {string.Join(",", input)}");
+        Console.WriteLine($"output: {string.Join(",", outputArr)}");
     }
 
     /// <summary>
@@ -68,19 +68,15 @@ class NormalArrayOperations : ConsoleTestBase
         const double Max = 5000;
 
         // threshold does not support Point (int)    
-        Point2f[] input = {
-                                  new Point2f(1000, 1500),
-                                  new Point2f(2000, 2001),
-                                  new Point2f(500, 5000),
-                              };
+        Point2f[] input = [new(1000, 1500), new(2000, 2001), new(500, 5000)];
         using var output = new Mat();
 
         Cv2.Threshold(InputArray.Create(input), output,
             T, Max, ThresholdTypes.Binary);
         output.GetArray(out Point2f[] outputArr);
 
-        Console.WriteLine("Threshold: {0}", T);
-        Console.WriteLine("input:  {0}", string.Join(",", input));
-        Console.WriteLine("output: {0}", string.Join(",", outputArr));
+        Console.WriteLine($"Threshold: {T}");
+        Console.WriteLine($"input:  {string.Join(",", input)}");
+        Console.WriteLine($"output: {string.Join(",", outputArr)}");
     }
 }
