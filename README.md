@@ -10,3 +10,4 @@ If you need samples for the older **OpenCvSharp4** (OpenCV 4.x) API, check out t
 - `VideoCaptureForm` WinForms sample
 - `VideoCaptureWPF` WPF sample
 - `AvaloniaViewer` Avalonia sample: live Canny edge detection preview driven by sliders
+- `Samples.WebApi` ASP.NET Core Web API sample: image cartoonify endpoint and a streamed per-frame video analysis endpoint

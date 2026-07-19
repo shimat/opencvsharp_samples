@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Samples.WebApi</title>
+<style>
+  body { font-family: sans-serif; margin: 2rem; max-width: 900px; }
+  section { margin-bottom: 3rem; }
+  img { max-width: 400px; border: 1px solid #ccc; margin-right: 1rem; }
+  pre { background: #f4f4f4; padding: 0.75rem; height: 240px; overflow-y: auto; }
+</style>
+</head>
+<body>
+
+<h1>Samples.WebApi</h1>
+<p>Small OpenCvSharp samples exposed over ASP.NET Core Web API. Leave the file input empty to process the bundled sample image/video.</p>
+
+<section>
+  <h2>POST /api/cartoonify</h2>
+  <input type="file" id="imageInput" accept="image/*">
+  <button id="cartoonifyButton">Cartoonify</button>
+  <div>
+    <img id="cartoonResult" alt="cartoonify result">
+  </div>
+</section>
+
+<section>
+  <h2>POST /api/frame-analysis (streamed)</h2>
+  <input type="file" id="videoInput" accept="video/*">
+  <button id="analyzeButton">Analyze frames</button>
+  <pre id="analyzeLog"></pre>
+</section>
+
+<script>
+async function postForm(url, fileInput, fieldName) {
+  const form = new FormData();
+  if (fileInput.files.length > 0) {
+    form.append(fieldName, fileInput.files[0]);
+  }
+  return fetch(url, { method: 'POST', body: form });
+}
+
+document.getElementById('cartoonifyButton').addEventListener('click', async () => {
+  const response = await postForm('/api/cartoonify', document.getElementById('imageInput'), 'image');
+  if (!response.ok) {
+    alert(`Request failed: ${response.status} ${await response.text()}`);
+    return;
+  }
+  const blob = await response.blob();
+  document.getElementById('cartoonResult').src = URL.createObjectURL(blob);
+});
+
+document.getElementById('analyzeButton').addEventListener('click', async () => {
+  const log = document.getElementById('analyzeLog');
+  log.textContent = '';
+  const start = performance.now();
+
+  const response = await postForm('/api/frame-analysis', document.getElementById('videoInput'), 'video');
+  if (!response.ok || !response.body) {
+    log.textContent = `Request failed: ${response.status} ${await response.text()}`;
+    return;
+  }
+
+  const reader = response.body.getReader();
+  const decoder = new TextDecoder();
+  for (;;) {
+    const { value, done } = await reader.read();
+    if (done) {
+      break;
+    }
+    const elapsed = ((performance.now() - start) / 1000).toFixed(2);
+    log.textContent += `[+${elapsed}s chunk, ${value.length} bytes]\n${decoder.decode(value, { stream: true })}\n\n`;
+    log.scrollTop = log.scrollHeight;
+  }
+});
+</script>
+
+</body>
+</html>

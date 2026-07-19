@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Nullable>enable</Nullable>
+    <RootNamespace>Samples.WebApi</RootNamespace>
+    <AssemblyName>Samples.WebApi</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="OpenCvSharp5" Version="5.0.0.20260702" />
+    <PackageReference Include="OpenCvSharp5.runtime.win" Version="5.0.0.20260702" />
+    <PackageReference Include="OpenCvSharp5.official.runtime.linux-x64" Version="5.0.0.20260702" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\Samples\Data\Image\Mandrill.bmp" Link="Data\Image\Mandrill.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Samples\Data\Movie\bach.mp4" Link="Data\Movie\bach.mp4">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>

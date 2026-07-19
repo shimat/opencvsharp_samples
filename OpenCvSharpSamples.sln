@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VideoCaptureWPF", "VideoCap
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvaloniaViewer", "AvaloniaViewer\AvaloniaViewer.csproj", "{C6E27FC4-FDAB-447E-903B-C484533B6713}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.WebApi", "Samples.WebApi\Samples.WebApi.csproj", "{702D6150-2C2E-4482-899B-B52E24C5BAA2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -127,6 +129,26 @@ Global
 		{C6E27FC4-FDAB-447E-903B-C484533B6713}.Release|x64.Build.0 = Release|Any CPU
 		{C6E27FC4-FDAB-447E-903B-C484533B6713}.Release|x86.ActiveCfg = Release|Any CPU
 		{C6E27FC4-FDAB-447E-903B-C484533B6713}.Release|x86.Build.0 = Release|Any CPU
+		{702D6150-2C2E-4482-899B-B52E24C5BAA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{702D6150-2C2E-4482-899B-B52E24C5BAA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{702D6150-2C2E-4482-899B-B52E24C5BAA2}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{702D6150-2C2E-4482-899B-B52E24C5BAA2}.Debug|ARM.Build.0 = Debug|Any CPU
+		{702D6150-2C2E-4482-899B-B52E24C5BAA2}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{702D6150-2C2E-4482-899B-B52E24C5BAA2}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{702D6150-2C2E-4482-899B-B52E24C5BAA2}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{702D6150-2C2E-4482-899B-B52E24C5BAA2}.Debug|x64.Build.0 = Debug|Any CPU
+		{702D6150-2C2E-4482-899B-B52E24C5BAA2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{702D6150-2C2E-4482-899B-B52E24C5BAA2}.Debug|x86.Build.0 = Debug|Any CPU
+		{702D6150-2C2E-4482-899B-B52E24C5BAA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{702D6150-2C2E-4482-899B-B52E24C5BAA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{702D6150-2C2E-4482-899B-B52E24C5BAA2}.Release|ARM.ActiveCfg = Release|Any CPU
+		{702D6150-2C2E-4482-899B-B52E24C5BAA2}.Release|ARM.Build.0 = Release|Any CPU
+		{702D6150-2C2E-4482-899B-B52E24C5BAA2}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{702D6150-2C2E-4482-899B-B52E24C5BAA2}.Release|ARM64.Build.0 = Release|Any CPU
+		{702D6150-2C2E-4482-899B-B52E24C5BAA2}.Release|x64.ActiveCfg = Release|Any CPU
+		{702D6150-2C2E-4482-899B-B52E24C5BAA2}.Release|x64.Build.0 = Release|Any CPU
+		{702D6150-2C2E-4482-899B-B52E24C5BAA2}.Release|x86.ActiveCfg = Release|Any CPU
+		{702D6150-2C2E-4482-899B-B52E24C5BAA2}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
