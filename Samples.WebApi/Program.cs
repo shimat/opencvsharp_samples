@@ -133,3 +133,7 @@ static async IAsyncEnumerable<FrameAnalysis> AnalyzeFramesAsync(IFormFile? video
 }
 
 sealed record FrameAnalysis(int FrameIndex, int Width, int Height, double Brightness, double EdgeRatio);
+
+// Exposes the top-level statements' generated Program class to Samples.WebApi.Tests,
+// which needs it as the generic argument for WebApplicationFactory<Program>.
+public partial class Program;

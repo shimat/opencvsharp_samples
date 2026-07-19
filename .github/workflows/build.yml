@@ -1,0 +1,33 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-windows:
+    # Samples.Windows / VideoCaptureForm / VideoCaptureWPF target net8.0-windows,
+    # so the full solution can only be built on a Windows runner.
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: "8.0.x"
+      - run: dotnet restore OpenCvSharpSamples.sln
+      - run: dotnet build OpenCvSharpSamples.sln --no-restore --configuration Release
+
+  build-and-test-linux:
+    # Samples.WebApi additionally targets linux-x64 via OpenCvSharp5.official.runtime.linux-x64,
+    # so verify it builds and its tests pass on Linux too.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: "8.0.x"
+      - run: dotnet restore Samples.WebApi/Samples.WebApi.csproj
+      - run: dotnet build Samples.WebApi/Samples.WebApi.csproj --no-restore --configuration Release
+      - run: dotnet test tests/Samples.WebApi.Tests/Samples.WebApi.Tests.csproj --configuration Release
