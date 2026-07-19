@@ -29,7 +29,7 @@ class SolveEquationSample : ConsoleTestBase
 
         double[,] av = {{1, 1},
                           {2, 3}};
-        double[] yv = { 10, 26 };
+        double[] yv = [10, 26];
 
         using var a = Mat.FromPixelData(2, 2, MatType.CV_64FC1, av);
         using var y = Mat.FromPixelData(2, 1, MatType.CV_64FC1, yv);
@@ -38,7 +38,7 @@ class SolveEquationSample : ConsoleTestBase
         Cv2.Solve(a, y, x, DecompTypes.LU);
 
         Console.WriteLine("ByMat:");
-        Console.WriteLine("X1 = {0}, X2 = {1}", x.At<double>(0), x.At<double>(1));
+        Console.WriteLine($"X1 = {x.At<double>(0)}, X2 = {x.At<double>(1)}");
     }
 
     /// <summary>
@@ -53,7 +53,7 @@ class SolveEquationSample : ConsoleTestBase
         double[,] a = {{1, 1},
                           {2, 3}};
 
-        double[] y = { 10, 26 };
+        double[] y = [10, 26];
 
         using var x = new Mat();
 
@@ -64,6 +64,6 @@ class SolveEquationSample : ConsoleTestBase
         x.GetArray(out double[] xArr);
 
         Console.WriteLine("ByNormalArray:");
-        Console.WriteLine("X1 = {0}, X2 = {1}", xArr[0], xArr[1]);
+        Console.WriteLine($"X1 = {xArr[0]}, X2 = {xArr[1]}");
     }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using OpenCvSharp;
 using OpenCvSharp.XFeatures2D;
@@ -16,29 +16,29 @@ internal class KAZESample : ConsoleTestBase
 {
     public override void RunTest(DisplayHelper display)
     {
-        var gray = new Mat(ImagePath.Cat, ImreadModes.Grayscale);
-        var kaze = KAZE.Create();
-        var akaze = AKAZE.Create();
+        using var gray = new Mat(ImagePath.Cat, ImreadModes.Grayscale);
+        using var kaze = KAZE.Create();
+        using var akaze = AKAZE.Create();
 
-        var kazeDescriptors = new Mat();
-        var akazeDescriptors = new Mat();
-        KeyPoint[] kazeKeyPoints = null, akazeKeyPoints = null;
+        using var kazeDescriptors = new Mat();
+        using var akazeDescriptors = new Mat();
+        KeyPoint[] kazeKeyPoints = [], akazeKeyPoints = [];
         var kazeTime = MeasureTime(() =>
             kaze.DetectAndCompute(gray, default, out kazeKeyPoints, kazeDescriptors));
         var akazeTime = MeasureTime(() =>
             akaze.DetectAndCompute(gray, default, out akazeKeyPoints, akazeDescriptors));
 
-        var dstKaze = new Mat();
-        var dstAkaze = new Mat();
+        using var dstKaze = new Mat();
+        using var dstAkaze = new Mat();
         Cv2.DrawKeypoints(gray, kazeKeyPoints, dstKaze);
         Cv2.DrawKeypoints(gray, akazeKeyPoints, dstAkaze);
 
         display.Show(
-            (String.Format("KAZE [{0:F2}ms]", kazeTime.TotalMilliseconds), dstKaze),
-            (String.Format("AKAZE [{0:F2}ms]", akazeTime.TotalMilliseconds), dstAkaze));
+            ($"KAZE [{kazeTime.TotalMilliseconds:F2}ms]", dstKaze),
+            ($"AKAZE [{akazeTime.TotalMilliseconds:F2}ms]", dstAkaze));
     }
 
-    private TimeSpan MeasureTime(Action action)
+    private static TimeSpan MeasureTime(Action action)
     {
         var watch = Stopwatch.StartNew();
         action();

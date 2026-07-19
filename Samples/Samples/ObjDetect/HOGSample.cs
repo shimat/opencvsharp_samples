@@ -13,10 +13,6 @@ namespace SamplesCore;
 [SampleCategory(SampleCategory.ObjDetect)]
 internal class HOGSample : ConsoleTestBase
 {
-    public HOGSample()
-    {
-    }
-
     public override void RunTest(DisplayHelper display)
     {
         using var img = Cv2.ImRead(ImagePath.Asahiyama, ImreadModes.Color);
@@ -25,7 +21,7 @@ internal class HOGSample : ConsoleTestBase
         hog.SetSVMDetector(HOGDescriptor.GetDefaultPeopleDetector());
 
         bool b = hog.CheckDetectorSize();
-        Console.WriteLine("CheckDetectorSize: {0}", b);
+        Console.WriteLine($"CheckDetectorSize: {b}");
 
         var watch = Stopwatch.StartNew();
 
@@ -35,8 +31,8 @@ internal class HOGSample : ConsoleTestBase
         Rect[] found = hog.DetectMultiScale(img, 0, new Size(8, 8), new Size(24, 16), 1.05, 2);
 
         watch.Stop();
-        Console.WriteLine("Detection time = {0}ms", watch.ElapsedMilliseconds);
-        Console.WriteLine("{0} region(s) found", found.Length);
+        Console.WriteLine($"Detection time = {watch.ElapsedMilliseconds}ms");
+        Console.WriteLine($"{found.Length} region(s) found");
 
         foreach (Rect rect in found)
         {

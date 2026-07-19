@@ -20,14 +20,14 @@ class SquareDetectionSample : ConsoleTestBase
     private const int Levels = 11;
 
     private static readonly string[] ImagePaths =
-    {
+    [
         ImagePath.Square1,
         ImagePath.Square2,
         ImagePath.Square3,
         ImagePath.Square4,
         ImagePath.Square5,
         ImagePath.Square6,
-    };
+    ];
 
     public override void RunTest(DisplayHelper display)
     {
@@ -66,44 +66,42 @@ class SquareDetectionSample : ConsoleTestBase
 
         foreach (var plane in planes)
         {
-            using (plane)
+            using var planeDisposer = plane;
+            for (int level = 0; level < Levels; level++)
             {
-                for (int level = 0; level < Levels; level++)
+                using var gray = new Mat();
+                if (level == 0)
                 {
-                    using var gray = new Mat();
-                    if (level == 0)
+                    Cv2.Canny(plane, gray, 0, Thresh, apertureSize: 5);
+                    Cv2.Dilate(gray, gray, default);
+                }
+                else
+                {
+                    Cv2.Threshold(plane, gray, (level + 1) * 255.0 / Levels, 255, ThresholdTypes.Binary);
+                }
+
+                Cv2.FindContours(gray, out var contours, out _, RetrievalModes.List, ContourApproximationModes.ApproxSimple);
+
+                foreach (var contour in contours)
+                {
+                    var approx = Cv2.ApproxPolyDP(contour, Cv2.ArcLength(contour, true) * 0.02, true);
+                    if (approx.Length != 4 ||
+                        Math.Abs(Cv2.ContourArea(approx)) <= 1000 ||
+                        !Cv2.IsContourConvex(approx))
                     {
-                        Cv2.Canny(plane, gray, 0, Thresh, apertureSize: 5);
-                        Cv2.Dilate(gray, gray, default);
+                        continue;
                     }
-                    else
+
+                    double maxCosine = 0;
+                    for (int j = 2; j < 5; j++)
                     {
-                        Cv2.Threshold(plane, gray, (level + 1) * 255.0 / Levels, 255, ThresholdTypes.Binary);
+                        double cosine = Math.Abs(Angle(approx[j % 4], approx[j - 2], approx[j - 1]));
+                        maxCosine = Math.Max(maxCosine, cosine);
                     }
 
-                    Cv2.FindContours(gray, out var contours, out _, RetrievalModes.List, ContourApproximationModes.ApproxSimple);
-
-                    foreach (var contour in contours)
+                    if (maxCosine < 0.3)
                     {
-                        var approx = Cv2.ApproxPolyDP(contour, Cv2.ArcLength(contour, true) * 0.02, true);
-                        if (approx.Length != 4 ||
-                            Math.Abs(Cv2.ContourArea(approx)) <= 1000 ||
-                            !Cv2.IsContourConvex(approx))
-                        {
-                            continue;
-                        }
-
-                        double maxCosine = 0;
-                        for (int j = 2; j < 5; j++)
-                        {
-                            double cosine = Math.Abs(Angle(approx[j % 4], approx[j - 2], approx[j - 1]));
-                            maxCosine = Math.Max(maxCosine, cosine);
-                        }
-
-                        if (maxCosine < 0.3)
-                        {
-                            squares.Add(approx);
-                        }
+                        squares.Add(approx);
                     }
                 }
             }

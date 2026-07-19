@@ -20,7 +20,7 @@ class Stitching : ConsoleTestBase
         Console.Write("Stitching start...");
         // TODO: does not work??
         var status = stitcher.Stitch(images, pano);
-        Console.WriteLine(" finish (status:{0})", status);
+        Console.WriteLine($" finish (status:{status})");
 
         display.Show(("pano", pano));
 
@@ -35,12 +35,11 @@ class Stitching : ConsoleTestBase
         using var source = new Mat(ImagePath.Asahiyama, ImreadModes.Color);
         using var result = source.Clone();
 
-        var rand = new Random();
-        var mats = new List<Mat>();
+        var mats = new Mat[count];
         for (int i = 0; i < count; i++)
         {
-            int x1 = rand.Next(source.Cols - width);
-            int y1 = rand.Next(source.Rows - height);
+            int x1 = Random.Shared.Next(source.Cols - width);
+            int y1 = Random.Shared.Next(source.Rows - height);
             int x2 = x1 + width;
             int y2 = y1 + height;
 
@@ -50,11 +49,11 @@ class Stitching : ConsoleTestBase
             Cv2.Line(result, new Point(x2, y1), new Point(x1, y1), new Scalar(0, 0, 255));
 
             using var m = source[new Rect(x1, y1, width, height)];
-            mats.Add(m.Clone());
+            mats[i] = m.Clone();
         }
 
         display.Show(("stitching", result));
 
-        return mats.ToArray();
+        return mats;
     }
 }

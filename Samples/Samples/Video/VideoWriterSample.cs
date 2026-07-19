@@ -39,7 +39,7 @@ class VideoWriterSample : ConsoleTestBase
                 if (!Console.IsOutputRedirected)
                 {
                     Console.CursorLeft = 0;
-                    Console.Write("{0} / {1}", capture.PosFrames, capture.FrameCount);
+                    Console.Write($"{capture.PosFrames} / {capture.FrameCount}");
                 }
 
                 // grayscale -> canny -> resize
@@ -56,21 +56,18 @@ class VideoWriterSample : ConsoleTestBase
         }
 
         // Watch result movie
-        using (var capture2 = new VideoCapture(OutVideoFile))
+        using var capture2 = new VideoCapture(OutVideoFile);
+        int sleepTime = (int)(1000 / capture.Fps);
+
+        using var resultFrame = new Mat();
+        while (true)
         {
-            int sleepTime = (int)(1000 / capture.Fps);
+            capture2.Read(resultFrame);
+            if (resultFrame.Empty())
+                break;
 
-            using var frame = new Mat();
-            while (true)
-            {
-                capture2.Read(frame);
-                if (frame.Empty())
-                    break;
-
-                if (!display.ShowFrame(waitMs: sleepTime, maxHeadlessFrames: 5, ("result", frame)))
-                    break;
-            }
+            if (!display.ShowFrame(waitMs: sleepTime, maxHeadlessFrames: 5, ("result", resultFrame)))
+                break;
         }
     }
-
 }

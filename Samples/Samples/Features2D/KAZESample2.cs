@@ -16,10 +16,7 @@ namespace SamplesCore;
 [SampleCategory(SampleCategory.Features2D)]
 class KAZESample2 : ConsoleTestBase
 {
-    public static Point2d Point2fToPoint2d(Point2f pf)
-    {
-        return new Point2d(((int)pf.X), ((int)pf.Y));
-    }
+    public static Point2d Point2fToPoint2d(Point2f pf) => new((int)pf.X, (int)pf.Y);
 
     public override void RunTest(DisplayHelper display)
     {
@@ -84,15 +81,14 @@ class KAZESample2 : ConsoleTestBase
                 mask.GetArray(out byte[] maskBytes);
                 Cv2.DrawMatches(img1, keypoints1, img2, keypoints2, goodMatchesList, img3, Scalar.All(-1), Scalar.All(-1), maskBytes, DrawMatchesFlags.NotDrawSinglePoints);
 
-                var listOfListOfPoint2D = new List<List<Point>>();
-                var listOfPoint2D = new List<Point>
-                            {
-                                new(sceneCorners[0].X + img1.Cols, sceneCorners[0].Y),
-                                new(sceneCorners[1].X + img1.Cols, sceneCorners[1].Y),
-                                new(sceneCorners[2].X + img1.Cols, sceneCorners[2].Y),
-                                new(sceneCorners[3].X + img1.Cols, sceneCorners[3].Y)
-                            };
-                listOfListOfPoint2D.Add(listOfPoint2D);
+                List<Point> listOfPoint2D =
+                [
+                    new(sceneCorners[0].X + img1.Cols, sceneCorners[0].Y),
+                    new(sceneCorners[1].X + img1.Cols, sceneCorners[1].Y),
+                    new(sceneCorners[2].X + img1.Cols, sceneCorners[2].Y),
+                    new(sceneCorners[3].X + img1.Cols, sceneCorners[3].Y),
+                ];
+                List<List<Point>> listOfListOfPoint2D = [listOfPoint2D];
                 Cv2.Polylines(img3, listOfListOfPoint2D, true, Scalar.LimeGreen, 2);
 
                 //This works too

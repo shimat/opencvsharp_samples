@@ -1,7 +1,6 @@
-﻿namespace Samples.Windows
+namespace Samples.Windows;
+
+interface ISample
 {
-    interface ISample
-    {
-        void Run();
-    }
+    void Run();
 }

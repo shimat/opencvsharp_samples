@@ -11,7 +11,7 @@ public static class Program
     [STAThread]
     public static void Main(string[] args)
     {
-        Console.WriteLine("Runtime Version = {0}", Environment.Version);
+        Console.WriteLine($"Runtime Version = {Environment.Version}");
 
         // Env var: OPENCV_SAMPLES_HEADLESS=1 (via Configuration rather than a raw
         // Environment.GetEnvironmentVariable lookup). CLI: --headless.

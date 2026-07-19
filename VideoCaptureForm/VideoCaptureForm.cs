@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Threading;
@@ -6,66 +6,68 @@ using System.Windows.Forms;
 using OpenCvSharp;
 using OpenCvSharp.GdipExtensions;
 
-namespace VideoCaptureForm
+namespace VideoCaptureForm;
+
+public partial class VideoCaptureForm : Form
 {
-    public partial class VideoCaptureForm : Form
+    private readonly VideoCapture capture;
+    private readonly CascadeClassifier cascadeClassifier;
+
+    public VideoCaptureForm()
     {
-        private readonly VideoCapture capture;
-        private readonly CascadeClassifier cascadeClassifier;
+        InitializeComponent();
 
-        public VideoCaptureForm()
+        capture = new VideoCapture();
+        cascadeClassifier = new CascadeClassifier("haarcascade_frontalface_default.xml");
+    }
+
+    private void VideoCaptureForm_Load(object sender, EventArgs e)
+    {
+        capture.Open(0, VideoCaptureAPIs.ANY);
+        if (!capture.IsOpened())
         {
-            InitializeComponent();
-
-            capture = new VideoCapture();
-            cascadeClassifier = new CascadeClassifier("haarcascade_frontalface_default.xml");
+            Close();
+            return;
         }
 
-        private void VideoCaptureForm_Load(object sender, EventArgs e)
+        ClientSize = new System.Drawing.Size(capture.FrameWidth, capture.FrameHeight);
+
+        backgroundWorker1.RunWorkerAsync();
+    }
+
+    private void VideoCaptureForm_FormClosing(object sender, FormClosingEventArgs e)
+    {
+        backgroundWorker1.CancelAsync();
+        capture.Dispose();
+        cascadeClassifier.Dispose();
+    }
+
+    private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+    {
+        if (sender is not BackgroundWorker bgWorker)
         {
-            capture.Open(0, VideoCaptureAPIs.ANY);
-            if (!capture.IsOpened())
+            return;
+        }
+
+        while (!bgWorker.CancellationPending)
+        {
+            using var frameMat = capture.RetrieveMat();
+            var rects = cascadeClassifier.DetectMultiScale(frameMat, 1.1, 5, HaarDetectionTypes.ScaleImage, new OpenCvSharp.Size(30, 30));
+            if (rects.Length > 0)
             {
-                Close();
-                return;
+                Cv2.Rectangle(frameMat, rects[0], Scalar.Red);
             }
 
-            ClientSize = new System.Drawing.Size(capture.FrameWidth, capture.FrameHeight);
-
-            backgroundWorker1.RunWorkerAsync();
+            var frameBitmap = BitmapConverter.ToBitmap(frameMat);
+            bgWorker.ReportProgress(0, frameBitmap);
+            Thread.Sleep(100);
         }
+    }
 
-        private void VideoCaptureForm_FormClosing(object sender, FormClosingEventArgs e)
+    private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
+    {
+        if (e.UserState is Bitmap frameBitmap)
         {
-            backgroundWorker1.CancelAsync();
-            capture.Dispose();
-            cascadeClassifier.Dispose();
-        }
-
-        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
-        {
-            var bgWorker = (BackgroundWorker) sender;
-
-            while (!bgWorker.CancellationPending)
-            {
-                using (var frameMat = capture.RetrieveMat())
-                {
-                    var rects = cascadeClassifier.DetectMultiScale(frameMat, 1.1, 5, HaarDetectionTypes.ScaleImage, new OpenCvSharp.Size(30, 30));
-                    if (rects.Length > 0)
-                    {
-                        Cv2.Rectangle(frameMat, rects[0], Scalar.Red);
-                    }
-
-                    var frameBitmap = BitmapConverter.ToBitmap(frameMat);
-                    bgWorker.ReportProgress(0, frameBitmap);
-                }
-                Thread.Sleep(100);
-            }
-        }
-
-        private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            var frameBitmap = (Bitmap)e.UserState;
             pictureBox1.Image?.Dispose();
             pictureBox1.Image = frameBitmap;
         }

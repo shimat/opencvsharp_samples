@@ -75,12 +75,11 @@ class MatOperations : ConsoleTestBase
     {
         using var src = Cv2.ImRead(ImagePath.Fruits);
 
-        var rand = new Random();
         var srcRows = src.AsRows<Vec3b>();
         for (int i = 0; i < 200; i++)
         {
-            int c1 = rand.Next(100, 400);
-            int c2 = rand.Next(100, 400);
+            int c1 = Random.Shared.Next(100, 400);
+            int c2 = Random.Shared.Next(100, 400);
             var row1 = srcRows[c1];
             var row2 = srcRows[c2];
             var temp = row1.ToArray();

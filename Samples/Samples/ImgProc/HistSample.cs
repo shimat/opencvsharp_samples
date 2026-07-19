@@ -22,11 +22,11 @@ class HistSample : ConsoleTestBase
 
         // Calculate histogram
         var hist = new Mat();
-        int[] hdims = { 256 }; // Histogram size for each dimension
-        Rangef[] ranges = { new Rangef(0, 256), }; // min/max 
+        int[] hdims = [256]; // Histogram size for each dimension
+        Rangef[] ranges = [new Rangef(0, 256)]; // min/max
         Cv2.CalcHist(
-                   new Mat[] { src },
-                   new int[] { 0 },
+                   [src],
+                   [0],
                    default,
                    hist,
                    1,

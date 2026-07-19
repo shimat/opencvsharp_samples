@@ -1,63 +1,62 @@
-﻿using System;
+using System;
 using SampleBase.Interfaces;
 
-namespace SampleBase.Console
+namespace SampleBase.Console;
+
+public abstract class ConsoleTestBase : ITestBase
 {
-    public abstract class ConsoleTestBase : ITestBase
+    private readonly ConsoleMessagePrinter msgPrinter;
+
+    public string Name { get; set; }
+
+    protected ConsoleTestBase(string title)
     {
-        private readonly ConsoleMessagePrinter msgPrinter;
+        Name = title;
+        msgPrinter = new ConsoleMessagePrinter();
+    }
 
-        public string Name { get; set; }
+    protected ConsoleTestBase()
+    {
+        Name = GetType().Name;
+        msgPrinter = new ConsoleMessagePrinter();
+    }
 
-        protected ConsoleTestBase(string title)
-        {
-            Name = title;
-            msgPrinter = new ConsoleMessagePrinter();
-        }
+    public abstract void RunTest(DisplayHelper display);
 
-        protected ConsoleTestBase()
-        {
-            Name = GetType().Name;
-            msgPrinter = new ConsoleMessagePrinter();
-        }
+    public void PrintInfo(string message, bool newLine = true)
+    {
+        msgPrinter.PrintInfo(message, newLine);
+    }
 
-        public abstract void RunTest(DisplayHelper display);
+    public void PrintObject(object obj, bool newLine = true, ConsoleColor consoleColor = ConsoleColor.White)
+    {
+        msgPrinter.PrintObject(obj, newLine, consoleColor);
+    }
 
-        public void PrintInfo(string message, bool newLine = true)
-        {
-            msgPrinter.PrintInfo(message, newLine);
-        }
+    public void PrintWarning(string message, bool newLine = true)
+    {
+        msgPrinter.PrintWarning(message, newLine);
+    }
 
-        public void PrintObject(object obj, bool newLine = true, ConsoleColor consoleColor = ConsoleColor.White)
-        {
-            msgPrinter.PrintObject(obj, newLine, consoleColor);
-        }
+    public void PrintError(string message, bool newLine = true)
+    {
+        msgPrinter.PrintError(message, newLine);
+    }
 
-        public void PrintWarning(string message, bool newLine = true)
-        {
-            msgPrinter.PrintWarning(message, newLine);
-        }
+    public void PrintSuccess(string message, bool newLine = true)
+    {
+        msgPrinter.PrintSuccess(message, newLine);
+    }
 
-        public void PrintError(string message, bool newLine = true)
-        {
-            msgPrinter.PrintError(message, newLine);
-        }
+    public string? WaitToInput()
+    {
+        return System.Console.ReadLine();
+    }
 
-        public void PrintSuccess(string message, bool newLine = true)
-        {
-            msgPrinter.PrintSuccess(message, newLine);
-        }
-
-        public string? WaitToInput()
-        {
-            return System.Console.ReadLine();
-        }
-
-        public void WaitToContinue(string? tip = null)
-        {
-            if (tip != null)
-                System.Console.WriteLine(tip);
-            System.Console.ReadLine();
-        }
+    public void WaitToContinue(string? tip = null)
+    {
+        if (tip != null)
+            System.Console.WriteLine(tip);
+        System.Console.ReadLine();
     }
 }

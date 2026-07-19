@@ -37,18 +37,12 @@ class DrawBestMatchRectangle : ConsoleTestBase
         using var homography = Cv2.FindHomography(srcPts, dstPts, HomographyMethods.Ransac, 5, default);
 
         int h = img1.Height, w = img1.Width;
-        var img2Bounds = new[]
-        {
-                new Point2d(0, 0),
-                new Point2d(0, h-1),
-                new Point2d(w-1, h-1),
-                new Point2d(w-1, 0),
-            };
+        Point2d[] img2Bounds = [new(0, 0), new(0, h - 1), new(w - 1, h - 1), new(w - 1, 0)];
         var img2BoundsTransformed = Cv2.PerspectiveTransform(img2Bounds, homography);
 
         using var view = img2.Clone();
         var drawingPoints = img2BoundsTransformed.Select(p => (Point)p).ToArray();
-        Cv2.Polylines(view, new[] { drawingPoints }, true, Scalar.Red, 3);
+        Cv2.Polylines(view, [drawingPoints], true, Scalar.Red, 3);
 
         display.Show(("view", view));
     }

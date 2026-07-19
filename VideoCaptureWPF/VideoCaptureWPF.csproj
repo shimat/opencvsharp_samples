@@ -6,7 +6,7 @@
     <TargetFramework>net8.0-windows</TargetFramework>
     <RootNamespace>VideoCaptureWPF</RootNamespace>
     <AssemblyName>VideoCaptureWPF</AssemblyName>
-    <WarningLevel>4</WarningLevel>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
   
   <ItemGroup>

@@ -21,14 +21,16 @@ public class ArucoSample : ConsoleTestBase
 
         using var src = Cv2.ImRead(ImagePath.Aruco);
 
-        var detectorParameters = new DetectorParameters();
-        detectorParameters.CornerRefinementMethod = CornerRefineMethod.Subpix;
-        detectorParameters.CornerRefinementWinSize = 9;
+        var detectorParameters = new DetectorParameters
+        {
+            CornerRefinementMethod = CornerRefineMethod.Subpix,
+            CornerRefinementWinSize = 9
+        };
 
         using var dictionary = Cv2.Aruco.GetPredefinedDictionary(PredefinedDictionaryType.Dict4X4_1000);
         using var detector = new ArucoDetector(dictionary, detectorParameters, new RefineParameters());
 
-        detector.DetectMarkers(src, out var corners, out var ids, out var rejectedPoints);
+        detector.DetectMarkers(src, out var corners, out var ids, out _);
 
         using var detectedMarkers = src.Clone();
         Cv2.Aruco.DrawDetectedMarkers(detectedMarkers, corners, ids, Scalar.Crimson);
@@ -58,17 +60,8 @@ public class ArucoSample : ConsoleTestBase
         var lowerLeftPixel = corners[lowerLeftCornerIndex][3];
 
         // Create coordinates for passing to GetPerspectiveTransform
-        var sourceCoordinates = new List<Point2f>
-            {
-                upperLeftPixel, upperRightPixel, lowerRightPixel, lowerLeftPixel
-            };
-        var destinationCoordinates = new List<Point2f>
-            {
-                new Point2f(0, 0),
-                new Point2f(1024, 0),
-                new Point2f(1024, 1024),
-                new Point2f(0, 1024),
-            };
+        List<Point2f> sourceCoordinates = [upperLeftPixel, upperRightPixel, lowerRightPixel, lowerLeftPixel];
+        List<Point2f> destinationCoordinates = [new(0, 0), new(1024, 0), new(1024, 1024), new(0, 1024)];
 
         using var transform = Cv2.GetPerspectiveTransform(sourceCoordinates, destinationCoordinates);
         using var normalizedImage = new Mat();

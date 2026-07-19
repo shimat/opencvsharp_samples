@@ -25,7 +25,7 @@ class DFTSample : ConsoleTestBase
         // Add to the expanded another plane with zeros
         using var paddedF32 = new Mat();
         padded.ConvertTo(paddedF32, MatType.CV_32F);
-        Mat[] planes = { paddedF32, Mat.Zeros(padded.Size(), MatType.CV_32F) };
+        Mat[] planes = [paddedF32, Mat.Zeros(padded.Size(), MatType.CV_32F)];
         using var complex = new Mat();
         Cv2.Merge(planes, complex);
 

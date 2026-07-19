@@ -15,9 +15,9 @@ class PixelAccess : ConsoleTestBase
 {
     public override void RunTest(DisplayHelper display)
     {
-        Console.WriteLine("Get/Set: {0}ms", MeasureTime(GetSet));
-        Console.WriteLine("GenericIndexer: {0}ms", MeasureTime(GenericIndexer));
-        Console.WriteLine("TypeSpecificMat: {0}ms", MeasureTime(TypeSpecificMat));
+        Console.WriteLine($"Get/Set: {MeasureTime(GetSet)}ms");
+        Console.WriteLine($"GenericIndexer: {MeasureTime(GenericIndexer)}ms");
+        Console.WriteLine($"TypeSpecificMat: {MeasureTime(TypeSpecificMat)}ms");
     }
 
     /// <summary>

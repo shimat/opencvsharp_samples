@@ -17,7 +17,7 @@ class MorphologySample : ConsoleTestBase
         using var binary = new Mat();
         using var dilate1 = new Mat();
         using var dilate2 = new Mat();
-        byte[] kernelValues = { 0, 1, 0, 1, 1, 1, 0, 1, 0 }; // cross (+)
+        byte[] kernelValues = [0, 1, 0, 1, 1, 1, 0, 1, 0]; // cross (+)
         using var kernel = Mat.FromPixelData(3, 3, MatType.CV_8UC1, kernelValues);
 
         // Binarize
