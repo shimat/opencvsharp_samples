@@ -80,10 +80,10 @@ public class InpaintSample : ConsoleTestBase
                     case 'i':   // do Inpaint
                     case '\r':
                         Cv2.Inpaint(img, inpaintMask, inpainted, 3, InpaintTypes.Telea);
-                        wInpaint1 ??= new Window("inpainted image (algorithm by Alexandru Telea)", WindowFlags.AutoSize);
+                        wInpaint1 ??= new Window("inpainted image (algorithm by Alexandru Telea)", flags: WindowFlags.AutoSize);
                         wInpaint1.ShowImage(inpainted);
                         Cv2.Inpaint(img, inpaintMask, inpainted, 3, InpaintTypes.NS);
-                        wInpaint2 ??= new Window("inpainted image (algorithm by Navier-Strokes)", WindowFlags.AutoSize);
+                        wInpaint2 ??= new Window("inpainted image (algorithm by Navier-Strokes)", flags: WindowFlags.AutoSize);
                         wInpaint2.ShowImage(inpainted);
                         break;
                 }

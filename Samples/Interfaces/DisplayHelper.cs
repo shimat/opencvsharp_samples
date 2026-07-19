@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using OpenCvSharp;
 
 namespace SampleBase.Interfaces;
@@ -43,7 +42,7 @@ public sealed class DisplayHelper
             return;
         }
 
-        Window.ShowImages(frames.Select(f => f.Image).ToArray(), frames.Select(f => f.Title).ToArray());
+        Window.ShowImages(frames);
     }
 
     /// <summary>
