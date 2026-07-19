@@ -1,0 +1,12 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "packageRules": [
+    {
+      "matchManagers": ["nuget"],
+      "matchPackageNames": ["/^OpenCvSharp5/"],
+      "groupName": "OpenCvSharp5",
+      "groupSlug": "opencvsharp5"
+    }
+  ]
+}
