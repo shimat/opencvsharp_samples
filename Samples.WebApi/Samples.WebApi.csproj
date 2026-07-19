@@ -11,6 +11,7 @@
   <ItemGroup>
     <PackageReference Include="OpenCvSharp5" Version="5.0.0.20260702" />
     <PackageReference Include="OpenCvSharp5.runtime.win" Version="5.0.0.20260702" />
+    <PackageReference Include="OpenCvSharp5.official.runtime.linux-x64" Version="5.0.0.20260702" />
   </ItemGroup>
 
   <ItemGroup>
