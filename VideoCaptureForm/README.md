@@ -4,7 +4,7 @@ WinForms app: live webcam capture with face detection.
 
 ## Running
 
-```
+```console
 dotnet run --project VideoCaptureForm
 ```
 

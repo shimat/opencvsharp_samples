@@ -4,7 +4,7 @@ Avalonia UI desktop app: a live Canny edge-detection preview driven by threshold
 
 ## Running
 
-```
+```console
 dotnet run --project AvaloniaViewer
 ```
 

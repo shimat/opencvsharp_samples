@@ -4,7 +4,7 @@
 
 ## Running
 
-```
+```console
 dotnet run --project Samples.Windows
 ```
 

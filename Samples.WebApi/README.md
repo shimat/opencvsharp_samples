@@ -4,7 +4,7 @@ ASP.NET Core minimal API (.NET 8) exposing two image/video processing endpoints.
 
 ## Running
 
-```
+```console
 dotnet run --project Samples.WebApi
 ```
 
@@ -19,7 +19,7 @@ Then open `http://localhost:5000` (or whatever port is printed) — `wwwroot/ind
 
 The Dockerfile must be built from the **repo root**, not from inside this folder, because it pulls in `Samples/Data/` assets:
 
-```
+```console
 docker build -f Samples.WebApi/Dockerfile -t samples-webapi .
 docker run --rm -p 8080:8080 samples-webapi
 ```

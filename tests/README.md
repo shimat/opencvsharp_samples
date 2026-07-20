@@ -4,7 +4,7 @@ Integration tests for [`Samples.WebApi`](../Samples.WebApi/README.md), using xUn
 
 ## Running
 
-```
+```console
 dotnet test tests/Samples.WebApi.Tests/Samples.WebApi.Tests.csproj
 ```
 

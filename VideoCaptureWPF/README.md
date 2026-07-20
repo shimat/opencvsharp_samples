@@ -4,7 +4,7 @@ WPF app: live webcam capture with face detection. The WPF counterpart to [`Video
 
 ## Running
 
-```
+```console
 dotnet run --project VideoCaptureWPF
 ```
 

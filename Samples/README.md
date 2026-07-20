@@ -4,7 +4,7 @@
 
 ## Running
 
-```
+```console
 dotnet run --project Samples
 ```
 
@@ -14,10 +14,18 @@ You'll get a numbered menu grouped by category (`Core`, `ImgProc`, `Features2D`,
 
 Samples that would normally open a `Window` or block on `Cv2.WaitKey` can instead run without a display by writing their output frames as PNGs under `headless-output/<SampleName>/`:
 
-```
+```console
 dotnet run --project Samples -- --headless
-# or
+```
+
+or, equivalently, via an environment variable:
+
+```bash
 OPENCV_SAMPLES_HEADLESS=1 dotnet run --project Samples
+```
+
+```powershell
+$env:OPENCV_SAMPLES_HEADLESS=1; dotnet run --project Samples
 ```
 
 This is how the whole sample suite can be smoke-tested in CI. Samples that inherently need live hardware (e.g. `CameraCaptureSample`) skip themselves with a warning when run headless.
