@@ -30,7 +30,10 @@ class DctSample : ConsoleTestBase
         // Log-scale magnitude, just to make the coefficient spectrum visible: it's heavily
         // concentrated in the top-left (low-frequency) corner.
         using var spectrum = new Mat();
-        Cv2.Abs(dct).ToMat().ConvertTo(spectrum, MatType.CV_32F);
+        using (var dctAbs = Cv2.Abs(dct).ToMat())
+        {
+            dctAbs.ConvertTo(spectrum, MatType.CV_32F);
+        }
         using Mat spectrum1 = spectrum + Scalar.All(1);
         Cv2.Log(spectrum1, spectrum1);
         Cv2.Normalize(spectrum1, spectrum1, 0, 255, NormTypes.MinMax);
