@@ -9,7 +9,12 @@ on:
 jobs:
   build-windows:
     # Samples.Windows / VideoCaptureForm / VideoCaptureWPF target net8.0-windows,
-    # so the full solution can only be built on a Windows runner.
+    # so the full solution can only be built on a Windows runner. Only the 10.0.x
+    # SDK is installed: a newer SDK can still build net8.0(-windows) projects, and
+    # AvaloniaViewer specifically needs it - it targets net10.0 so the SDK driving
+    # the build always has a Roslyn version new enough for the Avalonia.Generators
+    # analyzer (an older SDK silently fails to run it, producing missing-member
+    # compile errors with no clear cause).
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v7
@@ -17,7 +22,7 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-dotnet@v6
         with:
-          dotnet-version: "8.0.x"
+          dotnet-version: "10.0.x"
       - run: dotnet restore OpenCvSharpSamples.sln
       - run: dotnet build OpenCvSharpSamples.sln --no-restore --configuration Release
 
