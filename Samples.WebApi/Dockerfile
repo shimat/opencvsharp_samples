@@ -9,13 +9,14 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 WORKDIR /app
 EXPOSE 8080
 
-# The full (non-slim) OpenCvSharp5.official.runtime.linux-x64 package links highgui against
-# GTK3, so the native library fails to load without it even though this app never calls
-# highgui. FFmpeg (needed by VideoCapture) is statically linked into that package already.
-# libdrm2/libatomic1 are further transitive dependencies not pulled in automatically
-# (confirmed via `ldd libOpenCvSharpExtern.so`, since --no-install-recommends omits them).
+# OpenCvSharp5.official.runtime.linux-x64.headless keeps the full module set (videoio,
+# dnn, ml, contrib, stitching, barcode, ...) that this app needs (VideoCapture) but is
+# built with highgui disabled, so GTK3/X11/libatomic are gone. libdrm2 is still needed
+# for now: the headless build still links libdrm.so.2 unconditionally, a bug tracked
+# upstream at https://github.com/shimat/opencvsharp/issues/2071 — drop this apt-get
+# step once that lands in a release.
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends libgtk-3-0 libdrm2 libatomic1 \
+    && apt-get install -y --no-install-recommends libdrm2 \
     && rm -rf /var/lib/apt/lists/*
 USER app
 
