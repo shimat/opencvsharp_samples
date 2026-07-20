@@ -1,6 +1,6 @@
 # Samples
 
-.NET 8 console app with an interactive menu of small, focused OpenCvSharp samples, grouped by module.
+.NET 10 console app with an interactive menu of small, focused OpenCvSharp samples, grouped by module.
 
 ## Running
 
@@ -54,4 +54,4 @@ This is how the whole sample suite can be smoke-tested in CI. Samples that inher
 
 ## Prerequisites
 
-None beyond the .NET 8 SDK — all data assets are bundled. `Video/CameraCaptureSample.cs` additionally needs a webcam and is skipped automatically in headless mode.
+None beyond the .NET 10 SDK — all data assets are bundled. `Video/CameraCaptureSample.cs` additionally needs a webcam and is skipped automatically in headless mode.

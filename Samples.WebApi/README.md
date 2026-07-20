@@ -1,6 +1,6 @@
 # Samples.WebApi
 
-ASP.NET Core minimal API (.NET 8) exposing two image/video processing endpoints. Cross-platform (Windows + Linux), unlike most of the other sample projects.
+ASP.NET Core minimal API (.NET 10) exposing two image/video processing endpoints. Cross-platform (Windows + Linux), unlike most of the other sample projects.
 
 ## Running
 

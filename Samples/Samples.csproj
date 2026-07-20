@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <!-- OpenCvSharp5 targets net8.0 only; net48 is no longer supported. -->
-    <TargetFramework>net8.0</TargetFramework>
+    <!-- OpenCvSharp5 targets net8.0+; net48 is no longer supported. -->
+    <TargetFramework>net10.0</TargetFramework>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Nullable>enable</Nullable>
     <AssemblyName>Samples</AssemblyName>
