@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <!-- OpenCvSharp5 targets net8.0 only; net48 is no longer supported. -->
-    <TargetFramework>net8.0</TargetFramework>
+    <!-- OpenCvSharp5 targets net8.0+; net48 is no longer supported. -->
+    <TargetFramework>net10.0</TargetFramework>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Nullable>enable</Nullable>
     <AssemblyName>Samples</AssemblyName>
@@ -19,8 +19,8 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="10.0.10" />
     <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="10.0.10" />
-    <PackageReference Include="OpenCvSharp5.GdipExtensions" Version="5.0.0.20260718" />
-    <PackageReference Include="OpenCvSharp5.runtime.win" Version="5.0.0.20260718" />
+    <PackageReference Include="OpenCvSharp5.GdipExtensions" Version="5.0.0.20260719" />
+    <PackageReference Include="OpenCvSharp5.runtime.win" Version="5.0.0.20260719" />
   </ItemGroup>
 
   <ItemGroup>

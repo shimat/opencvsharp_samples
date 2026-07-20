@@ -16,4 +16,4 @@ The result is shown as a before/after split view: the original image and the edg
 
 ## Prerequisites
 
-Windows only (as currently configured — only the `win` OpenCvSharp native runtime is referenced, even though Avalonia itself is cross-platform). No webcam or downloads needed.
+Windows and Linux x64 (this project references both `OpenCvSharp5.runtime.win` and `OpenCvSharp5.official.runtime.linux-x64.slim` — the app only calls `Cv2.ImRead`/`CvtColor`/`Canny`, so the reduced `slim` module set is enough and there's no GTK3/libdrm concern to work around). On Linux this is still an Avalonia desktop app, not a headless service: it needs an X11 or Wayland display server to show its window, regardless of which OpenCvSharp native package is referenced. No webcam or downloads needed.

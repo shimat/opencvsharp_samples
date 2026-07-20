@@ -1,6 +1,6 @@
 # Samples.Windows
 
-.NET 8 Windows-only app (WinForms + WPF both enabled) with two small interop samples. Unlike `Samples/`, this isn't a menu-driven suite — `Program.cs` hardcodes which sample runs.
+.NET 10 Windows-only app (WinForms + WPF both enabled) with two small interop samples. Unlike `Samples/`, this isn't a menu-driven suite — `Program.cs` hardcodes which sample runs.
 
 ## Running
 

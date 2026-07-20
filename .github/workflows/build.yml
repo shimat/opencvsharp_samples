@@ -8,7 +8,7 @@ on:
 
 jobs:
   build-windows:
-    # Samples.Windows / VideoCaptureForm / VideoCaptureWPF target net8.0-windows,
+    # Samples.Windows / VideoCaptureForm / VideoCaptureWPF target net10.0-windows,
     # so the full solution can only be built on a Windows runner.
     runs-on: windows-latest
     steps:
@@ -17,13 +17,15 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-dotnet@v6
         with:
-          dotnet-version: "8.0.x"
+          dotnet-version: "10.0.x"
       - run: dotnet restore OpenCvSharpSamples.sln
       - run: dotnet build OpenCvSharpSamples.sln --no-restore --configuration Release
 
   build-and-test-linux:
-    # Samples.WebApi additionally targets linux-x64 via OpenCvSharp5.official.runtime.linux-x64,
-    # so verify it builds and its tests pass on Linux too.
+    # Samples.WebApi additionally targets linux-x64 via OpenCvSharp5.official.runtime.linux-x64.headless,
+    # so verify it builds and its tests pass on Linux too. AvaloniaViewer also gets a linux-x64 native
+    # runtime (OpenCvSharp5.official.runtime.linux-x64.slim), so it's built here too (not run - it's a
+    # windowed desktop app that needs a display server, out of scope for this job).
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -31,7 +33,9 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-dotnet@v6
         with:
-          dotnet-version: "8.0.x"
+          dotnet-version: "10.0.x"
       - run: dotnet restore Samples.WebApi/Samples.WebApi.csproj
       - run: dotnet build Samples.WebApi/Samples.WebApi.csproj --no-restore --configuration Release
       - run: dotnet test tests/Samples.WebApi.Tests/Samples.WebApi.Tests.csproj --configuration Release
+      - run: dotnet restore AvaloniaViewer/AvaloniaViewer.csproj
+      - run: dotnet build AvaloniaViewer/AvaloniaViewer.csproj --no-restore --configuration Release

@@ -1,6 +1,6 @@
 # Samples.WebApi
 
-ASP.NET Core minimal API (.NET 8) exposing two image/video processing endpoints. Cross-platform (Windows + Linux), unlike most of the other sample projects.
+ASP.NET Core minimal API (.NET 10) exposing two image/video processing endpoints. Cross-platform (Windows + Linux), unlike most of the other sample projects.
 
 ## Running
 
@@ -24,7 +24,7 @@ docker build -f Samples.WebApi/Dockerfile -t samples-webapi .
 docker run --rm -p 8080:8080 samples-webapi
 ```
 
-The base image installs `libgtk-3-0`, `libdrm2`, and `libatomic1`, which the linux-x64 OpenCvSharp native library needs even though this app never calls highgui.
+This project references `OpenCvSharp5.official.runtime.linux-x64.headless` rather than the full `OpenCvSharp5.official.runtime.linux-x64` package: same module set (including `VideoCapture`), but built with `highgui` disabled, so GTK3/X11 are no longer needed. The base image still installs `libdrm2` — the headless build currently still links `libdrm.so.2` unconditionally, tracked upstream as [opencvsharp#2071](https://github.com/shimat/opencvsharp/issues/2071); that `apt-get` step can go away once the fix is released.
 
 ## Tests
 
