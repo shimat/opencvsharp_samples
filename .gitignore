@@ -251,3 +251,6 @@ paket-files/
 .idea/
 *.sln.iml
 /SamplesCore/*.caffemodel
+
+# Per-sample images written by DisplayHelper when running with --headless
+headless-output/
