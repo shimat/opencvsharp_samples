@@ -11,13 +11,11 @@ EXPOSE 8080
 
 # OpenCvSharp5.official.runtime.linux-x64.headless keeps the full module set (videoio,
 # dnn, ml, contrib, stitching, barcode, ...) that this app needs (VideoCapture) but is
-# built with highgui disabled, so GTK3/X11/libatomic are gone. libdrm2 is still needed
-# for now: the headless build still links libdrm.so.2 unconditionally, a bug tracked
-# upstream at https://github.com/shimat/opencvsharp/issues/2071 — drop this apt-get
-# step once that lands in a release.
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends libdrm2 \
-    && rm -rf /var/lib/apt/lists/*
+# built with highgui disabled, so GTK3/X11 are gone. The libdrm2 workaround for
+# https://github.com/shimat/opencvsharp/issues/2071 is no longer needed as of
+# 5.0.0.20260721: the native library no longer references libdrm.so.2 at all
+# (confirmed via `readelf -d`/`strings` and `ldd` against mcr.microsoft.com/dotnet/aspnet:10.0),
+# so no apt-get install is required on top of this base image.
 USER app
 
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
