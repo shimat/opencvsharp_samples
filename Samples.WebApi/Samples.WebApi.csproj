@@ -9,9 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="OpenCvSharp5" Version="5.0.0.20260721" />
-    <PackageReference Include="OpenCvSharp5.runtime.win" Version="5.0.0.20260721" />
-    <PackageReference Include="OpenCvSharp5.official.runtime.linux-x64.headless" Version="5.0.0.20260721" />
+    <PackageReference Include="OpenCvSharp5" Version="5.0.0.20260723" />
+    <PackageReference Include="OpenCvSharp5.runtime.win" Version="5.0.0.20260723" />
+    <PackageReference Include="OpenCvSharp5.official.runtime.linux-x64.headless" Version="5.0.0.20260723" />
   </ItemGroup>
 
   <ItemGroup>
