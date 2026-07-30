@@ -19,8 +19,8 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="10.0.10" />
     <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="10.0.10" />
-    <PackageReference Include="OpenCvSharp5.GdipExtensions" Version="5.0.0.20260726" />
-    <PackageReference Include="OpenCvSharp5.runtime.win" Version="5.0.0.20260726" />
+    <PackageReference Include="OpenCvSharp5.GdipExtensions" Version="5.0.0.20260730" />
+    <PackageReference Include="OpenCvSharp5.runtime.win" Version="5.0.0.20260730" />
   </ItemGroup>
 
   <ItemGroup>
