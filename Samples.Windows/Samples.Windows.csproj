@@ -19,8 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="OpenCvSharp5.runtime.win" Version="5.0.0.20260730" />
-    <PackageReference Include="OpenCvSharp5.WpfExtensions" Version="5.0.0.20260730" />
+    <PackageReference Include="OpenCvSharp5.runtime.win" Version="5.0.0.20260806" />
+    <PackageReference Include="OpenCvSharp5.WpfExtensions" Version="5.0.0.20260806" />
   </ItemGroup>
 
   <ItemGroup>
