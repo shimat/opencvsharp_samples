@@ -21,9 +21,9 @@
     <PackageReference Include="Avalonia.Desktop" Version="12.1.1" />
     <PackageReference Include="Avalonia.Themes.Fluent" Version="12.1.1" />
     <PackageReference Include="Avalonia.Fonts.Inter" Version="12.1.1" />
-    <PackageReference Include="OpenCvSharp5" Version="5.0.0.20260730" />
-    <PackageReference Include="OpenCvSharp5.runtime.win" Version="5.0.0.20260730" />
-    <PackageReference Include="OpenCvSharp5.official.runtime.linux-x64.slim" Version="5.0.0.20260730" />
+    <PackageReference Include="OpenCvSharp5" Version="5.0.0.20260806" />
+    <PackageReference Include="OpenCvSharp5.runtime.win" Version="5.0.0.20260806" />
+    <PackageReference Include="OpenCvSharp5.official.runtime.linux-x64.slim" Version="5.0.0.20260806" />
   </ItemGroup>
 
 </Project>
