@@ -5,7 +5,7 @@
 #   docker build -f Samples.WebApi/Dockerfile -t samples-webapi .
 #   docker run --rm -p 8080:8080 samples-webapi
 
-FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS base
+FROM mcr.microsoft.com/dotnet/aspnet:11.0 AS base
 WORKDIR /app
 EXPOSE 8080
 
@@ -18,7 +18,7 @@ EXPOSE 8080
 # so no apt-get install is required on top of this base image.
 USER app
 
-FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:11.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["Samples.WebApi/Samples.WebApi.csproj", "Samples.WebApi/"]
