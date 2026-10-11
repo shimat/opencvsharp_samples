@@ -3,6 +3,12 @@
   "extends": ["config:recommended"],
   "packageRules": [
     {
+      "description": "Use even-numbered .NET LTS releases for official Docker images",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["mcr.microsoft.com/dotnet/**"],
+      "allowedVersions": "/^(?:[2468]|[1-9][0-9]*[02468])\\./"
+    },
+    {
       "matchManagers": ["nuget"],
       "matchPackageNames": ["/^OpenCvSharp5/"],
       "groupName": "OpenCvSharp5",
