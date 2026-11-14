@@ -136,7 +136,7 @@ public class ConsoleTestManager
 
                 if (number < 0 || number > tests.Count)
                 {
-                    PrintErrorAndRead($"The number is out of range. Please reenter(enter {exitCode} to exit）");
+                    input = PrintErrorAndRead($"The number is out of range. Please reenter(enter {exitCode} to exit）");
                     continue;
                 }
                 var test = tests[number - 1];
